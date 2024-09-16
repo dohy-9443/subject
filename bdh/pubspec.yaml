@@ -3,7 +3,7 @@ description: "백동현 과제"
 publish_to: 'none'
 version: 1.0.0+1
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: '>=3.4.4 <4.0.0'
 
 
 dependencies:
@@ -43,8 +43,8 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
-  freezed: ^2.5.7
-  build_runner: ^2.4.12
+  freezed: ^2.5.2
+  build_runner: ^2.4.10
   json_serializable: ^6.8.0
 
 
