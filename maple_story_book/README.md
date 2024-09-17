@@ -15,7 +15,6 @@
 - router
   - go_router: 14.2.7
 - data
-  - uuid: 4.5.0
   - logger: 2.4.0
   - json_annotation: 4.9.0
   - freezed_annotation: 2.4.4
@@ -27,7 +26,6 @@
   - flutter_bloc: 8.1.6
 - storage
   - flutter_secure_storage: 9.2.2
-  - get_storage: 2.1.1
 - permission
   - permission_handler: 11.3.1
 - ui
