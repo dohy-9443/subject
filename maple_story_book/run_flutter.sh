@@ -36,3 +36,39 @@
 
 # 앱 실행
 #flutter run
+
+# FVM 으로 앱 빌드 (Android)
+#fvm flutter build apk
+
+# 앱 빌드 (Android)
+#flutter build apk
+
+# FVM 으로 앱 빌드 (iOS)
+#fvm flutter build ios
+
+# 앱 빌드 (iOS)
+#flutter build ios
+
+# FVM 으로 웹 빌드 (web)
+#fvm flutter build web
+
+# 웹 빌드 (web)
+#flutter build web
+
+# FVM 으로 macOS 빌드 (macOS)
+#fvm flutter build macos
+
+# macOS 빌드 (macOS)
+#flutter build macos
+
+# FVM 으로 Windows 데스크탑 앱 빌드 (Windows)
+#fvm flutter build windows
+
+# Windows 데스크탑 앱 빌드 (Windows)
+#flutter build windows
+
+# FVM 으로 Linux 데스크탑 앱 빌드 (Linux)
+#fvm flutter build linux
+
+# Linux 데스크탑 앱 빌드 (Linux)
+#flutter build linux
