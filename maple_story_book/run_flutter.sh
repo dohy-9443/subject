@@ -4,6 +4,9 @@
 # 해당 프로젝트 root 위치에서 명령어 사용
 # chmod +x run_flutter.sh
 
+# 실행 명령어
+# ./run_flutter.sh
+
 # FVM 으로 Flutter 패키지 설치
 #fvm flutter pub get
 
