@@ -9,7 +9,7 @@
 ## API
 - NEXON OPEN API 사용 (https://openapi.nexon.com/ko/)
 
-## USE PLUGIN 
+## USE PACKAGES
 - http
   - dio: 5.7.0
 - router
