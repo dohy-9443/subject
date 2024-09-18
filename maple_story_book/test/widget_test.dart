@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:maple_story_book/maple_story_book_app.dart';
+import 'package:maple_story_book/app/maple_story_book_app.dart';
 
 
 void main() {
