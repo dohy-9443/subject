@@ -8,7 +8,7 @@
 # ./run_flutter.sh
 
 # FVM 으로 Flutter 패키지 설치
-#fvm flutter pub get
+fvm flutter pub get
 
 # Flutter 패키지 설치
 #flutter pub get
