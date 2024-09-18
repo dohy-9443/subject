@@ -67,7 +67,7 @@ flutter:
 flutter_native_splash:
   color: "#FFC067"
   image: assets/icons/logo_icon.png
-  color_dark: "FFC067"
+  color_dark: "#FFC067"
   image_dark: "assets/icons/logo_icon.png"
   android: true
   ios: true
@@ -75,7 +75,7 @@ flutter_native_splash:
   android_12:
     color: "#FFC067"
     image: assets/icons/logo_icon.png
-    color_dark: "FFC067"
+    color_dark: "#FFC067"
     image_dark: "assets/icons/logo_icon.png"
   android_gravity: center
   ios_content_mode: center
