@@ -15,7 +15,7 @@ abstract class ICharacterRepository {
   // 기본 정보 조회
   Future<ResultRest<BasicInfo>> getCharacterBasic();
   // 인기도 정보 조회
-  Future<Popularity> getCharacterPopularity();
+  Future<ResultRest<Popularity>> getCharacterPopularity();
   // 종합 능력치 정보 조회
-  Future<Stat> getCharacterStat();
+  Future<ResultRest<Stat>> getCharacterStat();
 }
