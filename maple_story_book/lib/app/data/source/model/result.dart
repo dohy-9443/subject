@@ -1,4 +1,3 @@
-
 ///
 /// @Project name    : maple_story_book
 /// @Class           : result.
@@ -7,26 +6,27 @@
 /// Description      :
 ///
 
-abstract class Result<T> {
-  static Result<T> fail<T>(Exception e) => Fail<T>(e);
-  static Result<T> success<T>(T data) => Success<T>(data);
+abstract class ResultRest<T> {
+  final T? data;
 
-  R fold<R>({
-    required R Function(T value) onSuccess,
-    required R Function(Exception e) onFail,
-  }) {
-    return this is Success ? onSuccess((this as Success).value) : onFail((this as Fail).error);
-  }
+  final int code;
+
+  final String? message;
+
+  final Exception? error;
+
+  const ResultRest({this.data, required this.code, this.message, this.error});
+
+  bool isSuccess() => code == 200;
+
+  bool isFail() => code != 200;
 }
 
-class Success<T> extends Result<T>{
-  final T value;
 
-  Success(this.value);
+class Success<T> extends ResultRest<T>{
+  const Success(T? data) : super(data: data, code: 200);
 }
 
-class Fail<T> extends Result<T>{
-  final Exception error;
-
-  Fail(this.error);
+class Error<T> extends ResultRest<T> {
+  const Error(int code, String message, Exception error) : super(code: code, message: message, error: error);
 }

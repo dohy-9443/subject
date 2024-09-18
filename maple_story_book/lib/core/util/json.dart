@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 ///
 /// @Project name    : maple_story_book
 /// @Class           : json.
