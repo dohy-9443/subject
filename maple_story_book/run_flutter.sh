@@ -20,7 +20,7 @@
 #flutter pub update
 
 # FVM 으로 Build Runner 파일 생성
-fvm flutter pub run build_runner build --delete-conflicting-outputs
+#fvm flutter pub run build_runner build --delete-conflicting-outputs
 
 # Build Runner 파일 생성
 #flutter pub run build_runner build --delete-conflicting-outputs

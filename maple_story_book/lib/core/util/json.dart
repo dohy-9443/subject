@@ -19,3 +19,13 @@ double stringToConvertDouble(String? value) {
     return 0;
   }
 }
+
+int stringToConvertInt(String? value) {
+  if (value == null) return 0;
+
+  try {
+    return int.parse(value);
+  } catch (e) {
+    return 0;
+  }
+}

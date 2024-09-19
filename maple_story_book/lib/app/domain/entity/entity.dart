@@ -7,9 +7,12 @@
 ///
 
 // MAPLE STORY
+export 'ability.dart';
 export 'basic_info.dart';
+export 'hyper_stat.dart';
 export 'ocid.dart';
 export 'popularity.dart';
+export 'propensity.dart';
 export 'stat.dart';
 
 
