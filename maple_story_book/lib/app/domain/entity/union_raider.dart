@@ -16,7 +16,7 @@ part 'union_raider.g.dart';
 class UnionRaider with _$UnionRaider {
   const factory UnionRaider({
     @Default('') String date,
-    @Default({}) UnionRaiderPresetElement unionPreset,
+    required UnionRaiderPresetElement unionPreset,
     @JsonKey(name: 'use_preset_no', fromJson: stringToConvertInt) @Default(0) int usePresetNo,
     @JsonKey(name: 'union_raider_preset_1') @Default([]) List<UnionRaiderPresetElement> unionRaiderPresetFirst,
     @JsonKey(name: 'union_raider_preset_2') @Default([]) List<UnionRaiderPresetElement> unionRaiderPresetSecond,
@@ -46,7 +46,7 @@ class UnionBlockElement with _$UnionBlockElement {
     @JsonKey(name: 'block_type') @Default('') String blockType,
     @JsonKey(name: 'block_class') @Default('') String blockClass,
     @JsonKey(name: 'block_level') @Default('') String blockLevel,
-    @JsonKey(name: 'block_control_point') @Default({})  Position blockControlPoint,
+    @JsonKey(name: 'block_control_point') required Position blockControlPoint,
     @JsonKey(name: 'block_position') @Default([])  List<Position> blockPosition,
   }) = _UnionBlockElement;
 
