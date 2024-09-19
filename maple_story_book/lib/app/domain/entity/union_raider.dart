@@ -54,7 +54,6 @@ class UnionBlockElement with _$UnionBlockElement {
       _$UnionBlockElementFromJson(json);
 }
 
-
 @freezed
 class Position with _$Position {
   const factory Position({
@@ -65,7 +64,6 @@ class Position with _$Position {
 factory Position.fromJson(Map<String, dynamic> json) =>
 _$PositionFromJson(json);
 }
-
 
 @freezed
 class UnionRaiderPresetElement with _$UnionRaiderPresetElement {
