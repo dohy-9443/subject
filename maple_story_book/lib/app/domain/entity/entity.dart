@@ -9,12 +9,16 @@
 // MAPLE STORY
 export 'ability.dart';
 export 'basic_info.dart';
+export 'beauty_equipment.dart';
+export 'cash_item_equipment.dart';
 export 'item_equipment.dart';
 export 'hyper_stat.dart';
 export 'ocid.dart';
 export 'popularity.dart';
 export 'propensity.dart';
+export 'set_effect.dart';
 export 'stat.dart';
+export 'symbol_equipment.dart';
 export 'cube_history.dart';
 export 'guild_basic_info.dart';
 export 'guild_id.dart';

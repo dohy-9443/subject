@@ -26,4 +26,12 @@ abstract class ICharacterRepository {
   Future<ResultRest<Ability>> getCharacterAbility();
   // 장착 장비 정보 조회 (캐시 장비 제외)
   Future<ResultRest<ItemEquipment>> getCharacterItemEquipment();
+  // 장착 캐시 장비 정보 조회
+  Future<ResultRest<CashItemEquipment>> getCharacterCashItemEquipment();
+  // 장착 심볼 정보 조회
+  Future<ResultRest<SymbolEquipment>> getCharacterSymbolEquipment();
+  // 장착 세트 효과 정보 조회
+  Future<ResultRest<SetEffect>> getCharacterSetEffect();
+  // 장착 헤어, 성형, 피부 정보 조회
+  Future<ResultRest<BeautyEquipment>> getCharacterBeautyEquipment();
 }
