@@ -24,4 +24,6 @@ abstract class ICharacterRepository {
   Future<ResultRest<Propensity>> getCharacterPropensity();
   // 어빌리티 정보 조회
   Future<ResultRest<Ability>> getCharacterAbility();
+  // 장착 장비 정보 조회 (캐시 장비 제외)
+  Future<ResultRest<ItemEquipment>> getCharacterItemEquipment();
 }
