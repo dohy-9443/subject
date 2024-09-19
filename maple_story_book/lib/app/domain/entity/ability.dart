@@ -20,9 +20,9 @@ class Ability with _$Ability {
     @JsonKey(name: 'ability_info') @Default([]) List<AbilityElement> abilityInfo,
     @JsonKey(name: 'remain_fame') @Default(0) int remainFame,
     @JsonKey(name: 'preset_no') @Default(0) int presetNo,
-    @JsonKey(name: 'ability_preset_1') required AbilityPreset abilityPreset1,
-    @JsonKey(name: 'ability_preset_2') required AbilityPreset abilityPreset2,
-    @JsonKey(name: 'ability_preset_3') required AbilityPreset abilityPreset3,
+    @JsonKey(name: 'ability_preset_1') AbilityPreset? abilityPreset1,
+    @JsonKey(name: 'ability_preset_2') AbilityPreset? abilityPreset2,
+    @JsonKey(name: 'ability_preset_3') AbilityPreset? abilityPreset3,
   }) = _Ability;
 
   factory Ability.fromJson(Map<String, dynamic> json) => _$AbilityFromJson(json);

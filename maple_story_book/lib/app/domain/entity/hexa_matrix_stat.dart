@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:maple_story_book/core/util/util.dart';
 
 part 'hexa_matrix_stat.freezed.dart';
 part 'hexa_matrix_stat.g.dart';
@@ -28,7 +27,7 @@ class HexaMatrixStat with _$HexaMatrixStat {
 }
 
 @freezed
-class HexaStatCoreElement with _$HexaMatrixStat {
+class HexaStatCoreElement with _$HexaStatCoreElement {
   const factory HexaStatCoreElement({
     @JsonKey(name: 'slot_id') @Default('') String slotId,
     @JsonKey(name: 'main_stat_name') @Default('') String mainStatName,

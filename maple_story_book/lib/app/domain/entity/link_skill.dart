@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:maple_story_book/core/util/util.dart';
 
 part 'link_skill.freezed.dart';
 part 'link_skill.g.dart';
@@ -17,14 +16,14 @@ class LinkSkill with _$LinkSkill {
   const factory LinkSkill({
     String? date,
     @JsonKey(name: 'character_class') @Default('') String characterClass,
-    @JsonKey(name: 'character_link_skill') required LinkSkillElement characterLinkSkill,
+    @JsonKey(name: 'character_link_skill') LinkSkillElement? characterLinkSkill,
     @JsonKey(name: 'character_link_skill_preset_1') @Default('') String characterLinkSkillPresetFirst,
     @JsonKey(name: 'character_link_skill_preset_2') @Default('') String characterLinkSkillPresetSecond,
     @JsonKey(name: 'character_link_skill_preset_3') @Default('') String characterLinkSkillPresetThird,
-    @JsonKey(name: 'character_owned_link_skill') required LinkSkillPresetElement characterOwnedLinkSkill,
-    @JsonKey(name: 'character_owned_link_skill_preset_1') required LinkSkillPresetElement characterOwnedLinkSkillPresetFirst,
-    @JsonKey(name: 'character_owned_link_skill_preset_2') required LinkSkillPresetElement characterOwnedLinkSkillPresetSecond,
-    @JsonKey(name: 'character_owned_link_skill_preset_3') required LinkSkillPresetElement characterOwnedLinkSkillPresetThird,
+    @JsonKey(name: 'character_owned_link_skill') LinkSkillPresetElement? characterOwnedLinkSkill,
+    @JsonKey(name: 'character_owned_link_skill_preset_1') LinkSkillPresetElement? characterOwnedLinkSkillPresetFirst,
+    @JsonKey(name: 'character_owned_link_skill_preset_2') LinkSkillPresetElement? characterOwnedLinkSkillPresetSecond,
+    @JsonKey(name: 'character_owned_link_skill_preset_3') LinkSkillPresetElement? characterOwnedLinkSkillPresetThird,
   }) = _LinkSkill;
 
   factory LinkSkill.fromJson(Map<String, dynamic> json) =>
@@ -58,14 +57,4 @@ class LinkSkillPresetElement with _$LinkSkillPresetElement {
 
   factory LinkSkillPresetElement.fromJson(Map<String, dynamic> json) =>
       _$LinkSkillPresetElementFromJson(json);
-}
-
-@freezed
-class LinkedSkillElement with _$LinkedSkillElement {
-  const factory LinkedSkillElement({
-    @JsonKey(name: 'hexa_skill_id') @Default('') String hexaSkillId,
-  }) = _LinkedSkillElement;
-
-  factory LinkedSkillElement.fromJson(Map<String, dynamic> json) =>
-      _$LinkedSkillElementFromJson(json);
 }

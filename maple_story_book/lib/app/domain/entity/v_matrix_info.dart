@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:maple_story_book/core/util/util.dart';
 
 part 'v_matrix_info.freezed.dart';
 part 'v_matrix_info.g.dart';
