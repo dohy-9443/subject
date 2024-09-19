@@ -9,6 +9,7 @@
 // MAPLE STORY
 export 'ability.dart';
 export 'basic_info.dart';
+export 'item_equipment.dart';
 export 'hyper_stat.dart';
 export 'ocid.dart';
 export 'popularity.dart';
