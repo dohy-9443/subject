@@ -16,4 +16,8 @@ class CharacterDataSource {
   Future<dynamic> getOcid({ required String characterName }) {
     return _getRemoteDataSource.getOcid(characterName: characterName);
   }
+
+  Future<dynamic> getCharacterAbility({required String ocid, DateTime? date}) {
+    return _getRemoteDataSource.getCharacterAbility(ocid: ocid, date: date);
+  }
 }
