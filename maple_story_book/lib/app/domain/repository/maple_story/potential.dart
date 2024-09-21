@@ -11,7 +11,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 
 abstract class IPotentialRepository {
   // 잠재능력 재설정 이용 결과 조회
-  Future<ResultRest<PotentialHistory>> getHistoryPotential({ required String count, String? date, String? cursor });
+  Future<ResultRest<PotentialHistory>> getHistoryPotential({ required String count, DateTime? date, String? cursor });
   // 큐브 사용 결과 조회
-  Future<ResultRest<CubeHistory>> getHistoryCube({ required String count, String? date, String? cursor });
+  Future<ResultRest<CubeHistory>> getHistoryCube({ required String count, DateTime? date, String? cursor });
 }

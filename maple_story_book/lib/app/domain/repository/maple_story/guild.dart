@@ -14,5 +14,5 @@ abstract class IGuildRepository {
   /// TODO : worldName enum 만들기
   Future<ResultRest<GuildId>> getGuildId({required String guildName, required String worldName});
   // 기본 정보 조회
-  Future<ResultRest<GuildId>> getGuildBasic({required String oGuildId, String? date});
+  Future<ResultRest<GuildId>> getGuildBasic({required String oGuildId, DateTime? date});
 }

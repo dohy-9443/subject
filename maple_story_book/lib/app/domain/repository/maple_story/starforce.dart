@@ -11,5 +11,5 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 
 abstract class IStarforceRepository {
   // 스타포스 강화 결과 조회
-  Future<ResultRest<StarForceHistory>> getHistoryStarforce({ required String count, String? date, String? cursor });
+  Future<ResultRest<StarForceHistory>> getHistoryStarforce({ required String count, DateTime? date, String? cursor });
 }
