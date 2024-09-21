@@ -36,6 +36,9 @@ dependencies:
   # permission
   permission_handler: 11.3.1
 
+  # format
+  intl: 0.19.0
+
   # ui
   image_picker: 1.1.2
   google_fonts: 6.2.1
