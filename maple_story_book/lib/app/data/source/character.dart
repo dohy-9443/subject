@@ -13,7 +13,7 @@ class CharacterDataSource {
 
   CharacterDataSource(this._getRemoteDataSource);
 
-  Future<dynamic> getOcid() {
-    return _getRemoteDataSource.getOcid();
+  Future<dynamic> getOcid({ required String characterName }) {
+    return _getRemoteDataSource.getOcid(characterName: characterName);
   }
 }

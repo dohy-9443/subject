@@ -19,74 +19,74 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
   CharacterRepository(this._characterDataSource);
 
   @override
-  Future<ResultRest<Ability>> getCharacterAbility() {
+  Future<ResultRest<Ability>> getCharacterAbility({required String ocid, String? date}) {
     // TODO: implement getCharacterAbility
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<BasicInfo>> getCharacterBasic() {
+  Future<ResultRest<BasicInfo>> getCharacterBasic({required String ocid, String? date}) {
     // TODO: implement getCharacterBasic
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<BeautyEquipment>> getCharacterBeautyEquipment() {
+  Future<ResultRest<BeautyEquipment>> getCharacterBeautyEquipment({required String ocid, String? date}) {
     // TODO: implement getCharacterBeautyEquipment
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<CashItemEquipment>> getCharacterCashItemEquipment() {
+  Future<ResultRest<CashItemEquipment>> getCharacterCashItemEquipment({required String ocid, String? date}) {
     // TODO: implement getCharacterCashItemEquipment
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<HyperStat>> getCharacterHyperStat() {
+  Future<ResultRest<HyperStat>> getCharacterHyperStat({required String ocid, String? date}) {
     // TODO: implement getCharacterHyperStat
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<ItemEquipment>> getCharacterItemEquipment() {
+  Future<ResultRest<ItemEquipment>> getCharacterItemEquipment({required String ocid, String? date}) {
     // TODO: implement getCharacterItemEquipment
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<Popularity>> getCharacterPopularity() {
+  Future<ResultRest<Popularity>> getCharacterPopularity({required String ocid, String? date}) {
     // TODO: implement getCharacterPopularity
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<Propensity>> getCharacterPropensity() {
+  Future<ResultRest<Propensity>> getCharacterPropensity({required String ocid, String? date}) {
     // TODO: implement getCharacterPropensity
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<SetEffect>> getCharacterSetEffect() {
+  Future<ResultRest<SetEffect>> getCharacterSetEffect({required String ocid, String? date}) {
     // TODO: implement getCharacterSetEffect
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<Stat>> getCharacterStat() {
+  Future<ResultRest<Stat>> getCharacterStat({required String ocid, String? date}) {
     // TODO: implement getCharacterStat
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<SymbolEquipment>> getCharacterSymbolEquipment() {
+  Future<ResultRest<SymbolEquipment>> getCharacterSymbolEquipment({required String ocid, String? date}) {
     // TODO: implement getCharacterSymbolEquipment
     throw UnimplementedError();
   }
 
   @override
-  Future<ResultRest<Ocid>> getOcid() async {
-    final json = await _characterDataSource.getOcid();
+  Future<ResultRest<Ocid>> getOcid({required String characterName}) async {
+    final json = await _characterDataSource.getOcid(characterName: characterName);
 
     try {
       if (json == null) throw Error<Ocid>(0, 'Received null data', Exception('Data is null'));
@@ -120,5 +120,7 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
       return Error<Ocid>(0, 'Unknown error occurred', Exception(e.toString()));
     }
   }
+
+
 
 }

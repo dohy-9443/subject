@@ -15,7 +15,7 @@ class GetMapleStoryBookCharacterApi {
 
   static String defaultPath = '/maplestory/v1';
 
-  Future<dynamic> getOcid() {
-    return _client.get<dynamic>('$defaultPath/id').then((value) => value.data);
+  Future<dynamic> getOcid({required String characterName}) {
+    return _client.get<dynamic>('$defaultPath/id', queryParameters: {'character_name' : characterName}).then((value) => value.data);
   }
 }

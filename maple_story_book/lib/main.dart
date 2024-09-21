@@ -12,7 +12,7 @@ void main() async {
   await initSettings();
   runApp(const MapleStoryBookApp());
 
-  await CharacterRepository(CharacterDataSource(GetRemoteDataSource(GetMapleStoryBookCharacterApi(MapleStoryBookRestClient())))).getOcid();
+  await CharacterRepository(CharacterDataSource(GetRemoteDataSource(GetMapleStoryBookCharacterApi(MapleStoryBookRestClient())))).getOcid(characterName: 'l망치사냥꾼l');
 }
 
 Future<void> initSettings() async {

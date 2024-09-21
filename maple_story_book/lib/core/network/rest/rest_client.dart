@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -43,8 +44,18 @@ class RestClient {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-  }) {
-    return _dio.get<T>(
+  }) async {
+    await dotenv.load(fileName: "maple_story_book.env");
+    final apiKey = dotenv.env['MAPLE_STORY_API_KEY'];
+    _dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
+
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        options.headers['x-nxopen-api-key'] = apiKey;
+        return handler.next(options);
+      },
+    ));
+    return await _dio.get<T>(
       path,
       data: data,
       queryParameters: queryParameters,

@@ -9,7 +9,7 @@ import 'package:maple_story_book/tool/network/network.dart';
 ///
 
 abstract class IGetRemoteDataSource {
-  Future<dynamic> getOcid();
+  Future<dynamic> getOcid({required String characterName});
 }
 
 class GetRemoteDataSource implements IGetRemoteDataSource {
@@ -18,8 +18,8 @@ class GetRemoteDataSource implements IGetRemoteDataSource {
   GetRemoteDataSource(this._api);
 
   @override
-  Future<dynamic> getOcid() {
-    return _api.getOcid();
+  Future<dynamic> getOcid({required String characterName}) {
+    return _api.getOcid(characterName: characterName);
   }
 
 }
