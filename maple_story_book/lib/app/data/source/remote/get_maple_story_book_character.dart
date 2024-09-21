@@ -10,6 +10,7 @@ import 'package:maple_story_book/tool/network/network.dart';
 
 abstract class IGetRemoteDataSource {
   Future<dynamic> getOcid({required String characterName});
+  Future<dynamic> getCharacterAbility({required String ocid, DateTime? date});
 }
 
 class GetRemoteDataSource implements IGetRemoteDataSource {
@@ -20,6 +21,11 @@ class GetRemoteDataSource implements IGetRemoteDataSource {
   @override
   Future<dynamic> getOcid({required String characterName}) {
     return _api.getOcid(characterName: characterName);
+  }
+
+  @override
+  Future getCharacterAbility({required String ocid,  DateTime? date}) {
+    return _api.getCharacterAbility(ocid: ocid, date: date);
   }
 
 }

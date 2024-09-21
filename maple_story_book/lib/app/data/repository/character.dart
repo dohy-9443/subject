@@ -19,9 +19,39 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
   CharacterRepository(this._characterDataSource);
 
   @override
-  Future<ResultRest<Ability>> getCharacterAbility({required String ocid, String? date}) {
-    // TODO: implement getCharacterAbility
-    throw UnimplementedError();
+  Future<ResultRest<Ability>> getCharacterAbility({required String ocid, DateTime? date}) async {
+    final json = await _characterDataSource.getCharacterAbility(ocid: ocid, date: date);
+
+    try {
+      if (json == null) throw Error<Ability>(0, 'Received null data', Exception('Data is null'));
+
+      return Success<Ability>(Ability.fromJson(json));
+
+    } on DioException catch (e) {
+
+      // Logger로 에러 정보 출력
+      logger.e('DioException : ${e.message}');
+      logger.e('Request Data: ${e.requestOptions.data}');
+      logger.e('Error: ${e.error}');
+
+      // HTTP 응답이 있으면 해당 응답의 코드와 메시지 처리
+      if (e.response != null) {
+        return Error<Ability>(
+          e.response!.statusCode ?? 0, // HTTP 응답 코드
+          e.response!.statusMessage ?? 'Unknown error', // 응답 메시지
+          e,
+        );
+      }
+
+      // HTTP 응답이 없으면 기본 오류 메시지 반환
+      return Error<Ability>(0, 'No Response from Server', e);
+
+    } catch (e) {
+      // 기타 예외 처리 (DioException 외 다른 오류)
+      logger.e('Unknown error: $e');
+
+      return Error<Ability>(0, 'Unknown error occurred', Exception(e.toString()));
+    }
   }
 
   @override
@@ -94,6 +124,7 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
       print('여기임 ${Ocid.fromJson(json)}');
 
       return Success<Ocid>(Ocid.fromJson(json));
+
     } on DioException catch (e) {
 
       // Logger로 에러 정보 출력
@@ -119,6 +150,54 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
 
       return Error<Ocid>(0, 'Unknown error occurred', Exception(e.toString()));
     }
+  }
+
+  @override
+  Future<ResultRest<AndroidEquipment>> getCharacterAndroidEquipment({required String ocid, String? date}) {
+    // TODO: implement getCharacterAndroidEquipment
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<HexaMatrixInfo>> getCharacterHexaMatrixInfo({required String ocid, String? date}) {
+    // TODO: implement getCharacterHexaMatrixInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<HexaMatrixStat>> getCharacterHexaMatrixStat({required String ocid, String? date}) {
+    // TODO: implement getCharacterHexaMatrixStat
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<LinkSkill>> getCharacterLinkSkill({required String ocid, String? date}) {
+    // TODO: implement getCharacterLinkSkill
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<PetEquipment>> getCharacterPetEquipment({required String ocid, String? date}) {
+    // TODO: implement getCharacterPetEquipment
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<SkillInfo>> getCharacterSkillInfo({required String ocid, String? date, required String characterSkillGrade}) {
+    // TODO: implement getCharacterSkillInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<StudioTopRecordInfo>> getCharacterStudioTopRecordInfo({required String ocid, String? date}) {
+    // TODO: implement getCharacterStudioTopRecordInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<VMatrixInfo>> getCharacterVMatrixInfo({required String ocid, String? date}) {
+    // TODO: implement getCharacterVMatrixInfo
+    throw UnimplementedError();
   }
 
 

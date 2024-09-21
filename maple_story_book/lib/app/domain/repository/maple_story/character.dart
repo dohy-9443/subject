@@ -23,7 +23,7 @@ abstract class ICharacterRepository {
   // 성향 정보 조회
   Future<ResultRest<Propensity>> getCharacterPropensity({required String ocid, String? date});
   // 어빌리티 정보 조회
-  Future<ResultRest<Ability>> getCharacterAbility({required String ocid, String? date});
+  Future<ResultRest<Ability>> getCharacterAbility({required String ocid, DateTime? date});
   // 장착 장비 정보 조회 (캐시 장비 제외)
   Future<ResultRest<ItemEquipment>> getCharacterItemEquipment({required String ocid, String? date});
   // 장착 캐시 장비 정보 조회
