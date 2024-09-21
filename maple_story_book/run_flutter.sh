@@ -32,7 +32,7 @@
 #flutter pub run build_runner watch --delete-conflicting-outputs
 
 # FVM 으로 앱 실행
-#fvm flutter run
+fvm flutter run
 
 # 앱 실행
 #flutter run

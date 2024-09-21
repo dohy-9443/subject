@@ -9,9 +9,6 @@ import 'package:maple_story_book/core/network/network.dart';
 /// Description      : 
 ///
 
-String? baseUrl = dotenv.env['BASE_URL'];
-
 class MapleStoryBookRestClient extends RestClient {
-
-  MapleStoryBookRestClient() : super(baseUrl: baseUrl!);
+  MapleStoryBookRestClient() : super(baseUrl: 'https://open.api.nexon.com');
 }
