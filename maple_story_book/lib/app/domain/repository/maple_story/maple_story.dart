@@ -13,4 +13,3 @@ export 'potential.dart';
 export 'ranking.dart';
 export 'starforce.dart';
 export 'union.dart';
-export 'user.dart';

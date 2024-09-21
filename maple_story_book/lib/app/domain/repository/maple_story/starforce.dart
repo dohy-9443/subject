@@ -1,3 +1,6 @@
+import 'package:maple_story_book/app/data/source/source.dart';
+import 'package:maple_story_book/app/domain/entity/entity.dart';
+
 ///
 /// @Project name    : maple_story_book
 /// @Class           : starforce.
@@ -5,3 +8,8 @@
 /// Created On       : 2024. 9. 18..
 /// Description      : 
 ///
+
+abstract class IStarforceRepository {
+  // 스타포스 강화 결과 조회
+  Future<ResultRest<StarForceHistory>> getHistoryStarforce({ required String count, String? date, String? cursor });
+}
