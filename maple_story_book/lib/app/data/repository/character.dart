@@ -121,6 +121,54 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
     }
   }
 
+  @override
+  Future<ResultRest<AndroidEquipment>> getCharacterAndroidEquipment({required String ocid, String? date}) {
+    // TODO: implement getCharacterAndroidEquipment
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<HexaMatrixInfo>> getCharacterHexaMatrixInfo({required String ocid, String? date}) {
+    // TODO: implement getCharacterHexaMatrixInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<HexaMatrixStat>> getCharacterHexaMatrixStat({required String ocid, String? date}) {
+    // TODO: implement getCharacterHexaMatrixStat
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<LinkSkill>> getCharacterLinkSkill({required String ocid, String? date}) {
+    // TODO: implement getCharacterLinkSkill
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<PetEquipment>> getCharacterPetEquipment({required String ocid, String? date}) {
+    // TODO: implement getCharacterPetEquipment
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<SkillInfo>> getCharacterSkillInfo({required String ocid, String? date, required String characterSkillGrade}) {
+    // TODO: implement getCharacterSkillInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<StudioTopRecordInfo>> getCharacterStudioTopRecordInfo({required String ocid, String? date}) {
+    // TODO: implement getCharacterStudioTopRecordInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResultRest<VMatrixInfo>> getCharacterVMatrixInfo({required String ocid, String? date}) {
+    // TODO: implement getCharacterVMatrixInfo
+    throw UnimplementedError();
+  }
+
 
 
 }
