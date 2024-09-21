@@ -17,7 +17,9 @@ mixin BaseResponse {
   }) async {
     Logger logger = Logger();
     try {
+
       final json = await request();
+
       if (json == null) {
         throw Error<T>(0, 'Received null data', Exception('Data is null'));
       }

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/repository/repository.dart';
