@@ -35,9 +35,5 @@ int stringToConvertInt(String? value) {
 String dateToString(DateTime? date) {
   DateTime yesterday = DateTime.now().subtract(const Duration(hours: 30));
 
-  var result = date == null
-      ? DateFormat('yyyy-MM-dd').format(yesterday)
-      : DateFormat('yyyy-MM-dd').format(date);
-
-  return result.toString();
+  return DateFormat('yyyy-MM-dd').format(date ?? yesterday);
 }
