@@ -34,4 +34,20 @@ abstract class ICharacterRepository {
   Future<ResultRest<SetEffect>> getCharacterSetEffect({required String ocid, String? date});
   // 장착 헤어, 성형, 피부 정보 조회
   Future<ResultRest<BeautyEquipment>> getCharacterBeautyEquipment({required String ocid, String? date});
+  // 장착 안드로이드 정보 조회
+  Future<ResultRest<AndroidEquipment>> getCharacterAndroidEquipment({required String ocid, String? date});
+  // 장착 펫 정보 조회
+  Future<ResultRest<PetEquipment>> getCharacterPetEquipment({required String ocid, String? date});
+  // 장착 스킬 정보 조회
+  Future<ResultRest<SkillInfo>> getCharacterSkillInfo({required String ocid, String? date, required String characterSkillGrade});
+  // 장착 링크 스킬 정보 조회
+  Future<ResultRest<LinkSkill>> getCharacterLinkSkill({required String ocid, String? date});
+  // V 매트릭스 정보 조회
+  Future<ResultRest<VMatrixInfo>> getCharacterVMatrixInfo({required String ocid, String? date});
+  // HEXA 코어 정보 조회
+  Future<ResultRest<HexaMatrixInfo>> getCharacterHexaMatrixInfo({required String ocid, String? date});
+  // HEXA 매트릭스 설정 HEXA 스탯 정보 조회
+  Future<ResultRest<HexaMatrixStat>> getCharacterHexaMatrixStat({required String ocid, String? date});
+  // 무릉도장 최고 기록 정보 조회
+  Future<ResultRest<StudioTopRecordInfo>> getCharacterStudioTopRecordInfo({required String ocid, String? date});
 }
