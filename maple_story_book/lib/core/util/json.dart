@@ -1,9 +1,11 @@
+import 'package:intl/intl.dart';
+
 ///
 /// @Project name    : maple_story_book
 /// @Class           : json.
 /// @Created by      : baekdonghyun.
 /// Created On       : 2024. 9. 18..
-/// Description      : 
+/// Description      :
 ///
 
 bool stringToConvertBool(String value) {
@@ -28,4 +30,14 @@ int stringToConvertInt(String? value) {
   } catch (e) {
     return 0;
   }
+}
+
+String dateToString(DateTime? date) {
+  DateTime yesterday = DateTime.now().subtract(const Duration(hours: 30));
+
+  var result = date == null
+      ? DateFormat('yyyy-MM-dd').format(yesterday)
+      : DateFormat('yyyy-MM-dd').format(date);
+
+  return result.toString();
 }
