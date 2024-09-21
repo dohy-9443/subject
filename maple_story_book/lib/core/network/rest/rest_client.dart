@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logger/logger.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -38,23 +39,51 @@ class RestClient {
   }
 
   Future<Response<T>> get<T>(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
-  }) async {
+      String path, {
+        Object? data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    Logger logger = Logger();
+
     await dotenv.load(fileName: "maple_story_book.env");
     final apiKey = dotenv.env['MAPLE_STORY_API_KEY'];
-    _dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
 
+    // Interceptor 추가
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         options.headers['x-nxopen-api-key'] = apiKey;
+
+        logger.i('Request to $path');
+        logger.i('Headers: ${options.headers}');
+        logger.i('Query Params: ${options.queryParameters}');
+        logger.i('Data: ${options.data}');
+
         return handler.next(options);
       },
+      onResponse: (response, handler) {
+
+        logger.i('Response from $path');
+        logger.i('Status Code: ${response.statusCode}');
+        logger.i('Response Data: ${response.data}');
+
+        return handler.next(response);
+      },
+      onError: (DioError e, handler) {
+
+        logger.e('Error during request to $path');
+        logger.e('Error Message: ${e.message}');
+        if (e.response != null) {
+          logger.e('Status Code: ${e.response?.statusCode}');
+          logger.e('Error Data: ${e.response?.data}');
+        }
+
+        return handler.next(e);
+      },
     ));
+
     return await _dio.get<T>(
       path,
       data: data,
@@ -64,4 +93,5 @@ class RestClient {
       onReceiveProgress: onReceiveProgress,
     );
   }
+
 }

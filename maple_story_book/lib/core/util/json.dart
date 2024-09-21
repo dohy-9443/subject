@@ -8,10 +8,12 @@ import 'package:intl/intl.dart';
 /// Description      :
 ///
 
+// string -> bool
 bool stringToConvertBool(String value) {
   return value == 'true' ? true : false;
 }
 
+// string -> double
 double stringToConvertDouble(String? value) {
   if (value == null) return 0;
 
@@ -22,6 +24,7 @@ double stringToConvertDouble(String? value) {
   }
 }
 
+// string -> int
 int stringToConvertInt(String? value) {
   if (value == null) return 0;
 
@@ -32,6 +35,7 @@ int stringToConvertInt(String? value) {
   }
 }
 
+// date -> string
 String dateToString(DateTime? date) {
   DateTime yesterday = DateTime.now().subtract(const Duration(hours: 30));
 
