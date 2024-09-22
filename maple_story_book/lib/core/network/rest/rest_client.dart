@@ -71,7 +71,7 @@ class RestClient {
 
         return handler.next(response);
       },
-      onError: (DioError e, handler) {
+      onError: (DioException e, handler) {
 
         logger.e('Error during request to $path');
         logger.e('Error Message: ${e.message}');

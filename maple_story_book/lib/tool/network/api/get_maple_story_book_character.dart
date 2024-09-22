@@ -1,5 +1,6 @@
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/network/network.dart';
+import 'package:retrofit/retrofit.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -25,9 +26,10 @@ class GetMapleStoryBookCharacterApi {
   Future<dynamic> getCharacterAbility({required String ocid, DateTime? date}) {
 
     return _client.get<dynamic>('$defaultPath/character/ability',
-        queryParameters: {
-          'ocid': ocid,
-          'date':dateToString(date)
-        }).then((value) => value.data);
+      queryParameters: {
+        'ocid': ocid,
+        'date': dateToString(date)
+      },
+    ).then((value) => value.data);
   }
 }
