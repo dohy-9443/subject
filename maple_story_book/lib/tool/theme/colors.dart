@@ -20,6 +20,8 @@ class ColorName {
 
   static const Color white = Color(0xFFFFFFFF);
 
+  static const Color danger = Color(0xFFD9534F);
+
   // Light mode
 
   static const Color lightBg = Color(0xFFECF0F1);

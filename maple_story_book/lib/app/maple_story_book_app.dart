@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -16,6 +17,9 @@ class MapleStoryBookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '메이플 스토리 북',
+      theme: ThemeData(
+        fontFamily: FontFamily.taengGu
+      ),
     );
   }
 }
