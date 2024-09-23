@@ -54,13 +54,13 @@ abstract class AppInset {
   static const all10 = EdgeInsets.all(10);
 
   static EdgeInsets edgeInsetsValue(List<double> values) {
-    if (values.isEmpty || values.length > 4) throw ArgumentError('4개까지만 적어야 합니다.');
+    if (values.isEmpty || values.length > 4) throw ArgumentError('1, 2, 4 개의 값만 적어야 합니다.');
 
     switch (values.length) {
       case 1: return EdgeInsets.all(values[0]);
       case 2: return EdgeInsets.symmetric(horizontal: values[1], vertical: values[0]);
       case 4: return EdgeInsets.fromLTRB(values[3], values[0], values[1], values[2]);
-      default: throw ArgumentError('1,2,4 개의 값을 넣어야 합니다.');
+      default: throw ArgumentError('1, 2, 4 개의 값을 넣어야 합니다.');
     }
   }
 }
