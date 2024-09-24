@@ -26,7 +26,7 @@
 #flutter pub run build_runner build --delete-conflicting-outputs
 
 # FVM 으로 dart generator 파일 생성
-fvm dart pub run build_runner build
+#fvm dart pub run build_runner build
 
 # dart generator 파일 생성
 #dart pub run build_runner build
