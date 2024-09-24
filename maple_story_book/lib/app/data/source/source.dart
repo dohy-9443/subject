@@ -7,5 +7,4 @@
 ///
 
 export 'model/result.dart';
-export 'remote/remote.dart';
 export 'character.dart';

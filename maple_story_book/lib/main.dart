@@ -13,10 +13,8 @@ void main() async {
 
   await CharacterRepository(
     CharacterDataSource(
-      GetRemoteDataSource(
-        GetMapleStoryBookCharacterApi(
-          MapleStoryBookRestClient()
-        )
+      GetMapleStoryBookCharacterApi(
+        MapleStoryBookRestClient()
       )
     )
   ).getOcid(characterName: 'l망치사냥꾼l');

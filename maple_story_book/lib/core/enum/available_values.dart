@@ -148,7 +148,6 @@ enum Lara { all }
 // 칼리
 enum Khali { all }
 
-
 class AvailableValues {
 
   static final Map<dynamic, String> values = {
@@ -303,4 +302,3 @@ class AvailableValues {
 
   static List<String> names() => values.values.map((e) => e).toList();
 }
-

@@ -1,4 +1,4 @@
-import 'package:maple_story_book/app/data/source/source.dart';
+import 'package:maple_story_book/tool/network/api/api.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -8,16 +8,24 @@ import 'package:maple_story_book/app/data/source/source.dart';
 /// Description      : 
 ///
 
-class CharacterDataSource {
-  final IGetRemoteDataSource _getRemoteDataSource;
+abstract class IGetDataSource {
+  Future<dynamic> getOcid({required String characterName});
+  Future<dynamic> getCharacterAbility({required String ocid, DateTime? date});
+}
 
-  CharacterDataSource(this._getRemoteDataSource);
+class CharacterDataSource implements IGetDataSource {
+  final GetMapleStoryBookCharacterApi _api;
 
-  Future<dynamic> getOcid({ required String characterName }) {
-    return _getRemoteDataSource.getOcid(characterName: characterName);
+  CharacterDataSource(this._api);
+
+  @override
+  Future<dynamic> getOcid({required String characterName}) {
+    return _api.getOcid(characterName: characterName);
   }
 
-  Future<dynamic> getCharacterAbility({required String ocid, DateTime? date}) {
-    return _getRemoteDataSource.getCharacterAbility(ocid: ocid, date: date);
+  @override
+  Future getCharacterAbility({required String ocid,  DateTime? date}) {
+    return _api.getCharacterAbility(ocid: ocid, date: date);
   }
+
 }
