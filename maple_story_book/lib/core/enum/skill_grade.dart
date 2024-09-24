@@ -1,3 +1,11 @@
+///
+/// @Project name    : maple_story_book
+/// @Class           : skill_grade.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 9. 24..
+/// Description      :
+///
+///
 enum SkillGrade {
   zero(0),
   one(1),

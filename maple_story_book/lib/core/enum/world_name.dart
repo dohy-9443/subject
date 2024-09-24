@@ -1,3 +1,11 @@
+///
+/// @Project name    : maple_story_book
+/// @Class           : world_name.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 9. 24..
+/// Description      :
+///
+
 enum WorldName {
   skania('스카니아'),
   bera('베라'),

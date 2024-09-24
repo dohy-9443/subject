@@ -1,3 +1,11 @@
+///
+/// @Project name    : maple_story_book
+/// @Class           : difficulty.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 9. 24..
+/// Description      :
+///
+///
 enum Difficulty {
   zero(num: 0, name: '일반'),
   one(num: 1, name: '통달');
