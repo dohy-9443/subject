@@ -19,19 +19,19 @@ class GlobalBloc extends Bloc<IGlobalEvent, IMSState<Ocid>> {
   final ICharacterRepository _characterRepository;
 
   GlobalBloc(this._characterRepository) : super(const InitialState<Ocid>()) {
-    on<GetOcIdEvent>(getOcid);
+    // on<GetOcIdEvent>(getOcid);
   }
 
-  Future<void> getOcid(GetOcIdEvent event, Emitter<IMSState<Ocid>> emit) async {
-    try {
-      emit(const LoadingState());
-
-      final res = await _characterRepository.getOcid(
-          characterName: event.characterName);
-
-      emit(DataState<Ocid>(data: res.data));
-    } catch (e, s) {
-      emit(ErrorState<Ocid>(error: e, stackTrace: s));
-    }
-  }
+  // Future<void> getOcid(GetOcIdEvent event, Emitter<IMSState<Ocid>> emit) async {
+  //   try {
+  //     emit(const LoadingState<Ocid>());
+  //
+  //     final res = await _characterRepository.getOcid(
+  //         characterName: event.characterName);
+  //
+  //     emit(DataState<Ocid>(data: res.data));
+  //   } catch (e, s) {
+  //     emit(ErrorState<Ocid>(error: e, stackTrace: s));
+  //   }
+  // }
 }
