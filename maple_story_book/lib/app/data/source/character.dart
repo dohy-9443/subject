@@ -24,7 +24,7 @@ class CharacterDataSource implements IGetDataSource {
   }
 
   @override
-  Future getCharacterAbility({required String ocid,  DateTime? date}) {
+  Future getCharacterAbility({required String ocid, DateTime? date}) {
     return _api.getCharacterAbility(ocid: ocid, date: date);
   }
 
