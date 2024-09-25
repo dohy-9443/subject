@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/util/bloc/bloc.dart';
 class IMSBloc<T, Params> extends Bloc<IMSEvent, IMSState<T>> {
   final Future<T> Function(Params params) useCase;
 
-  IMSBloc({required this.useCase}) : super(const InitialState()) {
+  IMSBloc(this.useCase) : super(const InitialState()) {
     on<MSEvent<Params>>((event, emit) async {
       emit(LoadingState());
 

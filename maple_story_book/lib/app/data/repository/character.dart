@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/repository/repository.dart';
@@ -11,6 +12,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 /// Description      : 
 ///
 
+@injectable
 class CharacterRepository with BaseResponse implements ICharacterRepository {
 
   final CharacterDataSource _characterDataSource;
