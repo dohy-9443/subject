@@ -1,52 +1,52 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/repository/maple_story/maple_story.dart';
-import 'package:maple_story_book/app/presentation/global/global_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
-import 'package:maple_story_book/core/util/bloc/bloc.dart';
+
+import 'home_state.dart';
 
 ///
 /// @Project name    : maple_story_book
 /// @Class           : home_bloc.
 /// @Created by      : baekdonghyun.
 /// Created On       : 2024. 9. 26..
-/// Description      : 
+/// Description      :
 ///
 
-class HomeBloc extends Bloc<IHomeEvent, IMSState> {
+class HomeBloc extends Bloc<IHomeEvent, IHomeState> {
   final ICharacterRepository _characterRepository;
 
-  HomeBloc(this._characterRepository) : super(const InitialState()) {
-    on<GetAbilityEvent>(getAbility as EventHandler<GetAbilityEvent, IMSState>);
-    on<GetOcIdEvent>(getOcid as EventHandler<GetOcIdEvent, IMSState>);
+  HomeBloc(this._characterRepository) : super(const HomeInitial()) {
+    on<GetAbilityEvent>(getAbility);
+    on<GetOcIdEvent>(getOcid);
+
+    add(GetOcIdEvent('l망치사냥꾼l'));
   }
 
-  Future<void> getAbility(GetAbilityEvent event, Emitter<IMSState<Ability>> emit) async {
-    emit(const LoadingState<Ability>());
+  Future<void> getAbility(
+      GetAbilityEvent event, Emitter<IHomeState> emit) async {
+    emit(const HomeLoading());
 
     try {
-      final res = await _characterRepository.getCharacterAbility(ocid: event.ocid, date: event.date);
+      final res = await _characterRepository.getCharacterAbility(
+          ocid: event.ocid, date: event.date);
 
       if (res.code != 200) throw Exception('code 200 이 아닙니다.');
 
-      emit(DataState<Ability>(data: res.data));
-
+      emit(HomeSuccess(ability: res.data, ocid: state.ocid));
     } catch (e, s) {
-      emit(ErrorState<Ability>(error: e, stackTrace: s));
+      emit(HomeError(error: e, stackTrace: s));
     }
   }
 
-  Future<void> getOcid(GetOcIdEvent event, Emitter<IMSState<Ocid>> emit) async {
+  Future<void> getOcid(GetOcIdEvent event, Emitter<IHomeState> emit) async {
+    emit(const HomeLoading());
     try {
-      emit(const LoadingState<Ocid>());
-
       final res = await _characterRepository.getOcid(
           characterName: event.characterName);
 
-      emit(DataState<Ocid>(data: res.data));
+      emit(HomeSuccess(ability: state.ability, ocid: res.data));
     } catch (e, s) {
-      emit(ErrorState<Ocid>(error: e, stackTrace: s));
+      emit(HomeError(error: e, stackTrace: s));
     }
   }
 }
-
