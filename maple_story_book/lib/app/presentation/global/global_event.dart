@@ -9,9 +9,9 @@ import 'package:equatable/equatable.dart';
 ///
 ///
 
-sealed class GlobalEvent extends Equatable {}
+sealed class IGlobalEvent extends Equatable {}
 
-class GetOcIdEvent extends GlobalEvent {
+class GetOcIdEvent extends IGlobalEvent {
   final String _characterName;
 
   GetOcIdEvent(this._characterName);

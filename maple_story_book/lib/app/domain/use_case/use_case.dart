@@ -6,4 +6,5 @@
 /// Description      : 
 ///
 
+export 'get_ability.dart';
 export 'get_ocid.dart';

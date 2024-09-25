@@ -15,7 +15,7 @@ import 'package:maple_story_book/core/util/bloc/bloc.dart';
 ///
 
 @injectable
-class GlobalBloc extends Bloc<GlobalEvent, IMSState<Ocid>> {
+class GlobalBloc extends Bloc<IGlobalEvent, IMSState<Ocid>> {
   final ICharacterRepository _characterRepository;
 
   GlobalBloc(this._characterRepository) : super(const InitialState<Ocid>()) {
