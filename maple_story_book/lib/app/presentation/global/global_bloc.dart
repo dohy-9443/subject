@@ -2,10 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/repository/maple_story/maple_story.dart';
+import 'package:maple_story_book/app/presentation/global/global_event.dart';
 import 'package:maple_story_book/core/util/bloc/bloc.dart';
-
-import '../../data/source/model/result.dart';
-import 'global_event.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -28,7 +26,7 @@ class GlobalBloc extends Bloc<GlobalEvent, IMSState<Ocid>> {
     try {
       emit(const LoadingState());
 
-      ResultRest<Ocid> res = await _characterRepository.getOcid(
+      final res = await _characterRepository.getOcid(
           characterName: event.characterName);
 
       emit(DataState<Ocid>(data: res.data));
