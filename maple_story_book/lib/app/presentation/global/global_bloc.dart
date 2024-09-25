@@ -7,6 +7,15 @@ import 'package:maple_story_book/core/util/bloc/bloc.dart';
 import '../../data/source/model/result.dart';
 import 'global_event.dart';
 
+///
+/// @Project name    : maple_story_book
+/// @Class           : global.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 9. 26..
+/// Description      :
+///
+///
+
 @injectable
 class GlobalBloc extends Bloc<GlobalEvent, IMSState<Ocid>> {
   final ICharacterRepository _characterRepository;
