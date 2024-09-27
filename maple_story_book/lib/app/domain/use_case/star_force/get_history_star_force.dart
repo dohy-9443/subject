@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/util/use_case.dart';
 /// Description      :
 ///
 
-@injectable
+@lazySingleton
 class GetHistoryStarForce implements IUseCase<ResultRest<StarForceHistory>, PotentialParams> {
   final IStarForceRepository _starForceRepository;
 
