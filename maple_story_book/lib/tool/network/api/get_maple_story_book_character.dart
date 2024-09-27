@@ -75,7 +75,6 @@ class GetMapleStoryBookCharacterApi {
   }
 
   Future<dynamic> getCharacterAbility({required String ocid, DateTime? date}) {
-
     return _client.get<dynamic>('$defaultCharacterPath/ability',
       queryParameters: {
         'ocid': ocid,
