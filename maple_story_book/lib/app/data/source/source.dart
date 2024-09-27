@@ -6,6 +6,7 @@
 /// Description      : 
 ///
 
+export 'model/base_params.dart';
 export 'model/result.dart';
 export 'character.dart';
 export 'guild.dart';
