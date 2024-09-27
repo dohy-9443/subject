@@ -8,4 +8,5 @@
 
 export 'model/result.dart';
 export 'character.dart';
+export 'guild.dart';
 export 'union.dart';
