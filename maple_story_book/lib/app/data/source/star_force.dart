@@ -9,7 +9,6 @@ import 'package:maple_story_book/tool/network/api/api.dart';
 /// Description      :
 ///
 
-@lazySingleton
 abstract class IGetStarForceDataSource {
   Future<dynamic> getHistoryStarForce({required String count, DateTime? date, String? cursor});
 }

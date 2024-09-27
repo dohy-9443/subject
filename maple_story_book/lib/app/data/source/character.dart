@@ -9,7 +9,6 @@ import 'package:maple_story_book/tool/network/api/api.dart';
 /// Description      : 
 ///
 
-@singleton
 abstract class IGetCharacterDataSource {
   Future<dynamic> getOcid({required String characterName});
   Future<dynamic> getCharacterBasic({required String ocid, DateTime? date});

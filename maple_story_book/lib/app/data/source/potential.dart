@@ -9,7 +9,6 @@ import 'package:maple_story_book/tool/network/api/api.dart';
 /// Description      :
 ///
 
-@lazySingleton
 abstract class IGetPotentialDataSource {
   getHistoryPotential({required String count, DateTime? date, String? cursor});
   getHistoryCube({required String count, DateTime? date, String? cursor});

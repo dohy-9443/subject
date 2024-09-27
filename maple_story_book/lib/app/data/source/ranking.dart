@@ -9,7 +9,6 @@ import 'package:maple_story_book/tool/network/api/api.dart';
 /// Description      :
 ///
 
-@lazySingleton
 abstract class IGetRankingDataSource {
   getRankingAchievement({required DateTime date, String? ocid, int? page});
   getRankingGuild({required DateTime date, String? worldName, required int rankingType, String? guildName, int? page});
