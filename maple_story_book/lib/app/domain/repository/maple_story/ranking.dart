@@ -13,7 +13,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 
 abstract class IRankingRepository {
   // 종합 랭킹 정보 조회
-  Future<ResultRest<RankingOverall>> getRankingOverall({ required DateTime date, String? worldName, String? worldType, String? availableValue, String? ocid, int page, });
+  Future<ResultRest<RankingOverall>> getRankingOverall({ required DateTime date, String? worldName, String? worldType, String? availableValue, String? ocid, int? page, });
   // 유니온 랭킹 정보 조회
   Future<ResultRest<RankingUnion>> getRankingUnion({ required DateTime date, String? worldName, String? ocid, int? page });
   // 길드 랭킹 정보 조회
