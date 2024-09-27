@@ -13,7 +13,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 ///
 
 class UnionRepository with BaseResponse implements IUnionRepository {
-  final UnionDataSource _unionDataSource;
+  final IGetUnionDataSource _unionDataSource;
 
   UnionRepository(this._unionDataSource);
 

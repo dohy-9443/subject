@@ -17,7 +17,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 
 @lazySingleton
 class NoticeRepository with BaseResponse implements INoticeRepository {
-  final NoticeDataSource _noticeDataSource;
+  final IGetNoticeDataSource _noticeDataSource;
 
   NoticeRepository(this._noticeDataSource);
 

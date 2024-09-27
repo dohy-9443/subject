@@ -15,7 +15,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 @lazySingleton
 class CharacterRepository with BaseResponse implements ICharacterRepository {
 
-  final CharacterDataSource _characterDataSource;
+  final IGetCharacterDataSource _characterDataSource;
 
   CharacterRepository(this._characterDataSource);
 

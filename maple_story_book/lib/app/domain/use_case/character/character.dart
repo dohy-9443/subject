@@ -12,4 +12,5 @@ export 'get_character_basic.dart';
 export 'get_hyper_stat.dart';
 export 'get_item_equipment.dart';
 export 'get_ocid.dart';
+export 'get_propensity.dart';
 export 'get_popularity.dart';

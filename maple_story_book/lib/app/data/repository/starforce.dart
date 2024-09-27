@@ -14,7 +14,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 
 @lazySingleton
 class StarforceRepository with BaseResponse implements IStarforceRepository {
-  final StarforceDataSource _starforceDataSource;
+  final IGetStarforceDataSource _starforceDataSource;
 
   StarforceRepository(this._starforceDataSource);
 

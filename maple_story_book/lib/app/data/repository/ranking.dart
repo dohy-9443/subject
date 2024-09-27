@@ -19,7 +19,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 
 @lazySingleton
 class RankingRepository with BaseResponse implements IRankingRepository {
-  final RankingDataSource _rankingDataSource;
+  final IGetRankingDataSource _rankingDataSource;
 
   RankingRepository(this._rankingDataSource);
 

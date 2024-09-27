@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 ///
 
 class GuildRepository with BaseResponse implements IGuildRepository {
-  final GuildDataSource _guildDataSource;
+  final IGetGuildDataSource _guildDataSource;
 
   GuildRepository(this._guildDataSource);
 

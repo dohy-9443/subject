@@ -5,21 +5,21 @@ import 'package:maple_story_book/core/util/util.dart';
 
 ///
 /// @Project name    : maple_story_book
-/// @Class           : get_popularity.
+/// @Class           : get_propensity.
 /// @Created by      : baekdonghyun.
 /// Created On       : 2024. 9. 27..
 /// Description      : 
 ///
 
-class GetPopularityUseCase implements IUseCase<ResultRest<Popularity>, BaseParams> {
+class GetPropensityUseCase implements IUseCase<ResultRest<Propensity>, BaseParams> {
   final ICharacterRepository _characterRepository;
 
-  GetPopularityUseCase(this._characterRepository);
+  GetPropensityUseCase(this._characterRepository);
 
   @override
-  Future<ResultRest<Popularity>> execute([BaseParams? params]) {
+  Future<ResultRest<Propensity>> execute([BaseParams? params]) {
     final BaseParams input = params ?? BaseParams(date: DateTime.now());
 
-    return _characterRepository.getCharacterPopularity(ocid: input.ocid, date: input.date);
+    return _characterRepository.getCharacterPropensity(ocid: input.ocid, date: input.date);
   }
 }

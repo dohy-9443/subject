@@ -15,7 +15,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 
 @lazySingleton
 class PotentialRepository with BaseResponse implements IPotentialRepository {
-  final PotentialDataSource _potentialDataSource;
+  final IGetPotentialDataSource _potentialDataSource;
 
   PotentialRepository(this._potentialDataSource);
 
