@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/util/use_case.dart';
 /// Description      : 
 ///
 
-@injectable
+@singleton
 class GetOcidUseCase implements IUseCase<ResultRest<Ocid>, GetOcidParams> {
 
   final ICharacterRepository _characterRepository;

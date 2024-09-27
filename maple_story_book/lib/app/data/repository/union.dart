@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/app/data/source/model/result.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
@@ -12,6 +13,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 /// Description      : 
 ///
 
+@lazySingleton
 class UnionRepository with BaseResponse implements IUnionRepository {
   final IGetUnionDataSource _unionDataSource;
 

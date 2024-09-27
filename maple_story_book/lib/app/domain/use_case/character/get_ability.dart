@@ -5,7 +5,7 @@ import 'package:maple_story_book/app/domain/entity/ability.dart';
 import 'package:maple_story_book/app/domain/repository/maple_story/character.dart';
 import 'package:maple_story_book/core/util/use_case.dart';
 
-@injectable
+@singleton
 class GetAbilityUseCase
     implements IUseCase<ResultRest<Ability>, BaseParams> {
   final ICharacterRepository _characterRepository;

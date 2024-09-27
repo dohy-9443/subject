@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/network/network.dart';
 import 'package:retrofit/retrofit.dart';
@@ -10,6 +11,7 @@ import 'package:retrofit/retrofit.dart';
 /// Description      :
 ///
 
+@singleton
 class GetMapleStoryBookCharacterApi {
   final MapleStoryBookRestClient _client;
 

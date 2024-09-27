@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/repository/maple_story/maple_story.dart';
@@ -11,6 +12,7 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      : 
 ///
 
+@singleton
 class GetStatUseCase implements IUseCase<ResultRest<Stat>, BaseParams> {
   final ICharacterRepository _characterRepository;
 

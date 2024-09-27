@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/tool/network/api/api.dart';
 
 ///
@@ -17,6 +18,7 @@ abstract class IGetRankingDataSource {
   getRankingUnion({required DateTime date, String? worldName, String? ocid, int? page});
 }
 
+@lazySingleton
 class RankingDataSource implements IGetRankingDataSource {
   final GetMapleStoryBookRankingApi _api;
 

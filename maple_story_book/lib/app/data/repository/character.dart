@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 /// Description      : 
 ///
 
-@lazySingleton
+@singleton
 class CharacterRepository with BaseResponse implements ICharacterRepository {
 
   final IGetCharacterDataSource _characterDataSource;

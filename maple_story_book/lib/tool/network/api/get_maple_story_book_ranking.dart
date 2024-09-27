@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/network/network.dart';
 
@@ -9,6 +10,7 @@ import 'package:maple_story_book/tool/network/network.dart';
 /// Description      : 
 ///
 
+@lazySingleton
 class GetMapleStoryBookRankingApi {
   final MapleStoryBookRestClient _client;
 

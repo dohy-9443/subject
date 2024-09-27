@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/tool/network/api/api.dart';
 
 ///
@@ -13,6 +14,7 @@ abstract class IGetPotentialDataSource {
   getHistoryCube({required String count, DateTime? date, String? cursor});
 }
 
+@lazySingleton
 class PotentialDataSource implements IGetPotentialDataSource {
   final GetMapleStoryBookPotentialApi _api;
 

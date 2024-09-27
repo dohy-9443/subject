@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/tool/network/network.dart';
 
 ///
@@ -13,6 +14,7 @@ abstract class IGetGuildDataSource {
   Future<dynamic> getGuildBasic({required String oguildId, DateTime? date});
 }
 
+@lazySingleton
 class GuildDataSource implements IGetGuildDataSource {
   final GetMapleStoryBookGuildApi _api;
 

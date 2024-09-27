@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      :
 ///
 
-@injectable
+@lazySingleton
 class GetUserUnionRaiderUseCase implements IUseCase<ResultRest<UnionRaider>, BaseParams>{
   final IUnionRepository _unionRepository;
 

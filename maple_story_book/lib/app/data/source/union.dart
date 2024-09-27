@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/tool/network/network.dart';
 
 ///
@@ -14,6 +15,7 @@ abstract class IGetUnionDataSource {
   Future<dynamic> getUserUnionArtifact({required String ocid, DateTime? date});
 }
 
+@lazySingleton
 class UnionDataSource implements IGetUnionDataSource {
   final GetMapleStoryBookUnionApi _api;
 

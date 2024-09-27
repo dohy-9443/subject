@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/tool/network/api/api.dart';
 
 ///
@@ -31,6 +32,7 @@ abstract class IGetCharacterDataSource {
   Future<dynamic> getCharacterStudio({required String ocid, DateTime? date});
 }
 
+@singleton
 class CharacterDataSource implements IGetCharacterDataSource {
   final GetMapleStoryBookCharacterApi _api;
 

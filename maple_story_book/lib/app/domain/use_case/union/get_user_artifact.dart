@@ -13,7 +13,7 @@ import 'package:maple_story_book/core/util/use_case.dart';
 /// Description      :
 ///
 
-@injectable
+@lazySingleton
 class GetUserArtifactUseCase implements IUseCase<ResultRest<UnionArtifact>, BaseParams>{
   final IUnionRepository _unionRepository;
 
