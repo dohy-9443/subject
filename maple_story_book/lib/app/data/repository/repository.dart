@@ -7,3 +7,4 @@
 ///
 
 export 'character.dart';
+export 'union.dart';
