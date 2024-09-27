@@ -9,6 +9,7 @@ import 'package:maple_story_book/tool/network/network.dart';
 /// Description      : 
 ///
 
+@lazySingleton
 abstract class IGetGuildDataSource {
   Future<dynamic> getGuildId({required String guildName, required String worldName});
   Future<dynamic> getGuildBasic({required String oguildId, DateTime? date});

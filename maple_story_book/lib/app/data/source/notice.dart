@@ -9,6 +9,7 @@ import 'package:maple_story_book/tool/network/api/api.dart';
 /// Description      :
 ///
 
+@lazySingleton
 abstract class IGetNoticeDataSource {
   getNotice();
   getNoticeDetail({required int noticeId});

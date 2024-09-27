@@ -9,6 +9,7 @@ import 'package:maple_story_book/tool/network/network.dart';
 /// Description      : 
 ///
 
+@lazySingleton
 abstract class IGetUnionDataSource {
   Future<dynamic> getUserUnion({required String ocid, DateTime? date});
   Future<dynamic> getUserUnionRaider({required String ocid, DateTime? date});
