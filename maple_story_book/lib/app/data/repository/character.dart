@@ -29,62 +29,82 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
 
   @override
   Future<ResultRest<BasicInfo>> getCharacterBasic({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterBasic
-    throw UnimplementedError();
+    return handleApiResponse<BasicInfo>(
+      request: () => _characterDataSource.getCharacterBasic(ocid: ocid, date: date),
+      fromJson: (json) => BasicInfo.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<BeautyEquipment>> getCharacterBeautyEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterBeautyEquipment
-    throw UnimplementedError();
+    return handleApiResponse<BeautyEquipment>(
+      request: () => _characterDataSource.getCharacterBeautyEquipment(ocid: ocid, date: date),
+      fromJson: (json) => BeautyEquipment.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<CashItemEquipment>> getCharacterCashItemEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterCashItemEquipment
-    throw UnimplementedError();
+    return handleApiResponse<CashItemEquipment>(
+      request: () => _characterDataSource.getCharacterCashItemEquipment(ocid: ocid, date: date),
+      fromJson: (json) => CashItemEquipment.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<HyperStat>> getCharacterHyperStat({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterHyperStat
-    throw UnimplementedError();
+    return handleApiResponse<HyperStat>(
+      request: () => _characterDataSource.getCharacterHyperStat(ocid: ocid, date: date),
+      fromJson: (json) => HyperStat.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<ItemEquipment>> getCharacterItemEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterItemEquipment
-    throw UnimplementedError();
+    return handleApiResponse<ItemEquipment>(
+      request: () => _characterDataSource.getCharacterItemEquipment(ocid: ocid, date: date),
+      fromJson: (json) => ItemEquipment.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<Popularity>> getCharacterPopularity({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterPopularity
-    throw UnimplementedError();
+    return handleApiResponse<Popularity>(
+      request: () => _characterDataSource.getCharacterPopularity(ocid: ocid, date: date),
+      fromJson: (json) => Popularity.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<Propensity>> getCharacterPropensity({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterPropensity
-    throw UnimplementedError();
+    return handleApiResponse<Propensity>(
+      request: () => _characterDataSource.getCharacterPropensity(ocid: ocid, date: date),
+      fromJson: (json) => Propensity.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<SetEffect>> getCharacterSetEffect({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterSetEffect
-    throw UnimplementedError();
+    return handleApiResponse<SetEffect>(
+      request: () => _characterDataSource.getCharacterSetEffect(ocid: ocid, date: date),
+      fromJson: (json) => SetEffect.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<Stat>> getCharacterStat({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterStat
-    throw UnimplementedError();
+    return handleApiResponse<Stat>(
+      request: () => _characterDataSource.getCharacterStat(ocid: ocid, date: date),
+      fromJson: (json) => Stat.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<SymbolEquipment>> getCharacterSymbolEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterSymbolEquipment
-    throw UnimplementedError();
+    return handleApiResponse<SymbolEquipment>(
+      request: () => _characterDataSource.getCharacterSymbolEquipment(ocid: ocid, date: date),
+      fromJson: (json) => SymbolEquipment.fromJson(json),
+    );
   }
 
   @override
@@ -97,52 +117,65 @@ class CharacterRepository with BaseResponse implements ICharacterRepository {
 
   @override
   Future<ResultRest<AndroidEquipment>> getCharacterAndroidEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterAndroidEquipment
-    throw UnimplementedError();
+    return handleApiResponse<AndroidEquipment>(
+      request: () => _characterDataSource.getCharacterAndroidEquipment(ocid: ocid, date: date),
+      fromJson: (json) => AndroidEquipment.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<HexaMatrixInfo>> getCharacterHexaMatrixInfo({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterHexaMatrixInfo
-    throw UnimplementedError();
+    return handleApiResponse<HexaMatrixInfo>(
+      request: () => _characterDataSource.getCharacterHexamatrix(ocid: ocid, date: date),
+      fromJson: (json) => HexaMatrixInfo.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<HexaMatrixStat>> getCharacterHexaMatrixStat({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterHexaMatrixStat
-    throw UnimplementedError();
+    return handleApiResponse<HexaMatrixStat>(
+      request: () => _characterDataSource.getCharacterHexamatrixStat(ocid: ocid, date: date),
+      fromJson: (json) => HexaMatrixStat.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<LinkSkill>> getCharacterLinkSkill({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterLinkSkill
-    throw UnimplementedError();
+    return handleApiResponse<LinkSkill>(
+      request: () => _characterDataSource.getCharacterLinkSkill(ocid: ocid, date: date),
+      fromJson: (json) => LinkSkill.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<PetEquipment>> getCharacterPetEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterPetEquipment
-    throw UnimplementedError();
+    return handleApiResponse<PetEquipment>(
+      request: () => _characterDataSource.getCharacterPetEquipment(ocid: ocid, date: date),
+      fromJson: (json) => PetEquipment.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<SkillInfo>> getCharacterSkillInfo({required String ocid, DateTime? date, required String characterSkillGrade}) {
-    // TODO: implement getCharacterSkillInfo
-    throw UnimplementedError();
+    return handleApiResponse<SkillInfo>(
+      request: () => _characterDataSource.getCharacterSkill(ocid: ocid, date: date, characterSkillGrade: characterSkillGrade),
+      fromJson: (json) => SkillInfo.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<StudioTopRecordInfo>> getCharacterStudioTopRecordInfo({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterStudioTopRecordInfo
-    throw UnimplementedError();
+    return handleApiResponse<StudioTopRecordInfo>(
+      request: () => _characterDataSource.getCharacterStudio(ocid: ocid, date: date),
+      fromJson: (json) => StudioTopRecordInfo.fromJson(json),
+    );
   }
 
   @override
   Future<ResultRest<VMatrixInfo>> getCharacterVMatrixInfo({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterVMatrixInfo
-    throw UnimplementedError();
+    return handleApiResponse<VMatrixInfo>(
+      request: () => _characterDataSource.getCharacterVMatrix(ocid: ocid, date: date),
+      fromJson: (json) => VMatrixInfo.fromJson(json),
+    );
   }
-
-
-
 }
