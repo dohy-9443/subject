@@ -14,7 +14,7 @@ void main() async {
 
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(create: (BuildContext context) => HomeBloc(CharacterRepository(CharacterDataSource(GetMapleStoryBookCharacterApi(MapleStoryBookRestClient()))))),
+      // BlocProvider(create: (BuildContext context) => HomeBloc(CharacterRepository(CharacterDataSource(GetMapleStoryBookCharacterApi(MapleStoryBookRestClient()))))),
     ],
     child: const MapleStoryBookApp(),
   ));
