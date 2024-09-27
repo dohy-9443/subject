@@ -10,3 +10,4 @@ export 'base_params.dart';
 export 'notice_params.dart';
 export 'potential_params.dart';
 export 'result.dart';
+export 'ranking_params.dart';

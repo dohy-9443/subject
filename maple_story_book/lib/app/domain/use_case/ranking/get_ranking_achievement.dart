@@ -11,26 +11,18 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      : 
 ///
 
-class GetRankingAchievementUseCase implements IUseCase<ResultRest<RankingAchievement>, RankingAchievementParams> {
+class GetRankingAchievementUseCase implements IUseCase<ResultRest<RankingAchievement>, RankingParams> {
   final IRankingRepository _potentialRepository;
 
   GetRankingAchievementUseCase(this._potentialRepository);
 
   @override
-  Future<ResultRest<RankingAchievement>> execute([RankingAchievementParams? params]) {
+  Future<ResultRest<RankingAchievement>> execute([RankingParams? params]) {
     final yesterday = DateTime.now().subtract(const Duration(hours: 30));
 
-    final RankingAchievementParams input = params ?? RankingAchievementParams(date: yesterday);
+    final RankingParams input = params ?? RankingParams(date: yesterday);
 
     return _potentialRepository.getRankingAchievement(date: input.date, worldName: input.worldName, ocid: input.ocid, page: input.page);
   }
 }
 
-class RankingAchievementParams {
-  final DateTime date;
-  final String? worldName;
-  final String? ocid;
-  final int? page;
-
-  RankingAchievementParams({required this.date, this.worldName = '', this.ocid = '', this.page = 1});
-}
