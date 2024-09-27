@@ -48,110 +48,92 @@ class CharacterDataSource implements IGetDataSource {
 
   @override
   Future getCharacterAndroidEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterAndroidEquipment
-    throw UnimplementedError();
+    return _api.getCharacterAndroidEquipment(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterBasic({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterBasic
-    throw UnimplementedError();
+    return _api.getCharacterBasic(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterBeautyEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterBeautyEquipment
-    throw UnimplementedError();
+    return _api.getCharacterBeautyEquipment(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterCashItemEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterCashItemEquipment
-    throw UnimplementedError();
+    return _api.getCharacterCashItemEquipment(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterHexamatrix({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterHexamatrix
-    throw UnimplementedError();
+    return _api.getCharacterHexamatrix(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterHexamatrixStat({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterHexamatrixStat
-    throw UnimplementedError();
+    return _api.getCharacterHexamatrixStat(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterHyperStat({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterHyperStat
-    throw UnimplementedError();
+    return _api.getCharacterHyperStat(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterItemEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterItemEquipment
-    throw UnimplementedError();
+    return _api.getCharacterItemEquipment(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterLinkSkill({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterLinkSkill
-    throw UnimplementedError();
+    return _api.getCharacterLinkSkill(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterPetEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterPetEquipment
-    throw UnimplementedError();
+    return _api.getCharacterPetEquipment(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterPopularity({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterPopularity
-    throw UnimplementedError();
+    return _api.getCharacterPopularity(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterPropensity({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterPropensity
-    throw UnimplementedError();
+    return _api.getCharacterPropensity(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterSetEffect({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterSetEffect
-    throw UnimplementedError();
+    return _api.getCharacterSetEffect(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterSkill({required String ocid, DateTime? date, required String characterSkillGrade}) {
-    // TODO: implement getCharacterSkill
-    throw UnimplementedError();
+    return _api.getCharacterSkill(ocid: ocid, date: date, characterSkillGrade: characterSkillGrade);
   }
 
   @override
   Future getCharacterStat({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterStat
-    throw UnimplementedError();
+    return _api.getCharacterStat(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterStudio({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterStudio
-    throw UnimplementedError();
+    return _api.getCharacterStudio(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterSymbolEquipment({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterSymbolEquipment
-    throw UnimplementedError();
+    return _api.getCharacterSymbolEquipment(ocid: ocid, date: date);
   }
 
   @override
   Future getCharacterVMatrix({required String ocid, DateTime? date}) {
-    // TODO: implement getCharacterVMatrix
-    throw UnimplementedError();
+    return _api.getCharacterVMatrix(ocid: ocid, date: date);
   }
 
 }
