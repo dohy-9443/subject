@@ -8,6 +8,7 @@
 
 export 'character/character.dart';
 export 'guild/guild.dart';
+export 'notice/notice.dart';
 export 'potential/potential.dart';
 export 'ranking/ranking.dart';
 export 'starforce/starforce.dart';

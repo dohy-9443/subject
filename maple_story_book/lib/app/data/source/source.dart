@@ -6,8 +6,7 @@
 /// Description      : 
 ///
 
-export 'model/base_params.dart';
-export 'model/result.dart';
+export 'model/model.dart';
 export 'character.dart';
 export 'starforce.dart';
 export 'ranking.dart';
