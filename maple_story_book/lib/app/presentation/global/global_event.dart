@@ -11,13 +11,13 @@ import 'package:equatable/equatable.dart';
 
 sealed class IGlobalEvent extends Equatable {}
 
-// class GetOcIdEvent extends IGlobalEvent {
-//   final String _characterName;
-//
-//   GetOcIdEvent(this._characterName);
-//
-//   String get characterName => _characterName;
-//
-//   @override
-//   List<Object?> get props => [characterName];
-// }
+class GetOcIdEvent extends IGlobalEvent {
+  final String _characterName;
+
+  GetOcIdEvent(this._characterName);
+
+  String get characterName => _characterName;
+
+  @override
+  List<Object?> get props => [characterName];
+}
