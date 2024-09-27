@@ -7,3 +7,4 @@
 ///
 
 export 'get_maple_story_book_character.dart';
+export 'get_maple_story_book_union.dart';
