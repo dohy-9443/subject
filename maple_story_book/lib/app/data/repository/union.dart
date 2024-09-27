@@ -1,8 +1,6 @@
 import 'package:maple_story_book/app/data/source/model/result.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
-import 'package:maple_story_book/app/domain/entity/union_artifact.dart';
-import 'package:maple_story_book/app/domain/entity/union_info.dart';
-import 'package:maple_story_book/app/domain/entity/union_raider.dart';
+import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/repository/repository.dart';
 import 'package:maple_story_book/core/extension/base_response.dart';
 

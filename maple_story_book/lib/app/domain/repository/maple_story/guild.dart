@@ -13,5 +13,5 @@ abstract class IGuildRepository {
   // 길드 식별자(oguild_id) 정보 조회
   Future<ResultRest<GuildId>> getGuildId({required String guildName, required String worldName});
   // 기본 정보 조회
-  Future<ResultRest<GuildId>> getGuildBasic({required String oGuildId, DateTime? date});
+  Future<ResultRest<GuildBasicInfo>> getGuildBasic({required String oGuildId, DateTime? date});
 }
