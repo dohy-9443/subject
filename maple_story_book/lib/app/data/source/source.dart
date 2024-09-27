@@ -8,3 +8,4 @@
 
 export 'model/result.dart';
 export 'character.dart';
+export 'union.dart';

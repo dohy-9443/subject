@@ -8,7 +8,7 @@ import 'package:maple_story_book/tool/network/api/api.dart';
 /// Description      : 
 ///
 
-abstract class IGetDataSource {
+abstract class IGetCharacterDataSource {
   Future<dynamic> getOcid({required String characterName});
   Future<dynamic> getCharacterBasic({required String ocid, DateTime? date});
   Future<dynamic> getCharacterPopularity({required String ocid, DateTime? date});
@@ -31,7 +31,7 @@ abstract class IGetDataSource {
   Future<dynamic> getCharacterStudio({required String ocid, DateTime? date});
 }
 
-class CharacterDataSource implements IGetDataSource {
+class CharacterDataSource implements IGetCharacterDataSource {
   final GetMapleStoryBookCharacterApi _api;
 
   CharacterDataSource(this._api);
