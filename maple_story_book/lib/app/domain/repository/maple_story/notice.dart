@@ -13,17 +13,17 @@ abstract class INoticeRepository {
   // 공지사항 목록 조회
   Future<ResultRest<Notice>> getNotice();
   // 공지사항 상세 조회
-  Future<ResultRest<NoticeDetail>> getNoticeDetail({required String noticeId});
+  Future<ResultRest<NoticeDetail>> getNoticeDetail({required int noticeId});
   // 업데이트 목록 조회
   Future<ResultRest<NoticeUpdate>> getNoticeUpdate();
   // 업데이트 상세 조회
-  Future<ResultRest<NoticeDetail>> getNoticeUpdateDetail({required String noticeId});
+  Future<ResultRest<NoticeDetail>> getNoticeUpdateDetail({required int noticeId});
   // 진행 중 이벤트 목록 조회
   Future<ResultRest<NoticeEvent>> getNoticeEvent();
   // 진행 중 이벤트 상세 조회
-  Future<ResultRest<NoticeEventDetail>> getNoticeEventDetail({required String noticeId});
+  Future<ResultRest<NoticeEventDetail>> getNoticeEventDetail({required int noticeId});
   // 캐시샵 공지 목록 조회
   Future<ResultRest<NoticeCashShop>> getNoticeCashShop();
   // 캐시샵 공지 상세 조회
-  Future<ResultRest<NoticeCashShopDetail>> getNoticeCashShopDetail({required String noticeId});
+  Future<ResultRest<NoticeCashShopDetail>> getNoticeCashShopDetail({required int noticeId});
 }
