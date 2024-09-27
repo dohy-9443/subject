@@ -11,5 +11,5 @@ export 'guild.dart';
 export 'notice.dart';
 export 'potential.dart';
 export 'ranking.dart';
-export 'starforce.dart';
+export 'star_force.dart';
 export 'union.dart';

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
-import 'package:maple_story_book/app/domain/entity/starforce_history.dart';
+import 'package:maple_story_book/app/domain/entity/star_force_history.dart';
 import 'package:maple_story_book/app/domain/repository/maple_story/maple_story.dart';
 import 'package:maple_story_book/core/extension/base_response.dart';
 
@@ -13,16 +13,16 @@ import 'package:maple_story_book/core/extension/base_response.dart';
 ///
 
 @lazySingleton
-class StarforceRepository with BaseResponse implements IStarforceRepository {
-  final IGetStarforceDataSource _starforceDataSource;
+class StarForceRepository with BaseResponse implements IStarForceRepository {
+  final IGetStarForceDataSource _starForceDataSource;
 
-  StarforceRepository(this._starforceDataSource);
+  StarForceRepository(this._starForceDataSource);
 
   @override
-  Future<ResultRest<StarForceHistory>> getHistoryStarforce(
+  Future<ResultRest<StarForceHistory>> getHistoryStarForce(
       {required String count, DateTime? date, String? cursor}) {
     return handleApiResponse<StarForceHistory>(
-      request: () => _starforceDataSource.getHistoryStarforce(
+      request: () => _starForceDataSource.getHistoryStarForce(
           count: count, date: date, cursor: cursor),
       fromJson: (json) => StarForceHistory.fromJson(json),
     );

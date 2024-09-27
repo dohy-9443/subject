@@ -9,7 +9,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// Description      : 
 ///
 
-abstract class IStarforceRepository {
+abstract class IStarForceRepository {
   // 스타포스 강화 결과 조회
-  Future<ResultRest<StarForceHistory>> getHistoryStarforce({ required String count, DateTime? date, String? cursor });
+  Future<ResultRest<StarForceHistory>> getHistoryStarForce({ required String count, DateTime? date, String? cursor });
 }

@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'starforce_history.freezed.dart';
+part 'star_force_history.freezed.dart';
 
-part 'starforce_history.g.dart';
+part 'star_force_history.g.dart';
 
 ///
 /// @Project name    : maple_story_book

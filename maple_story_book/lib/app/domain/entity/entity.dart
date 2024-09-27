@@ -37,7 +37,7 @@ export 'ranking_the_seed.dart';
 export 'ranking_union.dart';
 export 'set_effect.dart';
 export 'skill_info.dart';
-export 'starforce_history.dart';
+export 'star_force_history.dart';
 export 'stat.dart';
 export 'studio_top_record_info.dart';
 export 'symbol_equipment.dart';
