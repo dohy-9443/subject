@@ -7,5 +7,8 @@
 ///
 
 export 'character.dart';
+export 'starforce.dart';
+export 'ranking.dart';
+export 'potential.dart';
 export 'guild.dart';
 export 'union.dart';

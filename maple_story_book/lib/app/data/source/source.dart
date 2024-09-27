@@ -9,5 +9,8 @@
 export 'model/base_params.dart';
 export 'model/result.dart';
 export 'character.dart';
+export 'starforce.dart';
+export 'ranking.dart';
+export 'potential.dart';
 export 'guild.dart';
 export 'union.dart';
