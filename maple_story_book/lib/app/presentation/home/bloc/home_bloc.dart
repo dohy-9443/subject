@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:maple_story_book/app/domain/repository/maple_story/maple_story.dart';
 import 'package:maple_story_book/app/domain/use_case/character/get_ability.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
@@ -18,11 +17,11 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> {
   final GetAbilityUseCase _getAbilityUseCase;
 
   HomeBloc(this._getAbilityUseCase) : super(const HomeInitial()) {
-    on<GetAbilityEvent>(getAbility);
+    on<GetHomeEvent>(getAbility);
   }
 
   Future<void> getAbility(
-      GetAbilityEvent event, Emitter<IHomeState> emit) async {
+      GetHomeEvent event, Emitter<IHomeState> emit) async {
     emit(const HomeLoading());
 
     try {
