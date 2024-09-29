@@ -16,46 +16,71 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 class HomeBloc extends Bloc<IHomeEvent, IHomeState> {
   final GetAbilityUseCase _getAbilityUseCase;
   final GetCharacterBasicUseCase _getCharacterBasicUseCase;
+  final GetItemEquipmentUseCase _getItemEquipmentUseCase;
 
   HomeBloc(
     this._getAbilityUseCase,
     this._getCharacterBasicUseCase,
-  ) : super(const HomeInitial()) {
+    this._getItemEquipmentUseCase,
+  ) : super(HomeInitial()) {
     on<GetHomeEvent>(getAbility);
     on<GetHomeEvent>(getCharacterBasic);
+    on<GetHomeEvent>(getItemEquipment);
   }
 
   Future<void> getAbility(GetHomeEvent event, Emitter<IHomeState> emit) async {
-    emit(HomeLoading(
-      ocid: state.ocid,
-      ability: state.ability,
-      basicInfo: state.basicInfo,
-    ));
+    // loading 처리
+    if (state is HomeSuccess) {
+      emit((state as HomeSuccess).copyWith(isLoading: true));
+    } else {
+      emit(HomeSuccess(isLoading: true));
+    }
 
     try {
       final res = await _getAbilityUseCase.execute();
 
       if (res.code != 200) throw Exception('code 200 이 아닙니다.');
 
-      emit(HomeSuccess(ocid: state.ocid, ability: res.data, basicInfo: state.basicInfo));
+      emit((state as HomeSuccess).copyWith(ability: res.data, isLoading: false));
+
     } catch (e, s) {
       emit(HomeError(error: e, stackTrace: s));
     }
   }
 
   Future<void> getCharacterBasic(GetHomeEvent event, Emitter<IHomeState> emit) async {
-    emit(HomeLoading(
-      ocid: state.ocid,
-      ability: state.ability,
-      basicInfo: state.basicInfo,
-    ));
+    // loading 처리
+    if (state is HomeSuccess) {
+      emit((state as HomeSuccess).copyWith(isLoading: true));
+    } else {
+      emit(HomeSuccess(isLoading: true));
+    }
 
     try {
       final res = await _getCharacterBasicUseCase.execute();
 
       if (res.code != 200) throw Exception('code 200 이 아닙니다.');
 
-      emit(HomeSuccess(ocid: state.ocid, ability: state.ability, basicInfo: res.data));
+      emit((state as HomeSuccess).copyWith(basicInfo: res.data, isLoading: false));
+    } catch (e, s) {
+      emit(HomeError(error: e, stackTrace: s));
+    }
+  }
+
+  Future<void> getItemEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    // loading 처리
+    if (state is HomeSuccess) {
+      emit((state as HomeSuccess).copyWith(isLoading: true));
+    } else {
+      emit(HomeSuccess(isLoading: true));
+    }
+
+    try {
+      final res = await _getItemEquipmentUseCase.execute();
+
+      if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+
+      emit((state as HomeSuccess).copyWith(itemEquipment: res.data, isLoading: false));
     } catch (e, s) {
       emit(HomeError(error: e, stackTrace: s));
     }

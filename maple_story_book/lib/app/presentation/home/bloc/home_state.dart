@@ -9,33 +9,48 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// Description      :
 ///
 
-sealed class IHomeState extends Equatable {
-  final Ocid? ocid;
-  final Ability? ability;
-  final BasicInfo? basicInfo;
-
-  const IHomeState({this.ocid, this.ability, this.basicInfo,});
-}
+sealed class IHomeState extends Equatable {}
 
 class HomeInitial extends IHomeState {
-  const HomeInitial({super.ocid, super.ability, super.basicInfo});
+  HomeInitial();
 
   @override
-  List<Object?> get props => [ocid, ability, basicInfo];
-}
-
-class HomeLoading extends IHomeState {
-  const HomeLoading({super.ocid, super.ability, super.basicInfo});
-
-  @override
-  List<Object?> get props => [ocid, ability, basicInfo];
+  List<Object?> get props => [];
 }
 
 class HomeSuccess extends IHomeState {
-  const HomeSuccess({super.ocid, super.ability, super.basicInfo});
+  final bool isLoading;
+  final Ocid? ocid;
+  final Ability? ability;
+  final BasicInfo? basicInfo;
+  final ItemEquipment? itemEquipment;
+
+  HomeSuccess({
+    this.isLoading = false,
+    this.ocid,
+    this.ability,
+    this.basicInfo,
+    this.itemEquipment,
+  });
+
+  HomeSuccess copyWith({
+    bool? isLoading,
+    Ocid? ocid,
+    Ability? ability,
+    BasicInfo? basicInfo,
+    ItemEquipment? itemEquipment,
+  }) {
+    return HomeSuccess(
+      isLoading: isLoading ?? this.isLoading,
+      ocid: ocid ?? this.ocid,
+      ability: ability ?? this.ability,
+      basicInfo: basicInfo ?? this.basicInfo,
+      itemEquipment: itemEquipment ?? this.itemEquipment,
+    );
+  }
 
   @override
-  List<Object?> get props => [ocid, ability, basicInfo];
+  List<Object?> get props => [ocid, ability, basicInfo, itemEquipment];
 }
 
 class HomeError extends IHomeState {
