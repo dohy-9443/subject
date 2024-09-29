@@ -8,16 +8,15 @@ import 'package:equatable/equatable.dart';
 /// Description      : 
 ///
 
-sealed class IHomeEvent extends Equatable {}
+sealed class IHomeEvent<T> extends Equatable {}
 
-final class GetHomeEvent extends IHomeEvent {
+final class GetHomeEvent<T> extends IHomeEvent<T> {
   final String _ocid;
-  final DateTime _date;
+  final DateTime? date;
 
-  GetHomeEvent(this._ocid, this._date);
+  GetHomeEvent(this._ocid, {this.date});
 
   String get ocid => _ocid;
-  DateTime get date => _date;
 
   @override
   List<Object?> get props => [ocid, date];

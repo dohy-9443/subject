@@ -8,7 +8,7 @@
 
 class BaseParams {
   final String ocid;
-  final DateTime date;
+  final DateTime? date;
 
-  BaseParams({this.ocid = '', required this.date});
+  BaseParams({this.ocid = '', this.date});
 }
