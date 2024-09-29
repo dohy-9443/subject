@@ -24,3 +24,17 @@ final class GetAbilityEvent extends IHomeEvent {
   List<Object?> get props => [ocid, date];
 
 }
+
+final class GetCharacterBasicEvent extends IHomeEvent {
+  final String _ocid;
+  final DateTime _date;
+
+  GetCharacterBasicEvent(this._ocid, this._date);
+
+  String get ocid => _ocid;
+  DateTime get date => _date;
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [ocid, date];
+}
