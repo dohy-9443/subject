@@ -10,45 +10,30 @@ import 'package:equatable/equatable.dart';
 
 sealed class IHomeEvent extends Equatable {}
 
-final class GetAbilityEvent extends IHomeEvent {
+final class GetHomeEvent extends IHomeEvent {
   final String _ocid;
   final DateTime _date;
 
-  GetAbilityEvent(this._ocid, this._date);
+  GetHomeEvent(this._ocid, this._date);
 
   String get ocid => _ocid;
   DateTime get date => _date;
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [ocid, date];
-
-}
-
-final class GetCharacterBasicEvent extends IHomeEvent {
-  final String _ocid;
-  final DateTime _date;
-
-  GetCharacterBasicEvent(this._ocid, this._date);
-
-  String get ocid => _ocid;
-  DateTime get date => _date;
-
-  @override
-  // TODO: implement props
   List<Object?> get props => [ocid, date];
 }
 
-final class GetStatEvent extends IHomeEvent {
+final class GetSkillEvent extends IHomeEvent {
   final String _ocid;
   final DateTime _date;
+  final String _characterSkillGrade;
 
-  GetStatEvent(this._ocid, this._date);
+  GetSkillEvent(this._ocid, this._date, this._characterSkillGrade);
 
   String get ocid => _ocid;
   DateTime get date => _date;
+  String get characterSkillGrade => _characterSkillGrade;
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [ocid, date];
+  List<Object?> get props => [ocid, date, characterSkillGrade];
 }
