@@ -21,22 +21,7 @@ class MapleStoryBookApp extends StatelessWidget {
       title: '메이플 스토리 북',
       theme: ThemeData(fontFamily: FontFamily.taengGu),
       home: Scaffold(
-        body: BlocBuilder<HomeBloc, IHomeState>(
-          builder: (context, state) {
-            if (state is HomeLoading || state is HomeInitial) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state is HomeError) return Text(state.error);
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(state.ocid.toString()),
-                ],
-              ),
-            );
-          },
-        ),
+        body: Container()
       ),
     );
   }
