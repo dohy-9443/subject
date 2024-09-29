@@ -38,3 +38,17 @@ final class GetCharacterBasicEvent extends IHomeEvent {
   // TODO: implement props
   List<Object?> get props => [ocid, date];
 }
+
+final class GetStatEvent extends IHomeEvent {
+  final String _ocid;
+  final DateTime _date;
+
+  GetStatEvent(this._ocid, this._date);
+
+  String get ocid => _ocid;
+  DateTime get date => _date;
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [ocid, date];
+}
