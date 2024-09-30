@@ -14,19 +14,29 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
 
-  runApp(MultiBlocProvider(
+  runApp(
+      MultiBlocProvider(
     providers: [
       BlocProvider(create: (BuildContext context) => HomeBloc(
-        GetAbilityUseCase(ICharacterRepository as ICharacterRepository),
+          GetAbilityUseCase(ICharacterRepository as ICharacterRepository),
           GetCharacterBasicUseCase(ICharacterRepository as ICharacterRepository),
           GetPropensityUseCase(ICharacterRepository as ICharacterRepository),
+          GetPopularityUseCase(ICharacterRepository as ICharacterRepository),
           GetItemEquipmentUseCase(ICharacterRepository as ICharacterRepository),
           GetCashItemEquipmentUseCase(ICharacterRepository as ICharacterRepository),
           GetSetEffectUseCase(ICharacterRepository as ICharacterRepository),
           GetSymbolEquipmentUseCase(ICharacterRepository as ICharacterRepository),
           GetStatUseCase(ICharacterRepository as ICharacterRepository),
           GetHyperStatUseCase(ICharacterRepository as ICharacterRepository),
-          GetPetEquipmentUseCase(ICharacterRepository as ICharacterRepository)
+          GetPetEquipmentUseCase(ICharacterRepository as ICharacterRepository),
+          GetBeautyEquipmentUseCase(ICharacterRepository as ICharacterRepository),
+          GetAndroidEquipmentUseCase(ICharacterRepository as ICharacterRepository),
+          GetSkillInfoUseCase(ICharacterRepository as ICharacterRepository),
+          GetLinkSkillUseCase(ICharacterRepository as ICharacterRepository),
+          GetVMatrixUseCase(ICharacterRepository as ICharacterRepository),
+          GetHexaMatrixInfoUseCase(ICharacterRepository as ICharacterRepository),
+          GetHexaMatrixStatUseCase(ICharacterRepository as ICharacterRepository),
+          GetStudioUseCase(ICharacterRepository as ICharacterRepository),
       ),)
     ],
     child: const MapleStoryBookApp(),
