@@ -13,10 +13,10 @@ import 'package:maple_story_book/core/util/use_case.dart';
 ///
 
 @lazySingleton
-class GetHistoryStarForce implements IUseCase<ResultRest<StarForceHistory>, PotentialParams> {
+class GetHistoryStarForceUseCase implements IUseCase<ResultRest<StarForceHistory>, PotentialParams> {
   final IStarForceRepository _starForceRepository;
 
-  GetHistoryStarForce(this._starForceRepository);
+  GetHistoryStarForceUseCase(this._starForceRepository);
 
   @override
   Future<ResultRest<StarForceHistory>> execute([PotentialParams? params]) {
