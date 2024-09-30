@@ -105,7 +105,6 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
       },
       emit: emit,
     );
-
   }
 
   Future<void> getCharacterBasic(GetHomeEvent event, Emitter<IHomeState> emit) async {

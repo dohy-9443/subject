@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:maple_story_book/app/data/source/model/model.dart';
+import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/use_case/use_case.dart';
+import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
 import 'package:maple_story_book/app/presentation/ranking/extension/ranking_extension.dart';
 
-import 'ranking_event.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -16,7 +16,7 @@ import 'ranking_event.dart';
 /// Description      :
 ///
 
-@singleton
+@lazySingleton
 class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     with RankingBlocMixin {
   final GetRankingAchievementUseCase _getRankingAchievementUseCase;
