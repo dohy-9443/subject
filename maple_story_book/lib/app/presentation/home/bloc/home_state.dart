@@ -22,10 +22,10 @@ class HomeInitial extends IHomeState {
 
 class HomeSuccess extends IHomeState {
   final bool isLoading;
-  final Ocid? ocid;
   final Ability? ability;
   final BasicInfo? basicInfo;
   final Propensity? propensity;
+  final Popularity? popularity;
   final ItemEquipment? itemEquipment;
   final CashItemEquipment? cashItemEquipment;
   final SetEffect? setEffect;
@@ -33,13 +33,21 @@ class HomeSuccess extends IHomeState {
   final Stat? stat;
   final HyperStat? hyperStat;
   final PetEquipment? petEquipment;
+  final BeautyEquipment? beautyEquipment;
+  final AndroidEquipment? androidEquipment;
+  final SkillInfo? skillInfo;
+  final LinkSkill? linkSkill;
+  final VMatrixInfo? vMatrixInfo;
+  final HexaMatrixInfo? hexaMatrixInfo;
+  final HexaMatrixStat? hexaMatrixStat;
+  final StudioTopRecordInfo? studioTopRecordInfo;
 
   HomeSuccess({
     this.isLoading = false,
-    this.ocid,
     this.ability,
     this.basicInfo,
     this.propensity,
+    this.popularity,
     this.itemEquipment,
     this.cashItemEquipment,
     this.setEffect,
@@ -47,14 +55,22 @@ class HomeSuccess extends IHomeState {
     this.stat,
     this.hyperStat,
     this.petEquipment,
+    this.beautyEquipment,
+    this.androidEquipment,
+    this.skillInfo,
+    this.linkSkill,
+    this.vMatrixInfo,
+    this.hexaMatrixInfo,
+    this.hexaMatrixStat,
+    this.studioTopRecordInfo,
   });
 
   HomeSuccess copyWith({
     bool? isLoading,
-    Ocid? ocid,
     Ability? ability,
     BasicInfo? basicInfo,
     Propensity? propensity,
+    Popularity? popularity,
     ItemEquipment? itemEquipment,
     CashItemEquipment? cashItemEquipment,
     SetEffect? setEffect,
@@ -62,13 +78,21 @@ class HomeSuccess extends IHomeState {
     Stat? stat,
     HyperStat? hyperStat,
     PetEquipment? petEquipment,
+    BeautyEquipment? beautyEquipment,
+    AndroidEquipment? androidEquipment,
+    SkillInfo? skillInfo,
+    LinkSkill? linkSkill,
+    VMatrixInfo? vMatrixInfo,
+    HexaMatrixInfo? hexaMatrixInfo,
+    HexaMatrixStat? hexaMatrixStat,
+    StudioTopRecordInfo? studioTopRecordInfo,
   }) {
     return HomeSuccess(
       isLoading: isLoading ?? this.isLoading,
-      ocid: ocid ?? this.ocid,
       ability: ability ?? this.ability,
       basicInfo: basicInfo ?? this.basicInfo,
       propensity: propensity ?? this.propensity,
+      popularity: popularity ?? this.popularity,
       itemEquipment: itemEquipment ?? this.itemEquipment,
       cashItemEquipment: cashItemEquipment ?? this.cashItemEquipment,
       setEffect: setEffect ?? this.setEffect,
@@ -76,15 +100,26 @@ class HomeSuccess extends IHomeState {
       stat: stat ?? this.stat,
       hyperStat: hyperStat ?? this.hyperStat,
       petEquipment: petEquipment ?? this.petEquipment,
+      beautyEquipment: beautyEquipment ?? this.beautyEquipment,
+      androidEquipment: androidEquipment ?? this.androidEquipment,
+      skillInfo: skillInfo ?? this.skillInfo,
+      linkSkill: linkSkill ?? this.linkSkill,
+      vMatrixInfo: vMatrixInfo ?? this.vMatrixInfo,
+      hexaMatrixInfo: hexaMatrixInfo ?? this.hexaMatrixInfo,
+      hexaMatrixStat: hexaMatrixStat ?? this.hexaMatrixStat,
+      studioTopRecordInfo: studioTopRecordInfo ?? this.studioTopRecordInfo,
     );
   }
 
   @override
   List<Object?> get props => [
-    isLoading, ocid, ability,
-    basicInfo, propensity, itemEquipment,
+    isLoading, ability, basicInfo,
+    propensity, popularity, itemEquipment,
     cashItemEquipment, setEffect, symbolEquipment,
     stat, hyperStat, petEquipment,
+    beautyEquipment, androidEquipment, skillInfo,
+    linkSkill, vMatrixInfo, hexaMatrixInfo,
+    hexaMatrixStat, studioTopRecordInfo
   ];
 }
 

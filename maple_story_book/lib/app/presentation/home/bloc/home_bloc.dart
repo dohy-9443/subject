@@ -20,6 +20,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
   final GetAbilityUseCase _getAbilityUseCase;
   final GetCharacterBasicUseCase _getCharacterBasicUseCase;
   final GetPropensityUseCase _getPropensityUseCase;
+  final GetPopularityUseCase _getPopularityUseCase;
   final GetItemEquipmentUseCase _getItemEquipmentUseCase;
   final GetCashItemEquipmentUseCase _getCashItemEquipmentUseCase;
   final GetSetEffectUseCase _getSetEffectUseCase;
@@ -27,11 +28,20 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
   final GetStatUseCase _getStatUseCase;
   final GetHyperStatUseCase _getHyperStatUseCase;
   final GetPetEquipmentUseCase _getPetEquipmentUseCase;
+  final GetBeautyEquipmentUseCase _getBeautyEquipmentUseCase;
+  final GetAndroidEquipmentUseCase _getAndroidEquipmentUseCase;
+  final GetSkillInfoUseCase _getSkillInfoUseCase;
+  final GetLinkSkillUseCase _getLinkSkillUseCase;
+  final GetVMatrixUseCase _getVMatrixUseCase;
+  final GetHexaMatrixInfoUseCase _getHexaMatrixInfoUseCase;
+  final GetHexaMatrixStatUseCase _getHexaMatrixStatUseCase;
+  final GetStudioUseCase _getStudioUseCase;
 
   HomeBloc(
     this._getAbilityUseCase,
     this._getCharacterBasicUseCase,
     this._getPropensityUseCase,
+    this._getPopularityUseCase,
     this._getItemEquipmentUseCase,
     this._getCashItemEquipmentUseCase,
     this._getSetEffectUseCase,
@@ -39,10 +49,19 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     this._getStatUseCase,
     this._getHyperStatUseCase,
     this._getPetEquipmentUseCase,
+    this._getBeautyEquipmentUseCase,
+    this._getAndroidEquipmentUseCase,
+    this._getSkillInfoUseCase,
+    this._getLinkSkillUseCase,
+    this._getVMatrixUseCase,
+    this._getHexaMatrixInfoUseCase,
+    this._getHexaMatrixStatUseCase,
+    this._getStudioUseCase,
   ) : super(HomeInitial()) {
     on<GetHomeEvent<Ability>>(getAbility);
     on<GetHomeEvent<BasicInfo>>(getCharacterBasic);
     on<GetHomeEvent<Propensity>>(getPropensity);
+    on<GetHomeEvent<Popularity>>(getPopularity);
     on<GetHomeEvent<ItemEquipment>>(getItemEquipment);
     on<GetHomeEvent<CashItemEquipment>>(getCashItemEquipment);
     on<GetHomeEvent<SetEffect>>(getSetEffect);
@@ -50,11 +69,19 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     on<GetHomeEvent<Stat>>(getStat);
     on<GetHomeEvent<HyperStat>>(getHyperStat);
     on<GetHomeEvent<PetEquipment>>(getPetEquipment);
+    on<GetHomeEvent<BeautyEquipment>>(getBeautyEquipment);
+    on<GetHomeEvent<AndroidEquipment>>(getAndroidEquipment);
+    on<GetSkillEvent>(getSkillInfo);
+    on<GetHomeEvent<LinkSkill>>(getLinkSkill);
+    on<GetHomeEvent<VMatrixInfo>>(getVMatrixInfo);
+    on<GetHomeEvent<HexaMatrixInfo>>(getHexaMatrixInfo);
+    on<GetHomeEvent<HexaMatrixStat>>(getHexaMatrixStat);
+    on<GetHomeEvent<StudioTopRecordInfo>>(getStudioTopRecordInfo);
 
     // add(GetHomeEvent<Ability>('bc9ba6b1f13451d74458a513aad3b494'));
     // add(GetHomeEvent<BasicInfo>('bc9ba6b1f13451d74458a513aad3b494'));
     // add(GetHomeEvent<Propensity>('bc9ba6b1f13451d74458a513aad3b494'));
-    add(GetHomeEvent<ItemEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
+    // add(GetHomeEvent<ItemEquipment>('bc9ba6b1f13451d74458a513aad3b494')); // 이거 에러남
     // add(GetHomeEvent<CashItemEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
     // add(GetHomeEvent<SetEffect>('bc9ba6b1f13451d74458a513aad3b494'));
     // add(GetHomeEvent<SymbolEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
@@ -107,6 +134,21 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         final res = await _getPropensityUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
         emit((state as HomeSuccess).copyWith(propensity: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getPopularity(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getPopularityUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(popularity: res.data, isLoading: false));
       },
       emit: emit,
     );
@@ -212,6 +254,127 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         final res = await _getPetEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
         emit((state as HomeSuccess).copyWith(petEquipment: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getBeautyEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getBeautyEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(beautyEquipment: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getAndroidEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getAndroidEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(androidEquipment: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getSkillInfo(GetSkillEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = SkillInfoParams(
+          ocid: event.ocid,
+          date: event.date,
+          characterSkillGrade: event.characterSkillGrade,
+        );
+        final res = await _getSkillInfoUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(skillInfo: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getLinkSkill(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getLinkSkillUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(linkSkill: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getVMatrixInfo(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getVMatrixUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(vMatrixInfo: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getHexaMatrixInfo(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getHexaMatrixInfoUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(hexaMatrixInfo: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getHexaMatrixStat(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getHexaMatrixStatUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(hexaMatrixStat: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getStudioTopRecordInfo(GetHomeEvent event, Emitter<IHomeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = BaseParams(
+          ocid: event.ocid,
+          date: event.date,
+        );
+        final res = await _getStudioUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as HomeSuccess).copyWith(studioTopRecordInfo: res.data, isLoading: false));
       },
       emit: emit,
     );

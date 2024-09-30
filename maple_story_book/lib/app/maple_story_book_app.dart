@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
-import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/app/presentation/search/seach_screen.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
@@ -21,7 +19,7 @@ class MapleStoryBookApp extends StatelessWidget {
       title: '메이플 스토리 북',
       theme: ThemeData(fontFamily: FontFamily.taengGu),
       home: Scaffold(
-        body: Container()
+        body: SearchScreen()
       ),
     );
   }

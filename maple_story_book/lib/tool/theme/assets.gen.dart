@@ -24,10 +24,30 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [logoIcon, mapleStory];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/orange.gif
+  AssetGenImage get orange => const AssetGenImage('assets/images/orange.gif');
+
+  /// File path: assets/images/pink.gif
+  AssetGenImage get pink => const AssetGenImage('assets/images/pink.gif');
+
+  /// File path: assets/images/slime.gif
+  AssetGenImage get slime => const AssetGenImage('assets/images/slime.gif');
+
+  /// File path: assets/images/yetti.gif
+  AssetGenImage get yetti => const AssetGenImage('assets/images/yetti.gif');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [orange, pink, slime, yetti];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
   static const String mapleStoryBook = 'maple_story_book.env';
 
   /// List of all assets
