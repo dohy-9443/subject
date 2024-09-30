@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
@@ -17,7 +18,11 @@ class SearchScreen extends StatelessWidget {
     return Container(
       color: ColorName.white,
       child: Column(
-
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          MSText.taengGu('하이', fontSize: 40,)
+        ],
       ),
     );
   }
