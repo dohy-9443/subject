@@ -24,6 +24,6 @@ class GetRankingTheSeedUseCase implements IUseCase<ResultRest<RankingTheSeed>, R
 
     final RankingParams input = params ?? RankingParams(date: yesterday);
 
-    return _rankingRepository.getRankingTheSeed(date: input.date, worldName: input.worldName, ocid: input.ocid, page: input.page);
+    return _rankingRepository.getRankingTheSeed(date: input.date!, worldName: input.worldName, ocid: input.ocid, page: input.page);
   }
 }

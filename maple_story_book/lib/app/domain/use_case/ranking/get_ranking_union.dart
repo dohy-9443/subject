@@ -24,7 +24,7 @@ class GetRankingUnionUseCase implements IUseCase<ResultRest<RankingUnion>, Ranki
 
     final RankingParams input = params ?? RankingParams(date: yesterday);
 
-    return _rankingRepository.getRankingUnion(date: input.date, worldName: input.worldName, ocid: input.ocid, page: input.page);
+    return _rankingRepository.getRankingUnion(date: input.date!, worldName: input.worldName, ocid: input.ocid, page: input.page);
   }
 
 }

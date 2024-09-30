@@ -24,7 +24,7 @@ class GetRankingAchievementUseCase implements IUseCase<ResultRest<RankingAchieve
 
     final RankingParams input = params ?? RankingParams(date: yesterday);
 
-    return _rankingRepository.getRankingAchievement(date: input.date, worldName: input.worldName, ocid: input.ocid, page: input.page);
+    return _rankingRepository.getRankingAchievement(date: input.date!, worldName: input.worldName, ocid: input.ocid, page: input.page);
   }
 }
 
