@@ -90,7 +90,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     // add(GetHomeEvent<PetEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
   }
 
-  Future<void> getAbility(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getAbility(GetHomeEvent<Ability> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -98,8 +98,6 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
           date: event.date,
         );
         final res = await _getAbilityUseCase.execute(params);
-        print('ocid : ${event.ocid}');
-        print('res : ${res.data}');
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
         emit((state as HomeSuccess).copyWith(ability: res.data, isLoading: false));
       },
@@ -107,7 +105,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getCharacterBasic(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getCharacterBasic(GetHomeEvent<BasicInfo> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -115,7 +113,6 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
           date: event.date,
         );
         final res = await _getCharacterBasicUseCase.execute(params);
-        print('res : ${res.data}');
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
         emit((state as HomeSuccess).copyWith(basicInfo: res.data, isLoading: false));
       },
@@ -123,7 +120,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getPropensity(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getPropensity(GetHomeEvent<Propensity> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -138,7 +135,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getPopularity(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getPopularity(GetHomeEvent<Popularity> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -153,7 +150,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getItemEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getItemEquipment(GetHomeEvent<ItemEquipment> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -168,7 +165,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getCashItemEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getCashItemEquipment(GetHomeEvent<CashItemEquipment> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -183,7 +180,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getSetEffect(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getSetEffect(GetHomeEvent<SetEffect> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -198,7 +195,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getSymbolEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getSymbolEquipment(GetHomeEvent<SymbolEquipment> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -213,7 +210,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getStat(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getStat(GetHomeEvent<Stat> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -228,7 +225,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getHyperStat(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getHyperStat(GetHomeEvent<HyperStat> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -243,7 +240,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getPetEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getPetEquipment(GetHomeEvent<PetEquipment> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -258,7 +255,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getBeautyEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getBeautyEquipment(GetHomeEvent<BeautyEquipment> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -273,7 +270,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getAndroidEquipment(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getAndroidEquipment(GetHomeEvent<AndroidEquipment> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -304,7 +301,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getLinkSkill(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getLinkSkill(GetHomeEvent<LinkSkill> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -319,7 +316,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getVMatrixInfo(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getVMatrixInfo(GetHomeEvent<VMatrixInfo> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -334,7 +331,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getHexaMatrixInfo(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getHexaMatrixInfo(GetHomeEvent<HexaMatrixInfo> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
@@ -349,7 +346,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     );
   }
 
-  Future<void> getHexaMatrixStat(GetHomeEvent event, Emitter<IHomeState> emit) async {
+  Future<void> getHexaMatrixStat(GetHomeEvent<HexaMatrixStat> event, Emitter<IHomeState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(

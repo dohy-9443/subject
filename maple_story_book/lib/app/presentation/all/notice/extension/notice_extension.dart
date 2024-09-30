@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maple_story_book/app/presentation/notice/bloc/notice_event.dart';
-import 'package:maple_story_book/app/presentation/notice/bloc/notice_state.dart';
+import 'package:maple_story_book/app/presentation/all/notice/bloc/notice_event.dart';
+import 'package:maple_story_book/app/presentation/all/notice/bloc/notice_state.dart';
 
 ///
 /// @Project name    : maple_story_book

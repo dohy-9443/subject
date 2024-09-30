@@ -3,9 +3,9 @@ import 'package:injectable/injectable.dart';
 import 'package:maple_story_book/app/data/source/model/model.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/domain/use_case/use_case.dart';
-import 'package:maple_story_book/app/presentation/notice/bloc/notice_event.dart';
-import 'package:maple_story_book/app/presentation/notice/bloc/notice_state.dart';
-import 'package:maple_story_book/app/presentation/notice/extension/notice_extension.dart';
+import 'package:maple_story_book/app/presentation/all/notice/bloc/notice_event.dart';
+import 'package:maple_story_book/app/presentation/all/notice/bloc/notice_state.dart';
+import 'package:maple_story_book/app/presentation/all/notice/extension/notice_extension.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -15,7 +15,7 @@ import 'package:maple_story_book/app/presentation/notice/extension/notice_extens
 /// Description      :
 ///
 
-@singleton
+@lazySingleton
 class NoticeBloc extends Bloc<INoticeEvent, INoticeState> with NoticeBlocMixin {
   final GetNoticeUseCase _getNoticeUseCase;
   final GetNoticeDetailUseCase _getNoticeDetailUseCase;
