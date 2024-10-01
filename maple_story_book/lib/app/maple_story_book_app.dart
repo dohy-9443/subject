@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/presentation/search/search_screen.dart';
+import 'package:maple_story_book/app/presentation/router/app_router.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
@@ -15,12 +15,10 @@ class MapleStoryBookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       title: '메이플 스토리 북',
       theme: ThemeData(fontFamily: FontFamily.taengGu),
-      home: Scaffold(
-        body: SearchScreen()
-      ),
     );
   }
 }
