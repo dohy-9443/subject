@@ -52,6 +52,7 @@ class _ScaffoldNavBarState extends State<ScaffoldNavBar> {
                 icon: Icon(Icons.bar_chart), label: 'Ranking'),
             BottomNavigationBarItem(icon: Icon(Icons.list), label: 'All'),
           ],
+          backgroundColor: ColorName.lightBg,
           selectedItemColor: ColorName.mainAccent,
           unselectedItemColor: ColorName.lightGray3,
           currentIndex: _selectedIndex,
