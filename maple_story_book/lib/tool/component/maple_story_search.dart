@@ -28,7 +28,7 @@ class MSSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: AppInset.edgeInsetsValue([20, 40]),
       child: TextField(
         focusNode: focusNode,

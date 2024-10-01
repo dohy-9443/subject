@@ -24,6 +24,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
   final Random _random = Random();
   final FocusNode _focusNode = FocusNode();
   List<_LeafAnimation> _leafAnimations = [];
+  bool _showLeaves = true;
 
   @override
   void initState() {
@@ -36,6 +37,23 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeLeafAnimations(context);
+    });
+
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        setState(() {
+          _showLeaves = false;
+        });
+        _animationController.stop();
+      } else {
+        Future.delayed(Duration(milliseconds: 600), () {
+          setState(() {
+            _showLeaves = true;
+          });
+          _animationController.reset();
+          _animationController.repeat();
+        });
+      }
     });
   }
 
@@ -80,7 +98,14 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
         child: Stack(
           children: [
             Container(color: ColorName.mainAccent,),
-            ..._leafAnimations.map((leaf) => leaf.build(context)),
+            Visibility(
+              visible: _showLeaves,
+                child: Stack(
+                  children: [
+                    ..._leafAnimations.map((leaf) => leaf.build(context))
+                  ],
+                ),
+            ),
             SearchContents(
               focusNode: _focusNode,
             ),
