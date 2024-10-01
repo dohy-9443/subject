@@ -1,21 +1,22 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/tool/component/component.dart';
+import 'package:maple_story_book/app/presentation/search/widget/search_contents.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
 /// @Project name    : maple_story_book
-/// @Class           : seach_screen.
+/// @Class           : search_screen.
 /// @Created by      : baekdonghyun.
-/// Created On       : 2024. 9. 30..
+/// Created On       : 2024. 10. 1..
 /// Description      : 
 ///
 
 class SearchScreen extends StatefulWidget {
+
   const SearchScreen({super.key});
 
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderStateMixin {
@@ -72,37 +73,14 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
       body: Stack(
         children: [
           Container(color: ColorName.mainAccent,),
-          ..._leafAnimations.map((leaf) => leaf.build(context)).toList(),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  child: MSText.taengGu(
-                    '캐릭터의 닉네임을\n 입력해주세요.',
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(Assets.images.orange.path),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ..._leafAnimations.map((leaf) => leaf.build(context)),
+          SearchContents(),
         ],
       ),
     );
   }
 }
+
 
 class _LeafAnimation {
   final double left;
@@ -132,11 +110,9 @@ class _LeafAnimation {
       animation: animationController,
       builder: (context, child) {
         final animationValue = (animationController.value + delay) % 1.0;
-        final dx = 0;
         final dy = (speed * animationValue * screenHeight);
         final newTop = top + dy;
-        final newLeft = (left + dx) % screenWidth;
-
+        final newLeft = left % screenWidth;
         return Positioned(
           left: newLeft,
           top: newTop,

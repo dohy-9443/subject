@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/presentation/search/seach_screen.dart';
+import 'package:maple_story_book/app/presentation/search/search_screen.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
