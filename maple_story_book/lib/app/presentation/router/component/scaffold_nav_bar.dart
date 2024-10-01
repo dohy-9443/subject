@@ -43,6 +43,7 @@ class _ScaffoldNavBarState extends State<ScaffoldNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorName.lightBg,
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
           items: const [
