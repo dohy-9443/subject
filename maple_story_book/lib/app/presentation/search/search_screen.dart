@@ -22,6 +22,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   final Random _random = Random();
+  final FocusNode _focusNode = FocusNode();
   List<_LeafAnimation> _leafAnimations = [];
 
   @override
@@ -62,6 +63,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
   @override
   void dispose() {
     _animationController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -70,12 +72,20 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
     _initializeLeafAnimations(context);
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(color: ColorName.mainAccent,),
-          ..._leafAnimations.map((leaf) => leaf.build(context)),
-          SearchContents(),
-        ],
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Stack(
+          children: [
+            Container(color: ColorName.mainAccent,),
+            ..._leafAnimations.map((leaf) => leaf.build(context)),
+            SearchContents(
+              focusNode: _focusNode,
+            ),
+          ],
+        ),
       ),
     );
   }

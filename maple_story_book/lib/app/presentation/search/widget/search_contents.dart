@@ -10,8 +10,22 @@ import 'package:maple_story_book/tool/theme/theme.dart';
 /// Description      : 
 ///
 
-class SearchContents extends StatelessWidget {
-  const SearchContents({super.key});
+class SearchContents extends StatefulWidget {
+  final FocusNode focusNode;
+  const SearchContents({super.key, required this.focusNode});
+
+  @override
+  State<SearchContents> createState() => _SearchContentsState();
+}
+
+class _SearchContentsState extends State<SearchContents> {
+  final TextEditingController _textController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +49,13 @@ class SearchContents extends StatelessWidget {
               ),
             ),
           ),
+          MSSearchBar(
+            focusNode: widget.focusNode,
+            controller: _textController,
+            hintText: '캐릭터의 닉네임을 입력해주세요...',
+            labelText: '캐릭터 닉네임',
+            onTap: () {},
+          )
         ],
       ),
     );
