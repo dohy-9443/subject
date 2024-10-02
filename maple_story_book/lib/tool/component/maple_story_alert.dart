@@ -1,5 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:maple_story_book/core/util/insets.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/component/component.dart';
@@ -17,9 +17,9 @@ import 'package:maple_story_book/tool/theme/theme.dart';
 class MSAlert extends StatelessWidget {
   final String title;
   final String content;
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
 
-  const MSAlert({super.key, required this.title, required this.content, required this.onTap});
+  const MSAlert({super.key, required this.title, required this.content, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -117,8 +117,8 @@ class MSAlert extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               MSButton.gradient(
-                onPressed: onTap,
-                width: 80,
+                onPressed: onPressed,
+                width: 85,
                 height: 20,
                 gradient: const LinearGradient(
                   begin: Alignment.topCenter,
@@ -126,14 +126,17 @@ class MSAlert extends StatelessWidget {
                   colors: [Color(0xFFFFD933), Color(0xFFFFAA00)],
                 ),
                 borderRadius: BorderRadius.circular(4),
+                border: Border.all(width: 1, color: ColorName.black.withOpacity(0.5)),
                 child: MSText.bold('예', color: ColorName.white, fontSize: 12,),
               ),
 
               AppSize.width(10),
 
               MSButton.gradient(
-                onPressed: onTap,
-                width: 80,
+                onPressed: () {
+                  context.pop();
+                },
+                width: 85,
                 height: 20,
                 gradient: const LinearGradient(
                   begin: Alignment.topCenter,
@@ -141,6 +144,7 @@ class MSAlert extends StatelessWidget {
                   colors: [Color(0xFFF77C9D), Color(0xFFBB1252)],
                 ),
                 borderRadius: BorderRadius.circular(4),
+                border: Border.all(width: 1, color: ColorName.black.withOpacity(0.5)),
                 child: MSText.bold('아니오', color: ColorName.white, fontSize: 12,),
               ),
 
@@ -170,7 +174,7 @@ Future<void> mSAlert(BuildContext context, {required String title, required Stri
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      return Dialog(child: MSAlert(title: title, content: content, onTap: () {},),);
+      return Dialog(child: MSAlert(title: title, content: content, onPressed: () {},),);
     }
   );
 }

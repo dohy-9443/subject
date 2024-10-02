@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(onPressed: () async {
-         mSAlert(context, title: 'dsf', content: 'asdfasdf');
+        mSAlert(context, title: 'dsf', content: 'asdfasdf');
       }, child: Text("button"))
     );
   }

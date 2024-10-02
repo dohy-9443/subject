@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/tool/theme/colors.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -14,6 +15,7 @@ class MSButton extends StatelessWidget {
   final double height;
   final bool isGradient;
   final Gradient? gradient;
+  final BoxBorder? border;
   final Color? backgroundColor;
   final VoidCallback onPressed;
   final Widget child;
@@ -25,6 +27,7 @@ class MSButton extends StatelessWidget {
     this.height = 40,
     this.isGradient = false,
     this.gradient,
+    this.border,
     this.backgroundColor,
     required this.onPressed,
     required this.child
@@ -37,6 +40,7 @@ class MSButton extends StatelessWidget {
     required double height,
     required Color backgroundColor,
     BorderRadiusGeometry? borderRadius,
+    BoxBorder? border,
   }) {
     return MSButton(
       onPressed: onPressed,
@@ -45,6 +49,7 @@ class MSButton extends StatelessWidget {
       height: height,
       borderRadius: borderRadius,
       backgroundColor: backgroundColor,
+      border: border,
     );
   }
 
@@ -54,6 +59,7 @@ class MSButton extends StatelessWidget {
     required double height,
     required Widget child,
     required Gradient gradient,
+    BoxBorder? border,
     BorderRadiusGeometry? borderRadius,
   }) {
     return MSButton(
@@ -62,6 +68,7 @@ class MSButton extends StatelessWidget {
       width: width,
       height: height,
       borderRadius: borderRadius,
+      border: border,
       gradient: gradient,
       child: child,
     );
@@ -79,6 +86,7 @@ class MSButton extends StatelessWidget {
       decoration: isGradient ? BoxDecoration(
         gradient: gradient,
         borderRadius: borderRadius,
+        border: border,
       ) : null,
       child: ElevatedButton(
         onPressed: onPressed,
