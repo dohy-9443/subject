@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -13,6 +14,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('home'));
+    return Center(
+      child: ElevatedButton(onPressed: () async {
+        await mSAlert(context, title: 'dsf', content: 'asdfasdf');
+      }, child: Text("button"))
+    );
   }
 }

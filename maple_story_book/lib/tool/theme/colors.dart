@@ -22,6 +22,8 @@ class ColorName {
 
   static const Color danger = Color(0xFFD9534F);
 
+  static const Color modal = Color(0xFF268EC9);
+
   // Light mode
 
   static const Color lightBg = Color(0xFFECF0F1);
