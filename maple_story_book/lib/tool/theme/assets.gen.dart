@@ -33,6 +33,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/pink.gif
   AssetGenImage get pink => const AssetGenImage('assets/images/pink.gif');
 
+  /// File path: assets/images/pink_alert.png
+  AssetGenImage get pinkAlert =>
+      const AssetGenImage('assets/images/pink_alert.png');
+
   /// File path: assets/images/slime.gif
   AssetGenImage get slime => const AssetGenImage('assets/images/slime.gif');
 
@@ -40,7 +44,7 @@ class $AssetsImagesGen {
   AssetGenImage get yetti => const AssetGenImage('assets/images/yetti.gif');
 
   /// List of all assets
-  List<AssetGenImage> get values => [orange, pink, slime, yetti];
+  List<AssetGenImage> get values => [orange, pink, pinkAlert, slime, yetti];
 }
 
 class Assets {
