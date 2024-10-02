@@ -5,7 +5,7 @@ import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 class MSOnboard extends StatefulWidget {
-  final String content;
+  final List<String> content;
 
   const MSOnboard({super.key, required this.content});
 
@@ -16,6 +16,8 @@ class MSOnboard extends StatefulWidget {
 class _MSOnboardState extends State<MSOnboard> {
   final ScrollController _scrollController = ScrollController();
   bool _isOverflowing = false;
+  int index = 0;
+  bool isLast = false;
 
   @override
   void initState() {
@@ -28,6 +30,20 @@ class _MSOnboardState extends State<MSOnboard> {
         });
       }
     });
+  }
+
+  void nextAction() {
+    isLast = index < widget.content.length - 1;
+    print('isLast : $isLast');
+
+    if (isLast) {
+      setState(() {
+        _scrollController.jumpTo(0);  // 스크롤 초기화
+        index++;  // index 증가
+      });
+    } else {
+      Navigator.of(context).pop();  // 마지막 페이지면 모달 닫기
+    }
   }
 
   void _scrollUp() {
@@ -124,36 +140,35 @@ class _MSOnboardState extends State<MSOnboard> {
             ),
           ),
           Positioned(
-            bottom: 10,
-            right: 0,
-            child: Container(
-              padding: AppInset.all2,
-              margin: AppInset.right4,
-              width: 97,
-              height: 28,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFA8C311),
-                    Color(0xFF7E8E25),
-                  ],
+              bottom: 10,
+              right: 0,
+              child: Container(
+                padding: AppInset.all2,
+                margin: AppInset.right4,
+                child: MSButton.gradient(
+                  onPressed: () {
+                    nextAction();
+                  },
+                  width: 97,
+                  height: 28,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xFFA8C311), Color(0xFF7E8E25)],
+                  ),
+                  border: Border.all(
+                    color: const Color(0xFF483B29),
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                  child: MSText.bold(
+                    isLast ? '완료' : '다음 >',
+                    textAlign: TextAlign.center,
+                    color: ColorName.white,
+                    fontSize: 13,
+                  ),
                 ),
-                border: Border.all(
-                  color: const Color(0xFF483B29),
-                  width: 3,
-                ),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: MSText.bold(
-                '다음 >',
-                fontSize: 15,
-                color: ColorName.white,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
+              )),
           Container(
             margin: AppInset.all10,
             width: 218,
@@ -162,17 +177,26 @@ class _MSOnboardState extends State<MSOnboard> {
               controller: _scrollController,
               child: AnimatedTextKit(
                 repeatForever: false,
-                pause: const Duration(seconds: 1),
                 totalRepeatCount: 1,
                 animatedTexts: [
                   TyperAnimatedText(
-                    widget.content,
+                    widget.content[index],
                     textStyle: const TextStyle(
                       color: ColorName.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
                   ),
+                  if(index == 1)
+                  TyperAnimatedText(
+                    widget.content[1],
+                    textStyle: const TextStyle(
+                      color: ColorName.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+
                 ],
               ),
             ),
@@ -183,11 +207,13 @@ class _MSOnboardState extends State<MSOnboard> {
               child: Column(
                 children: [
                   ElevatedButton(
-                      onPressed: _scrollUp,
-                      child: const Icon(Icons.arrow_upward)),
+                    onPressed: _scrollUp,
+                    child: const Icon(Icons.arrow_upward),
+                  ),
                   ElevatedButton(
-                      onPressed: _scrollDown,
-                      child: const Icon(Icons.arrow_downward))
+                    onPressed: _scrollDown,
+                    child: const Icon(Icons.arrow_downward),
+                  )
                 ],
               ),
             ),
@@ -197,12 +223,13 @@ class _MSOnboardState extends State<MSOnboard> {
   }
 }
 
-Future<void> mSOnboard(BuildContext context, {required content}) {
+Future<void> mSOnboard(BuildContext context,
+    {required List<String> contentList}) {
   return showDialog(
     context: context,
     builder: (context) {
       return Dialog(
-        child: MSOnboard(content: content),
+        child: MSOnboard(content: contentList),
       );
     },
   );
