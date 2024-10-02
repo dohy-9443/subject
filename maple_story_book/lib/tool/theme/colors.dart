@@ -24,6 +24,8 @@ class ColorName {
 
   static const Color modal = Color(0xFF268EC9);
 
+  static const Color onboard = Color(0xFF473C2C);
+
   // Light mode
 
   static const Color lightBg = Color(0xFFECF0F1);
