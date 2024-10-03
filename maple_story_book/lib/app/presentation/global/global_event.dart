@@ -62,8 +62,8 @@ class LoadFavoritesEvent extends IGlobalEvent {
   List<Object?> get props => [];
 }
 
-class LoadRecentSearchesEvent extends IGlobalEvent {
-  LoadRecentSearchesEvent();
+class LoadSearchesEvent extends IGlobalEvent {
+  LoadSearchesEvent();
 
   @override
   // TODO: implement props

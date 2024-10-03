@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injectable/injectable.dart';
-import 'package:maple_story_book/app/data/source/model/model.dart';
+import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/repository/repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
