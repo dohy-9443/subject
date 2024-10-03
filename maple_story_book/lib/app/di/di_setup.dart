@@ -53,6 +53,9 @@ abstract class RegisterModule {
   @singleton
   ICharacterRepository provideCharacterRepository(CharacterRepository repository) => repository;
 
+  @singleton
+  ILocalStorageRepository provideLocalStorageRepository(LocalStorageRepository repository) => repository;
+
   @lazySingleton
   IUnionRepository provideUnionRepository(UnionRepository repository) => repository;
 
