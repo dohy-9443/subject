@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 
 ///
@@ -22,22 +23,28 @@ final class GlobalInitial extends IGlobalState {
 final class GlobalSuccess extends IGlobalState {
   final bool isLoading;
   final Ocid? ocid;
+  final List<LocalStorageModel>? searches;
+  final List<LocalStorageModel>? favorites;
 
   GlobalSuccess({
     this.isLoading = false,
     this.ocid,
+    this.searches,
+    this.favorites,
   });
 
-  GlobalSuccess copyWith({bool? isLoading, Ocid? ocid}) {
+  GlobalSuccess copyWith({bool? isLoading, Ocid? ocid, List<LocalStorageModel>? searches, List<LocalStorageModel>? favorites}) {
     return GlobalSuccess(
       isLoading: isLoading ?? this.isLoading,
       ocid: ocid ?? this.ocid,
+      searches: searches ?? this.searches,
+      favorites: favorites ?? this.favorites,
     );
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [isLoading, ocid];
+  List<Object?> get props => [isLoading, ocid, searches, favorites];
 }
 
 final class GlobalError extends IGlobalState {
