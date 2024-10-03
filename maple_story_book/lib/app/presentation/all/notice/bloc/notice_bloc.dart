@@ -46,82 +46,95 @@ class NoticeBloc extends Bloc<INoticeEvent, INoticeState> with NoticeBlocMixin {
     on<GetNoticeEvent<NoticeEventDetail>>(getNoticeEventDetail);
   }
 
-  Future<void> getNotice(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
+  Future<void> getNotice(GetNoticeEvent event, Emitter<INoticeState> emit) async {
     await handleRequest(
-        request: () async {
-          final res = await _getNoticeUseCase.execute();
-
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          emit((state as NoticeSuccess).copyWith(isLoading: false));
-        },
-        emit: emit);
-  }
-
-  Future<void> getNoticeDetail(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final params = NoticeParams(
-      noticeId: event.noticeId,
+      request: () async {
+        final res = await _getNoticeUseCase.execute();
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(isLoading: false));
+      },
+      emit: emit,
     );
-    final res = await _getNoticeDetailUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess).copyWith(isLoading: false));
   }
 
-  Future<void> getNoticeUpdate(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final res = await _getNoticeUpdateUseCase.execute();
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess)
-        .copyWith(noticeUpdate: res.data, isLoading: false));
-  }
-
-  Future<void> getNoticeUpdateDetail(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final params = NoticeParams(
-      noticeId: event.noticeId,
+  Future<void> getNoticeDetail(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = NoticeParams(noticeId: event.noticeId,);
+        final res = await _getNoticeDetailUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(isLoading: false));
+      },
+      emit: emit,
     );
-    final res = await _getNoticeUpdateDetailUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess)
-        .copyWith(noticeUpdateDetail: res.data, isLoading: false));
   }
 
-  Future<void> getNoticeCashShop(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final res = await _getNoticeCashShopUseCase.execute();
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess)
-        .copyWith(noticeCashShop: res.data, isLoading: false));
-  }
-
-  Future<void> getNoticeCashShopDetail(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final params = NoticeParams(
-      noticeId: event.noticeId,
+  Future<void> getNoticeUpdate(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final res = await _getNoticeUpdateUseCase.execute();
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(noticeUpdate: res.data, isLoading: false));
+      },
+      emit: emit,
     );
-    final res = await _getNoticeCashShopDetailUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess)
-        .copyWith(noticeCashShopDetail: res.data, isLoading: false));
   }
 
-  Future<void> getNoticeEvent(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final res = await _getNoticeEventUseCase.execute();
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess)
-        .copyWith(noticeEvent: res.data, isLoading: false));
-  }
-
-  Future<void> getNoticeEventDetail(
-      GetNoticeEvent event, Emitter<INoticeState> emit) async {
-    final params = NoticeParams(
-      noticeId: event.noticeId,
+  Future<void> getNoticeUpdateDetail(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = NoticeParams(noticeId: event.noticeId,);
+        final res = await _getNoticeUpdateDetailUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(noticeUpdateDetail: res.data, isLoading: false));
+      },
+      emit: emit,
     );
-    final res = await _getNoticeEventDetailUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as NoticeSuccess)
-        .copyWith(noticeEventDetail: res.data, isLoading: false));
+  }
+
+  Future<void> getNoticeCashShop(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final res = await _getNoticeCashShopUseCase.execute();
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(noticeCashShop: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getNoticeCashShopDetail(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = NoticeParams(noticeId: event.noticeId,);
+        final res = await _getNoticeCashShopDetailUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(noticeCashShopDetail: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getNoticeEvent(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final res = await _getNoticeEventUseCase.execute();
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(noticeEvent: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
+  }
+
+  Future<void> getNoticeEventDetail(GetNoticeEvent event, Emitter<INoticeState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = NoticeParams(noticeId: event.noticeId,);
+        final res = await _getNoticeEventDetailUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as NoticeSuccess).copyWith(noticeEventDetail: res.data, isLoading: false));
+      },
+      emit: emit,
+    );
   }
 }
