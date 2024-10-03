@@ -21,5 +21,15 @@ class LocalStorageModel {
   factory LocalStorageModel.fromJson(Map<String, dynamic> json) => _$LocalStorageModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$LocalStorageModelToJson(this);
+}
 
+@JsonSerializable()
+class ListLocalStorageModel {
+  final List<LocalStorageModel> localStorages;
+
+  ListLocalStorageModel({required this.localStorages});
+
+  factory ListLocalStorageModel.fromJson(Map<String, dynamic> json) => _$ListLocalStorageModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ListLocalStorageModelToJson(this);
 }

@@ -7,9 +7,10 @@
 ///
 
 export 'character.dart';
-export 'star_force.dart';
-export 'ranking.dart';
-export 'potential.dart';
 export 'guild.dart';
-export 'union.dart';
+export 'local_storage.dart';
 export 'notice.dart';
+export 'potential.dart';
+export 'ranking.dart';
+export 'star_force.dart';
+export 'union.dart';
