@@ -21,3 +21,52 @@ class GetOcIdEvent extends IGlobalEvent {
   @override
   List<Object?> get props => [characterName];
 }
+
+class AddFavoriteEvent extends IGlobalEvent {
+  final String nickName;
+  final String ocid;
+
+  AddFavoriteEvent(this.nickName, this.ocid);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [nickName, ocid];
+}
+
+class AddSearchEvent extends IGlobalEvent {
+  final String nickName;
+  final String ocid;
+
+  AddSearchEvent(this.nickName, this.ocid);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [nickName, ocid];
+}
+
+class RemoveFavoriteEvent extends IGlobalEvent {
+  final String nickName;
+
+  RemoveFavoriteEvent(this.nickName);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [nickName];
+}
+
+class LoadFavoritesEvent extends IGlobalEvent {
+  LoadFavoritesEvent();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
+class LoadRecentSearchesEvent extends IGlobalEvent {
+  LoadRecentSearchesEvent();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+
+}
