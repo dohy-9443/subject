@@ -42,94 +42,125 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     on<GetRankingEvent<RankingUnion>>(getRankingUnion);
   }
   
-  Future<void> getRankingAchievement(
-      GetRankingEvent event, Emitter<IRankingState> emit) async {
-    final params = RankingParams(
-      date: event.date,
-      worldName: event.worldName,
-      ocid: event.ocid,
-      page: event.page,
-    );
+  Future<void> getRankingAchievement(GetRankingEvent event, Emitter<IRankingState> emit) async {
+    await handleRequest(
+      request: () async {
+        final params = RankingParams(
+          date: event.date,
+          worldName: event.worldName,
+          ocid: event.ocid,
+          page: event.page,
+        );
 
-    final res = await _getRankingAchievementUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as RankingSuccess)
-        .copyWith(rankingAchievement: res.data, isLoading: false));
+        final res = await _getRankingAchievementUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        emit((state as RankingSuccess).copyWith(rankingAchievement: res.data, isLoading: false));
+      },
+      emit: emit
+    );
   }
 
   Future<void> getRankingGuild(
       GetRankingGuildEvent event, Emitter<IRankingState> emit) async {
-    final params = RankingGuildParams(
-      date: event.date,
-      worldName: event.worldName,
-      rankingType: event.rankingType,
-      guildName: event.guildName,
-      page: event.page,
+    await handleRequest(
+        request: () async {
+          final params = RankingGuildParams(
+            date: event.date,
+            worldName: event.worldName,
+            rankingType: event.rankingType,
+            guildName: event.guildName,
+            page: event.page,
+          );
+          final res = await _getRankingGuildUseCase.execute(params);
+          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          emit((state as RankingSuccess)
+              .copyWith(rankingGuild: res.data, isLoading: false));
+        },
+        emit: emit
     );
-    final res = await _getRankingGuildUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as RankingSuccess)
-        .copyWith(rankingGuild: res.data, isLoading: false));
   }
 
   Future<void> getRankingOverall(
       GetRankingOverallEvent event, Emitter<IRankingState> emit) async {
-    final params = RankingOverallParams(
-      date: event.date,
-      worldName: event.worldName,
-      worldType: event.worldType,
-      availableValue: event.availableValue,
-      ocid: event.ocid,
-      page: event.page,
+    await handleRequest(
+        request: () async {
+          final params = RankingOverallParams(
+            date: event.date,
+            worldName: event.worldName,
+            worldType: event.worldType,
+            availableValue: event.availableValue,
+            ocid: event.ocid,
+            page: event.page,
+          );
+          final res = await _getRankingOverallUseCase.execute(params);
+          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          emit((state as RankingSuccess)
+              .copyWith(rankingOverall: res.data, isLoading: false));
+        },
+        emit: emit
     );
-    final res = await _getRankingOverallUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as RankingSuccess)
-        .copyWith(rankingOverall: res.data, isLoading: false));
   }
 
   Future<void> getRankingStudio(
       GetRankingStudioEvent event, Emitter<IRankingState> emit) async {
-    final params = RankingStudioParams(
-     date: event.date,
-     worldName: event.worldName,
-     difficulty: event.difficulty,
-     availableValue: event.availableValue,
-     ocid: event.ocid,
-     page: event.page,
+    await handleRequest(
+        request: () async {
+          final params = RankingStudioParams(
+            date: event.date,
+            worldName: event.worldName,
+            difficulty: event.difficulty,
+            availableValue: event.availableValue,
+            ocid: event.ocid,
+            page: event.page,
+          );
+
+          final res = await _getRankingStudioUseCase.execute(params);
+          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          emit((state as RankingSuccess)
+              .copyWith(rankingStudio: res.data, isLoading: false));
+        },
+        emit: emit
     );
 
-    final res = await _getRankingStudioUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as RankingSuccess)
-        .copyWith(rankingStudio: res.data, isLoading: false));
   }
 
   Future<void> getRankingTheSeed(
       GetRankingEvent event, Emitter<IRankingState> emit) async {
-    final params = RankingParams(
-      date: event.date,
-      worldName: event.worldName,
-      ocid: event.ocid,
-      page: event.page,
+    await handleRequest(
+        request: () async {
+          final params = RankingParams(
+            date: event.date,
+            worldName: event.worldName,
+            ocid: event.ocid,
+            page: event.page,
+          );
+
+          final res = await _getRankingTheSeedUseCase.execute(params);
+          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          emit((state as RankingSuccess).copyWith(rankingTheSeed: res.data, isLoading: false));
+        },
+        emit: emit
     );
 
-    final res = await _getRankingTheSeedUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as RankingSuccess).copyWith(rankingTheSeed: res.data, isLoading: false));
   }
 
   Future<void> getRankingUnion(
       GetRankingEvent event, Emitter<IRankingState> emit) async {
-    final params = RankingParams(
-      date: event.date,
-      worldName: event.worldName,
-      ocid: event.ocid,
-      page: event.page,
+    await handleRequest(
+        request: () async {
+          final params = RankingParams(
+            date: event.date,
+            worldName: event.worldName,
+            ocid: event.ocid,
+            page: event.page,
+          );
+
+          final res = await _getRankingUnionUseCase.execute(params);
+          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          emit((state as RankingSuccess).copyWith(rankingUnion: res.data,isLoading: false));
+        },
+        emit: emit
     );
 
-    final res = await _getRankingUnionUseCase.execute(params);
-    if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-    emit((state as RankingSuccess).copyWith(rankingUnion: res.data,isLoading: false));
   }
 }

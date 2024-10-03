@@ -11,14 +11,14 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 
 sealed class IRankingState extends Equatable {}
 
-class RankingInitial extends IRankingState {
+final class RankingInitial extends IRankingState {
   RankingInitial();
 
   @override
   List<Object?> get props => [];
 }
 
-class RankingSuccess extends IRankingState {
+final class RankingSuccess extends IRankingState {
   final bool isLoading;
   final RankingAchievement? rankingAchievement;
   final RankingGuild? rankingGuild;
@@ -60,17 +60,17 @@ class RankingSuccess extends IRankingState {
 
   @override
   List<Object?> get props => [
-        isLoading,
-        rankingAchievement,
-        rankingGuild,
-        rankingOverall,
-        rankingStudio,
-        rankingTheSeed,
-        rankingUnion,
-      ];
+    isLoading,
+    rankingAchievement,
+    rankingGuild,
+    rankingOverall,
+    rankingStudio,
+    rankingTheSeed,
+    rankingUnion,
+  ];
 }
 
-class RankingError extends IRankingState {
+final class RankingError extends IRankingState {
   final dynamic error;
   final StackTrace? stackTrace;
 

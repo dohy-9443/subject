@@ -1,10 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:maple_story_book/app/domain/entity/entity.dart';
-import 'package:maple_story_book/app/domain/repository/maple_story/maple_story.dart';
 import 'package:maple_story_book/app/domain/use_case/character/character.dart';
 import 'package:maple_story_book/app/presentation/global/global_event.dart';
-import 'package:maple_story_book/core/util/bloc/bloc.dart';
+import 'package:maple_story_book/app/presentation/global/global_state.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -16,22 +14,28 @@ import 'package:maple_story_book/core/util/bloc/bloc.dart';
 ///
 
 @singleton
-class GlobalBloc extends Bloc<IGlobalEvent, IMSState<Ocid>> {
+class GlobalBloc extends Bloc<IGlobalEvent, IGlobalState> {
   final GetOcidUseCase _getOcidUseCase;
 
-  GlobalBloc(this._getOcidUseCase) : super(const InitialState<Ocid>()) {
+  GlobalBloc(this._getOcidUseCase) : super(GlobalInitial()) {
     on<GetOcIdEvent>(getOcid);
   }
 
-  Future<void> getOcid(GetOcIdEvent event, Emitter<IMSState<Ocid>> emit) async {
+  Future<void> getOcid(GetOcIdEvent event, Emitter<IGlobalState> emit) async {
+    if (state is GlobalSuccess) {
+      emit((state as GlobalSuccess).copyWith(isLoading: true));
+    } else {
+      emit(GlobalSuccess(isLoading: true));
+    }
     try {
-      emit(const LoadingState<Ocid>());
+      final params = GetOcidParams(characterName: event.characterName,);
 
-      final res = await _getOcidUseCase.execute();
+      final res = await _getOcidUseCase.execute(params);
+      if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+      emit((state as GlobalSuccess).copyWith(ocid: res.data, isLoading: false));
 
-      emit(DataState<Ocid>(data: res.data));
     } catch (e, s) {
-      emit(ErrorState<Ocid>(error: e, stackTrace: s));
+      emit(GlobalError(error: e, stackTrace: s));
     }
   }
 }

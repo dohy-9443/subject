@@ -38,11 +38,41 @@ class MSText extends StatelessWidget {
     }
   );
 
-  factory MSText.basic(String text, {double fontSize = 16, TextAlign textAlign = TextAlign.left, Color color = ColorName.lightText}) => MSText(text, fontSize: fontSize, textAlign: textAlign, color: color,);
+  factory MSText.basic(
+    String text, {
+      double fontSize = 16,
+      TextAlign textAlign = TextAlign.left,
+      Color color = ColorName.lightText
+  }) => MSText(
+    text,
+    fontSize: fontSize,
+    textAlign: textAlign,
+    color: color,
+  );
 
-  factory MSText.bold(String text, {double fontSize = 16, TextAlign textAlign = TextAlign.left, Color color = ColorName.lightText}) => MSText(text, fontWeight: FontWeight.bold, fontSize: fontSize, textAlign: textAlign, color: color,);
+  factory MSText.bold(
+    String text, {
+      double fontSize = 16,
+      TextAlign textAlign = TextAlign.left,
+      Color color = ColorName.lightText,
+  }) => MSText(
+    text,
+    fontWeight: FontWeight.bold,
+    fontSize: fontSize,
+    textAlign: textAlign,
+    color: color,
+  );
 
-  factory MSText.danger(String text, {double fontSize = 16, TextAlign textAlign = TextAlign.left,}) => MSText(text, color: ColorName.danger, fontSize: fontSize, textAlign: textAlign,);
+  factory MSText.danger(
+    String text, {
+      double fontSize = 16,
+      TextAlign textAlign = TextAlign.left,
+  }) => MSText(
+    text,
+    color: ColorName.danger,
+    fontSize: fontSize,
+    textAlign: textAlign,
+  );
 
   factory MSText.taengGu(
     String text, {
