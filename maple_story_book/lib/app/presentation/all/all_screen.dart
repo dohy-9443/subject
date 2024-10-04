@@ -17,44 +17,58 @@ class AllScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('전체보기'),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: ColorName.white,
-          padding: AppInset.all10,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AllListItem(
-                category: '길드',
-                subCategory: [
-                  AllSubScreenType(title: '정보', path: '/'),
-                ],
-              ),
-              AllListItem(
-                category: '알림',
-                subCategory: [
-                  AllSubScreenType(title: '알림', path: '/'),
-                  AllSubScreenType(title: '업데이트', path: '/'),
-                  AllSubScreenType(title: '캐시샵', path: '/'),
-                  AllSubScreenType(title: '이벤트', path: '/'),
-                  AllSubScreenType(title: '알림', path: '/'),
-                  AllSubScreenType(title: '업데이트', path: '/'),
-                  AllSubScreenType(title: '캐시샵', path: '/'),
-                  AllSubScreenType(title: '이벤트', path: '/'),
-                  AllSubScreenType(title: '알림', path: '/'),
-                  AllSubScreenType(title: '업데이트', path: '/'),
-                  AllSubScreenType(title: '캐시샵', path: '/'),
-                  AllSubScreenType(title: '이벤트', path: '/'),
-                ],
-              ),
-            ],
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 50 + kToolbarHeight,
+          color: ColorName.modal,
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AllListItem(
+                  category: '길드',
+                  subCategory: [
+                    AllSubScreenType(title: '정보', path: '/'),
+                  ],
+                ),
+                AllListItem(
+                  category: '공지',
+                  subCategory: [
+                    AllSubScreenType(title: '알림', path: '/'),
+                    AllSubScreenType(title: '업데이트', path: '/'),
+                    AllSubScreenType(title: '캐시샵', path: '/'),
+                    AllSubScreenType(title: '이벤트', path: '/'),
+                  ],
+                ),
+                AllListItem(
+                  category: '히스토리',
+                  subCategory: [
+                    AllSubScreenType(title: '큐브', path: '/'),
+                    AllSubScreenType(title: '잠재능력', path: '/'),
+                    AllSubScreenType(title: '스타포스', path: '/'),
+                  ],
+                ),
+                AllListItem(
+                  category: '약관 및 정책',
+                  subCategory: [
+                    AllSubScreenType(title: '약관 및 이용동의', path: '/'),
+                  ],
+                ),
+                AllListItem(
+                  category: '앱 정보',
+                  subCategory: [
+                    AllSubScreenType(title: '버전 정보 (1.0.0)', path: '/'),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -71,38 +85,51 @@ class AllListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MSText.bold(category),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: ColorName.mainAccent,
-            ),
-            child: Column(
-              children: List.generate(subCategory.length, (index) {
-                return Column(
-                  children: [
-                    ListTile(
-                      onTap: () => context.go(subCategory[index].path),
-                      title: Text(subCategory[index].title),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 15,
-                      ),
-                    ),
-                    if (index < subCategory.length - 1)
-                      const Divider(color: ColorName.white, height: 1)
-                  ],
-                );
-              }),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          color: const Color(0xFFE5E5E5),
+          child: ListTile(
+            minTileHeight: 15,
+            title: MSText.basic(
+              category,
             ),
           ),
-        ],
-      ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            children: List.generate(subCategory.length, (index) {
+              return Column(
+                children: [
+                  ListTile(
+                    onTap: () => context.go(subCategory[index].path),
+                    title: MSText.basic(
+                      subCategory[index].title,
+                      fontSize: 18,
+                      color: ColorName.black,
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                    ),
+                  ),
+                  if (index < subCategory.length - 1)
+                    Padding(
+                      padding: AppInset.h10,
+                      child: Divider(
+                          color: ColorName.lightGray1.withOpacity(0.3),
+                          height: 1),
+                    )
+                ],
+              );
+            }),
+          ),
+        ),
+      ],
     );
   }
 }
