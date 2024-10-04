@@ -22,12 +22,12 @@ class SearchFavoriteListScreen extends StatelessWidget {
         children: const [
           StaggeredGridTile.count(
             crossAxisCellCount: 3, // 가로로 몇칸을 먹을 건지
-            mainAxisCellCount: 3, // 세로로 몇칸을 먹을 건ㄴ지
+            mainAxisCellCount: 3, // 세로로 몇칸을 먹을 건지
             child: Tile(index: 0),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 4,
+            mainAxisCellCount: 2,
             child: Tile(index: 1),
           ),
           StaggeredGridTile.count(
@@ -36,89 +36,39 @@ class SearchFavoriteListScreen extends StatelessWidget {
             child: Tile(index: 2),
           ),
           StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
+            crossAxisCellCount: 2,
+            mainAxisCellCount: 3,
             child: Tile(index: 3),
           ),
           StaggeredGridTile.count(
-            crossAxisCellCount: 4,
-            mainAxisCellCount: 2,
+            crossAxisCellCount: 2,
+            mainAxisCellCount: 3,
             child: Tile(index: 4),
           ),
           StaggeredGridTile.count(
-            crossAxisCellCount: 2,
-            mainAxisCellCount: 2,
-            child: Tile(index: 0),
+            crossAxisCellCount: 3,
+            mainAxisCellCount: 4,
+            child: Tile(index: 5),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
-            child: Tile(index: 1),
+            mainAxisCellCount: 4,
+            child: Tile(index: 6),
           ),
           StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: Tile(index: 2),
+            crossAxisCellCount: 3,
+            mainAxisCellCount: 3,
+            child: Tile(index: 7),
           ),
           StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: Tile(index: 3),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 4,
-            mainAxisCellCount: 2,
-            child: Tile(index: 4),
+            crossAxisCellCount: 3,
+            mainAxisCellCount: 3,
+            child: Tile(index: 8),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 2,
-            child: Tile(index: 0),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
-            child: Tile(index: 1),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: Tile(index: 2),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: Tile(index: 3),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 4,
-            mainAxisCellCount: 2,
-            child: Tile(index: 4),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 2,
-            mainAxisCellCount: 2,
-            child: Tile(index: 0),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
-            child: Tile(index: 1),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: Tile(index: 2),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: Tile(index: 3),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 4,
-            mainAxisCellCount: 2,
-            child: Tile(index: 4),
+            mainAxisCellCount: 3,
+            child: Tile(index: 9),
           ),
         ],
       ),
