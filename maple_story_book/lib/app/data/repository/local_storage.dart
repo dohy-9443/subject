@@ -35,15 +35,12 @@ class LocalStorageRepository implements ILocalStorageRepository {
 
     history.removeWhere((element) => element.nickName == entry.nickName);
 
-    // 새 항목 추가
     history.add(entry);
 
-    // 리스트의 길이를 10개로 제한
     if (history.length > _maxLength) {
       history.removeAt(0);
     }
 
-    // 업데이트된 리스트 저장
     await saveHistory(category, history);
   }
 
@@ -83,6 +80,7 @@ class LocalStorageRepository implements ILocalStorageRepository {
     await dotenv.load(fileName: "maple_story_book.env");
     final prefs = await SharedPreferences.getInstance();
     final storageKey = dotenv.env[_getKey(category)];
+
     final encodedData = json.encode(ListLocalStorageModel(localStorages: history).toJson());
 
     await prefs.setString(storageKey!, encodedData);

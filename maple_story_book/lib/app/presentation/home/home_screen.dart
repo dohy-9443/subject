@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/app/presentation/search_favorite_list/search_favorite_list_screen.dart';
 import 'package:maple_story_book/tool/component/component.dart';
 
 ///
@@ -14,10 +15,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(onPressed: () async {
-        mSAlert(context, title: 'dsf', content: 'asdfasdf');
-      }, child: Text("button"))
-    );
+    // return Center(
+    //   child: ElevatedButton(onPressed: () async {
+    //     mSAlert(context, title: 'dsf', content: 'asdfasdf');
+    //   }, child: Text("button"))
+    // );
+
+    return SearchFavoriteListScreen();
   }
 }

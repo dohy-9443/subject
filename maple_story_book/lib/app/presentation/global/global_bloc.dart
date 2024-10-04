@@ -72,6 +72,7 @@ class GlobalBloc extends Bloc<IGlobalEvent, IGlobalState> {
       final getParams = GetHistoryParams(category: 'favorite');
 
       await _saveHistoryUseCase.execute(saveParams);
+
       final updatedFavorites = await _getHistoryUseCase.execute(getParams);
       emit((state as GlobalSuccess).copyWith(favorites: updatedFavorites, isLoading: false));
 
