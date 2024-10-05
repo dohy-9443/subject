@@ -33,7 +33,7 @@ class RankingOverallElement with _$RankingOverallElement {
     @JsonKey(name: 'character_level') @Default(0) int characterLevel,
     @JsonKey(name: 'character_exp') @Default(0) int characterExp,
     @JsonKey(name: 'character_popularity') @Default(0) int characterPopularity,
-    @JsonKey(name: 'character_guildname') @Default('') String CharacterGuildName,
+    @JsonKey(name: 'character_guildname') @Default('') String characterGuildName,
   }) = _RankingOverallElement;
 
   factory RankingOverallElement.fromJson(Map<String, dynamic> json) =>
