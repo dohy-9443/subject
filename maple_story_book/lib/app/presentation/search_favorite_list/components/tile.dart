@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
+import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
 /// @Project name    : maple_story_book

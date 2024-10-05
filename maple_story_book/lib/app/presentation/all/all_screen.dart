@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/presentation/all/widget/widget.dart';
+import 'package:maple_story_book/app/presentation/all/components/components.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
 
 ///

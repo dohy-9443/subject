@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/presentation/search/widget/search_contents.dart';
+import 'package:maple_story_book/app/presentation/search/components/components.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:maple_story_book/app/presentation/search_favorite_list/widget/widget.dart';
+import 'package:maple_story_book/app/presentation/search_favorite_list/components/components.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///

@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/core/util/util.dart';
-import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
+import 'package:maple_story_book/tool/widget/widget.dart';
 
 class MSOnboard extends StatefulWidget {
   final List<String> content;
