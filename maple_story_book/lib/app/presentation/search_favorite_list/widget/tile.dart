@@ -29,14 +29,19 @@ class Tile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-        height: height,
-        width: width,
-        child: Center(
-          child: MSText.bold(index.toString(), fontSize: 20, color: ColorName.white,),
+    Color color = Colors.primaries[Random().nextInt(Colors.primaries.length)];
+
+    return Container(
+      color: color,
+      width: width,
+      height: height,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () { print("동작? $index"); },
+          child: Center(
+            child: MSText.bold(index.toString(), fontSize: 20, color: ColorName.white,),
+          ),
         ),
       ),
     );
