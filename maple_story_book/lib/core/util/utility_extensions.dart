@@ -16,3 +16,8 @@ String formatSeconds(int seconds) {
 
   return "$minutesStr분 $secondsStr초";
 }
+
+// 문자열이 null 이거나 빈 문자열인지 확인
+bool isStringNullOrEmpty(String? value) {
+  return value == null || value.trim().isEmpty;
+}
