@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/app/presentation/home/extension/home_state_when.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
@@ -27,9 +28,7 @@ class HomeBlocConsumer extends StatelessWidget {
       },
       builder: (BuildContext context, IHomeState state) {
         return state.when(
-          initial: () => Center(
-            child: MSText.bold('로딩중...'),
-          ),
+          initial: () => const HomeInitialWidget(),
           success: ({
             required bool isLoading,
             Ability? ability,
@@ -52,37 +51,31 @@ class HomeBlocConsumer extends StatelessWidget {
             HexaMatrixStat? hexaMatrixStat,
             StudioTopRecordInfo? studioTopRecordInfo,
           }) {
-            if (isLoading) return MSText.bold("로딩중");
-
-            if (
-              ability == null ||
-              basicInfo == null ||
-              propensity == null ||
-              popularity == null ||
-              itemEquipment == null ||
-              cashItemEquipment == null ||
-              setEffect == null ||
-              symbolEquipment == null ||
-              stat == null ||
-              hyperStat == null ||
-              petEquipment == null ||
-              beautyEquipment == null ||
-              androidEquipment == null ||
-              skillInfo == null ||
-              linkSkill == null ||
-              vMatrixInfo == null ||
-              hexaMatrixInfo == null ||
-              hexaMatrixStat == null ||
-              studioTopRecordInfo == null
-            ) {
-              debugPrint("@@@@@ HomeState : data 가 null 입니다.");
-              return const MSText("data 가 없습니다.");
-            }
-
-            return child;
+            return HomeSuccessWidget(
+              isLoading: isLoading,
+              ability: ability,
+              basicInfo: basicInfo,
+              propensity: propensity,
+              popularity: popularity,
+              itemEquipment: itemEquipment,
+              cashItemEquipment: cashItemEquipment,
+              setEffect: setEffect,
+              symbolEquipment: symbolEquipment,
+              stat: stat,
+              hyperStat: hyperStat,
+              petEquipment: petEquipment,
+              beautyEquipment: beautyEquipment,
+              androidEquipment: androidEquipment,
+              skillInfo: skillInfo,
+              linkSkill: linkSkill,
+              vMatrixInfo: vMatrixInfo,
+              hexaMatrixInfo: hexaMatrixInfo,
+              hexaMatrixStat: hexaMatrixStat,
+              studioTopRecordInfo: studioTopRecordInfo,
+            );
           },
           error: (error, stackTrace) {
-            return MSText.danger("Error $error");
+            return HomeErrorWidget(error: error);
           },
           orElse: () {
             return const MSText("state가 없는데?");

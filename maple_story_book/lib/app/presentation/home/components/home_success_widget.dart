@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -57,6 +58,33 @@ class HomeSuccessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) return MSText.bold("로딩중");
+
+    if (
+      ability == null ||
+      basicInfo == null ||
+      propensity == null ||
+      popularity == null ||
+      itemEquipment == null ||
+      cashItemEquipment == null ||
+      setEffect == null ||
+      symbolEquipment == null ||
+      stat == null ||
+      hyperStat == null ||
+      petEquipment == null ||
+      beautyEquipment == null ||
+      androidEquipment == null ||
+      skillInfo == null ||
+      linkSkill == null ||
+      vMatrixInfo == null ||
+      hexaMatrixInfo == null ||
+      hexaMatrixStat == null ||
+      studioTopRecordInfo == null
+    ) {
+      debugPrint("@@@@@ HomeState : data 가 null 입니다.");
+      return const MSText("data 가 없습니다.");
+    }
+
     return Center();
   }
 }
