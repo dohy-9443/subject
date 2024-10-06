@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/app/presentation/home/components/home_bloc_consumer.dart';
 import 'package:maple_story_book/app/presentation/search_favorite_list/search_favorite_list_screen.dart';
-import 'package:maple_story_book/tool/component/component.dart';
+import 'package:maple_story_book/tool/theme/theme.dart';
+import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -10,17 +17,25 @@ import 'package:maple_story_book/tool/component/component.dart';
 /// Description      :
 ///
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // return Center(
-    //   child: ElevatedButton(onPressed: () async {
-    //     mSAlert(context, title: 'dsf', content: 'asdfasdf');
-    //   }, child: Text("button"))
-    // );
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
-    return SearchFavoriteListScreen();
+class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>("36c54981582f63ef732f51a1216299d2"));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Center();
   }
 }
+
