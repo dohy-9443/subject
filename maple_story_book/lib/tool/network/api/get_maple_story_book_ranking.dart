@@ -19,15 +19,16 @@ class GetMapleStoryBookRankingApi {
   static String defaultPath = '/maplestory/v1/ranking';
 
   Future<dynamic> getRankingOverall({required DateTime date, String? worldName, String? worldType, String? AvailableValue, String? ocid, int? page}) {
+
     return _client.get<dynamic>(
       '$defaultPath/overall',
       queryParameters: {
         'date' : dateToString(date),
-        'world_name' : worldName,
-        'world_type' : worldType,
-        'class' : AvailableValue,
-        'ocid' : ocid,
-        'page' : page,
+        if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
+        if (worldType != null && worldType.isNotEmpty) 'world_type': worldType,
+        if (AvailableValue != null && AvailableValue.isNotEmpty) 'class': AvailableValue,
+        if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
+        if (page != null) 'page': page,
       },
     ).then((value) => value.data);
   }
@@ -37,9 +38,9 @@ class GetMapleStoryBookRankingApi {
       '$defaultPath/union',
       queryParameters: {
         'date' : dateToString(date),
-        'world_name' : worldName,
-        'ocid' : ocid,
-        'page' : page,
+        if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
+        if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
+        if (page != null) 'page': page,
       },
     ).then((value) => value.data);
   }
@@ -49,10 +50,10 @@ class GetMapleStoryBookRankingApi {
       '$defaultPath/guild',
       queryParameters: {
         'date' : dateToString(date),
-        'world_name' : worldName,
+        if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         'ranking_type' : rankingType,
-        'guild_name' : guildName,
-        'page' : page,
+        if (guildName != null && guildName.isNotEmpty) 'guild_name' : guildName,
+        if (page != null) 'page': page,
       },
     ).then((value) => value.data);
   }
@@ -62,11 +63,11 @@ class GetMapleStoryBookRankingApi {
       '$defaultPath/dojang',
       queryParameters: {
         'date' : dateToString(date),
-        'world_name' : worldName,
+        if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         'difficulty' : difficulty,
-        'class' : AvailableValue,
-        'ocid' : ocid,
-        'page' : page,
+        if (AvailableValue != null && AvailableValue.isNotEmpty) 'class' : AvailableValue,
+        if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
+        if (page != null) 'page': page,
       },
     ).then((value) => value.data);
   }
@@ -76,9 +77,9 @@ class GetMapleStoryBookRankingApi {
       '$defaultPath/theseed',
       queryParameters: {
         'date' : dateToString(date),
-        'world_name' : worldName,
-        'ocid' : ocid,
-        'page' : page,
+        if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
+        if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
+        if (page != null) 'page': page,
       },
     ).then((value) => value.data);
   }
@@ -88,8 +89,8 @@ class GetMapleStoryBookRankingApi {
       '$defaultPath/achievement',
       queryParameters: {
         'date' : dateToString(date),
-        'ocid' : ocid,
-        'page' : page,
+        if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
+        if (page != null) 'page': page,
       },
     ).then((value) => value.data);
   }
