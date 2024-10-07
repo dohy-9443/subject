@@ -78,11 +78,11 @@ class NoticeRepository with BaseResponse implements INoticeRepository {
   }
 
   @override
-  Future<ResultRest<NoticeDetail>> getNoticeUpdateDetail({required int noticeId}) {
-    return handleApiResponse<NoticeDetail>(
+  Future<ResultRest<NoticeUpdateDetail>> getNoticeUpdateDetail({required int noticeId}) {
+    return handleApiResponse<NoticeUpdateDetail>(
       request: () =>
           _noticeDataSource.getNoticeUpdateDetail(noticeId: noticeId),
-      fromJson: (json) => NoticeDetail.fromJson(json),
+      fromJson: (json) => NoticeUpdateDetail.fromJson(json),
     );
   }
 }
