@@ -26,6 +26,14 @@ class ColorName {
 
   static const Color onboard = Color(0xFF473C2C);
 
+  static const Color darkModal = Color(0xFF208494);
+
+  static const Color lightGreen = Color(0xFFA1BA2A);
+
+  static const Color darkGreen = Color(0xFF739B01);
+
+  static const Color beige = Color(0xFFE3D3B9);
+
   // Light mode
 
   static const Color lightBg = Color(0xFFECF0F1);
