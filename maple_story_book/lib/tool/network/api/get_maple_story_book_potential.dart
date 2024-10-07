@@ -23,7 +23,7 @@ class GetMapleStoryBookPotentialApi {
       '$defaultPath/potential',
       queryParameters: {
         'count' : count,
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         'cursor' : cursor,
       },
     ).then((value) => value.data);
@@ -34,7 +34,7 @@ class GetMapleStoryBookPotentialApi {
       '$defaultPath/cube',
       queryParameters: {
         'count' : count,
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         'cursor' : cursor,
       },
     ).then((value) => value.data);

@@ -33,7 +33,7 @@ class GetMapleStoryBookGuildApi {
       '$defaultPath/id',
       queryParameters: {
         'oguild_id' : oguildId,
-        'date' : dateToString(date)
+        if (date != null) 'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }

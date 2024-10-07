@@ -23,7 +23,7 @@ class GetMapleStoryBookRankingApi {
     return _client.get<dynamic>(
       '$defaultPath/overall',
       queryParameters: {
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         if (worldType != null && worldType.isNotEmpty) 'world_type': worldType,
         if (AvailableValue != null && AvailableValue.isNotEmpty) 'class': AvailableValue,
@@ -37,7 +37,7 @@ class GetMapleStoryBookRankingApi {
     return _client.get<dynamic>(
       '$defaultPath/union',
       queryParameters: {
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
         if (page != null) 'page': page,
@@ -49,7 +49,7 @@ class GetMapleStoryBookRankingApi {
     return _client.get<dynamic>(
       '$defaultPath/guild',
       queryParameters: {
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         'ranking_type' : rankingType,
         if (guildName != null && guildName.isNotEmpty) 'guild_name' : guildName,
@@ -62,7 +62,7 @@ class GetMapleStoryBookRankingApi {
     return _client.get<dynamic>(
       '$defaultPath/dojang',
       queryParameters: {
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         'difficulty' : difficulty,
         if (AvailableValue != null && AvailableValue.isNotEmpty) 'class' : AvailableValue,
@@ -76,7 +76,7 @@ class GetMapleStoryBookRankingApi {
     return _client.get<dynamic>(
       '$defaultPath/theseed',
       queryParameters: {
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         if (worldName != null && worldName.isNotEmpty) 'world_name': worldName,
         if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
         if (page != null) 'page': page,
@@ -88,7 +88,7 @@ class GetMapleStoryBookRankingApi {
     return _client.get<dynamic>(
       '$defaultPath/achievement',
       queryParameters: {
-        'date' : dateToString(date),
+        if (date != null) 'date' : dateToString(date),
         if (ocid != null && ocid.isNotEmpty) 'ocid': ocid,
         if (page != null) 'page': page,
       },

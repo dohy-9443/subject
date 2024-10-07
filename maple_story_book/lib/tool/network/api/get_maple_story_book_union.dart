@@ -24,7 +24,7 @@ class GetMapleStoryBookUnionApi {
       defaultPath,
       queryParameters: {
         'ocid' : ocid,
-        'date' : dateToString(date)
+        if (date != null) 'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -34,7 +34,7 @@ class GetMapleStoryBookUnionApi {
       '$defaultPath-raider',
       queryParameters: {
         'ocid' : ocid,
-        'date' : dateToString(date)
+        if (date != null) 'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -44,7 +44,7 @@ class GetMapleStoryBookUnionApi {
       '$defaultPath-artifact',
       queryParameters: {
         'ocid' : ocid,
-        'date' : dateToString(date)
+        if (date != null) 'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
