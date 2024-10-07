@@ -11,70 +11,40 @@ import 'package:equatable/equatable.dart';
 sealed class IRankingEvent<T> extends Equatable {}
 
 final class GetRankingEvent<T> extends IRankingEvent<T> {
-  final DateTime _date;
-  final String _worldName;
-  final String _ocid;
-  final int _page;
+  final DateTime date;
+  final String? worldName;
+  final String? ocid;
+  final int? page;
 
-  GetRankingEvent(this._date, this._worldName, this._ocid, this._page);
-
-  DateTime get date => _date;
-  String get worldName => _worldName;
-  String get ocid => _ocid;
-  int get page => _page;
+  GetRankingEvent({required this.date, this.worldName, this.ocid, this.page});
 
   @override
   List<Object?> get props => [date, worldName, ocid, page];
 }
 
 final class GetRankingGuildEvent<T> extends IRankingEvent<T> {
-  final DateTime _date;
-  final String _worldName;
-  final int _rankingType;
-  final String _guildName;
-  final int _page;
+  final DateTime date;
+  final String worldName;
+  final int rankingType;
+  final String guildName;
+  final int page;
 
-  GetRankingGuildEvent(
-    this._date,
-    this._worldName,
-    this._rankingType,
-    this._guildName,
-    this._page,
-  );
+  GetRankingGuildEvent({required this.date, required this.worldName, required this.rankingType, required this.guildName, required this.page});
 
-  DateTime get date => _date;
-  String get worldName => _worldName;
-  int get rankingType => _rankingType;
-  String get guildName => _guildName;
-  int get page => _page;
 
   @override
   List<Object?> get props => [date, worldName, rankingType, guildName, page];
 }
 
 final class GetRankingOverallEvent<T> extends IRankingEvent<T> {
-  final DateTime _date;
-  final String _worldName;
-  final String _worldType;
-  final String _availableValue;
-  final String _ocid;
-  final int _page;
+  final DateTime date;
+  final String? worldName;
+  final String? worldType;
+  final String? availableValue;
+  final String? ocid;
+  final int? page;
 
-  GetRankingOverallEvent(
-    this._date,
-    this._worldName,
-    this._worldType,
-    this._availableValue,
-    this._ocid,
-    this._page,
-  );
-
-  DateTime get date => _date;
-  String get worldName => _worldName;
-  String get worldType => _worldType;
-  String get availableValue => _availableValue;
-  String get ocid => _ocid;
-  int get page => _page;
+  GetRankingOverallEvent({required this.date, this.worldName, this.worldType, this.availableValue, this.ocid, this.page});
 
   @override
   List<Object?> get props =>
@@ -82,27 +52,15 @@ final class GetRankingOverallEvent<T> extends IRankingEvent<T> {
 }
 
 final class GetRankingStudioEvent<T> extends IRankingEvent<T> {
-  final DateTime _date;
-  final String _worldName;
-  final int _difficulty;
-  final String _availableValue;
-  final String _ocid;
-  final int _page;
+  final DateTime date;
+  final String? worldName;
+  final int difficulty;
+  final String? availableValue;
+  final String? ocid;
+  final int? page;
 
-  GetRankingStudioEvent(
-    this._date,
-    this._worldName,
-    this._difficulty,
-    this._availableValue,
-    this._ocid,
-    this._page,
-  );
-  DateTime get date => _date;
-  String get worldName => _worldName;
-  int get difficulty => _difficulty;
-  String get availableValue => _availableValue;
-  String get ocid => _ocid;
-  int get page => _page;
+  GetRankingStudioEvent({required this.date, this.worldName, required this.difficulty, this.availableValue, this.ocid, this.page});
+
   @override
   List<Object?> get props =>
       [date, worldName, difficulty, availableValue, ocid, page];
