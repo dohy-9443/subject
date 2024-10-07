@@ -17,7 +17,7 @@ abstract class INoticeRepository {
   // 업데이트 목록 조회
   Future<ResultRest<NoticeUpdate>> getNoticeUpdate();
   // 업데이트 상세 조회
-  Future<ResultRest<NoticeDetail>> getNoticeUpdateDetail({required int noticeId});
+  Future<ResultRest<NoticeUpdateDetail>> getNoticeUpdateDetail({required int noticeId});
   // 진행 중 이벤트 목록 조회
   Future<ResultRest<NoticeEvent>> getNoticeEvent();
   // 진행 중 이벤트 상세 조회

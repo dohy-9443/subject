@@ -36,7 +36,7 @@ class NoticeElement with _$NoticeElement {
       _$NoticeElementFromJson(json);
 }
 
-// 공지사항 상세조회, 업데이트 상세조회
+// 공지사항 상세조회
 @freezed
 class NoticeDetail with _$NoticeDetail {
   const factory NoticeDetail({
@@ -47,6 +47,19 @@ class NoticeDetail with _$NoticeDetail {
   }) = _NoticeDetail;
 
   factory NoticeDetail.fromJson(Map<String, dynamic> json) => _$NoticeDetailFromJson(json);
+}
+
+// 공지사항 업데이트 상세조회
+@freezed
+class NoticeUpdateDetail with _$NoticeUpdateDetail {
+  const factory NoticeUpdateDetail({
+    @Default('') String title,
+    @Default('') String url,
+    @Default('') String contents,
+    @Default('') String date,
+  }) = _NoticeUpdateDetail;
+
+  factory NoticeUpdateDetail.fromJson(Map<String, dynamic> json) => _$NoticeUpdateDetailFromJson(json);
 }
 
 

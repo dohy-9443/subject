@@ -39,7 +39,7 @@ class NoticeBloc extends Bloc<INoticeEvent, INoticeState> with NoticeBlocMixin {
     on<GetNoticeEvent<Notice>>(getNotice);
     on<GetNoticeEvent<NoticeDetail>>(getNoticeDetail);
     on<GetNoticeEvent<NoticeUpdate>>(getNoticeUpdate);
-    on<GetNoticeEvent<NoticeDetail>>(getNoticeUpdateDetail);
+    on<GetNoticeEvent<NoticeUpdateDetail>>(getNoticeUpdateDetail);
     on<GetNoticeEvent<NoticeCashShop>>(getNoticeCashShop);
     on<GetNoticeEvent<NoticeCashShopDetail>>(getNoticeCashShopDetail);
     on<GetNoticeEvent<NoticeEvent>>(getNoticeEvent);
