@@ -24,7 +24,7 @@ class GetMapleStoryBookStarforceApi {
       queryParameters: {
         'count' : count,
         if (date != null) 'date' : dateToString(date),
-        'cursor' : cursor,
+        if (cursor != null && cursor.isNotEmpty) 'cursor' : cursor,
       },
     ).then((value) => value.data);
   }
