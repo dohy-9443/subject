@@ -27,7 +27,7 @@ class NoticeSuccess extends INoticeState {
   final NoticeEvent? noticeEvent;
   final NoticeEventDetail? noticeEventDetail;
   final NoticeUpdate? noticeUpdate;
-  final NoticeDetail? noticeUpdateDetail;
+  final NoticeUpdateDetail? noticeUpdateDetail;
 
   NoticeSuccess({
     this.isLoading = false,
@@ -50,7 +50,7 @@ class NoticeSuccess extends INoticeState {
     NoticeEvent? noticeEvent,
     NoticeEventDetail? noticeEventDetail,
     NoticeUpdate? noticeUpdate,
-    NoticeDetail? noticeUpdateDetail,
+    NoticeUpdateDetail? noticeUpdateDetail,
   }) {
     return NoticeSuccess(
       isLoading: isLoading ?? this.isLoading,
