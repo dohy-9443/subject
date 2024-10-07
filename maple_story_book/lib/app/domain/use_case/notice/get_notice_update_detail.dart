@@ -13,13 +13,13 @@ import 'package:maple_story_book/core/util/util.dart';
 ///
 
 @lazySingleton
-class GetNoticeUpdateDetailUseCase implements IUseCase<ResultRest<NoticeDetail>, NoticeParams> {
+class GetNoticeUpdateDetailUseCase implements IUseCase<ResultRest<NoticeUpdateDetail>, NoticeParams> {
   final INoticeRepository _noticeRepository;
 
   GetNoticeUpdateDetailUseCase(this._noticeRepository);
 
   @override
-  Future<ResultRest<NoticeDetail>> execute([NoticeParams? params]) {
+  Future<ResultRest<NoticeUpdateDetail>> execute([NoticeParams? params]) {
     final NoticeParams input = params ?? NoticeParams();
 
     return _noticeRepository.getNoticeUpdateDetail(noticeId: input.noticeId);
