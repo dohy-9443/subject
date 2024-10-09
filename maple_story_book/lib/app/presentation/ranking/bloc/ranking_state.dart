@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/core/util/util.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -8,48 +9,6 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// Created On       : 2024. 9. 30..
 /// Description      :
 ///
-
-mixin IBaseState {
-  bool get isSuccess;
-  bool get isError;
-  bool get isInitial;
-}
-
-mixin BaseSuccessState on IBaseState {
-  @override
-  bool get isSuccess => true;
-
-  @override
-  bool get isError => false;
-
-  @override
-  bool get isInitial => false;
-}
-
-mixin BaseErrorState on IBaseState {
-  @override
-  bool get isSuccess => false;
-
-  @override
-  bool get isError => true;
-
-  @override
-  bool get isInitial => false;
-
-  dynamic get error;
-  StackTrace? get stackTrace;
-}
-
-mixin BaseInitialState on IBaseState {
-  @override
-  bool get isSuccess => false;
-
-  @override
-  bool get isError => false;
-
-  @override
-  bool get isInitial => true;
-}
 
 sealed class IRankingState extends Equatable with IBaseState{}
 

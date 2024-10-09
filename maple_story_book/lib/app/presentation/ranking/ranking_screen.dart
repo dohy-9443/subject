@@ -7,7 +7,7 @@ import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dar
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/component/base_state_handler.dart';
 import 'package:maple_story_book/tool/component/component.dart';
-import 'package:maple_story_book/tool/component/maple_story_empty.dart';
+import 'package:maple_story_book/tool/component/maple_story_full_screen.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
 import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 import 'package:maple_story_book/tool/widget/maple_stroy_button.dart';
@@ -331,12 +331,16 @@ class _RankingScreenState extends State<RankingScreen> {
 
     return BlocBuilder<RankingBloc, IRankingState>(
         builder: (BuildContext context, IRankingState state) {
-      return BlocHandler(
+      return BlocHandler<IRankingState>(
         state: state,
-        initial: () => MSLoading(),
-        success: (context, successState) => successWidget(),
+        initial: () => const MSLoading(),
+        success: (context, successState) => MSErrorFullScreen(
+          // error: error,
+          onPressed: () {},
+        ),
         error: (context, error) => MSErrorFullScreen(
           error: error,
+          onPressed: () {},
         ),
       );
     });

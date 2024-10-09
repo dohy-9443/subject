@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
+import 'package:maple_story_book/core/util/util.dart';
 
 typedef SuccessWidgetBuilder<T> = Widget Function(BuildContext context, T state);
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
