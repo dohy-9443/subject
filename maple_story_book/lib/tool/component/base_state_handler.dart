@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
 
-typedef SuccessWidgetBuilder<S> = Widget Function(BuildContext context, S state);
+typedef SuccessWidgetBuilder<T> = Widget Function(BuildContext context, T state);
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
 typedef LoadingWidgetBuilder = Widget Function();
 
-class BaseStateHandler<S extends IBaseState> extends StatelessWidget {
-  final S state;
-  final SuccessWidgetBuilder<S> onSuccess;
-  final ErrorWidgetBuilder onError;
-  final LoadingWidgetBuilder onLoading;
+class BlocHandler<T extends IBaseState> extends StatelessWidget {
+  final T state;
+  final LoadingWidgetBuilder initial;
+  final SuccessWidgetBuilder<T> success;
+  final ErrorWidgetBuilder error;
 
-  const BaseStateHandler({
+  const BlocHandler({
     super.key,
     required this.state,
-    required this.onSuccess,
-    required this.onError,
-    required this.onLoading,
+    required this.initial,
+    required this.success,
+    required this.error,
   });
 
   @override
   Widget build(BuildContext context) {
     if (state.isInitial) {
-      return onLoading();
+      return initial();
     } else if (state.isError) {
       final errorState = state as BaseErrorState;
-      return onError(context, errorState.error);
+      return error(context, errorState.error);
     } else if (state.isSuccess) {
-      return onSuccess(context, state);
+      return success(context, state);
     } else {
       return const SizedBox();
     }
