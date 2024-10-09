@@ -99,7 +99,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getAbilityUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(ability: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(ability: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -114,7 +114,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getCharacterBasicUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(basicInfo: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(basicInfo: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -129,7 +129,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getPropensityUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(propensity: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(propensity: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -144,7 +144,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getPopularityUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(popularity: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(popularity: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -159,7 +159,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getItemEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(itemEquipment: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(itemEquipment: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -174,7 +174,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getCashItemEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(cashItemEquipment: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(cashItemEquipment: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -189,7 +189,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getSetEffectUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(setEffect: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(setEffect: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -204,7 +204,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getSymbolEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(symbolEquipment: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(symbolEquipment: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -219,7 +219,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getStatUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(stat: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(stat: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -234,7 +234,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getHyperStatUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(hyperStat: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(hyperStat: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -249,7 +249,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getPetEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(petEquipment: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(petEquipment: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -264,7 +264,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getBeautyEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(beautyEquipment: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(beautyEquipment: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -279,7 +279,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getAndroidEquipmentUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(androidEquipment: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(androidEquipment: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -295,7 +295,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getSkillInfoUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(skillInfo: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(skillInfo: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -310,7 +310,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getLinkSkillUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(linkSkill: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(linkSkill: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -325,7 +325,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getVMatrixUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(vMatrixInfo: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(vMatrixInfo: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -340,7 +340,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getHexaMatrixInfoUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(hexaMatrixInfo: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(hexaMatrixInfo: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -355,7 +355,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getHexaMatrixStatUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(hexaMatrixStat: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(hexaMatrixStat: res.data, isLoading: false)));
       },
       emit: emit,
     );
@@ -370,7 +370,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
         );
         final res = await _getStudioUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as HomeSuccess).copyWith(studioTopRecordInfo: res.data, isLoading: false));
+        emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(studioTopRecordInfo: res.data, isLoading: false)));
       },
       emit: emit,
     );
