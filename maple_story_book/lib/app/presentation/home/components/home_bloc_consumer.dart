@@ -24,12 +24,13 @@ class HomeBlocConsumer extends StatelessWidget {
 
       },
       builder: (BuildContext context, IHomeState state) {
-        return state.when<Widget>(
-          initial: () => MSLoading(),
-          success: (data) => HomeSuccessWidget(data: data as HomeData),
-          error: (error, StackTrace? stackTrace) => HomeErrorWidget(error: error),
-          // orElse: () => Container(),
-        );
+        return Container();
+        // return state.when<Widget>(
+        //   initial: () => MSLoading(),
+        //   success: (data) => HomeSuccessWidget(data: data as HomeData),
+        //   error: (error, StackTrace? stackTrace) => HomeErrorWidget(error: error),
+        //   // orElse: () => Container(),
+        // );
       },
     );
   }

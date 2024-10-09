@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/core/util/bloc/base_state.dart';
+import 'package:maple_story_book/core/util/util.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -12,9 +13,9 @@ import 'package:maple_story_book/core/util/bloc/base_state.dart';
 /// symbol-equipment(심볼 정보) 0, set-effect(적용 세트 효과) 0, pet-equipment(장착 펫 정보) 0,
 ///
 
-sealed class IHomeState extends IBaseState {}
+sealed class IHomeState extends Equatable with IBaseState {}
 
-final class HomeInitial extends IHomeState implements InitialState {
+final class HomeInitial extends IHomeState with BaseInitialState {
   HomeInitial();
 
   @override
@@ -124,7 +125,7 @@ class HomeData extends Equatable {
   ];
 }
 
-final class HomeSuccess extends IHomeState implements IBaseStateWithData<HomeData> {
+final class HomeSuccess extends IHomeState with BaseSuccessState  {
 
   @override
   final HomeData data;
@@ -139,7 +140,7 @@ final class HomeSuccess extends IHomeState implements IBaseStateWithData<HomeDat
   List<Object?> get props => [data];
 }
 
-class HomeError extends IHomeState implements ErrorState {
+class HomeError extends IHomeState with BaseErrorState {
   @override
   final dynamic error;
   @override
