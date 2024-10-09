@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/core/util/bloc/base_state.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -11,16 +12,16 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// symbol-equipment(심볼 정보) 0, set-effect(적용 세트 효과) 0, pet-equipment(장착 펫 정보) 0,
 ///
 
-sealed class IHomeState extends Equatable {}
+sealed class IHomeState extends IBaseState {}
 
-class HomeInitial extends IHomeState {
+final class HomeInitial extends IHomeState implements InitialState {
   HomeInitial();
 
   @override
   List<Object?> get props => [];
 }
 
-class HomeSuccess extends IHomeState {
+class HomeData extends Equatable {
   final bool isLoading;
   final Ability? ability;
   final BasicInfo? basicInfo;
@@ -42,7 +43,7 @@ class HomeSuccess extends IHomeState {
   final HexaMatrixStat? hexaMatrixStat;
   final StudioTopRecordInfo? studioTopRecordInfo;
 
-  HomeSuccess({
+  HomeData({
     this.isLoading = false,
     this.ability,
     this.basicInfo,
@@ -65,7 +66,7 @@ class HomeSuccess extends IHomeState {
     this.studioTopRecordInfo,
   });
 
-  HomeSuccess copyWith({
+  HomeData copyWith({
     bool? isLoading,
     Ability? ability,
     BasicInfo? basicInfo,
@@ -87,7 +88,7 @@ class HomeSuccess extends IHomeState {
     HexaMatrixStat? hexaMatrixStat,
     StudioTopRecordInfo? studioTopRecordInfo,
   }) {
-    return HomeSuccess(
+    return HomeData(
       isLoading: isLoading ?? this.isLoading,
       ability: ability ?? this.ability,
       basicInfo: basicInfo ?? this.basicInfo,
@@ -123,12 +124,29 @@ class HomeSuccess extends IHomeState {
   ];
 }
 
-class HomeError extends IHomeState {
-  final dynamic error;
-  final StackTrace? stackTrace;
-
-  HomeError({required this.error, required this.stackTrace});
+final class HomeSuccess extends IHomeState implements IBaseStateWithData<HomeData> {
 
   @override
-  List<Object?> get props => [];
+  final HomeData? data;
+
+  HomeSuccess({this.data});
+
+  HomeSuccess copyWith({HomeData? data}) {
+    return HomeSuccess(data: data ?? this.data);
+  }
+
+  @override
+  List<Object?> get props => [data];
+}
+
+class HomeError extends IHomeState implements ErrorState {
+  @override
+  final dynamic error;
+  @override
+  final StackTrace? stackTrace;
+
+  HomeError({required this.error, this.stackTrace});
+
+  @override
+  List<Object?> get props => [error, stackTrace];
 }
