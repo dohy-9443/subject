@@ -33,6 +33,9 @@ mixin BaseErrorState on IBaseState {
   @override
   bool get isError => true;
 
+  @override
+  bool get isInitial => false;
+
   dynamic get error;
   StackTrace? get stackTrace;
 }
@@ -117,7 +120,4 @@ final class RankingError extends IRankingState with BaseErrorState {
 
   @override
   List<Object?> get props => [error, stackTrace];
-
-  @override
-  bool get isInitial => true;
 }
