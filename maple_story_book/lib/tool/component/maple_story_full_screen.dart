@@ -3,6 +3,14 @@ import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
+///
+/// @Project name    : maple_story_book
+/// @Class           : maple_story_full_screen.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 10. 9..
+/// Description      :
+///
+
 class MSErrorFullScreen extends StatelessWidget {
   final Exception? error;
   final VoidCallback onPressed;
