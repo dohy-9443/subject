@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
@@ -11,80 +12,42 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 class HomeSuccessWidget extends StatelessWidget {
-  final bool isLoading;
-  final Ability? ability;
-  final BasicInfo? basicInfo;
-  final Propensity? propensity;
-  final Popularity? popularity;
-  final ItemEquipment? itemEquipment;
-  final CashItemEquipment? cashItemEquipment;
-  final SetEffect? setEffect;
-  final SymbolEquipment? symbolEquipment;
-  final Stat? stat;
-  final HyperStat? hyperStat;
-  final PetEquipment? petEquipment;
-  final BeautyEquipment? beautyEquipment;
-  final AndroidEquipment? androidEquipment;
-  final SkillInfo? skillInfo;
-  final LinkSkill? linkSkill;
-  final VMatrixInfo? vMatrixInfo;
-  final HexaMatrixInfo? hexaMatrixInfo;
-  final HexaMatrixStat? hexaMatrixStat;
-  final StudioTopRecordInfo? studioTopRecordInfo;
+  final HomeData data;
 
   const HomeSuccessWidget({
     super.key,
-    required this.isLoading,
-    this.ability,
-    this.basicInfo,
-    this.propensity,
-    this.popularity,
-    this.itemEquipment,
-    this.cashItemEquipment,
-    this.setEffect,
-    this.symbolEquipment,
-    this.stat,
-    this.hyperStat,
-    this.petEquipment,
-    this.beautyEquipment,
-    this.androidEquipment,
-    this.skillInfo,
-    this.linkSkill,
-    this.vMatrixInfo,
-    this.hexaMatrixInfo,
-    this.hexaMatrixStat,
-    this.studioTopRecordInfo,
+    required this.data,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return MSText.bold("로딩중");
+    if (data.isLoading) return MSLoading();
 
-    if (
-      ability == null ||
-      basicInfo == null ||
-      propensity == null ||
-      popularity == null ||
-      itemEquipment == null ||
-      cashItemEquipment == null ||
-      setEffect == null ||
-      symbolEquipment == null ||
-      stat == null ||
-      hyperStat == null ||
-      petEquipment == null ||
-      beautyEquipment == null ||
-      androidEquipment == null ||
-      skillInfo == null ||
-      linkSkill == null ||
-      vMatrixInfo == null ||
-      hexaMatrixInfo == null ||
-      hexaMatrixStat == null ||
-      studioTopRecordInfo == null
-    ) {
-      debugPrint("@@@@@ HomeState : data 가 null 입니다.");
-      return const MSText("data 가 없습니다.");
-    }
+    // if (
+    //   data.ability == null ||
+    //   data.basicInfo == null ||
+    //   data.propensity == null ||
+    //   data.popularity == null ||
+    //   data.itemEquipment == null ||
+    //   data.cashItemEquipment == null ||
+    //   data.setEffect == null ||
+    //   data.symbolEquipment == null ||
+    //   data.stat == null ||
+    //   data.hyperStat == null ||
+    //   data.petEquipment == null ||
+    //   data.beautyEquipment == null ||
+    //   data.androidEquipment == null ||
+    //   data.skillInfo == null ||
+    //   data.linkSkill == null ||
+    //   data.vMatrixInfo == null ||
+    //   data.hexaMatrixInfo == null ||
+    //   data.hexaMatrixStat == null ||
+    //   data.studioTopRecordInfo == null
+    // ) {
+    //   debugPrint("@@@@@ HomeState : data 가 null 입니다.");
+    //   return MSEmpty();
+    // }
 
-    return Center();
+    return Center(child: MSText("tlqkf ${data.basicInfo?.characterName}"),);
   }
 }

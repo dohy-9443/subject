@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
-import 'package:maple_story_book/tool/widget/widget.dart';
+import 'package:maple_story_book/core/util/bloc/base_state.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -15,9 +15,7 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 class HomeBlocConsumer extends StatelessWidget {
-  final Widget child;
-
-  const HomeBlocConsumer({super.key, required this.child});
+  const HomeBlocConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,12 @@ class HomeBlocConsumer extends StatelessWidget {
 
       },
       builder: (BuildContext context, IHomeState state) {
-        return Container();
+        return state.when<Widget>(
+          initial: () => MSLoading(),
+          success: (data) => HomeSuccessWidget(data: data as HomeData),
+          error: (error, StackTrace? stackTrace) => HomeErrorWidget(error: error),
+          // orElse: () => Container(),
+        );
       },
     );
   }

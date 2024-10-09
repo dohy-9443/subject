@@ -8,8 +8,6 @@ import 'package:equatable/equatable.dart';
 /// Description      : 
 ///
 
-
-
 abstract class IBaseState extends Equatable {}
 
 abstract class IBaseStateWithData<T> extends IBaseState {
@@ -28,23 +26,25 @@ abstract class ErrorState extends IBaseState {
   List<Object?> get props => [];
 }
 
-extension BaseStateWhen on IBaseState {
+extension BaseStateWhen<DataT> on IBaseState {
   TResult when<TResult>({
     required TResult Function() initial,
-    required TResult Function(IBaseStateWithData data) success,
+    required TResult Function(DataT data) success,
     required TResult Function(dynamic error, StackTrace? stackTrace) error,
-    required TResult Function() orElse,
+    TResult Function()? orElse,
   }) {
     if (this is InitialState) {
       return initial();
-    } else if (this is IBaseStateWithData) {
-      final successState = this as IBaseStateWithData;
-      return success(successState.data);
+    } else if (this is IBaseStateWithData<DataT> && (this as IBaseStateWithData<DataT>).data is DataT) {
+      final IBaseStateWithData<DataT> successState = this as IBaseStateWithData<DataT>;
+      if (successState.data != null) {
+        return success(successState.data as DataT);
+      }
     } else if (this is ErrorState) {
       final errorState = this as ErrorState;
       return error(errorState.error, errorState.stackTrace);
     }
-    
-    return orElse();
+
+    return orElse!();
   }
 }

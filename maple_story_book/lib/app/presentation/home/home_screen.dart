@@ -3,13 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
-import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/home_bloc_consumer.dart';
-import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
-import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
-import 'package:maple_story_book/app/presentation/search_favorite_list/search_favorite_list_screen.dart';
-import 'package:maple_story_book/tool/theme/theme.dart';
-import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -30,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>("36c54981582f63ef732f51a1216299d2"));
+    context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>(ocid: "36c54981582f63ef732f51a1216299d2"));
     // context.read<RankingBloc>().add(GetRankingStudioEvent<RankingStudio>(
     //   date: DateTime.now().subtract(const Duration(days: 2)),
     //   difficulty: 1,
@@ -39,9 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-
-    return Center();
-  }
+  Widget build(BuildContext context) => HomeBlocConsumer();
 }
 

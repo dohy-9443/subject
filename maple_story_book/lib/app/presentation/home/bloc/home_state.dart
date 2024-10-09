@@ -127,9 +127,9 @@ class HomeData extends Equatable {
 final class HomeSuccess extends IHomeState implements IBaseStateWithData<HomeData> {
 
   @override
-  final HomeData? data;
+  final HomeData data;
 
-  HomeSuccess({this.data});
+  HomeSuccess({required this.data});
 
   HomeSuccess copyWith({HomeData? data}) {
     return HomeSuccess(data: data ?? this.data);

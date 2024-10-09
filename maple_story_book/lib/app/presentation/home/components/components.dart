@@ -8,5 +8,4 @@
 
 export 'home_bloc_consumer.dart';
 export 'home_error_widget.dart';
-export 'home_initial_widget.dart';
 export 'home_success_widget.dart';
