@@ -11,3 +11,4 @@ export 'use_case.dart';
 export 'insets.dart';
 export 'sizes.dart';
 export 'utility_extensions.dart';
+export 'bloc/base_state.dart';
