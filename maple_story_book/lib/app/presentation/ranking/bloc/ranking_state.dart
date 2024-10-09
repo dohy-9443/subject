@@ -9,16 +9,55 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// Description      :
 ///
 
-sealed class IRankingState extends Equatable {}
+mixin IBaseState {
+  bool get isSuccess;
+  bool get isError;
+  bool get isInitial;
+}
 
-final class RankingInitial extends IRankingState {
+mixin BaseSuccessState on IBaseState {
+  @override
+  bool get isSuccess => true;
+
+  @override
+  bool get isError => false;
+
+  @override
+  bool get isInitial => false;
+}
+
+mixin BaseErrorState on IBaseState {
+  @override
+  bool get isSuccess => false;
+
+  @override
+  bool get isError => true;
+
+  dynamic get error;
+  StackTrace? get stackTrace;
+}
+
+mixin BaseInitialState on IBaseState {
+  @override
+  bool get isSuccess => false;
+
+  @override
+  bool get isError => false;
+
+  @override
+  bool get isInitial => true;
+}
+
+sealed class IRankingState extends Equatable with IBaseState{}
+
+final class RankingInitial extends IRankingState with BaseInitialState {
   RankingInitial();
 
   @override
   List<Object?> get props => [];
 }
 
-final class RankingSuccess extends IRankingState {
+final class RankingSuccess extends IRankingState with BaseSuccessState {
   final bool isLoading;
   final RankingAchievement? rankingAchievement;
   final RankingGuild? rankingGuild;
@@ -70,7 +109,7 @@ final class RankingSuccess extends IRankingState {
   ];
 }
 
-final class RankingError extends IRankingState {
+final class RankingError extends IRankingState with BaseErrorState {
   final dynamic error;
   final StackTrace? stackTrace;
 
@@ -78,4 +117,7 @@ final class RankingError extends IRankingState {
 
   @override
   List<Object?> get props => [error, stackTrace];
+
+  @override
+  bool get isInitial => true;
 }

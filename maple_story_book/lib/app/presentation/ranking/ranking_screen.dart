@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
+import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
 import 'package:maple_story_book/core/util/util.dart';
+import 'package:maple_story_book/tool/component/base_state_handler.dart';
+import 'package:maple_story_book/tool/component/component.dart';
+import 'package:maple_story_book/tool/component/maple_story_empty.dart';
+import 'package:maple_story_book/tool/component/maple_story_full_screen.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
 import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 import 'package:maple_story_book/tool/widget/maple_stroy_button.dart';
@@ -26,8 +31,10 @@ class RankingScreen extends StatefulWidget {
 class _RankingScreenState extends State<RankingScreen> {
   @override
   void initState() {
-    // context.read<RankingBloc>().add(GetRankingOverallEvent<RankingOverall>(DateTime.now().subtract(const Duration(days: 300)), '버닝3','0','기사단-나이트워커','',1));
-    // context.read<RankingBloc>().add(GetRankingStudioEvent<RankingStudio>(DateTime.now().subtract(const Duration(days: 2)), '스카니아', 1, '', '', 1));
+    context.read<RankingBloc>().add(GetRankingEvent<RankingTheSeed>(
+        date: DateTime.now().subtract(const Duration(days: 3))));
+    context.read<RankingBloc>().add(GetRankingEvent<RankingUnion>(
+        date: DateTime.now().subtract(const Duration(days: 3))));
     super.initState();
   }
 
@@ -232,7 +239,7 @@ class _RankingScreenState extends State<RankingScreen> {
                     children: [
                       Expanded(
                         child: MSButton.gradient(
-                          onPressed: (){},
+                          onPressed: () {},
                           width: 200,
                           height: 23,
                           borderRadius: BorderRadius.circular(5),
@@ -324,15 +331,45 @@ class _RankingScreenState extends State<RankingScreen> {
     }
 
     return BlocBuilder<RankingBloc, IRankingState>(
-        builder: (BuildContext context, state) {
-      if (state is RankingError) {
-        return ErrorWidget(state.error);
-      } else if (state is RankingInitial) {
-        return successWidget();
-      } else {
-        return successWidget();
-      }
+        builder: (BuildContext context, IRankingState state) {
+      return BaseStateHandler(
+        state: state,
+        onSuccess: (context, successState) => successWidget(),
+        onError: (context, error) => MSErrorFullScreen(
+          error: error,
+        ),
+        onLoading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     });
+
+    // return BlocBuilder<RankingBloc, IRankingState>(
+    //     builder: (BuildContext context, IRankingState state) {
+    //   if (state is RankingError) {
+    //     return MSErrorFullScreen();
+    //   } else if (state is RankingInitial) {
+    //     return Text('dd');
+    //   } else {
+    //     return successWidget();
+    //   }
+    // });
+
+    // return BlocConsumer<RankingBloc, IRankingState>(
+    //     listener: (BuildContext context, IRankingState state) {
+    //       if(state is RankingError){
+    //         mSErrorDialog(context, onBtnClicked: () {  }, error: '', description: state.error);
+    //       }
+    //     },
+    //     builder: (BuildContext context, IRankingState state) {
+    //   if (state is RankingError) {
+    //     return mSErrorFullScreen(context, state.error,state.error,() {});
+    //   } else if (state is RankingInitial) {
+    //     return Text('dd');
+    //   } else {
+    //     return successWidget();
+    //   }
+    // }, );
   }
 
   // 종합 랭킹
