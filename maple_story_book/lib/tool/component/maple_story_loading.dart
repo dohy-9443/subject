@@ -4,15 +4,14 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
 /// @Project name    : maple_story_book
-/// @Class           : maple_story_empty.
-/// @Created by      : shinheetae.
-/// Created On       : 2024. 10. 7..
-/// Description      :
+/// @Class           : maple_story_loading.
+/// @Created by      : baekdonghyun.
+/// Created On       : 2024. 10. 9..
+/// Description      : 
 ///
 
-class MSEmpty extends StatelessWidget {
-  final String? description;
-  MSEmpty({super.key, this.description});
+class MSLoading extends StatelessWidget {
+  const MSLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +26,15 @@ class MSEmpty extends StatelessWidget {
               height: 300,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(Assets.images.yetti.path),
+                  image: AssetImage(Assets.images.orange.path),
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-            MSText.bold(description ?? '리스트가 비어있습니다.', color: ColorName.darkGray2,),
+            MSText.bold('로딩중...', color: ColorName.darkGray2,),
           ],
         ),
       ),
     );
   }
 }
-
