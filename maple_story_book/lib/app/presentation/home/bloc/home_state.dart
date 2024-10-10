@@ -22,7 +22,8 @@ final class HomeInitial extends IHomeState with BaseInitialState {
   List<Object?> get props => [];
 }
 
-class HomeData extends Equatable {
+final class HomeSuccess extends IHomeState with BaseSuccessState  {
+
   final bool isLoading;
   final Ability? ability;
   final BasicInfo? basicInfo;
@@ -44,7 +45,7 @@ class HomeData extends Equatable {
   final HexaMatrixStat? hexaMatrixStat;
   final StudioTopRecordInfo? studioTopRecordInfo;
 
-  HomeData({
+  HomeSuccess({
     this.isLoading = false,
     this.ability,
     this.basicInfo,
@@ -67,7 +68,7 @@ class HomeData extends Equatable {
     this.studioTopRecordInfo,
   });
 
-  HomeData copyWith({
+  HomeSuccess copyWith({
     bool? isLoading,
     Ability? ability,
     BasicInfo? basicInfo,
@@ -89,7 +90,7 @@ class HomeData extends Equatable {
     HexaMatrixStat? hexaMatrixStat,
     StudioTopRecordInfo? studioTopRecordInfo,
   }) {
-    return HomeData(
+    return HomeSuccess(
       isLoading: isLoading ?? this.isLoading,
       ability: ability ?? this.ability,
       basicInfo: basicInfo ?? this.basicInfo,
@@ -123,21 +124,7 @@ class HomeData extends Equatable {
     linkSkill, vMatrixInfo, hexaMatrixInfo,
     hexaMatrixStat, studioTopRecordInfo
   ];
-}
 
-final class HomeSuccess extends IHomeState with BaseSuccessState  {
-
-  @override
-  final HomeData data;
-
-  HomeSuccess({required this.data});
-
-  HomeSuccess copyWith({HomeData? data}) {
-    return HomeSuccess(data: data ?? this.data);
-  }
-
-  @override
-  List<Object?> get props => [data];
 }
 
 class HomeError extends IHomeState with BaseErrorState {
