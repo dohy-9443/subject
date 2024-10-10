@@ -47,6 +47,6 @@ class HomeSuccessWidget extends StatelessWidget {
     //   return MSEmpty();
     // }
 
-    return Center(child: MSText("tlqkf "),);
+    return Center(child: MSText("dkssud gmlxodi"),);
   }
 }
