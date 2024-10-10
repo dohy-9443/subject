@@ -13,9 +13,9 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 mixin HomeBlocMixin on Bloc<IHomeEvent, IHomeState> {
   void emitLoading(Emitter<IHomeState> emit) {
     if (state is HomeSuccess) {
-      emit((state as HomeSuccess).copyWith(data: HomeData().copyWith(isLoading: true)));
+      emit((state as HomeSuccess).copyWith(isLoading: true));
     } else {
-      emit(HomeSuccess(data: HomeData().copyWith(isLoading: true)));
+      emit(HomeSuccess(isLoading: true));
     }
   }
 

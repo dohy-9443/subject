@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
@@ -12,16 +11,16 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 class HomeSuccessWidget extends StatelessWidget {
-  final HomeData data;
+  // final HomeData data;
 
   const HomeSuccessWidget({
     super.key,
-    required this.data,
+    // required this.data,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (data.isLoading) return MSLoading();
+    // if (data.isLoading) return MSLoading();
 
     // if (
     //   data.ability == null ||
@@ -48,6 +47,6 @@ class HomeSuccessWidget extends StatelessWidget {
     //   return MSEmpty();
     // }
 
-    return Center(child: MSText("tlqkf ${data.basicInfo?.characterName}"),);
+    return Center(child: MSText("tlqkf "),);
   }
 }
