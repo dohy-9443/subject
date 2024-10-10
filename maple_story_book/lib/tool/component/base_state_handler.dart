@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/core/util/util.dart';
 
+///
+/// @Project name    : maple_story_book
+/// @Class           : base_state_handler.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 10. 9..
+/// Description      :
+///
+
 typedef SuccessWidgetBuilder<T> = Widget Function(BuildContext context, T state);
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
 typedef LoadingWidgetBuilder = Widget Function();

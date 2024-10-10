@@ -5,6 +5,14 @@ import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 import 'package:maple_story_book/tool/widget/maple_stroy_button.dart';
 
+///
+/// @Project name    : maple_story_book
+/// @Class           : maple_story_error.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 10. 7..
+/// Description      :
+///
+
 Future<void> mSErrorDialog(
   BuildContext context, {
   required VoidCallback? onPressed,
