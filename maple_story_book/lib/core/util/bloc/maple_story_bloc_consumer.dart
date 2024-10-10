@@ -11,7 +11,7 @@ import 'package:maple_story_book/tool/component/maple_story_loading.dart';
 /// @Class           : maple_story_bloc_consumer.
 /// @Created by      : baekdonghyun.
 /// Created On       : 2024. 10. 10..
-/// Description      : 
+/// Description      :
 ///
 
 class MSBlocConsumer<B extends BlocBase<S>, S extends IBaseState> extends StatefulWidget {
@@ -27,14 +27,23 @@ class MSBlocConsumer<B extends BlocBase<S>, S extends IBaseState> extends Statef
   final VoidCallback errorPressed;
   final VoidCallback errorFullScreenPressed;
 
-  const MSBlocConsumer({super.key, required this.initFunc, required this.bloc, this.listener, this.builder, this.initial, required this.success, required this.errorPressed, required this.errorFullScreenPressed});
+  const MSBlocConsumer({
+    super.key,
+    required this.initFunc,
+    required this.bloc,
+    this.listener,
+    this.builder,
+    this.initial,
+    required this.success,
+    required this.errorPressed,
+    required this.errorFullScreenPressed,
+  });
 
   @override
-  State<MSBlocConsumer<B,S>> createState() => _MSBlocConsumerState<B, S>();
+  State<MSBlocConsumer<B, S>> createState() => _MSBlocConsumerState<B, S>();
 }
 
 class _MSBlocConsumerState<B extends BlocBase<S>, S extends IBaseState> extends State<MSBlocConsumer<B, S>> {
-
   @override
   void initState() {
     widget.initFunc(context);
@@ -43,21 +52,23 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends IBaseState> extends 
 
   @override
   Widget build(BuildContext context) => BlocConsumer<B, S>(
-    bloc: widget.bloc,
-    listener: widget.listener ?? (context, state) {
-      if (state is BaseErrorState) {
-        mSErrorDialog(context, onPressed: widget.errorPressed, error: state.error);
-      }
-    }, builder: (context, state) {
-      return BlocHandler<S>(
-        state: state,
-        initial: () => const MSLoading(),
-        success: widget.success,
-        error: (context, error) => MSErrorFullScreen(
-          error: error,
-          onPressed: widget.errorFullScreenPressed,
-        ),
+        bloc: widget.bloc,
+        listener: widget.listener ??
+            (context, state) {
+              if (state is BaseErrorState) {
+                mSErrorDialog(context, onPressed: widget.errorPressed, error: state.error);
+              }
+            },
+        builder: (context, state) {
+          return BlocHandler<S>(
+            state: state,
+            initial: () => const MSLoading(),
+            success: widget.success,
+            error: (context, error) => MSErrorFullScreen(
+              error: error,
+              onPressed: widget.errorFullScreenPressed,
+            ),
+          );
+        },
       );
-    },
-  );
 }
