@@ -12,7 +12,7 @@ import 'package:maple_story_book/core/util/util.dart';
 /// @Class           : ranking_screen.
 /// @Created by      : shinheetae.
 /// Created On       : 2024. 10. 2..
-/// Description      :
+/// Description      : Refactor -> baekdonghyun.
 ///
 
 class RankingScreen extends StatelessWidget {
