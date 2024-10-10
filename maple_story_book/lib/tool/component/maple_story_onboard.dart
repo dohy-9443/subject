@@ -4,6 +4,14 @@ import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
+///
+/// @Project name    : maple_story_book
+/// @Class           : maple_story_onboard.
+/// @Created by      : shinheetae.
+/// Created On       : 2024. 10. 2..
+/// Description      :
+///
+
 class MSOnboard extends StatefulWidget {
   final List<String> content;
 
