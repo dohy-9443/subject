@@ -5,7 +5,9 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
+import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/core/util/util.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -22,7 +24,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) => MSBlocConsumer<HomeBloc, IHomeState>(
       initFunc: initFunction,
       bloc: context.read<HomeBloc>(),
-      success: (context, successState) => HomeSuccessWidget(),
+      success: (context, successState) {
+        if (successState is HomeSuccess && successState.hasData) {
+          return HomeSuccessWidget(state: successState,);
+        } else if (successState is HomeSuccess && !successState.hasData) {
+          return MSEmpty(description: "데이터가 없습니다.",);
+        } else {
+          return MSErrorFullScreen(onPressed: () {});
+        }
+      },
       errorPressed: () {},
       errorFullScreenPressed: () {}
   );
