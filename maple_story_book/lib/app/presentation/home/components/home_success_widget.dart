@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/tool/component/component.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
@@ -11,41 +11,18 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 class HomeSuccessWidget extends StatelessWidget {
-  // final HomeData data;
+  final HomeSuccess state;
 
   const HomeSuccessWidget({
     super.key,
-    // required this.data,
+    required this.state,
   });
 
   @override
   Widget build(BuildContext context) {
-    // if (data.isLoading) return MSLoading();
+    final basicInfo = state.basicInfo!;
 
-    // if (
-    //   data.ability == null ||
-    //   data.basicInfo == null ||
-    //   data.propensity == null ||
-    //   data.popularity == null ||
-    //   data.itemEquipment == null ||
-    //   data.cashItemEquipment == null ||
-    //   data.setEffect == null ||
-    //   data.symbolEquipment == null ||
-    //   data.stat == null ||
-    //   data.hyperStat == null ||
-    //   data.petEquipment == null ||
-    //   data.beautyEquipment == null ||
-    //   data.androidEquipment == null ||
-    //   data.skillInfo == null ||
-    //   data.linkSkill == null ||
-    //   data.vMatrixInfo == null ||
-    //   data.hexaMatrixInfo == null ||
-    //   data.hexaMatrixStat == null ||
-    //   data.studioTopRecordInfo == null
-    // ) {
-    //   debugPrint("@@@@@ HomeState : data 가 null 입니다.");
-    //   return MSEmpty();
-    // }
+    print("basicInfo : ${basicInfo.characterClass}");
 
     return Center(child: MSText("dkssud gmlxodi"),);
   }
