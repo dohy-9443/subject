@@ -26,6 +26,19 @@ class Ability with _$Ability {
   }) = _Ability;
 
   factory Ability.fromJson(Map<String, dynamic> json) => _$AbilityFromJson(json);
+
+  static (String?, String, List<AbilityElement>, int, int, AbilityPreset?, AbilityPreset?, AbilityPreset?) getAbility(Ability, ability) {
+    return (
+      ability.date,
+      ability.abilityGrade,
+      ability.abilityInfo,
+      ability.remainFame,
+      ability.presetNo,
+      ability.abilityPreset1,
+      ability.abilityPreset2,
+      ability.abilityPreset3,
+    );
+  }
 }
 
 @freezed
@@ -36,6 +49,13 @@ class AbilityPreset with _$AbilityPreset {
   }) = _AbilityPreset;
 
   factory AbilityPreset.fromJson(Map<String, dynamic> json) => _$AbilityPresetFromJson(json);
+
+  static (String, List<AbilityElement>) getAbilityPreset(AbilityPreset abilityPreset) {
+    return (
+      abilityPreset.abilityPresetGrade,
+      abilityPreset.abilityInfo,
+    );
+  }
 }
 
 @freezed
@@ -47,4 +67,12 @@ class AbilityElement with _$AbilityElement {
   }) = _AbilityElement;
 
   factory AbilityElement.fromJson(Map<String, dynamic> json) => _$AbilityElementFromJson(json);
+
+  static (int, String, String) getAbilityElement(AbilityElement abilityElement) {
+    return (
+      abilityElement.abilityNo,
+      abilityElement.abilityGrade,
+      abilityElement.abilityValue,
+    );
+  }
 }
