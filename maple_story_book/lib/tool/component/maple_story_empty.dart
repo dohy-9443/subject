@@ -27,7 +27,7 @@ class MSEmpty extends StatelessWidget {
               height: 300,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(Assets.images.yetti.path),
+                  image: AssetImage(Assets.images.zaqqum.path),
                   fit: BoxFit.contain,
                 ),
               ),
