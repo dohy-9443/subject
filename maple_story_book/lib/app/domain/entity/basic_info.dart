@@ -33,4 +33,23 @@ class BasicInfo with _$BasicInfo {
   }) = _BasicInfo;
 
   factory BasicInfo.fromJson(Map<String, dynamic> json) => _$BasicInfoFromJson(json);
+
+  static (String?, String, String, String, String, String, int, int, String, String, String, String, bool, bool) getCharacterInfo(BasicInfo basicInfo) {
+    return (
+      basicInfo.date,
+      basicInfo.characterName,
+      basicInfo.worldName,
+      basicInfo.characterGender,
+      basicInfo.characterClass,
+      basicInfo.characterClassLevel,
+      basicInfo.characterLevel,
+      basicInfo.characterExp,
+      basicInfo.characterExpRate,
+      basicInfo.characterGuildName,
+      basicInfo.characterImage,
+      basicInfo.characterDateCreate,
+      basicInfo.accessFlag,
+      basicInfo.liberationQuestClearFlag,
+    );
+  }
 }
