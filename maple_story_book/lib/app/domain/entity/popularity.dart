@@ -19,4 +19,11 @@ class Popularity with _$Popularity {
   }) = _Popularity;
 
   factory Popularity.fromJson(Map<String, dynamic> json) => _$PopularityFromJson(json);
+
+  static (String?, int) getPopularity(Popularity popularity) {
+    return (
+      popularity.date,
+      popularity.popularity
+    );
+  }
 }

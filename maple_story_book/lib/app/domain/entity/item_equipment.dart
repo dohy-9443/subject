@@ -30,6 +30,34 @@ class ItemEquipment with _$ItemEquipment {
   }) = _ItemEquipment;
 
   factory ItemEquipment.fromJson(Map<String, dynamic> json) => _$ItemEquipmentFromJson(json);
+
+  static (
+    String?,
+    String,
+    String,
+    int,
+    List<ItemEquipmentElement>,
+    List<ItemEquipmentElement>,
+    List<ItemEquipmentElement>,
+    List<ItemEquipmentElement>,
+    Title?,
+    List<DragonMechanicEquipment>,
+    List<DragonMechanicEquipment>,
+  ) getItemEquipment(ItemEquipment itemEquipment) {
+    return (
+      itemEquipment.date,
+      itemEquipment.characterGender,
+      itemEquipment.characterClass,
+      itemEquipment.presetNo,
+      itemEquipment.itemEquipment,
+      itemEquipment.itemEquipmentPreset1,
+      itemEquipment.itemEquipmentPreset2,
+      itemEquipment.itemEquipmentPreset3,
+      itemEquipment.title,
+      itemEquipment.dragonEquipment,
+      itemEquipment.mechanicEquipment,
+    );
+  }
 }
 
 @freezed
@@ -76,6 +104,88 @@ class ItemEquipmentElement with _$ItemEquipmentElement {
   }) = _ItemEquipmentElement;
 
   factory ItemEquipmentElement.fromJson(Map<String, dynamic> json) => _$ItemEquipmentElementFromJson(json);
+
+  static (
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    ItemTotalOption?,
+    ItemBaseOption?,
+    String,
+    String,
+    bool,
+    String,
+    String,
+    String,
+    bool,
+    String,
+    String,
+    String,
+    int,
+    ItemExceptionalOption?,
+    ItemAddOption?,
+    int,
+    int,
+    int,
+    int,
+    String,
+    int,
+    int,
+    String,
+    String,
+    ItemEtcOption?,
+    int,
+    String,
+    ItemEtcOption?,
+    int,
+    String,
+  ) getItemEquipmentElement(ItemEquipmentElement itemEquipmentElement) {
+    return (
+      itemEquipmentElement.itemEquipmentPart,
+      itemEquipmentElement.itemEquipmentSlot,
+      itemEquipmentElement.itemName,
+      itemEquipmentElement.itemIcon,
+      itemEquipmentElement.itemDescription,
+      itemEquipmentElement.itemShapeName,
+      itemEquipmentElement.itemShapeIcon,
+      itemEquipmentElement.itemGender,
+      itemEquipmentElement.itemTotalOption,
+      itemEquipmentElement.itemBaseOption,
+      itemEquipmentElement.potentialOptionGrade,
+      itemEquipmentElement.additionalPotentialOptionGrade,
+      itemEquipmentElement.potentialOptionFlag,
+      itemEquipmentElement.potentialOption1,
+      itemEquipmentElement.potentialOption2,
+      itemEquipmentElement.potentialOption3,
+      itemEquipmentElement.additionalPotentialOptionFlag,
+      itemEquipmentElement.additionalPotentialOption1,
+      itemEquipmentElement.additionalPotentialOption2,
+      itemEquipmentElement.additionalPotentialOption3,
+      itemEquipmentElement.equipmentLevelIncrease,
+      itemEquipmentElement.itemExceptionalOption,
+      itemEquipmentElement.itemAddOption,
+      itemEquipmentElement.growthExp,
+      itemEquipmentElement.growthLevel,
+      itemEquipmentElement.scrollUpgrade,
+      itemEquipmentElement.cuttableCount,
+      itemEquipmentElement.goldenHammerFlag,
+      itemEquipmentElement.scrollResilienceCount,
+      itemEquipmentElement.scrollUpgradeableCount,
+      itemEquipmentElement.soulName,
+      itemEquipmentElement.soulOption,
+      itemEquipmentElement.itemEtcOption,
+      itemEquipmentElement.starforce,
+      itemEquipmentElement.starforceScrollFlag,
+      itemEquipmentElement.itemStarforceOption,
+      itemEquipmentElement.specialRingLevel,
+      itemEquipmentElement.dateExpire,
+    );
+  }
 }
 
 @freezed
@@ -102,6 +212,48 @@ class ItemTotalOption with _$ItemTotalOption {
   }) = _ItemTotalOption;
 
   factory ItemTotalOption.fromJson(Map<String, dynamic> json) => _$ItemTotalOptionFromJson(json);
+
+  static (
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+  ) getItemTotalOption(ItemTotalOption itemTotalOption) {
+    return (
+      itemTotalOption.strStat,
+      itemTotalOption.dexStat,
+      itemTotalOption.intStat,
+      itemTotalOption.lukStat,
+      itemTotalOption.maxHp,
+      itemTotalOption.maxMp,
+      itemTotalOption.attackPower,
+      itemTotalOption.magicPower,
+      itemTotalOption.armor,
+      itemTotalOption.speed,
+      itemTotalOption.jump,
+      itemTotalOption.bossDamage,
+      itemTotalOption.ignoreMonsterArmor,
+      itemTotalOption.allStat,
+      itemTotalOption.damage,
+      itemTotalOption.equipmentLevelDecrease,
+      itemTotalOption.maxHpRate,
+      itemTotalOption.maxMpRate,
+    );
+  }
 }
 
 @freezed
@@ -127,6 +279,46 @@ class ItemBaseOption with _$ItemBaseOption {
   }) = _ItemBaseOption;
 
   factory ItemBaseOption.fromJson(Map<String, dynamic> json) => _$ItemBaseOptionFromJson(json);
+
+  static (
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+  ) getItemBaseOption(ItemBaseOption itemBaseOption) {
+    return (
+      itemBaseOption.strStat,
+      itemBaseOption.dexStat,
+      itemBaseOption.intStat,
+      itemBaseOption.lukStat,
+      itemBaseOption.maxHp,
+      itemBaseOption.maxMp,
+      itemBaseOption.attackPower,
+      itemBaseOption.magicPower,
+      itemBaseOption.armor,
+      itemBaseOption.speed,
+      itemBaseOption.jump,
+      itemBaseOption.bossDamage,
+      itemBaseOption.ignoreMonsterArmor,
+      itemBaseOption.allStat,
+      itemBaseOption.maxHpRate,
+      itemBaseOption.maxMpRate,
+      itemBaseOption.baseEquipmentLevel,
+    );
+  }
 }
 
 @freezed
@@ -145,6 +337,30 @@ class ItemExceptionalOption with _$ItemExceptionalOption {
   }) = _ItemExceptionalOption;
 
   factory ItemExceptionalOption.fromJson(Map<String, dynamic> json) => _$ItemExceptionalOptionFromJson(json);
+
+  static (
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+  ) getItemExceptionalOption(ItemExceptionalOption itemExceptionalOption) {
+    return (
+      itemExceptionalOption.strStat,
+      itemExceptionalOption.dexStat,
+      itemExceptionalOption.intStat,
+      itemExceptionalOption.lukStat,
+      itemExceptionalOption.maxHp,
+      itemExceptionalOption.maxMp,
+      itemExceptionalOption.attackPower,
+      itemExceptionalOption.magicPower,
+      itemExceptionalOption.exceptionalUpgrade,
+    );
+  }
 }
 
 @freezed
@@ -168,6 +384,42 @@ class ItemAddOption with _$ItemAddOption {
   }) = _ItemAddOption;
 
   factory ItemAddOption.fromJson(Map<String, dynamic> json) => _$ItemAddOptionFromJson(json);
+
+  static (
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+  ) getItemAddOption(ItemAddOption itemAddOption) {
+    return (
+      itemAddOption.strStat,
+      itemAddOption.dexStat,
+      itemAddOption.intStat,
+      itemAddOption.lukStat,
+      itemAddOption.maxHp,
+      itemAddOption.maxMp,
+      itemAddOption.attackPower,
+      itemAddOption.magicPower,
+      itemAddOption.armor,
+      itemAddOption.speed,
+      itemAddOption.jump,
+      itemAddOption.bossDamage,
+      itemAddOption.damage,
+      itemAddOption.allStat,
+      itemAddOption.equipmentLevelDecrease,
+    );
+  }
 }
 
 @freezed
@@ -187,6 +439,34 @@ class ItemEtcOption with _$ItemEtcOption {
   }) = _ItemEtcOption;
 
   factory ItemEtcOption.fromJson(Map<String, dynamic> json) => _$ItemEtcOptionFromJson(json);
+
+  static (
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+    int,
+  ) getItemEtcOption(ItemEtcOption itemEtcOption) {
+    return (
+      itemEtcOption.strStat,
+      itemEtcOption.dexStat,
+      itemEtcOption.intStat,
+      itemEtcOption.lukStat,
+      itemEtcOption.maxHp,
+      itemEtcOption.maxMp,
+      itemEtcOption.attackPower,
+      itemEtcOption.magicPower,
+      itemEtcOption.armor,
+      itemEtcOption.speed,
+      itemEtcOption.jump,
+    );
+  }
 }
 
 @freezed
@@ -201,6 +481,22 @@ class Title with _$Title {
   }) = _Title;
 
   factory Title.fromJson(Map<String, dynamic> json) => _$TitleFromJson(json);
+
+  static (
+    String,
+    String,
+    String,
+    String,
+    String,
+  ) getTitle(Title title) {
+    return (
+      title.titleName,
+      title.titleIcon,
+      title.titleDescription,
+      title.dateExpire,
+      title.dateOptionExpire,
+    );
+  }
 }
 
 @freezed
@@ -237,4 +533,66 @@ class DragonMechanicEquipment with _$DragonMechanicEquipment {
   }) = _DragonMechanicEquipment;
 
   factory DragonMechanicEquipment.fromJson(Map<String, dynamic> json) => _$DragonMechanicEquipmentFromJson(json);
+
+  static (
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    ItemTotalOption?,
+    ItemBaseOption?,
+    int,
+    ItemExceptionalOption?,
+    ItemAddOption?,
+    int,
+    int,
+    int,
+    int,
+    String,
+    int,
+    int,
+    String,
+    String,
+    ItemEtcOption?,
+    int,
+    String,
+    ItemEtcOption?,
+    int,
+    String,
+  ) getDragonMechanicEquipment(DragonMechanicEquipment dragonMechanicEquipment) {
+    return (
+      dragonMechanicEquipment.itemEquipmentPart,
+      dragonMechanicEquipment.itemEquipmentSlot,
+      dragonMechanicEquipment.itemName,
+      dragonMechanicEquipment.itemIcon,
+      dragonMechanicEquipment.itemDescription,
+      dragonMechanicEquipment.itemShapeName,
+      dragonMechanicEquipment.itemShapeIcon,
+      dragonMechanicEquipment.itemGender,
+      dragonMechanicEquipment.itemTotalOption,
+      dragonMechanicEquipment.itemBaseOption,
+      dragonMechanicEquipment.equipmentLevelIncrease,
+      dragonMechanicEquipment.itemExceptionalOption,
+      dragonMechanicEquipment.itemAddOption,
+      dragonMechanicEquipment.growthExp,
+      dragonMechanicEquipment.growthLevel,
+      dragonMechanicEquipment.scrollUpgrade,
+      dragonMechanicEquipment.cuttableCount,
+      dragonMechanicEquipment.goldenHammerFlag,
+      dragonMechanicEquipment.scrollResilienceCount,
+      dragonMechanicEquipment.scrollUpgradeableCount,
+      dragonMechanicEquipment.soulName,
+      dragonMechanicEquipment.soulOption,
+      dragonMechanicEquipment.itemEtcOption,
+      dragonMechanicEquipment.starforce,
+      dragonMechanicEquipment.starforceScrollFlag,
+      dragonMechanicEquipment.itemStarforceOption,
+      dragonMechanicEquipment.specialRingLevel,
+      dragonMechanicEquipment.dateExpire,
+    );
+  }
 }

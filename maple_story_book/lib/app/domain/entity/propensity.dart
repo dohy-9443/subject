@@ -24,4 +24,16 @@ class Propensity with _$Propensity {
   }) = _Propensity;
 
   factory Propensity.fromJson(Map<String, dynamic> json) => _$PropensityFromJson(json);
+
+  static (String?, int, int, int, int, int, int) getPropensity(Propensity propensity) {
+    return (
+      propensity.date,
+      propensity.charismaLevel,
+      propensity.sensibilityLevel,
+      propensity.insightLevel,
+      propensity.willingnessLevel,
+      propensity.handicraftLevel,
+      propensity.charmLevel,
+    );
+  }
 }
