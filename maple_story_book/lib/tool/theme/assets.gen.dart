@@ -43,8 +43,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/yetti.gif
   AssetGenImage get yetti => const AssetGenImage('assets/images/yetti.gif');
 
+  /// File path: assets/images/zaqqum.gif
+  AssetGenImage get zaqqum => const AssetGenImage('assets/images/zaqqum.gif');
+
   /// List of all assets
-  List<AssetGenImage> get values => [orange, pink, pinkAlert, slime, yetti];
+  List<AssetGenImage> get values =>
+      [orange, pink, pinkAlert, slime, yetti, zaqqum];
 }
 
 class Assets {
