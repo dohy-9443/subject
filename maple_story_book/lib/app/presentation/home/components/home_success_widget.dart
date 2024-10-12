@@ -40,8 +40,26 @@ class HomeSuccessWidget extends StatelessWidget {
       liberationQuestClearFlag,
     ) = BasicInfo.getCharacterInfo(basicInfo);
 
-    return Center(
-      child: MSText.basic(
+    return MSBaseBuildWidget(
+      appBar: MSAppBar(
+        title: characterName,
+        isBoxShadow: false,
+        leading: IconButton(
+          onPressed: () {
+            /// TODO : 즐겨찾기 리스트 페이지로 이동, 즐겨찾기를 해놓지 않았다면 alert 또는 toast 메시지
+          },
+          icon: Icon(Icons.star)
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              /// TODO : 검색 페이지로 이동
+            },
+            icon: Icon(Icons.search)
+          )
+        ],
+      ),
+      body: MSText.basic(
         """
         characterName : $characterName,
         worldName : $worldName,

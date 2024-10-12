@@ -9,6 +9,7 @@ class MSAppBar extends StatelessWidget {
   final Widget? bottom;
   final Color backgroundColor;
   final Color bottomBackgroundColor;
+  final bool isBoxShadow;
 
   const MSAppBar({
     super.key,
@@ -18,6 +19,7 @@ class MSAppBar extends StatelessWidget {
     this.bottom,
     this.backgroundColor = ColorName.mainAccent,
     this.bottomBackgroundColor = ColorName.lightGray2,
+    this.isBoxShadow = true,
   });
 
   @override
@@ -25,13 +27,13 @@ class MSAppBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
-        boxShadow: const [
+        boxShadow: isBoxShadow ? const [
           BoxShadow(
             color: Colors.black12,
             offset: Offset(0, 4),
             blurRadius: 4,
           ),
-        ],
+        ] : null,
       ),
       child: SafeArea(
         child: Column(
