@@ -20,9 +20,9 @@ class LocalStorageRepository implements ILocalStorageRepository {
 
   String _getKey(String category) {
     switch (category) {
-      case 'favorite':
-        return 'LOCAL_STORAGE_SEARCH_KEY';
       case 'search':
+        return 'LOCAL_STORAGE_SEARCH_KEY';
+      case 'favorite':
         return 'LOCAL_STORAGE_FAVORITE_KEY';
       default:
         return 'LOCAL_STORAGE_SEARCH_KEY';

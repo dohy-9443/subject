@@ -9,14 +9,14 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      :
 ///
 
-typedef SuccessWidgetBuilder<T> = Widget Function(BuildContext context, T state);
+typedef SuccessWidgetBuilder<TSuccess> = Widget Function(BuildContext context, TSuccess state);
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
 typedef LoadingWidgetBuilder = Widget Function();
 
-class BlocHandler<T extends IBaseState> extends StatelessWidget {
+class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> extends StatelessWidget {
   final T state;
   final LoadingWidgetBuilder initial;
-  final SuccessWidgetBuilder<T> success;
+  final SuccessWidgetBuilder<TSuccess> success;
   final ErrorWidgetBuilder error;
 
   const BlocHandler({
@@ -34,8 +34,8 @@ class BlocHandler<T extends IBaseState> extends StatelessWidget {
     } else if (state.isError) {
       final errorState = state as BaseErrorState;
       return error(context, errorState.error);
-    } else if (state.isSuccess) {
-      return success(context, state);
+    } else if (state.isSuccess is TSuccess) {
+      return success(context, state as TSuccess);
     } else {
       return const SizedBox();
     }
