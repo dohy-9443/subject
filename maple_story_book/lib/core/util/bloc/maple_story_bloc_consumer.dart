@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/presentation/global/global_bloc.dart';
 import 'package:maple_story_book/app/presentation/global/global_state.dart';
 import 'package:maple_story_book/core/util/util.dart';
-import 'package:maple_story_book/tool/component/base_state_handler.dart';
 import 'package:maple_story_book/tool/component/component.dart';
-import 'package:maple_story_book/tool/component/maple_story_error.dart';
-import 'package:maple_story_book/tool/component/maple_story_loading.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -25,6 +22,7 @@ class MSBlocConsumer<B extends BlocBase<S>, S extends IBaseState, SSuccess exten
 
   final Widget Function()? initial;
   final Widget Function(BuildContext context, SSuccess state) success;
+  final Widget? successEmpty;
 
   final VoidCallback errorPressed;
   final VoidCallback errorFullScreenPressed;
@@ -37,6 +35,7 @@ class MSBlocConsumer<B extends BlocBase<S>, S extends IBaseState, SSuccess exten
     this.builder,
     this.initial,
     required this.success,
+    this.successEmpty,
     required this.errorPressed,
     required this.errorFullScreenPressed,
   });
@@ -69,6 +68,7 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends IBaseState, SSuccess
                 state: state,
                 initial: () => const MSLoading(),
                 success: widget.success,
+                successEmpty: widget.successEmpty ?? MSEmpty(),
                 error: (context, error) => MSErrorFullScreen(
                   error: error,
                   onPressed: widget.errorFullScreenPressed,

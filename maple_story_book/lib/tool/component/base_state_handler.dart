@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/core/util/util.dart';
 
 ///
@@ -17,6 +18,7 @@ class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> exten
   final T state;
   final LoadingWidgetBuilder initial;
   final SuccessWidgetBuilder<TSuccess> success;
+  final Widget successEmpty;
   final ErrorWidgetBuilder error;
 
   const BlocHandler({
@@ -24,6 +26,7 @@ class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> exten
     required this.state,
     required this.initial,
     required this.success,
+    required this.successEmpty,
     required this.error,
   });
 
@@ -35,7 +38,11 @@ class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> exten
       final errorState = state as BaseErrorState;
       return error(context, errorState.error);
     } else if (state.isSuccess is TSuccess) {
-      return success(context, state as TSuccess);
+      if(state.hasData) {
+        return success(context, state as TSuccess);
+      } else {
+        return successEmpty;
+      }
     } else {
       return const SizedBox();
     }
