@@ -19,7 +19,7 @@ class RankingScreen extends StatelessWidget {
   const RankingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => MSBlocConsumer<RankingBloc, IRankingState>(
+  Widget build(BuildContext context) => MSBlocConsumer<RankingBloc, IRankingState, RankingSuccess>(
     initFunc: initFunction,
     bloc: context.read<RankingBloc>(),
     success: (context, successState) => const RankingSuccessWidget(),
