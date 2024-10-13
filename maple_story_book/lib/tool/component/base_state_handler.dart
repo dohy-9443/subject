@@ -7,7 +7,7 @@ import 'package:maple_story_book/core/util/util.dart';
 /// @Class           : base_state_handler.
 /// @Created by      : shinheetae.
 /// Created On       : 2024. 10. 9..
-/// Description      :
+/// Description      : Refactor -> baekdonghyun.
 ///
 
 typedef SuccessWidgetBuilder<TSuccess> = Widget Function(BuildContext context, TSuccess state);
