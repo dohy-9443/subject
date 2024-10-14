@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/tool/theme/colors.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
 ///
@@ -41,40 +42,13 @@ class HomeSuccessWidget extends StatelessWidget {
     ) = BasicInfo.getCharacterInfo(basicInfo);
 
     return MSBaseBuildWidget(
-      appBar: MSAppBar(
-        title: characterName,
-        isBoxShadow: false,
-        leading: IconButton(
-          onPressed: () {
-            /// TODO : 즐겨찾기 리스트 페이지로 이동, 즐겨찾기를 해놓지 않았다면 alert 또는 toast 메시지
-          },
-          icon: Icon(Icons.star)
+      title: characterName,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(color: ColorName.danger, width: double.infinity, height: 20,)
+          ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              /// TODO : 검색 페이지로 이동
-            },
-            icon: Icon(Icons.search)
-          )
-        ],
-      ),
-      body: MSText.basic(
-        """
-        characterName : $characterName,
-        worldName : $worldName,
-        characterGender : $characterGender,
-        characterClass : $characterClass,
-        characterClassLevel : $characterClassLevel,
-        characterLevel : $characterLevel,
-        characterExp : $characterExp,
-        characterExpRate : $characterExpRate,
-        characterGuildName : $characterGuildName,
-        characterImage : $characterImage,
-        characterDateCreate : $characterDateCreate,
-        accessFlag : $accessFlag,
-        liberationQuestClearFlag : $liberationQuestClearFlag
-        """,
       ),
     );
   }
