@@ -56,29 +56,29 @@ class RestClient {
       onRequest: (options, handler) {
         options.headers['x-nxopen-api-key'] = apiKey;
 
-        logger.i('Request to $path');
-        logger.i('Headers: ${options.headers}');
-        logger.i('Query Params: ${options.queryParameters}');
-        logger.i('Data: ${options.data}');
+        // logger.i('Request to $path');
+        // logger.i('Headers: ${options.headers}');
+        // logger.i('Query Params: ${options.queryParameters}');
+        // logger.i('Data: ${options.data}');
 
         return handler.next(options);
       },
       onResponse: (response, handler) {
 
-        logger.i('Response from $path');
-        logger.i('Status Code: ${response.statusCode}');
-        logger.i('Response Data: ${response.data}');
+        // logger.i('Response from $path');
+        // logger.i('Status Code: ${response.statusCode}');
+        // logger.i('Response Data: ${response.data}');
 
         return handler.next(response);
       },
       onError: (DioException e, handler) {
 
-        logger.e('Error during request to $path');
-        logger.e('Error Message: ${e.message}');
-        if (e.response != null) {
-          logger.e('Status Code: ${e.response?.statusCode}');
-          logger.e('Error Data: ${e.response?.data}');
-        }
+        // logger.e('Error during request to $path');
+        // logger.e('Error Message: ${e.message}');
+        // if (e.response != null) {
+        //   logger.e('Status Code: ${e.response?.statusCode}');
+        //   logger.e('Error Data: ${e.response?.data}');
+        // }
 
         return handler.next(e);
       },

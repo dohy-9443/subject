@@ -36,7 +36,7 @@ class HomeFragment extends StatelessWidget {
               children: [
                 HomeTop(basicInfo: basicInfo,),
                 AppSize.height(8),
-
+                HomeCenter(stat: stat),
               ],
             ),
           ),
