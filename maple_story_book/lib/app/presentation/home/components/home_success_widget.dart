@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
@@ -22,7 +23,13 @@ class HomeSuccessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BasicInfo basicInfo = state.basicInfo!;
+    var basicInfo;
+
+    if (state.basicInfo.hasData) {
+      basicInfo = state.basicInfo;
+    } else {
+      basicInfo = BasicInfo();
+    }
 
     final (
       date,

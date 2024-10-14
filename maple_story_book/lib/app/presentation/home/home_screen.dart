@@ -5,6 +5,7 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
+import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/component/component.dart';
 
@@ -24,9 +25,7 @@ class HomeScreen extends StatelessWidget {
       initFunc: initFunction,
       bloc: context.read<HomeBloc>(),
       successEmpty: MSEmpty(description: "데이터가 없습니다.",),
-      success: (context, successState) {
-        return HomeSuccessWidget(state: successState,);
-      },
+      success: (context, successState) => HomeSuccessWidget(state: successState,),
       errorPressed: () {},
       errorFullScreenPressed: () {}
   );
