@@ -13,7 +13,7 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 
 class BorderRadiusContainer extends StatelessWidget {
 
-  final String text;
+  final List<String> text;
   final Color fontColor;
   final Color backgroundColor;
   final EdgeInsetsGeometry padding;
@@ -38,9 +38,27 @@ class BorderRadiusContainer extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: bold ?
-      MSText.bold(text, textAlign: TextAlign.center, color: fontColor, fontSize: 12,) :
-      MSText.basic(text, textAlign: TextAlign.center, color: fontColor, fontSize: 12,),
+      child: text.length == 1 ?
+        bold ?
+          MSText.bold(text.first, textAlign: TextAlign.center, color: fontColor, fontSize: 12,) :
+          MSText.basic(text.first, textAlign: TextAlign.center, color: fontColor, fontSize: 12,) :
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              AppSize.width(4),
+              MSText.basic(text.first, color: fontColor, fontSize: 12,),
+            ],
+          ),
+          Row(
+            children: [
+              MSText.basic(text.last, color: fontColor, fontSize: 12,),
+              AppSize.width(4),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

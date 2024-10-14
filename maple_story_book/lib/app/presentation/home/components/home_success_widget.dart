@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
+import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/core/util/insets.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
@@ -69,96 +70,19 @@ class HomeSuccessWidget extends StatelessWidget {
                           Column(
                             children: [
                               AppSize.height(8),
-                              Container(
-                                width: 100,
-                                padding: AppInset.all2,
-                                decoration: BoxDecoration(
-                                  color: ColorName.lightGray3,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: MSText.basic(characterClass, textAlign: TextAlign.center, color: ColorName.white, fontSize: 12,),
+                              BorderRadiusContainer(
+                                [characterClass],
+                                backgroundColor: ColorName.lightGray3,
                               ),
                             ],
                           ),
                           Column(
                             children: [
-                              Container(
-                                width: 100,
-                                padding: AppInset.all2,
-                                decoration: BoxDecoration(
-                                  color: ColorName.lightGray2,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        AppSize.width(4),
-                                        MSText.basic('유니온', color: ColorName.white, fontSize: 12,),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        MSText.basic('ㅡ', color: ColorName.white, fontSize: 12,),
-                                        AppSize.width(4),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              const BorderRadiusContainer(['유니온', 'ㅡ'],),
                               AppSize.height(4),
-                              Container(
-                                width: 100,
-                                padding: AppInset.all2,
-                                decoration: BoxDecoration(
-                                  color: ColorName.lightGray2,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        AppSize.width(4),
-                                        MSText.basic('무릉도장', color: ColorName.white, fontSize: 12,),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        MSText.basic('ㅡ', color: ColorName.white, fontSize: 12,),
-                                        AppSize.width(4),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              const BorderRadiusContainer(['무릉도장', 'ㅡ'],),
                               AppSize.height(4),
-                              Container(
-                                width: 100,
-                                padding: AppInset.all2,
-                                decoration: BoxDecoration(
-                                  color: ColorName.lightGray2,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        AppSize.width(4),
-                                        MSText.basic('인기도', color: ColorName.white, fontSize: 12,),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        MSText.basic('ㅡ', color: ColorName.white, fontSize: 12,),
-                                        AppSize.width(4),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              const BorderRadiusContainer(['인기도', 'ㅡ'],),
                               AppSize.height(8),
                             ],
                           )
@@ -191,14 +115,10 @@ class HomeSuccessWidget extends StatelessWidget {
                                 errorWidget: (context, url, error) => Icon(Icons.error),
                               ),
                               AppSize.height(4),
-                              Container(
-                                width: 100,
-                                padding: AppInset.all2,
-                                decoration: BoxDecoration(
-                                  color: ColorName.mainAccent,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: MSText.bold(characterName, textAlign: TextAlign.center, color: ColorName.white, fontSize: 12,),
+                              BorderRadiusContainer(
+                                [characterName],
+                                backgroundColor: ColorName.mainAccent,
+                                bold: true,
                               ),
                               AppSize.height(8),
                             ],
@@ -208,67 +128,15 @@ class HomeSuccessWidget extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
-                            width: 100,
-                            padding: AppInset.all2,
-                            decoration: BoxDecoration(
-                              color: ColorName.mainAccent,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: MSText.bold('길드', textAlign: TextAlign.center, color: ColorName.white, fontSize: 12,),
+                          const BorderRadiusContainer(
+                            ['길드'],
+                            backgroundColor: ColorName.mainAccent,
+                            bold: true,
                           ),
                           AppSize.height(4),
-                          Container(
-                            width: 100,
-                            padding: AppInset.all2,
-                            decoration: BoxDecoration(
-                              color: ColorName.lightGray2,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    AppSize.width(4),
-                                    MSText.basic('길드', color: ColorName.white, fontSize: 12,),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    MSText.basic('ㅡ', color: ColorName.white, fontSize: 12,),
-                                    AppSize.width(4),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          const BorderRadiusContainer(['길드', 'ㅡ'],),
                           AppSize.height(4),
-                          Container(
-                            width: 100,
-                            padding: AppInset.all2,
-                            decoration: BoxDecoration(
-                              color: ColorName.lightGray2,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    AppSize.width(4),
-                                    MSText.basic('연합', color: ColorName.white, fontSize: 12,),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    MSText.basic('ㅡ', color: ColorName.white, fontSize: 12,),
-                                    AppSize.width(4),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          const BorderRadiusContainer(['연합', 'ㅡ'],),
                           AppSize.height(8),
                         ],
                       )
