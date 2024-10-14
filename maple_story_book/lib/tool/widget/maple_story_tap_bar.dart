@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/core/util/insets.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
 
@@ -26,7 +27,9 @@ class _MSTabBarState extends State<MSTabBar> {
       _selectedIndex = index;
     });
 
-    if (widget.tapBarList.length > 5) {
+    widget.tapBarList[index].onTap.hasData ? widget.tapBarList[index].onTap!() : null;
+
+    if (widget.tapBarList.length > 6) {
       widget.scrollController.animateTo(
         index * 70,
         duration: const Duration(milliseconds: 500),
