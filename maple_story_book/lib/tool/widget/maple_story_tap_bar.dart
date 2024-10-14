@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/core/extension/null_check_extension.dart';
-import 'package:maple_story_book/core/util/insets.dart';
-import 'package:maple_story_book/tool/theme/colors.dart';
+import 'package:maple_story_book/core/extension/extension.dart';
+import 'package:maple_story_book/tool/theme/theme.dart';
 
 class MSTabBar extends StatefulWidget {
   final ScrollController scrollController;
-  final List<TapBarType> tapBarList;
+  final List<TabBarType> tapBarList;
+  late TabController tabController;
+  final bool isScrollable;
 
-  const MSTabBar({
+  MSTabBar({
     super.key,
-    required this.scrollController,
     required this.tapBarList,
+    required this.scrollController,
+    required this.tabController,
+    this.isScrollable = false,
   });
 
   @override
@@ -20,6 +23,28 @@ class MSTabBar extends StatefulWidget {
 class _MSTabBarState extends State<MSTabBar> {
   late int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    widget.tabController.addListener(() {
+      if (widget.tabController.indexIsChanging) {
+        _scrollToSelectedTab(widget.tabController.index);
+      }
+    });
+  }
+
+  void _scrollToSelectedTab(int index) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double tabWidth = 100;
+
+    double offset = (index * tabWidth) - (screenWidth - tabWidth) / 2;
+    widget.scrollController.animateTo(
+      offset.clamp(0.0, widget.scrollController.position.maxScrollExtent),
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
   void onChipTap(int index) {
     if (_selectedIndex == index) return;
 
@@ -27,47 +52,40 @@ class _MSTabBarState extends State<MSTabBar> {
       _selectedIndex = index;
     });
 
-    widget.tapBarList[index].onTap.hasData ? widget.tapBarList[index].onTap!() : null;
-
-    if (widget.tapBarList.length > 6) {
-      widget.scrollController.animateTo(
-        index * 70,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    }
+    widget.tapBarList[index].onTap.hasData
+        ? widget.tapBarList[index].onTap!()
+        : null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 48.0,
+      margin: EdgeInsets.zero,
+      padding: EdgeInsets.zero,
       color: ColorName.white,
-      child: ListView.builder(
+      child: SingleChildScrollView(
         controller: widget.scrollController,
-        scrollDirection: Axis.horizontal,
-        itemCount: widget.tapBarList.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => onChipTap(index),
-            child: Padding(
-              padding: AppInset.h4,
-              child: Chip(
-                label: Text(widget.tapBarList[index].text),
-                backgroundColor:
-                    _selectedIndex == index ? ColorName.beige : null,
-              ),
-            ),
-          );
-        },
+        child: TabBar(
+          controller: widget.tabController,
+          isScrollable: widget.isScrollable,
+          tabAlignment: widget.isScrollable.isTrue ? TabAlignment.start : null,
+          indicatorColor: ColorName.beige,
+          labelColor: ColorName.beige,
+          unselectedLabelColor: ColorName.lightGray2,
+          onTap: onChipTap,
+          tabs: widget.tapBarList.mapWithIndex((tab, index) {
+            return Tab(text: tab.text);
+          }),
+        ),
       ),
     );
   }
 }
 
-class TapBarType {
+class TabBarType {
   final VoidCallback? onTap;
   final String text;
 
-  TapBarType({this.onTap, required this.text});
+  TabBarType({this.onTap, required this.text});
 }
