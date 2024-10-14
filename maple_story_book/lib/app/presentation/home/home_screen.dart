@@ -5,7 +5,6 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
-import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/component/component.dart';
 
@@ -32,6 +31,7 @@ class HomeScreen extends StatelessWidget {
 
   initFunction(BuildContext context) {
     context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>(ocid: "36c54981582f63ef732f51a1216299d2"));
+    context.read<HomeBloc>().add(GetHomeEvent<Stat>(ocid: "36c54981582f63ef732f51a1216299d2"));
   }
 }
 

@@ -27,6 +27,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/arcana.png
+  AssetGenImage get arcana => const AssetGenImage('assets/images/arcana.png');
+
   /// File path: assets/images/orange.gif
   AssetGenImage get orange => const AssetGenImage('assets/images/orange.gif');
 
@@ -48,7 +51,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [orange, pink, pinkAlert, slime, yetti, zaqqum];
+      [arcana, orange, pink, pinkAlert, slime, yetti, zaqqum];
 }
 
 class Assets {

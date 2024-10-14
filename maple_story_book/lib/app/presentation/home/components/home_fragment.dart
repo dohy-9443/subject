@@ -24,6 +24,7 @@ class HomeFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BasicInfo basicInfo = state.basicInfo;
+    Stat stat = state.stat;
 
     return MSBaseBuildWidget(
       title: basicInfo.characterName,
@@ -34,6 +35,8 @@ class HomeFragment extends StatelessWidget {
             child: Column(
               children: [
                 HomeTop(basicInfo: basicInfo,),
+                AppSize.height(8),
+
               ],
             ),
           ),
