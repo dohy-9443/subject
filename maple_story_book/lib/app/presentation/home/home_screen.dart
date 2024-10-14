@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       initFunc: initFunction,
       bloc: context.read<HomeBloc>(),
       successEmpty: MSEmpty(description: "데이터가 없습니다.",),
-      success: (context, successState) => HomeSuccessWidget(state: successState,),
+      success: (context, successState) => HomeFragment(state: successState,),
       errorPressed: () {},
       errorFullScreenPressed: () {}
   );
