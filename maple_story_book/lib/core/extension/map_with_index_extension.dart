@@ -1,6 +1,6 @@
 ///
 /// @Project name    : maple_story_book
-/// @Class           : map_with_index.
+/// @Class           : map_with_index_extension.
 /// @Created by      : shinheetae.
 /// Created On       : 2024. 10. 15..
 /// Description      :
