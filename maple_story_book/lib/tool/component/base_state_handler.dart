@@ -37,7 +37,7 @@ class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> exten
     } else if (state.isError) {
       final errorState = state as BaseErrorState;
       return error(context, errorState.error);
-    } else if (state.isSuccess is TSuccess) {
+    } else if (state.isSuccess) {
       if(state.hasData) {
         return success(context, state as TSuccess);
       } else {
