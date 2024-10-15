@@ -19,9 +19,9 @@ class HomeCenter extends StatelessWidget {
   Widget build(BuildContext context) {
     print("stat.characterClass : ${stat.characterClass}");
     print("stat.finalStat : ${stat.finalStat}");
+
     return const Placeholder();
   }
-
 
   String statValuePrint({required String name}) {
     final result = stat.finalStat.firstWhere(
@@ -43,7 +43,7 @@ class HomeCenter extends StatelessWidget {
         return result.statValue.toPercentageString();
       case '공격 속도':
         return '${result.statValue.toIntString()}단계';
-      case '재사용 대기시간 감소 (초)': // 재사용 대기시간 감소   0초/ 0% 이렇게 나와야함
+      case '재사용 대기시간 감소 (초)': /// TODO : 재사용 대기시간 감소   0초/ 0% 이렇게 나와야함
         return '${result.statValue.toIntString()}초';
       case '재사용 대기시간 감소 (%)':case '소환수 지속시간 증가':
         return '${result.statValue.toIntString()}%';
