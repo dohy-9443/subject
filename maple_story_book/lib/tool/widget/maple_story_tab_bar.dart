@@ -20,7 +20,7 @@ class MSTabBar extends StatefulWidget {
 }
 
 class _MSTabBarState extends State<MSTabBar> {
-  late int _selectedIndex = 0;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
