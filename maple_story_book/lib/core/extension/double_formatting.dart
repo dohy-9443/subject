@@ -6,13 +6,13 @@
 /// Description      : 
 ///
 
-extension NumberFormatting on double {
-  String NumberToKorean() {
+extension DoubleFormatting on double {
+  String numberToKorean() {
     int intNum = this.toInt();
     double doubleNum = this - intNum;
 
-    int millions = intNum ~/ 1000000;
-    int remains = intNum % 1000000;
+    int millions = intNum ~/ 10000;
+    int remains = intNum % 10000;
 
     String result = millions > 0 ? '$millions만$remains' : '$remains';
 
@@ -21,5 +21,14 @@ extension NumberFormatting on double {
     }
 
     return result;
+  }
+
+  String toCommaString() {
+    return this.toStringAsFixed(0).replaceAllMapped(
+        RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => ',');
+  }
+
+  String toPercentageString() {
+    return '${this.toStringAsFixed(2)}%';
   }
 }

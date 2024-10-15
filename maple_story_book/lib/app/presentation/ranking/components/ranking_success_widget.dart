@@ -97,14 +97,14 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget> {
             ),
           )
         ],
-        bottom: MSTabBar(
-          scrollController: scrollController,
-          tapBarList: [
-            TapBarType(text: '탭 1'),
-            TapBarType(onTap: () {}, text: '탭 2'),
-            TapBarType(onTap: () {}, text: '탭 3'),
-          ],
-        ),
+        // bottom: MSTabBar(
+        //   scrollController: scrollController,
+        //   tapBarList: [
+        //     TapBarType(text: '탭 1'),
+        //     TapBarType(onTap: () {}, text: '탭 2'),
+        //     TapBarType(onTap: () {}, text: '탭 3'),
+        //   ],
+        // ),
       ),
       body: Padding(
         padding: AppInset.all8,
