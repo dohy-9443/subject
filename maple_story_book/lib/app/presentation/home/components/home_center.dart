@@ -32,7 +32,7 @@ void processStatElements(List<StatElement> statElements) {
   for (var stat in statElements) {
     switch (stat.statName) {
       case 'HP':
-        print('HP : ${stat.statValue}');
+        print('HP : ${stat.statValue.toCommaString()}');
         break;
       case '최소 스탯공격력':
         print('최소 스탯공격력: ${stat.statValue.numberToKorean()}');
@@ -41,10 +41,10 @@ void processStatElements(List<StatElement> statElements) {
         print('최대 스탯공격력: ${stat.statValue.numberToKorean()}');
         break;
       case '데미지':
-        print('데미지: ${stat.statValue}');
+        print('데미지: ${stat.statValue.toPercentageString()}');
         break;
       case '최종 데미지':
-        print('최종 데미지: ${stat.statValue}');
+        print('최종 데미지: ${stat.statValue.toPercentageString()}');
         break;
       default:
         print("");
