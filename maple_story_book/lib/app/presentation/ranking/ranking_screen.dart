@@ -22,7 +22,7 @@ class RankingScreen extends StatelessWidget {
   Widget build(BuildContext context) => MSBlocConsumer<RankingBloc, IRankingState, RankingSuccess>(
     initFunc: initFunction,
     bloc: context.read<RankingBloc>(),
-    success: (context, successState) => const RankingSuccessWidget(),
+    success: (context, successState) => RankingSuccessWidget(successState),
     errorPressed: () {},
     errorFullScreenPressed: () {}
   );

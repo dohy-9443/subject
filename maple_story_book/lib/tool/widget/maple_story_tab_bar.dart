@@ -69,14 +69,14 @@ class _MSTabBarState extends State<MSTabBar> {
         child: TabBar(
           controller: widget.tabController,
           isScrollable: widget.isScrollable,
-          tabAlignment: widget.isScrollable.isTrue ? TabAlignment.start : null,
+          tabAlignment: widget.isScrollable ? TabAlignment.start : null,
           indicatorColor: ColorName.beige,
           labelColor: ColorName.beige,
           unselectedLabelColor: ColorName.lightGray2,
           onTap: onChipTap,
-          tabs: widget.tapBarList.mapWithIndex((tab, index) {
+          tabs: widget.tapBarList.map((tab) {
             return Tab(text: tab.text);
-          }),
+          }).toList(),
         ),
       ),
     );
