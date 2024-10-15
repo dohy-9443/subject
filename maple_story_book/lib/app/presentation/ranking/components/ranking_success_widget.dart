@@ -36,7 +36,7 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 8, vsync: this);
+    _tabController = TabController(length: 7, vsync: this);
   }
 
   @override
@@ -73,7 +73,7 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
           isScrollable: true,
           scrollController: scrollController,
           tabController: _tabController,
-          tapBarList: [
+          tabBarList: [
             TabBarType(
               onTap: () {
                 context.read<RankingBloc>().add(
@@ -93,8 +93,7 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
                 onTap: () {
                   context.read<RankingBloc>().add(
                       GetRankingGuildEvent<RankingGuild>(
-                          date:
-                          DateTime.now().subtract(const Duration(days: 3)),
+                          date: DateTime.now().subtract(const Duration(days: 3)),
                           worldName: '',
                           rankingType: 0,
                           guildName: '',
@@ -109,7 +108,7 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
                           DateTime.now().subtract(const Duration(days: 3)),
                           difficulty: 0));
                 },
-                text: '무릉동장'),
+                text: '무릉도장'),
             TabBarType(
                 onTap: () {
                   context.read<RankingBloc>().add(
@@ -126,14 +125,6 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
                               .subtract(const Duration(days: 3))));
                 },
                 text: '업적'),
-            TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(
-                      GetRankingEvent<RankingAchievement>(
-                          date: DateTime.now()
-                              .subtract(const Duration(days: 3))));
-                },
-                text: '업적2'),
             TabBarType(
                 onTap: () {
                   context.read<RankingBloc>().add(
@@ -175,11 +166,7 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
           ),
           Container(
             color: Colors.red,
-            child: Text('6'),
-          ),
-          Container(
-            color: Colors.red,
-            child: Text('6'),
+            child: Text('7'),
           ),
         ],
       ),

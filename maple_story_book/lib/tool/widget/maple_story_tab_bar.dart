@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/core/extension/extension.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 class MSTabBar extends StatefulWidget {
   final ScrollController scrollController;
-  final List<TabBarType> tapBarList;
+  final List<TabBarType> tabBarList;
   late TabController tabController;
   final bool isScrollable;
 
   MSTabBar({
     super.key,
-    required this.tapBarList,
+    required this.tabBarList,
     required this.scrollController,
     required this.tabController,
     this.isScrollable = false,
@@ -48,13 +47,9 @@ class _MSTabBarState extends State<MSTabBar> {
   void onChipTap(int index) {
     if (_selectedIndex == index) return;
 
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(() => _selectedIndex = index);
 
-    widget.tapBarList[index].onTap.hasData
-        ? widget.tapBarList[index].onTap!()
-        : null;
+    widget.tabBarList[index].onTap?.call();
   }
 
   @override
@@ -74,7 +69,7 @@ class _MSTabBarState extends State<MSTabBar> {
           labelColor: ColorName.beige,
           unselectedLabelColor: ColorName.lightGray2,
           onTap: onChipTap,
-          tabs: widget.tapBarList.map((tab) {
+          tabs: widget.tabBarList.map((tab) {
             return Tab(text: tab.text);
           }).toList(),
         ),
@@ -89,3 +84,4 @@ class TabBarType {
 
   TabBarType({this.onTap, required this.text});
 }
+
