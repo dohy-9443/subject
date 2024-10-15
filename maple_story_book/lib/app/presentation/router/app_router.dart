@@ -26,6 +26,7 @@ class AppRouter {
 
   static final GoRouter router = GoRouter(
     initialLocation: '/',
+
     routes: [
       ShellRoute(
         navigatorKey: GlobalKey<NavigatorState>(),
@@ -44,7 +45,7 @@ class AppRouter {
         routes: [
           GoRoute(
             path: '/all',
-            builder: (context, state) => const AllScreen(),
+            pageBuilder: (context, state) => const NoTransitionPage(child: AllScreen()),
             routes: [
               GoRoute(
                 path: 'guild',
@@ -78,7 +79,7 @@ class AppRouter {
           ),
           GoRoute(
             path: '/',
-            builder: (context, state) => const HomeScreen(),
+            pageBuilder: (context, state) => const NoTransitionPage(child: HomeScreen()),
           ),
           GoRoute(
             path: '/search',
@@ -86,7 +87,7 @@ class AppRouter {
           ),
           GoRoute(
             path: '/ranking',
-            builder: (context, state) => const RankingScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(child: RankingScreen()),
           ),
         ],
       ),
