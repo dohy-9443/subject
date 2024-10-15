@@ -7,6 +7,7 @@
 ///
 
 export 'base_params.dart';
+export 'cache_entry.dart';
 export 'local_storage.dart';
 export 'notice_params.dart';
 export 'potential_params.dart';
