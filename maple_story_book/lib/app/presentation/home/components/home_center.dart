@@ -16,6 +16,10 @@ class HomeCenter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("stat.characterClass : ${stat.characterClass}");
+    print("");
+    print("stat.finalStat : ${stat.finalStat}");
+
     return const Placeholder();
   }
 }
