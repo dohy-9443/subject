@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/core/extension/double_formatting.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/maple_story_text.dart';
+import 'package:maple_story_book/tool/widget/maple_stroy_button.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -377,6 +381,45 @@ class HomeCenter extends StatelessWidget {
               ],
             ),
           ),
+          AppSize.height(8),
+          Row(
+            children: [
+              Expanded(
+                child: MSButton.gradient(
+                  onPressed: () {
+                    context.read<HomeBloc>().add(GetHomeEvent<HyperStat>(ocid: "36c54981582f63ef732f51a1216299d2"));
+                  },
+                  child: MSText.bold('하이퍼 스텟', color: ColorName.lightModeDarkMode, fontSize: 20,),
+                  width: 150,
+                  height: 50,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [ColorName.lightBtn, ColorName.mainAccent],
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              AppSize.width(8),
+              Expanded(
+                child: MSButton.gradient(
+                  onPressed: () {
+                    context.read<HomeBloc>().add(GetHomeEvent<Ability>(ocid: "36c54981582f63ef732f51a1216299d2"));
+                  },
+                  child: MSText.bold('어빌리티', color: ColorName.white, fontSize: 20,),
+                  width: 150,
+                  height: 50,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [ColorName.darkModal, ColorName.modal],
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ],
+          ),
+
         ],
       ),
     );

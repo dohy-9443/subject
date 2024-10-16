@@ -113,6 +113,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     const cacheKey = 'getAbility';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
+      print("여긴가?");
       emit((state as HomeSuccess).copyWith(ability: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
@@ -123,6 +124,7 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
           );
           final res = await _getAbilityUseCase.execute(params);
           if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          print("누구인가?");
           _addToCache(cacheKey, res.data);
           emit((state as HomeSuccess).copyWith(ability: res.data, isLoading: false));
         },

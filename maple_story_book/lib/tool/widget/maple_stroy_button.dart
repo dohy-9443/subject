@@ -36,7 +36,7 @@ class MSButton extends StatelessWidget {
   factory MSButton.basic({
     required VoidCallback onPressed,
     required Widget child,
-    required double width,
+    double? width,
     required double height,
     required Color backgroundColor,
     BorderRadiusGeometry? borderRadius,
@@ -82,12 +82,16 @@ class MSButton extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: isGradient ? null : backgroundColor,
+
       decoration: isGradient ? BoxDecoration(
         gradient: gradient,
         borderRadius: borderRadius,
         border: border,
-      ) : null,
+      ) : BoxDecoration(
+        color: backgroundColor,
+        borderRadius: borderRadius,
+        border: border,
+      ),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
