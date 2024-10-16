@@ -603,6 +603,7 @@ class _HomeCenterState extends State<HomeCenter> {
               AppSize.height(4),
             ],
           ) : SizedBox.shrink(),
+
         ],
       ),
     );
