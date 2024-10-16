@@ -47,7 +47,7 @@ final class HomeSuccess extends IHomeState with BaseSuccessState  {
 
   HomeSuccess({
     this.isLoading = false,
-    this.ability = const Ability(),
+    this.ability = const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
     this.basicInfo = const BasicInfo(),
     this.propensity = const Propensity(),
     this.popularity = const Popularity(),

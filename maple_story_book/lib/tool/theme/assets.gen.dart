@@ -30,36 +30,41 @@ class $AssetsImagesGen {
   /// File path: assets/images/arcana.png
   AssetGenImage get arcana => const AssetGenImage('assets/images/arcana.png');
 
-  /// File path: assets/images/arcane.png
-  AssetGenImage get arcane => const AssetGenImage('assets/images/arcane.png');
+  /// File path: assets/images/arcane_world.png
+  AssetGenImage get arcaneWorld =>
+      const AssetGenImage('assets/images/arcane_world.png');
 
-  /// File path: assets/images/aurora.png
-  AssetGenImage get aurora => const AssetGenImage('assets/images/aurora.png');
+  /// File path: assets/images/aurora_world.png
+  AssetGenImage get auroraWorld =>
+      const AssetGenImage('assets/images/aurora_world.png');
 
-  /// File path: assets/images/bera.png
-  AssetGenImage get bera => const AssetGenImage('assets/images/bera.png');
+  /// File path: assets/images/bera_world.png
+  AssetGenImage get beraWorld =>
+      const AssetGenImage('assets/images/bera_world.png');
 
-  /// File path: assets/images/bunning.png
-  AssetGenImage get bunning => const AssetGenImage('assets/images/bunning.png');
+  /// File path: assets/images/bunning_world.png
+  AssetGenImage get bunningWorld =>
+      const AssetGenImage('assets/images/bunning_world.png');
 
-  /// File path: assets/images/croa.png
-  AssetGenImage get croa => const AssetGenImage('assets/images/croa.png');
+  /// File path: assets/images/croa_world.png
+  AssetGenImage get croaWorld =>
+      const AssetGenImage('assets/images/croa_world.png');
 
-  /// File path: assets/images/elysium.png
-  AssetGenImage get elysium => const AssetGenImage('assets/images/elysium.png');
+  /// File path: assets/images/elysium_world.png
+  AssetGenImage get elysiumWorld =>
+      const AssetGenImage('assets/images/elysium_world.png');
 
-  /// File path: assets/images/enosis.png
-  AssetGenImage get enosis => const AssetGenImage('assets/images/enosis.png');
+  /// File path: assets/images/enosis_world.png
+  AssetGenImage get enosisWorld =>
+      const AssetGenImage('assets/images/enosis_world.png');
 
-  /// File path: assets/images/first_medal.png
-  AssetGenImage get firstMedal =>
-      const AssetGenImage('assets/images/first_medal.png');
+  /// File path: assets/images/luna_world.png
+  AssetGenImage get lunaWorld =>
+      const AssetGenImage('assets/images/luna_world.png');
 
-  /// File path: assets/images/luna.png
-  AssetGenImage get luna => const AssetGenImage('assets/images/luna.png');
-
-  /// File path: assets/images/nova.png
-  AssetGenImage get nova => const AssetGenImage('assets/images/nova.png');
+  /// File path: assets/images/nova_world.png
+  AssetGenImage get novaWorld =>
+      const AssetGenImage('assets/images/nova_world.png');
 
   /// File path: assets/images/orange.gif
   AssetGenImage get orange => const AssetGenImage('assets/images/orange.gif');
@@ -71,28 +76,24 @@ class $AssetsImagesGen {
   AssetGenImage get pinkAlert =>
       const AssetGenImage('assets/images/pink_alert.png');
 
-  /// File path: assets/images/reboot.png
-  AssetGenImage get reboot => const AssetGenImage('assets/images/reboot.png');
+  /// File path: assets/images/reboot_world.png
+  AssetGenImage get rebootWorld =>
+      const AssetGenImage('assets/images/reboot_world.png');
 
-  /// File path: assets/images/red.png
-  AssetGenImage get red => const AssetGenImage('assets/images/red.png');
+  /// File path: assets/images/red_world.png
+  AssetGenImage get redWorld =>
+      const AssetGenImage('assets/images/red_world.png');
 
-  /// File path: assets/images/second_medal.png
-  AssetGenImage get secondMedal =>
-      const AssetGenImage('assets/images/second_medal.png');
-
-  /// File path: assets/images/skaina.png
-  AssetGenImage get skaina => const AssetGenImage('assets/images/skaina.png');
+  /// File path: assets/images/skania_world.png
+  AssetGenImage get skaniaWorld =>
+      const AssetGenImage('assets/images/skania_world.png');
 
   /// File path: assets/images/slime.gif
   AssetGenImage get slime => const AssetGenImage('assets/images/slime.gif');
 
-  /// File path: assets/images/third_medal.png
-  AssetGenImage get thirdMedal =>
-      const AssetGenImage('assets/images/third_medal.png');
-
-  /// File path: assets/images/union.png
-  AssetGenImage get union => const AssetGenImage('assets/images/union.png');
+  /// File path: assets/images/union_world.png
+  AssetGenImage get unionWorld =>
+      const AssetGenImage('assets/images/union_world.png');
 
   /// File path: assets/images/yetti.gif
   AssetGenImage get yetti => const AssetGenImage('assets/images/yetti.gif');
@@ -100,35 +101,33 @@ class $AssetsImagesGen {
   /// File path: assets/images/zaqqum.gif
   AssetGenImage get zaqqum => const AssetGenImage('assets/images/zaqqum.gif');
 
-  /// File path: assets/images/zenith.png
-  AssetGenImage get zenith => const AssetGenImage('assets/images/zenith.png');
+  /// File path: assets/images/zenith_world.png
+  AssetGenImage get zenithWorld =>
+      const AssetGenImage('assets/images/zenith_world.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
         arcana,
-        arcane,
-        aurora,
-        bera,
-        bunning,
-        croa,
-        elysium,
-        enosis,
-        firstMedal,
-        luna,
-        nova,
+        arcaneWorld,
+        auroraWorld,
+        beraWorld,
+        bunningWorld,
+        croaWorld,
+        elysiumWorld,
+        enosisWorld,
+        lunaWorld,
+        novaWorld,
         orange,
         pink,
         pinkAlert,
-        reboot,
-        red,
-        secondMedal,
-        skaina,
+        rebootWorld,
+        redWorld,
+        skaniaWorld,
         slime,
-        thirdMedal,
-        union,
+        unionWorld,
         yetti,
         zaqqum,
-        zenith
+        zenithWorld
       ];
 }
 
