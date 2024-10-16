@@ -28,9 +28,9 @@ class RankingScreen extends StatelessWidget {
   );
 
   initFunction(BuildContext context) {
-    context.read<RankingBloc>().add(GetRankingEvent<RankingTheSeed>(
-        date: DateTime.now().subtract(const Duration(days: 3))));
-    context.read<RankingBloc>().add(GetRankingEvent<RankingUnion>(
-        date: DateTime.now().subtract(const Duration(days: 3))));
+    context.read<RankingBloc>().add(
+        GetRankingOverallEvent<RankingOverall>(
+            date:
+            DateTime.now().subtract(const Duration(days: 3))));
   }
 }
