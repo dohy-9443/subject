@@ -25,6 +25,8 @@ class HomeFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     BasicInfo basicInfo = state.basicInfo;
     Stat stat = state.stat;
+    HyperStat hyperStat = state.hyperStat;
+    Ability ability = state.ability;
 
     return MSBaseBuildWidget(
       title: basicInfo.characterName,
@@ -36,7 +38,7 @@ class HomeFragment extends StatelessWidget {
               children: [
                 HomeTop(basicInfo: basicInfo,),
                 AppSize.height(8),
-                HomeCenter(stat: stat),
+                HomeCenter(stat: stat, hyperStat: hyperStat, ability: ability),
               ],
             ),
           ),

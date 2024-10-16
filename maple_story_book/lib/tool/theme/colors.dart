@@ -34,6 +34,14 @@ class ColorName {
 
   static const Color beige = Color(0xFFE3D3B9);
 
+  static const Color legendaryColor = Color(0xffB7D70B);
+
+  static const Color uniqueColor = Color(0xffEDBC00);
+
+  static const Color epicColor = Color(0xff7F67D3);
+
+  static const Color rareColor = Color(0xff6ED0F3);
+
   // Light mode
 
   static const Color lightBg = Color(0xFFECF0F1);

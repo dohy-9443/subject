@@ -23,6 +23,7 @@ class MSText extends StatelessWidget {
   final bool autoSize;
   final int? maxLines;
   final double minFontSize;
+  final List<Shadow>? shadow;
 
   const MSText(
     this.text, {
@@ -35,6 +36,7 @@ class MSText extends StatelessWidget {
       this.autoSize = false,
       this.maxLines = null,
       this.minFontSize = 12,
+      this.shadow = null,
     }
   );
 
@@ -42,12 +44,14 @@ class MSText extends StatelessWidget {
     String text, {
       double fontSize = 16,
       TextAlign textAlign = TextAlign.left,
-      Color color = ColorName.lightText
+      Color color = ColorName.lightText,
+      List<Shadow>? shadow,
   }) => MSText(
     text,
     fontSize: fontSize,
     textAlign: textAlign,
     color: color,
+    shadow: shadow,
   );
 
   factory MSText.bold(
@@ -55,23 +59,27 @@ class MSText extends StatelessWidget {
       double fontSize = 16,
       TextAlign textAlign = TextAlign.left,
       Color color = ColorName.lightText,
+      List<Shadow>? shadow,
   }) => MSText(
     text,
     fontWeight: FontWeight.bold,
     fontSize: fontSize,
     textAlign: textAlign,
     color: color,
+    shadow: shadow,
   );
 
   factory MSText.danger(
     String text, {
       double fontSize = 16,
       TextAlign textAlign = TextAlign.left,
+      List<Shadow>? shadow,
   }) => MSText(
     text,
     color: ColorName.danger,
     fontSize: fontSize,
     textAlign: textAlign,
+    shadow: shadow,
   );
 
   factory MSText.taengGu(
@@ -80,20 +88,39 @@ class MSText extends StatelessWidget {
       FontWeight fontWeight = FontWeight.normal,
       Color color = ColorName.black,
       TextAlign textAlign = TextAlign.left,
+      List<Shadow>? shadow,
       }) {
-    return MSText(text, fontSize: fontSize, fontWeight: fontWeight, color: color, isGoogleFont: false, textAlign: textAlign);
+    return MSText(
+      text,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: color,
+      isGoogleFont: false,
+      textAlign: textAlign,
+      shadow: shadow,
+    );
   }
 
   factory MSText.autoSize(
     String text, {
     double fontSize = 16,
-    int? maxLines = null,
+    int? maxLines,
     FontWeight fontWeight = FontWeight.normal,
     Color color = ColorName.black,
     TextAlign textAlign = TextAlign.left,
     double minFontSize = 12,
+    List<Shadow>? shadow,
   }) {
-    return MSText(text, maxLines: maxLines, fontWeight: fontWeight, color: color, autoSize: true, textAlign: textAlign, minFontSize: minFontSize);
+    return MSText(
+      text,
+      maxLines: maxLines,
+      fontWeight: fontWeight,
+      color: color,
+      autoSize: true,
+      textAlign: textAlign,
+      minFontSize: minFontSize,
+      shadow: shadow,
+    );
   }
 
   @override
@@ -108,12 +135,14 @@ class MSText extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        shadows: shadow,
       ) :
       TextStyle(
         fontFamily: FontFamily.taengGu,
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        shadows: shadow,
       ),
     ) : Text(
       text,
@@ -123,12 +152,14 @@ class MSText extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        shadows: shadow,
       ) :
       TextStyle(
         fontFamily: FontFamily.taengGu,
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        shadows: shadow,
       ),
     );
   }
