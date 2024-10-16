@@ -86,8 +86,7 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingGuild(
-      GetRankingGuildEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingGuild(GetRankingGuildEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingGuild';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
@@ -113,8 +112,7 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingOverall(
-      GetRankingOverallEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingOverall(GetRankingOverallEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingOverall';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
@@ -141,8 +139,7 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingStudio(
-      GetRankingStudioEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingStudio(GetRankingStudioEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingStudio';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
@@ -170,8 +167,7 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingTheSeed(
-      GetRankingEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingTheSeed(GetRankingEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingTheSeed';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
@@ -196,8 +192,7 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingUnion(
-      GetRankingEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingUnion(GetRankingEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingUnion';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
