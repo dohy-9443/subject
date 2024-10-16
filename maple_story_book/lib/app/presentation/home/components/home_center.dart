@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
@@ -14,16 +15,77 @@ import 'package:maple_story_book/tool/widget/maple_stroy_button.dart';
 /// @Class           : home_center.
 /// @Created by      : baekdonghyun.
 /// Created On       : 2024. 10. 14..
-/// Description      : 
+/// Description      :
 ///
 
-class HomeCenter extends StatelessWidget {
+class HomeCenter extends StatefulWidget {
   final Stat stat;
+  final HyperStat hyperStat;
+  final Ability ability;
 
-  const HomeCenter({super.key, required this.stat});
+  const HomeCenter({super.key, required this.stat, required this.hyperStat, required this.ability});
+
+  @override
+  State<HomeCenter> createState() => _HomeCenterState();
+}
+
+class _HomeCenterState extends State<HomeCenter> {
+  bool _isHyperStatSelected = false;
+  bool _isAbilitySelected = false;
 
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> hyperStatList = [
+      Column(
+        children: widget.hyperStat.hyperStatPreset1.map((el) {
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MSText.bold(el.statType, color: ColorName.white,),
+                  MSText.bold('Lv. ${el.statLevel}', color: ColorName.white,)
+                ],
+              ),
+              AppSize.height(4),
+            ],
+          );
+        }).toList(),
+      ),
+      Column(
+        children: widget.hyperStat.hyperStatPreset2.map((el) {
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MSText.bold(el.statType, color: ColorName.white,),
+                  MSText.bold('Lv. ${el.statLevel}', color: ColorName.white,)
+                ],
+              ),
+              AppSize.height(4),
+            ],
+          );
+        }).toList(),
+      ),
+      Column(
+        children: widget.hyperStat.hyperStatPreset3.map((el) {
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MSText.bold(el.statType, color: ColorName.white,),
+                  MSText.bold('Lv. ${el.statLevel}', color: ColorName.white,)
+                ],
+              ),
+              AppSize.height(4),
+            ],
+          );
+        }).toList(),
+      ),
+    ];
 
     return Container(
       padding: AppInset.all8,
@@ -33,6 +95,7 @@ class HomeCenter extends StatelessWidget {
       ),
       child: Column(
         children: [
+          // 전투력
           Container(
             padding: AppInset.all8,
             decoration: BoxDecoration(
@@ -48,6 +111,7 @@ class HomeCenter extends StatelessWidget {
             ),
           ),
           AppSize.height(8),
+          // 기본 스텟 6스텟
           Container(
             padding: AppInset.all8,
             decoration: BoxDecoration(
@@ -124,6 +188,7 @@ class HomeCenter extends StatelessWidget {
             ),
           ),
           AppSize.height(8),
+          // 그 외 옵션으로 올라가는 스텟
           Container(
             padding: AppInset.all8,
             decoration: BoxDecoration(
@@ -273,6 +338,7 @@ class HomeCenter extends StatelessWidget {
             ),
           ),
           AppSize.height(8),
+          // 기타
           Container(
             padding: AppInset.all8,
             decoration: BoxDecoration(
@@ -382,12 +448,16 @@ class HomeCenter extends StatelessWidget {
             ),
           ),
           AppSize.height(8),
+          // 하이퍼 스텟, 어빌리티 버튼
           Row(
             children: [
               Expanded(
                 child: MSButton.gradient(
                   onPressed: () {
                     context.read<HomeBloc>().add(GetHomeEvent<HyperStat>(ocid: "36c54981582f63ef732f51a1216299d2"));
+                    setState(() {
+                      _isHyperStatSelected = !_isHyperStatSelected;
+                    });
                   },
                   child: MSText.bold('하이퍼 스텟', color: ColorName.lightModeDarkMode, fontSize: 20,),
                   width: 150,
@@ -405,6 +475,9 @@ class HomeCenter extends StatelessWidget {
                 child: MSButton.gradient(
                   onPressed: () {
                     context.read<HomeBloc>().add(GetHomeEvent<Ability>(ocid: "36c54981582f63ef732f51a1216299d2"));
+                    setState(() {
+                      _isAbilitySelected = !_isAbilitySelected;
+                    });
                   },
                   child: MSText.bold('어빌리티', color: ColorName.white, fontSize: 20,),
                   width: 150,
@@ -419,14 +492,124 @@ class HomeCenter extends StatelessWidget {
               ),
             ],
           ),
-
+          AppSize.height(16),
+          // 하이퍼 스텟
+          _isHyperStatSelected ? Column(
+            children: [
+              // 하이퍼 스텟 , 창닫기
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MSText.bold('하이퍼 스텟', fontSize: 25, color: ColorName.white,),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 2, color: ColorName.white)
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {},
+                        child: MSText.bold('X', color: ColorName.white, textAlign: TextAlign.center,),
+                      ),
+                    )
+                  ),
+                ],
+              ),
+              AppSize.height(16),
+              // 하이퍼 스텟 슬라이드
+              SizedBox(
+                height: 500,
+                child: Swiper(
+                  itemCount: hyperStatList.length,
+                  pagination: const SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                      activeColor: ColorName.mainAccent,
+                      color: ColorName.white,
+                    ),
+                  ),
+                  loop: false,
+                  index: widget.hyperStat.usePresetNo - 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      padding: AppInset.all8,
+                      margin: AppInset.edgeInsetsValue([0, 4]),
+                      decoration: BoxDecoration(
+                        color: ColorName.lightGray1,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: hyperStatList[index],
+                    );
+                  },
+                ),
+              ),
+              AppSize.height(4),
+            ],
+          ) : SizedBox.shrink(),
+          // 어빌리티
+          _isAbilitySelected ? Column(
+            children: [
+              // 어빌리티 , 창닫기
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MSText.bold('어빌리티', fontSize: 25, color: ColorName.white,),
+                  Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(width: 2, color: ColorName.white)
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                          child: MSText.bold('X', color: ColorName.white, textAlign: TextAlign.center,),
+                        ),
+                      )
+                  ),
+                ],
+              ),
+              AppSize.height(16),
+              // 어빌리티 슬라이드
+              SizedBox(
+                height: 500,
+                child: Swiper(
+                  itemCount: hyperStatList.length,
+                  pagination: const SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                      activeColor: ColorName.mainAccent,
+                      color: ColorName.white,
+                    ),
+                  ),
+                  loop: false,
+                  index: widget.hyperStat.usePresetNo - 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      padding: AppInset.all8,
+                      margin: AppInset.edgeInsetsValue([0, 4]),
+                      decoration: BoxDecoration(
+                        color: ColorName.lightGray1,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: hyperStatList[index],
+                    );
+                  },
+                ),
+              ),
+              AppSize.height(4),
+            ],
+          ) : SizedBox.shrink(),
         ],
       ),
     );
   }
 
   String statValuePrint({required String name}) {
-    final result = stat.finalStat.firstWhere(
+    final result = widget.stat.finalStat.firstWhere(
           (element) => element.statName == name,
       orElse: () => StatElement(statName: name, statValue: 0),
     );
