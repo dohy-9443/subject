@@ -12,3 +12,4 @@ export 'list_extension.dart';
 export 'nick_name_validator_extension.dart';
 export 'null_check_extension.dart';
 export 'double_formatting.dart';
+export 'int_extension.dart';

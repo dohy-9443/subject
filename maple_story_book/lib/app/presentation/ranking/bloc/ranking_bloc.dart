@@ -201,7 +201,7 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     const cacheKey = 'getRankingUnion';
 
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingTheSeed: _cache[cacheKey]!.data, isLoading: false));
+      emit((state as RankingSuccess).copyWith(rankingUnion: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {

@@ -35,6 +35,8 @@ enum WorldName {
         return WorldName.skania;
       case 'bera':
         return WorldName.bera;
+      case 'luna':
+        return WorldName.luna;
       case 'zenith':
         return WorldName.zenith;
       case 'croa':

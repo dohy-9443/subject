@@ -11,3 +11,4 @@ export 'world_name.dart';
 export 'difficulty.dart';
 export 'ranking_type.dart';
 export 'skill_grade.dart';
+export 'world_image.dart';
