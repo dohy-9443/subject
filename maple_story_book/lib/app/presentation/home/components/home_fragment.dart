@@ -104,7 +104,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
             ),
           )
         ),
-        SliverToBoxAdapter(child: AppSize.height(16),),
+        SliverToBoxAdapter(child: AppSize.height(8),),
         SliverPersistentHeader(
           pinned: true,
           delegate: _SliverTabBarDelegate(MSTabBar(

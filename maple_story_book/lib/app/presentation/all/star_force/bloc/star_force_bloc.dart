@@ -21,21 +21,49 @@ class StarForceBloc extends Bloc<IStarForceEvent, IStarForceState> {
     on<GetStarForceEvent>(getStarForceHistory);
   }
 
+  static const Duration cacheDuration = Duration(minutes: 10);
+  static const int maxCacheSize = 20;
+
+  final Map<String, CacheEntry> _cache = {};
+  final List<String> _cacheKeys = [];
+
+  void _addToCache(String key, dynamic data) {
+    if (_cacheKeys.length >= maxCacheSize) {
+      final oldestKey = _cacheKeys.removeAt(0);
+      _cache.remove(oldestKey);
+    }
+    _cache[key] = CacheEntry(data, DateTime.now());
+    _cacheKeys.add(key);
+  }
+
+  bool _isCacheExpired(CacheEntry entry) {
+    return DateTime.now().difference(entry.cacheTime) > cacheDuration;
+  }
+
   Future<void> getStarForceHistory(GetStarForceEvent event, Emitter<IStarForceState> emit) async {
+    const cacheKey = 'getStarForceHistory';
+
     if (state is StarForceSuccess) {
       emit((state as StarForceSuccess).copyWith(isLoading: true));
     } else {
       emit(StarForceSuccess(isLoading: true));
     }
+
     try {
-      final params = PotentialParams(
-        count: event.count,
-        date: event.date,
-        cursor: event.cursor,
-      );
-      final res = await _getHistoryStarForceUseCase.execute(params);
-      if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-      emit((state as StarForceSuccess).copyWith(starForceHistory: res.data, isLoading: false));
+      if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
+        emit((state as StarForceSuccess).copyWith(starForceHistory: _cache[cacheKey]!.data, isLoading: false));
+      } else {
+
+        final params = PotentialParams(
+          count: event.count,
+          date: event.date,
+          cursor: event.cursor,
+        );
+        final res = await _getHistoryStarForceUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        _addToCache(cacheKey, res.data);
+        emit((state as StarForceSuccess).copyWith(starForceHistory: res.data, isLoading: false));
+      }
     } catch (e, s) {
       emit(StarForceError(error: e, stackTrace: s));
     }
