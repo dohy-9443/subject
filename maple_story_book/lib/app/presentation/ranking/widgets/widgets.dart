@@ -10,3 +10,4 @@
 export 'studio_table_row.dart';
 export 'ranking_decoration.dart';
 export 'top_ranker_item_template.dart';
+export 'ranking_tab_view_template.dart';
