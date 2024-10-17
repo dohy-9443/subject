@@ -15,16 +15,16 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 /// Description      :
 ///
 
-class RankingSuccessWidget extends StatefulWidget {
+class RankingFragment extends StatefulWidget {
   final RankingSuccess state;
 
-  const RankingSuccessWidget(this.state, {super.key});
+  const RankingFragment(this.state, {super.key});
 
   @override
-  State<RankingSuccessWidget> createState() => _RankingSuccessWidgetState();
+  State<RankingFragment> createState() => _RankingFragmentState();
 }
 
-class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
+class _RankingFragmentState extends State<RankingFragment>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   final String selectWorld = '';
 

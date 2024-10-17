@@ -4,7 +4,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
-import 'package:maple_story_book/app/presentation/ranking/components/ranking_success_widget.dart';
+import 'package:maple_story_book/app/presentation/ranking/components/components.dart';
 import 'package:maple_story_book/core/util/util.dart';
 
 ///
@@ -22,7 +22,7 @@ class RankingScreen extends StatelessWidget {
   Widget build(BuildContext context) => MSBlocConsumer<RankingBloc, IRankingState, RankingSuccess>(
     initFunc: initFunction,
     bloc: context.read<RankingBloc>(),
-    success: (context, successState) => RankingSuccessWidget(successState),
+    success: (context, successState) => RankingFragment(successState),
     errorPressed: () {},
     errorFullScreenPressed: () {}
   );

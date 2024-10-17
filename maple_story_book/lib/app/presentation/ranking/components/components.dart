@@ -5,3 +5,4 @@ export 'guild_tab_view.dart';
 export 'studio_tab_view.dart';
 export 'the_seed_tab_view.dart';
 export 'achievement_tab_view.dart';
+export 'ranking_fragment.dart';
