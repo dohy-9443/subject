@@ -70,7 +70,7 @@ class _MSTabBarState extends State<MSTabBar> {
           unselectedLabelColor: ColorName.lightGray2,
           onTap: onChipTap,
           tabs: widget.tabBarList.map((tab) {
-            return Tab(text: tab.text);
+            return Tab(text: tab.text,);
           }).toList(),
         ),
       ),

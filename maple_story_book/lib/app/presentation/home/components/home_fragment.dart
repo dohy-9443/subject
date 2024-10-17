@@ -13,7 +13,7 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 /// Description      : 
 ///
 
-class HomeFragment extends StatelessWidget {
+class HomeFragment extends StatefulWidget {
   final HomeSuccess state;
 
   const HomeFragment({
@@ -22,11 +22,33 @@ class HomeFragment extends StatelessWidget {
   });
 
   @override
+  State<HomeFragment> createState() => _HomeFragmentState();
+}
+
+class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderStateMixin {
+
+  late TabController _tabController;
+  ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    BasicInfo basicInfo = state.basicInfo;
-    Stat stat = state.stat;
-    HyperStat hyperStat = state.hyperStat;
-    Ability ability = state.ability;
+    BasicInfo basicInfo = widget.state.basicInfo;
+    Stat stat = widget.state.stat;
+    HyperStat hyperStat = widget.state.hyperStat;
+    Ability ability = widget.state.ability;
 
     return MSBaseBuildWidget(
       title: basicInfo.characterName,
@@ -38,7 +60,39 @@ class HomeFragment extends StatelessWidget {
               children: [
                 HomeTop(basicInfo: basicInfo,),
                 AppSize.height(8),
-                HomeCenter(stat: stat, hyperStat: hyperStat, ability: ability),
+                MSTabBar(
+                  scrollController: scrollController,
+                  tabController: _tabController,
+                  tabBarList: [
+                    TabBarType(
+                      onTap: () {},
+                      text: '스텟',
+                    ),
+                    TabBarType(
+                      onTap: () {},
+                      text: '장비',
+                    ),
+                    TabBarType(
+                      onTap: () {},
+                      text: '스킬',
+                    ),
+                    TabBarType(
+                      onTap: () {},
+                      text: '성향 / 어빌리티',
+                    ),
+                  ],
+                ),
+                AppSize.height(8),
+
+                TabBarView(
+                  controller: _tabController,
+                  children: [
+                    HomeCenter(stat: stat, hyperStat: hyperStat, ability: ability),
+                    Container(color: Colors.redAccent,),
+                    Container(color: Colors.orangeAccent,),
+                    Container(color: Colors.yellowAccent,),
+                  ],
+                ),
               ],
             ),
           ),
