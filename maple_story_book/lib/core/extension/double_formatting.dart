@@ -6,10 +6,10 @@
 /// Description      : 
 ///
 
-extension DoubleFormatting on double {
+extension DoubleFormatting on num {
   String numberToKorean() {
     int intNum = this.toInt();
-    double doubleNum = this - intNum;
+    double doubleNum = (this as double) - intNum;
 
     int millions = intNum ~/ 10000;
     int remains = intNum % 10000;
@@ -34,5 +34,15 @@ extension DoubleFormatting on double {
 
   String toIntString() {
     return this.toInt().toString();
+  }
+
+  String toIntFormatTime() {
+    int minutes = this ~/ 60;
+    int seconds = (this as int) % 60;
+
+    String formattedMinutes = minutes.toString().padLeft(2, '0');
+    String formattedSeconds = seconds.toString().padLeft(2, '0');
+
+    return '$formattedMinutes분 $formattedSeconds초';
   }
 }

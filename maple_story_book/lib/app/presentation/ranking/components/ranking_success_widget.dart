@@ -4,10 +4,6 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
-import 'package:maple_story_book/app/presentation/ranking/components/build_guild_item.dart';
-import 'package:maple_story_book/app/presentation/ranking/components/build_overall_item.dart';
-import 'package:maple_story_book/app/presentation/ranking/components/build_studio_item.dart';
-import 'package:maple_story_book/app/presentation/ranking/components/build_union_item.dart';
 import 'package:maple_story_book/app/presentation/ranking/components/components.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
@@ -29,11 +25,14 @@ class RankingSuccessWidget extends StatefulWidget {
 }
 
 class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   final String selectWorld = '';
 
   late TabController _tabController;
   ScrollController scrollController = ScrollController();
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -50,6 +49,7 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return MSBaseBuildWidget(
       appBar: MSAppBar(
         title: '랭킹',
@@ -141,13 +141,13 @@ class _RankingSuccessWidgetState extends State<RankingSuccessWidget>
           unionTabView(widget.state.rankingUnion?.ranking),
           guildTabView(widget.state.rankingGuild?.ranking),
           studioTabView(widget.state.rankingStudio?.ranking),
-          template<RankingTheSeedElement>(widget.state.rankingTheSeed?.ranking),
-          template<RankingAchievementElement>(
-              widget.state.rankingAchievement?.ranking),
+          theSeedTabView(widget.state.rankingTheSeed?.ranking),
+          achievementTabView(widget.state.rankingAchievement?.ranking),
         ],
       ),
     );
   }
 }
+
 
 
