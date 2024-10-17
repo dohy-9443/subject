@@ -32,6 +32,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
   ScrollController scrollController = ScrollController();
   ScrollController tabScrollController = ScrollController();
   bool isExpanded = true;
+  bool isTitleVisible = false;
 
   @override
   void initState() {
@@ -50,11 +51,28 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
   }
 
   scrollListener() {
+    double threshold = 150;
+    double offset = scrollController.offset;
     bool isCurrentlyExpanded = scrollController.offset < 200 - kToolbarHeight;
 
     if (isExpanded != isCurrentlyExpanded) {
       setState(() {
         isExpanded = isCurrentlyExpanded;
+      });
+    }
+
+    if (offset > threshold) {
+      setState(() {
+        isTitleVisible = true;
+      });
+    // } else if (offset <= threshold && isTitleVisible) {
+    //   print("여기도 아닌거같은데?");
+    //   setState(() {
+    //     isTitleVisible = false;
+    //   });
+    } else {
+      setState(() {
+        isTitleVisible = false;
       });
     }
   }
@@ -74,8 +92,9 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
           expandedHeight: 200,
           backgroundColor: isExpanded ? ColorName.lightBg : ColorName.mainAccent,
           floating: true,
-          centerTitle: true,
-          title: isExpanded ? null : MSText.bold(basicInfo.characterName),
+          title: isTitleVisible && !isExpanded ?
+            MSText.bold(basicInfo.characterName, color: ColorName.white, fontSize: 20,)
+              : null,
           flexibleSpace: FlexibleSpaceBar(
             background: SafeArea(
               child: Padding(

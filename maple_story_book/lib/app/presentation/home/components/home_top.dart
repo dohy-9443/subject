@@ -47,6 +47,7 @@ class HomeTop extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(20)
         ),
+        margin: AppInset.bottom8,
         child: Container(
           height: 200,
           padding: AppInset.edgeInsetsValue([0, 8]),
