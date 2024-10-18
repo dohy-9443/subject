@@ -98,158 +98,8 @@ class _HomeCenterState extends State<HomeCenter> {
           children: [
             Container(
               padding: AppInset.edgeInsetsValue([4, 8]),
-              // decoration: BoxDecoration(
-              //   color: abilityColor(grade: widget.ability.abilityPreset1!.abilityPresetGrade),
-              //   borderRadius: BorderRadius.circular(10),
-              // ),
-              child: Row(
-                children: [
-                  Text(
-                    String.fromCharCode(Icons.bookmark.codePoint),
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: Icons.bookmark.fontFamily,
-                      color: ColorName.white,
-                      shadows: [
-                        Shadow(
-                          blurRadius: 5.0,
-                          color: Colors.black.withOpacity(0.5),
-                          offset: Offset(-2.0, -2.0),
-                        ),
-                      ],
-                    ),
-                  ),
-                  AppSize.width(4),
-                  Visibility(
-                    visible: widget.ability.abilityPreset1 == null,
-                    child: MSText.bold(
-                      '${widget.ability.abilityPreset1?.abilityPresetGrade} 어빌리티', color: ColorName.white, fontSize: 20,
-                      shadow: [
-                        Shadow(
-                          blurRadius: 5.0,
-                          color: Colors.black.withOpacity(0.5),
-                          offset: Offset(-1.0, -1.0),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            AppSize.height(8),
-            // ...widget.ability.abilityPreset1!.abilityInfo.mapIndexed((index, el) {
-            //   return Column(
-            //     children: [
-            //       Container(
-            //         height: 40,
-            //         padding: AppInset.edgeInsetsValue([4, 8]),
-            //         decoration: BoxDecoration(
-            //           color: abilityColor(grade: el.abilityGrade),
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           children: [
-            //             MSText.bold(
-            //               el.abilityValue,
-            //               color: ColorName.white,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       if (widget.ability.abilityPreset1!.abilityInfo.length - 1 != index) AppSize.height(6)
-            //     ],
-            //   );
-            // }),
-          ],
-        ),
-      ),
-      Container(
-        padding: AppInset.all8,
-        decoration: BoxDecoration(
-          color: ColorName.lightGray3,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            Container(
-              padding: AppInset.edgeInsetsValue([4, 8]),
-              // decoration: BoxDecoration(
-              //   color: abilityColor(grade: widget.ability.abilityPreset2!.abilityPresetGrade),
-              //   borderRadius: BorderRadius.circular(10),
-              // ),
-              child: Row(
-                children: [
-                  Text(
-                    String.fromCharCode(Icons.bookmark.codePoint),
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: Icons.bookmark.fontFamily,
-                      color: ColorName.white,
-                      shadows: [
-                        Shadow(
-                          blurRadius: 5.0,
-                          color: Colors.black.withOpacity(0.5),
-                          offset: Offset(-2.0, -2.0),
-                        ),
-                      ],
-                    ),
-                  ),
-                  AppSize.width(4),
-                  MSText.bold(
-                    '',
-                    // '${widget.ability.abilityPreset2!.abilityPresetGrade} 어빌리티', color: ColorName.white, fontSize: 20,
-                    shadow: [
-                      Shadow(
-                        blurRadius: 5.0,
-                        color: Colors.black.withOpacity(0.5),
-                        offset: Offset(-1.0, -1.0),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            AppSize.height(8),
-            // ...widget.ability.abilityPreset2!.abilityInfo.mapIndexed((index, el) {
-            //   return Column(
-            //     children: [
-            //       Container(
-            //         height: 40,
-            //         padding: AppInset.edgeInsetsValue([4, 8]),
-            //         decoration: BoxDecoration(
-            //           color: abilityColor(grade: el.abilityGrade),
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           children: [
-            //             MSText.bold(
-            //               el.abilityValue,
-            //               color: ColorName.white,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       if (widget.ability.abilityPreset2!.abilityInfo.length - 1 != index) AppSize.height(6)
-            //     ],
-            //   );
-            // }),
-          ],
-        ),
-      ),
-      Container(
-        padding: AppInset.all8,
-        decoration: BoxDecoration(
-          color: ColorName.lightGray3,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            Container(
-              padding: AppInset.edgeInsetsValue([4, 8]),
               decoration: BoxDecoration(
-                // color: abilityColor(grade: widget.ability.abilityPreset3!.abilityPresetGrade),
+                color: abilityColor(grade: widget.ability.abilityPreset1!.abilityPresetGrade),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
@@ -271,8 +121,7 @@ class _HomeCenterState extends State<HomeCenter> {
                   ),
                   AppSize.width(4),
                   MSText.bold(
-                    '',
-                    // '${widget.ability.abilityPreset1!.abilityPresetGrade} 어빌리티', color: ColorName.white, fontSize: 20,
+                    '${widget.ability.abilityPreset1.abilityPresetGrade} 어빌리티', color: ColorName.white, fontSize: 20,
                     shadow: [
                       Shadow(
                         blurRadius: 5.0,
@@ -285,30 +134,176 @@ class _HomeCenterState extends State<HomeCenter> {
               ),
             ),
             AppSize.height(8),
-            // ...widget.ability.abilityPreset3!.abilityInfo.mapIndexed((index, el) {
-            //   return Column(
-            //     children: [
-            //       Container(
-            //         height: 40,
-            //         padding: AppInset.edgeInsetsValue([4, 8]),
-            //         decoration: BoxDecoration(
-            //           color: abilityColor(grade: el.abilityGrade),
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           children: [
-            //             MSText.bold(
-            //               el.abilityValue,
-            //               color: ColorName.white,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       if (widget.ability.abilityPreset3!.abilityInfo.length - 1 != index) AppSize.height(6)
-            //     ],
-            //   );
-            // }),
+            ...widget.ability.abilityPreset1.abilityInfo.mapIndexed((index, el) {
+              return Column(
+                children: [
+                  Container(
+                    height: 40,
+                    padding: AppInset.edgeInsetsValue([4, 8]),
+                    decoration: BoxDecoration(
+                      color: abilityColor(grade: el.abilityGrade),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MSText.bold(
+                          el.abilityValue,
+                          color: ColorName.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (widget.ability.abilityPreset1.abilityInfo.length - 1 != index) AppSize.height(6)
+                ],
+              );
+            }),
+          ],
+        ),
+      ),
+      Container(
+        padding: AppInset.all8,
+        decoration: BoxDecoration(
+          color: ColorName.lightGray3,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: AppInset.edgeInsetsValue([4, 8]),
+              decoration: BoxDecoration(
+                color: abilityColor(grade: widget.ability.abilityPreset2.abilityPresetGrade),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    String.fromCharCode(Icons.bookmark.codePoint),
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: Icons.bookmark.fontFamily,
+                      color: ColorName.white,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 5.0,
+                          color: Colors.black.withOpacity(0.5),
+                          offset: Offset(-2.0, -2.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AppSize.width(4),
+                  MSText.bold(
+                    '${widget.ability.abilityPreset2.abilityPresetGrade} 어빌리티', color: ColorName.white, fontSize: 20,
+                    shadow: [
+                      Shadow(
+                        blurRadius: 5.0,
+                        color: Colors.black.withOpacity(0.5),
+                        offset: Offset(-1.0, -1.0),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            AppSize.height(8),
+            ...widget.ability.abilityPreset2.abilityInfo.mapIndexed((index, el) {
+              return Column(
+                children: [
+                  Container(
+                    height: 40,
+                    padding: AppInset.edgeInsetsValue([4, 8]),
+                    decoration: BoxDecoration(
+                      color: abilityColor(grade: el.abilityGrade),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MSText.bold(
+                          el.abilityValue,
+                          color: ColorName.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (widget.ability.abilityPreset2.abilityInfo.length - 1 != index) AppSize.height(6)
+                ],
+              );
+            }),
+          ],
+        ),
+      ),
+      Container(
+        padding: AppInset.all8,
+        decoration: BoxDecoration(
+          color: ColorName.lightGray3,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: AppInset.edgeInsetsValue([4, 8]),
+              decoration: BoxDecoration(
+                color: abilityColor(grade: widget.ability.abilityPreset3.abilityPresetGrade),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    String.fromCharCode(Icons.bookmark.codePoint),
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: Icons.bookmark.fontFamily,
+                      color: ColorName.white,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 5.0,
+                          color: Colors.black.withOpacity(0.5),
+                          offset: Offset(-2.0, -2.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AppSize.width(4),
+                  MSText.bold(
+                    '${widget.ability.abilityPreset3.abilityPresetGrade} 어빌리티', color: ColorName.white, fontSize: 20,
+                    shadow: [
+                      Shadow(
+                        blurRadius: 5.0,
+                        color: Colors.black.withOpacity(0.5),
+                        offset: Offset(-1.0, -1.0),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            AppSize.height(8),
+            ...widget.ability.abilityPreset3!.abilityInfo.mapIndexed((index, el) {
+              return Column(
+                children: [
+                  Container(
+                    height: 40,
+                    padding: AppInset.edgeInsetsValue([4, 8]),
+                    decoration: BoxDecoration(
+                      color: abilityColor(grade: el.abilityGrade),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MSText.bold(
+                          el.abilityValue,
+                          color: ColorName.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (widget.ability.abilityPreset3.abilityInfo.length - 1 != index) AppSize.height(6)
+                ],
+              );
+            }),
           ],
         ),
       ),
