@@ -10,3 +10,4 @@ export 'border_radius_container.dart';
 export 'home_center.dart';
 export 'home_fragment.dart';
 export 'home_top.dart';
+export 'sliver_tab_bar_delegate.dart';

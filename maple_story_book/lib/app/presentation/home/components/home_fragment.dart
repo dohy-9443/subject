@@ -51,9 +51,9 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
   }
 
   scrollListener() {
-    double threshold = 150;
+    double threshold = 200;
     double offset = scrollController.offset;
-    bool isCurrentlyExpanded = scrollController.offset < 200 - kToolbarHeight;
+    bool isCurrentlyExpanded = scrollController.offset < 150 - kToolbarHeight;
 
     if (isExpanded != isCurrentlyExpanded) {
       setState(() {
@@ -65,11 +65,6 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
       setState(() {
         isTitleVisible = true;
       });
-    // } else if (offset <= threshold && isTitleVisible) {
-    //   print("여기도 아닌거같은데?");
-    //   setState(() {
-    //     isTitleVisible = false;
-    //   });
     } else {
       setState(() {
         isTitleVisible = false;
@@ -90,8 +85,8 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
         SliverAppBar(
           pinned: true,
           expandedHeight: 200,
-          backgroundColor: isExpanded ? ColorName.lightBg : ColorName.mainAccent,
           floating: true,
+          backgroundColor: isTitleVisible && !isExpanded ? ColorName.mainAccent : ColorName.lightBg,
           title: isTitleVisible && !isExpanded ?
             MSText.bold(basicInfo.characterName, color: ColorName.white, fontSize: 20,)
               : null,
@@ -102,12 +97,22 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
                 child: HomeTop(basicInfo: basicInfo,),
               ),
             ),
-          )
+          ),
+          leading: isExpanded ? null : IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.menu, color: ColorName.white,),
+          ),
+          actions: isExpanded ? null : [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search, color: ColorName.white,),
+            ),
+          ],
         ),
         SliverToBoxAdapter(child: AppSize.height(8),),
         SliverPersistentHeader(
           pinned: true,
-          delegate: _SliverTabBarDelegate(MSTabBar(
+          delegate: SliverTabBarDelegate(MSTabBar(
             scrollController: tabScrollController,
             tabController: _tabController,
             tabBarList: [
@@ -139,34 +144,6 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
         ),
       ],
     );
-  }
-}
-
-class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
-  final MSTabBar tabBar;
-
-  _SliverTabBarDelegate(this.tabBar);
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white, // MSTabBar의 배경 색상
-      child: PreferredSize(
-        preferredSize: Size.fromHeight(48), // MSTabBar의 높이를 설정
-        child: tabBar,
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 48;
-
-  @override
-  double get minExtent => 48;
-
-  @override
-  bool shouldRebuild(_SliverTabBarDelegate oldDelegate) {
-    return oldDelegate.tabBar != tabBar;
   }
 }
 
