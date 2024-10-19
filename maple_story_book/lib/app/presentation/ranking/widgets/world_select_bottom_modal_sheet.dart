@@ -3,7 +3,8 @@ import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
-Widget worldSelectBottomModalSheet(BuildContext context, int selectWorldIndex, void Function(dynamic) onTap) {
+Widget worldSelectBottomModalSheet(
+    BuildContext context, int selectWorldIndex, void Function(dynamic) onTap) {
   return Container(
     padding: AppInset.edgeInsetsValue([8]),
     decoration: BoxDecoration(
@@ -99,13 +100,15 @@ Widget worldSelectButton(int selectWorldIndex, void Function(dynamic) onTap) {
         worldKorName: '버닝2',
         worldEngName: 'BUNNING2'),
     WorldSelectModel(
-        worldImage: Assets.images.bunningWorld.path,
-        worldKorName: '버닝3',
-        worldEngName: 'BUNNING3'),
+      worldImage: Assets.images.bunningWorld.path,
+      worldKorName: '버닝3',
+      worldEngName: 'BUNNING3',
+    ),
     WorldSelectModel(
-        worldImage: Assets.images.bunningWorld.path,
-        worldKorName: '전체월드',
-        worldEngName: 'NONE'),
+      worldImage: Assets.images.mapleWholeWorld.path,
+      worldKorName: '전체월드',
+      worldEngName: 'ALLWORLD',
+    ),
   ];
 
   return Container(
@@ -130,27 +133,24 @@ Widget worldSelectButton(int selectWorldIndex, void Function(dynamic) onTap) {
   );
 }
 
-Widget worldButton(
-    WorldSelectModel worldSelect, int index, int selectedWorldIndex,void Function(dynamic) onTap) {
+Widget worldButton(WorldSelectModel worldSelect, int index,
+    int selectedWorldIndex, void Function(dynamic) onTap) {
   return GestureDetector(
-    onTap: ()=> onTap(index),
+    onTap: () => onTap(index),
     child: Container(
       decoration: BoxDecoration(
-        border: Border.all(
-          color:
-          index == selectedWorldIndex ? ColorName.mainAccent : Colors.white,
-        ),
+        border: Border.all(color: ColorName.white),
         borderRadius: BorderRadius.circular(10),
         gradient: index == selectedWorldIndex
             ? null
             : const LinearGradient(
-          colors: [
-            Color(0xFFC3B6A0),
-            ColorName.beige,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+                colors: [
+                  Color(0xFFC3B6A0),
+                  ColorName.beige,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
         boxShadow: [
           if (index == selectedWorldIndex)
             const BoxShadow(
@@ -170,8 +170,11 @@ Widget worldButton(
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MSText.bold(worldSelect.worldKorName,
-                  fontSize: 14, color: ColorName.white),
+              MSText.bold(
+                worldSelect.worldKorName,
+                fontSize: 14,
+                color: ColorName.white,
+              ),
               MSText.bold(
                 worldSelect.worldEngName,
                 fontSize: 7,

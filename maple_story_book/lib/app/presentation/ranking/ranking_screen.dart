@@ -19,18 +19,21 @@ class RankingScreen extends StatelessWidget {
   const RankingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => MSBlocConsumer<RankingBloc, IRankingState, RankingSuccess>(
-    initFunc: initFunction,
-    bloc: context.read<RankingBloc>(),
-    success: (context, successState) => RankingFragment(successState),
-    errorPressed: () {},
-    errorFullScreenPressed: () {}
-  );
+  Widget build(BuildContext context) =>
+      MSBlocConsumer<RankingBloc, IRankingState, RankingSuccess>(
+          initFunc: initFunction,
+          bloc: context.read<RankingBloc>(),
+          success: (context, successState) => RankingFragment(successState),
+          errorPressed: () {},
+          errorFullScreenPressed: () {});
 
   initFunction(BuildContext context) {
     context.read<RankingBloc>().add(
-        GetRankingOverallEvent<RankingOverall>(
-            date:
-            DateTime.now().subtract(const Duration(days: 3))));
+          GetRankingOverallEvent<RankingOverall>(
+            date: DateTime.now().subtract(
+              const Duration(days: 3),
+            ),
+          ),
+        );
   }
 }
