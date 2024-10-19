@@ -10,7 +10,7 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      :
 ///
 
-sealed class IRankingState extends Equatable with IBaseState{}
+sealed class IRankingState extends Equatable with IBaseState {}
 
 final class RankingInitial extends IRankingState with BaseInitialState {
   RankingInitial();
@@ -27,6 +27,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
   final RankingStudio? rankingStudio;
   final RankingTheSeed? rankingTheSeed;
   final RankingUnion? rankingUnion;
+  final String selectWorldName;
 
   RankingSuccess({
     this.isLoading = false,
@@ -36,6 +37,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
     this.rankingStudio,
     this.rankingTheSeed,
     this.rankingUnion,
+    this.selectWorldName = '',
   });
 
   RankingSuccess copyWith({
@@ -47,6 +49,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
     RankingStudio? rankingStudio,
     RankingTheSeed? rankingTheSeed,
     RankingUnion? rankingUnion,
+    String? selectWorldName,
   }) {
     return RankingSuccess(
       isLoading: isLoading ?? this.isLoading,
@@ -56,19 +59,20 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
       rankingStudio: rankingStudio ?? this.rankingStudio,
       rankingTheSeed: rankingTheSeed ?? this.rankingTheSeed,
       rankingUnion: rankingUnion ?? this.rankingUnion,
+      selectWorldName: selectWorldName ?? this.selectWorldName,
     );
   }
 
   @override
   List<Object?> get props => [
-    isLoading,
-    rankingAchievement,
-    rankingGuild,
-    rankingOverall,
-    rankingStudio,
-    rankingTheSeed,
-    rankingUnion,
-  ];
+        isLoading,
+        rankingAchievement,
+        rankingGuild,
+        rankingOverall,
+        rankingStudio,
+        rankingTheSeed,
+        rankingUnion,
+      ];
 }
 
 final class RankingError extends IRankingState with BaseErrorState {
