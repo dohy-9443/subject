@@ -20,18 +20,18 @@ import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 /// Description      :
 ///
 
-class HomeCenter extends StatefulWidget {
+class HomeStat extends StatefulWidget {
   final Stat stat;
   final HyperStat hyperStat;
   final Ability ability;
 
-  const HomeCenter({super.key, required this.stat, required this.hyperStat, required this.ability});
+  const HomeStat({super.key, required this.stat, required this.hyperStat, required this.ability});
 
   @override
-  State<HomeCenter> createState() => _HomeCenterState();
+  State<HomeStat> createState() => _HomeStatState();
 }
 
-class _HomeCenterState extends State<HomeCenter> {
+class _HomeStatState extends State<HomeStat> {
   bool _isHyperStatSelected = false;
   bool _isAbilitySelected = false;
 

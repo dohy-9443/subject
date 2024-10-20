@@ -7,7 +7,7 @@
 ///
 
 export 'border_radius_container.dart';
-export 'home_center.dart';
+export 'home_stat.dart';
 export 'home_fragment.dart';
 export 'home_top.dart';
 export 'round_square.dart';

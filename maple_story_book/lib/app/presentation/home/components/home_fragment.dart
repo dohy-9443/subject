@@ -149,7 +149,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
           // 첫 번째 탭의 내용 (예: 스탯 관련 콘텐츠)
           SingleChildScrollView(
             padding: AppInset.all8,
-            child: HomeCenter(stat: stat, hyperStat: hyperStat, ability: ability),
+            child: HomeStat(stat: stat, hyperStat: hyperStat, ability: ability),
           ),
           // 두 번째 탭의 내용
           SingleChildScrollView(
