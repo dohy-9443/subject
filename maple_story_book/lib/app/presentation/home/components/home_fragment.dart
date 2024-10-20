@@ -65,7 +65,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
   scrollListener() {
     double threshold = 200;
     double offset = scrollController.offset;
-    bool isCurrentlyExpanded = scrollController.offset < 150 - kToolbarHeight;
+    bool isCurrentlyExpanded = scrollController.offset < 100 - kToolbarHeight;
 
     if (isExpanded != isCurrentlyExpanded) {
       setState(() {
@@ -111,20 +111,19 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
                 ),
               ),
             ),
-            leading: isExpanded
-                ? null
-                : IconButton(
+            leading: isTitleVisible && !isExpanded
+                ? IconButton(
               onPressed: () {},
               icon: const Icon(Icons.menu, color: ColorName.white),
-            ),
-            actions: isExpanded
-                ? null
-                : [
+            )
+                : null,
+            actions: isTitleVisible && !isExpanded
+                ? [
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.search, color: ColorName.white),
               ),
-            ],
+            ] : null,
           ),
           SliverPersistentHeader(
             pinned: true,
