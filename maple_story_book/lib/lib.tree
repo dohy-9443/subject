@@ -1,0 +1,69 @@
+lib
+┣ app
+┃ ┣ data
+┃ ┃ ┣ repository
+┃ ┃ ┗ source
+┃ ┃   ┗ model
+┃ ┣ di
+┃ ┣ domain
+┃ ┃ ┣ entity
+┃ ┃ ┣ repository
+┃ ┃ ┃ ┣ maple_story
+┃ ┃ ┃ ┗ maple_story_m
+┃ ┃ ┗ use_case
+┃ ┃   ┣ character
+┃ ┃   ┣ guild
+┃ ┃   ┣ local_storage
+┃ ┃   ┣ notice
+┃ ┃   ┣ potential
+┃ ┃   ┣ ranking
+┃ ┃   ┣ star_force
+┃ ┃   ┗ union
+┃ ┗ presentation
+┃   ┣ all
+┃   ┃ ┣ components
+┃   ┃ ┣ guild
+┃   ┃ ┃ ┣ bloc
+┃   ┃ ┃ ┗ extension
+┃   ┃ ┣ notice
+┃   ┃ ┃ ┣ bloc
+┃   ┃ ┃ ┗ extension
+┃   ┃ ┣ potential
+┃   ┃ ┃ ┣ bloc
+┃   ┃ ┃ ┗ extension
+┃   ┃ ┗ star_force
+┃   ┃   ┗ bloc
+┃   ┣ global
+┃   ┣ home
+┃   ┃ ┣ bloc
+┃   ┃ ┃ ┗ extension
+┃   ┃ ┣ components
+┃   ┃ ┗ view
+┃   ┣ ranking
+┃   ┃ ┣ bloc
+┃   ┃ ┃ ┗ extension
+┃   ┃ ┣ common
+┃   ┃ ┃ ┗ util
+┃   ┃ ┣ components
+┃   ┃ ┗ widgets
+┃   ┣ router
+┃   ┃ ┗ component
+┃   ┣ search
+┃   ┃ ┗ components
+┃   ┗ search_favorite_list
+┃     ┗ components
+┣ core
+┃ ┣ enum
+┃ ┣ extension
+┃ ┣ network
+┃ ┃ ┗ rest
+┃ ┗ util
+┃   ┗ bloc
+┣ tool
+┃ ┣ component
+┃ ┣ network
+┃ ┃ ┣ api
+┃ ┃ ┗ rest
+┃ ┣ theme
+┃ ┗ widget
+┗ main.dart

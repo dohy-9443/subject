@@ -8,6 +8,7 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/core/extension/double_formatting.dart';
 import 'package:maple_story_book/core/util/util.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/maple_story_round_button.dart';
 import 'package:maple_story_book/tool/widget/maple_story_text.dart';
@@ -593,6 +594,12 @@ class _HomeStatState extends State<HomeStat> {
                   setState(() {
                     _isHyperStatSelected = !_isHyperStatSelected;
                   });
+                  // mSAlert(
+                  //   context,
+                  //   title: "test alert",
+                  //   content: '테스트 입니다.',
+                  //   // onPressed: () {},
+                  // );
                 }
               )
               // AppSize.width(8),

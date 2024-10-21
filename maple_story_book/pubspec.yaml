@@ -13,7 +13,6 @@ dependencies:
 
   # http
   dio: 5.7.0
-  retrofit: 4.4.1
 
   # router
   go_router: 14.2.7

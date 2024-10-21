@@ -28,7 +28,7 @@ class EquipmentBox extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         color: ColorName.lightGray1,
-        borderRadius: item.potentialOptionGrade == "" ? BorderRadius.circular(5) : null,
+        borderRadius: item.potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
         border: item.potentialOptionGrade != "" ? Border.all(
           width: 1,
           color: equipmentBorder(item.potentialOptionGrade),
