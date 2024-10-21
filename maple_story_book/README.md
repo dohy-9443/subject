@@ -1,8 +1,9 @@
 # maple_story_book
 
-> 메이플 스토리 북 앱 </br/> 
+> 메이플 스토리 북 앱
 
-<br />
+
+
 ## 🧑‍🤝‍🧑 Team
 |<img src="https://avatars.githubusercontent.com/u/79897962?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/83467914?v=4" width="150" height="150"/>|
 |:-:|:-:|:-:|
@@ -12,7 +13,7 @@
 ## 📚 Stack
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
- ---
+
 ## version
 ```
 - dart version    : 3.5.3
@@ -144,38 +145,9 @@ lib
 ```
 
 ## 현재 작업중인 화면 
-- logo icon
-<img src="https://github.com/user-attachments/assets/9ee60fff-08cd-4f6a-a9eb-60265a68a108" width="150" height="150"/>
 
-- splash screen
-<img src="https://github.com/user-attachments/assets/6a83188a-7f7e-40b7-b63b-db30e598bf57" width="200" height="400"/>
+| logo icon           | splash screen           | onboarding screen           | search screen           | home screen           | ranking screen           | all screen         | empty modal          | error full screen          | alert           | server error modal          | world bottom sheet          |
+|-------------------|-------------------|-------------------|
+| <img src="https://github.com/user-attachments/assets/9ee60fff-08cd-4f6a-a9eb-60265a68a108" width="150" height="150"/> | <img src="https://github.com/user-attachments/assets/6a83188a-7f7e-40b7-b63b-db30e598bf57" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/a6676cf0-051c-4897-8e7a-85c0e08f6043" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/bf9fa279-0af2-4c4f-95ae-3dc3a0298187" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/ee90cb3b-b200-4e2c-9701-d26936ebb8b2" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/b75ef2b8-45e2-4507-94a4-0cd6a9d03900" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/b00a136d-30f9-4464-bd9f-68997cd90433" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/a663dd35-181a-440f-afaf-cbf7a63d7a0b" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/6e86bd00-c907-4272-ad41-8e35c9bd4912" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/66e739e5-2130-40a7-9c87-8eb6927cd86c" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/58e0fb55-42f1-4a77-835b-203f4ea7e7ea" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/3e998aad-8be1-4e9f-a182-4fff532e8299" width="200" height="400"/>
 
-- onboarding screen
-<img src="https://github.com/user-attachments/assets/a6676cf0-051c-4897-8e7a-85c0e08f6043" width="200" height="400"/>
 
-- search screen
-<img src="https://github.com/user-attachments/assets/bf9fa279-0af2-4c4f-95ae-3dc3a0298187" width="200" height="400"/>
-
-- home screen
-<img src="https://github.com/user-attachments/assets/ee90cb3b-b200-4e2c-9701-d26936ebb8b2" width="200" height="400"/>
-
-- ranking screen
-<img src="https://github.com/user-attachments/assets/b75ef2b8-45e2-4507-94a4-0cd6a9d03900" width="200" height="400"/>
-
-- all screen
-<img src="https://github.com/user-attachments/assets/b00a136d-30f9-4464-bd9f-68997cd90433" width="200" height="400"/>
-
-- empty modal
-<img src="https://github.com/user-attachments/assets/a663dd35-181a-440f-afaf-cbf7a63d7a0b" width="200" height="400"/>
-
-- error full screen
-<img src="https://github.com/user-attachments/assets/6e86bd00-c907-4272-ad41-8e35c9bd4912" width="200" height="400"/>
-
-- alert 
-<img src="https://github.com/user-attachments/assets/66e739e5-2130-40a7-9c87-8eb6927cd86c" width="200" height="400"/>
-
-- server error modal
-<img src="https://github.com/user-attachments/assets/58e0fb55-42f1-4a77-835b-203f4ea7e7ea" width="200" height="400"/>
-
-- world bottom sheet
-<img src="https://github.com/user-attachments/assets/3e998aad-8be1-4e9f-a182-4fff532e8299" width="200" height="400"/>
