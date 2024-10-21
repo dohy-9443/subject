@@ -54,7 +54,6 @@ class _HomeEquipmentState extends State<HomeEquipment> {
             scrollDirection: Axis.horizontal,
             child: CustomRadioButton(
               elevation: 0,
-              // absoluteZeroSpacing: true,
               unSelectedColor: ColorName.white,
               buttonLables: radioTexts,
               buttonValues: RadioTap.values,
