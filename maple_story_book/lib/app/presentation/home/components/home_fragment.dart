@@ -91,6 +91,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
     Stat stat = widget.state.stat;
     HyperStat hyperStat = widget.state.hyperStat;
     Ability ability = widget.state.ability;
+    ItemEquipment itemEquipment = widget.state.itemEquipment;
 
     return NestedScrollView(
       controller: scrollController,
@@ -155,7 +156,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
           // 두 번째 탭의 내용
           SingleChildScrollView(
             padding: AppInset.all8,
-            child: HomeEquipment(),
+            child: HomeEquipment(itemEquipment: itemEquipment),
           ),
           // 세 번째 탭의 내용
           SingleChildScrollView(

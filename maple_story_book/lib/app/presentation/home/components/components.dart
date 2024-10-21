@@ -7,6 +7,7 @@
 ///
 
 export 'border_radius_container.dart';
+export 'equipment_box.dart';
 export 'home_fragment.dart';
 export 'round_square.dart';
 export 'sliver_tab_bar_delegate.dart';

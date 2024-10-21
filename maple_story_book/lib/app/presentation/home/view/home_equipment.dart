@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
+import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
@@ -22,13 +23,16 @@ enum RadioTap {
 }
 
 class HomeEquipment extends StatefulWidget {
-  const HomeEquipment({super.key});
+  final ItemEquipment itemEquipment;
+  const HomeEquipment({super.key, required this.itemEquipment});
 
   @override
   State<HomeEquipment> createState() => _HomeEquipmentState();
 }
 
 class _HomeEquipmentState extends State<HomeEquipment> {
+
+  RadioTap selectedTap = RadioTap.basic;
 
   @override
   void initState() {
@@ -37,6 +41,7 @@ class _HomeEquipmentState extends State<HomeEquipment> {
     context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "36c54981582f63ef732f51a1216299d2"));
     context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +73,22 @@ class _HomeEquipmentState extends State<HomeEquipment> {
               selectedColor: ColorName.mainAccent,
             ),
           ),
+          AppSize.height(8),
+          if (selectedTap == RadioTap.basic)
+          RoundSquare(
+            backgroundColor: Colors.transparent,
+            child: Wrap(
+              children: widget.itemEquipment.itemEquipment.map((el) => EquipmentBox(item: el)).toList(),
+            )
+          ),
         ],
       ),
     );
   }
 
   onEquipmentRadioSelected(RadioTap value) {
+    selectedTap = value;
+    print("selectedTap : $selectedTap");
     switch (value) {
 
       case RadioTap.basic:
