@@ -1,4 +1,4 @@
-# maple_story_book
+# 🍁 maple_story_book
 
 > 메이플 스토리 북 앱
 
@@ -11,22 +11,21 @@
 |App 개발|App 개발|
 
 ## 📚 Stack
-![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Flutter</title><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
 
-
-## version
+## ⚙️ version
 ```
 - dart version    : 3.5.3
 - flutter version : 3.24.3
 ```
 
-## API
+## 🗒️ API
 - NEXON OPEN API 사용 (https://openapi.nexon.com/ko/)
 
-## 작업 진행 사항
+## 📆 작업 진행 사항
 - 09.17 ~ 현재 진행중
 
-## USE PACKAGES
+## 🔖 USE PACKAGES
 ```
   - http
     - dio: 5.7.0
@@ -71,7 +70,7 @@
     - card_swiper: 3.0.1
     - custom_radio_grouped_button: 2.2.1
 ```
-## 폴더 구조
+## 🗂️ 폴더 구조
 ```
 lib
   ┣ app
