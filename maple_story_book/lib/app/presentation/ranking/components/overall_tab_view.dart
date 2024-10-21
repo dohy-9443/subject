@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
-import 'package:maple_story_book/app/presentation/home/components/home_stat.dart';
+import 'package:maple_story_book/app/presentation/home/view/home_stat.dart';
 import 'package:maple_story_book/app/presentation/ranking/common/util/filter_job_name.dart';
 import 'package:maple_story_book/app/presentation/ranking/components/components.dart';
 import 'package:maple_story_book/app/presentation/ranking/widgets/widgets.dart';

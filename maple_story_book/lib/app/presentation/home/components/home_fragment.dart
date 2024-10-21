@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
+import 'package:maple_story_book/app/presentation/home/view/view.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
@@ -154,10 +155,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
           // 두 번째 탭의 내용
           SingleChildScrollView(
             padding: AppInset.all8,
-            child: Container(
-              color: Colors.redAccent,
-              height: 500, // 예시 높이
-            ),
+            child: HomeEquipment(),
           ),
           // 세 번째 탭의 내용
           SingleChildScrollView(
