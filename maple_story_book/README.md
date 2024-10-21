@@ -1,10 +1,23 @@
 # maple_story_book
 
-메이플 스토리 북 앱
+> 메이플 스토리 북 앱 </br/> 
 
+<br />
+## 🧑‍🤝‍🧑 Team
+|<img src="https://avatars.githubusercontent.com/u/79897962?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/83467914?v=4" width="150" height="150"/>|
+|:-:|:-:|:-:|
+|[@dohy-9443](https://github.com/dohy-9443)|[@sht3756](https://github.com/sht3756)|
+|App 개발|App 개발|
+
+## 📚 Stack
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+
+ ---
 ## version
+```
 - dart version    : 3.5.3
 - flutter version : 3.24.3
+```
 
 ## API
 - NEXON OPEN API 사용 (https://openapi.nexon.com/ko/)
@@ -13,50 +26,52 @@
 - 09.17 ~ 현재 진행중
 
 ## USE PACKAGES
-- http
-  - dio: 5.7.0
-- router
-  - go_router: 14.2.7
-- data
-  - json_annotation: 4.9.0
-  - freezed_annotation: 2.4.4
-  - json_serializable: 6.8.0
-  - build_runner: 2.4.12
-  - freezed: 2.5.7
-  - flutter_dotenv: ^5.1.0
-- state management
-  - bloc: 8.1.4
-  - flutter_bloc: 8.1.6
-  - equatable: ^2.0.5
-- storage
-  - shared_preferences: ^2.3.2
-- permission
-  - permission_handler: 11.3.1
-- format
-  - intl: 0.19.0
-- injector
-  - get_it: 7.7.0
-  - injectable: ^2.4.4
-- log
-  - logger: 2.4.0
-- ui
-  - image_picker: 1.1.2
-  - google_fonts: 6.2.1
-  - cached_network_image: 3.4.1
-  - flutter_svg: 2.0.10+1
-  - fluttertoast: 8.2.8
-  - flutter_screenutil: 5.9.3
-  - flutter_inappwebview: 6.0.0
-  - flutter_staggered_grid_view: 0.7.0
-  - flutter_native_splash: 2.4.1
-  - flutter_launcher_icons: 0.13.1
-  - flutter_gen: 5.7.0
-  - auto_size_text: 3.0.0
-  - animated_text_kit: 4.2.2
-  - card_swiper: 3.0.1
-  - custom_radio_grouped_button: 2.2.1
-
+```
+  - http
+    - dio: 5.7.0
+  - router
+    - go_router: 14.2.7
+  - data
+    - json_annotation: 4.9.0
+    - freezed_annotation: 2.4.4
+    - json_serializable: 6.8.0
+    - build_runner: 2.4.12
+    - freezed: 2.5.7
+    - flutter_dotenv: ^5.1.0
+  - state management
+    - bloc: 8.1.4
+    - flutter_bloc: 8.1.6
+    - equatable: ^2.0.5
+  - storage
+    - shared_preferences: ^2.3.2
+  - permission
+    - permission_handler: 11.3.1
+  - format
+    - intl: 0.19.0
+  - injector
+    - get_it: 7.7.0
+    - injectable: ^2.4.4
+  - log
+    - logger: 2.4.0
+  - ui
+    - image_picker: 1.1.2
+    - google_fonts: 6.2.1
+    - cached_network_image: 3.4.1
+    - flutter_svg: 2.0.10+1
+    - fluttertoast: 8.2.8
+    - flutter_screenutil: 5.9.3
+    - flutter_inappwebview: 6.0.0
+    - flutter_staggered_grid_view: 0.7.0
+    - flutter_native_splash: 2.4.1
+    - flutter_launcher_icons: 0.13.1
+    - flutter_gen: 5.7.0
+    - auto_size_text: 3.0.0
+    - animated_text_kit: 4.2.2
+    - card_swiper: 3.0.1
+    - custom_radio_grouped_button: 2.2.1
+```
 ## 폴더 구조
+```
 lib
   ┣ app
   ┃ ┣ data
@@ -126,6 +141,7 @@ lib
   ┃ ┣ theme
   ┃ ┗ widget
   ┗ main.dart
+```
 
 ## 현재 작업중인 화면 
 - logo icon
