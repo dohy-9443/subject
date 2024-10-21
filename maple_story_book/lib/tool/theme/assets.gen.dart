@@ -27,26 +27,6 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/PiskelNew_1.png
-  AssetGenImage get piskelNew1 =>
-      const AssetGenImage('assets/images/PiskelNew_1.png');
-
-  /// File path: assets/images/Piskel_New_3.png
-  AssetGenImage get piskelNew3 =>
-      const AssetGenImage('assets/images/Piskel_New_3.png');
-
-  /// File path: assets/images/Piskel_New_4.png
-  AssetGenImage get piskelNew4 =>
-      const AssetGenImage('assets/images/Piskel_New_4.png');
-
-  /// File path: assets/images/Piskel_New_5.png
-  AssetGenImage get piskelNew5 =>
-      const AssetGenImage('assets/images/Piskel_New_5.png');
-
-  /// File path: assets/images/Piskel_New_6.png
-  AssetGenImage get piskelNew6 =>
-      const AssetGenImage('assets/images/Piskel_New_6.png');
-
   /// File path: assets/images/arcana.png
   AssetGenImage get arcana => const AssetGenImage('assets/images/arcana.png');
 
@@ -81,14 +61,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/luna_world.png
   AssetGenImage get lunaWorld =>
       const AssetGenImage('assets/images/luna_world.png');
-
-  /// File path: assets/images/maple_leaf_14.png
-  AssetGenImage get mapleLeaf14 =>
-      const AssetGenImage('assets/images/maple_leaf_14.png');
-
-  /// File path: assets/images/maple_leaf_2.png
-  AssetGenImage get mapleLeaf2 =>
-      const AssetGenImage('assets/images/maple_leaf_2.png');
 
   /// File path: assets/images/maple_whole_world.png
   AssetGenImage get mapleWholeWorld =>
@@ -139,11 +111,6 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        piskelNew1,
-        piskelNew3,
-        piskelNew4,
-        piskelNew5,
-        piskelNew6,
         arcana,
         arcaneWorld,
         auroraWorld,
@@ -153,8 +120,6 @@ class $AssetsImagesGen {
         elysiumWorld,
         enosisWorld,
         lunaWorld,
-        mapleLeaf14,
-        mapleLeaf2,
         mapleWholeWorld,
         novaWorld,
         orange,
