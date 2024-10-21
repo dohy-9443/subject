@@ -146,7 +146,7 @@ lib
 
 ## 현재 작업중인 화면 
 
-| logo icon           | splash screen           | onboarding screen           | search screen           | home screen           | ranking screen           | 
+| logo icon           | splash screen           | onboarding screen           | search screen           | home screen           |
 |-------------------|-------------------|-------------------|-------------------|-------------------|
 | <img src="https://github.com/user-attachments/assets/9ee60fff-08cd-4f6a-a9eb-60265a68a108" width="150" height="150"/> | <img src="https://github.com/user-attachments/assets/6a83188a-7f7e-40b7-b63b-db30e598bf57" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/a6676cf0-051c-4897-8e7a-85c0e08f6043" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/bf9fa279-0af2-4c4f-95ae-3dc3a0298187" width="200" height="400"/> | <img src="https://github.com/user-attachments/assets/ee90cb3b-b200-4e2c-9701-d26936ebb8b2" width="200" height="400"/> |  
 
