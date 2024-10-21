@@ -3,8 +3,8 @@ import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
-Widget worldSelectBottomModalSheet(
-    BuildContext context, int selectWorldIndex, void Function(dynamic) onTap) {
+Widget worldSelectBottomModalSheet(BuildContext context, int selectWorldIndex,
+    void Function(int, String) onTap) {
   return Container(
     padding: AppInset.edgeInsetsValue([8]),
     decoration: BoxDecoration(
@@ -33,8 +33,14 @@ Widget worldSelectBottomModalSheet(
   );
 }
 
-Widget worldSelectButton(int selectWorldIndex, void Function(dynamic) onTap) {
+Widget worldSelectButton(
+    int selectWorldIndex, void Function(int, String) onTap) {
   List<WorldSelectModel> worldsPath = [
+    WorldSelectModel(
+      worldImage: Assets.images.mapleWholeWorld.path,
+      worldKorName: '전체월드',
+      worldEngName: 'ALLWORLD',
+    ),
     WorldSelectModel(
         worldImage: Assets.images.skaniaWorld.path,
         worldKorName: '스카니아',
@@ -104,11 +110,6 @@ Widget worldSelectButton(int selectWorldIndex, void Function(dynamic) onTap) {
       worldKorName: '버닝3',
       worldEngName: 'BUNNING3',
     ),
-    WorldSelectModel(
-      worldImage: Assets.images.mapleWholeWorld.path,
-      worldKorName: '전체월드',
-      worldEngName: 'ALLWORLD',
-    ),
   ];
 
   return Container(
@@ -134,9 +135,9 @@ Widget worldSelectButton(int selectWorldIndex, void Function(dynamic) onTap) {
 }
 
 Widget worldButton(WorldSelectModel worldSelect, int index,
-    int selectedWorldIndex, void Function(dynamic) onTap) {
+    int selectedWorldIndex, void Function(int, String) onTap) {
   return GestureDetector(
-    onTap: () => onTap(index),
+    onTap: () => onTap(index, worldSelect.worldKorName),
     child: Container(
       decoration: BoxDecoration(
         border: Border.all(color: ColorName.white),
@@ -144,10 +145,7 @@ Widget worldButton(WorldSelectModel worldSelect, int index,
         gradient: index == selectedWorldIndex
             ? null
             : const LinearGradient(
-                colors: [
-                  Color(0xFFC3B6A0),
-                  ColorName.beige,
-                ],
+                colors: [Color(0xFFC3B6A0), ColorName.beige],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),

@@ -7,7 +7,6 @@ import 'package:maple_story_book/app/presentation/ranking/bloc/extension/ranking
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
 
-
 ///
 /// @Project name    : maple_story_book
 /// @Class           : ranking_bloc.
@@ -40,8 +39,8 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     on<GetRankingStudioEvent<RankingStudio>>(getRankingStudio);
     on<GetRankingEvent<RankingTheSeed>>(getRankingTheSeed);
     on<GetRankingEvent<RankingUnion>>(getRankingUnion);
+    on<SelectWorldFilter>(selectWorldFilter);
   }
-
 
   static const Duration cacheDuration = Duration(minutes: 10);
   static const int maxCacheSize = 10;
@@ -61,12 +60,14 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
   bool _isCacheExpired(CacheEntry entry) {
     return DateTime.now().difference(entry.cacheTime) > cacheDuration;
   }
-  
-  Future<void> getRankingAchievement(GetRankingEvent event, Emitter<IRankingState> emit) async {
+
+  Future<void> getRankingAchievement(
+      GetRankingEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingAchievement';
 
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingAchievement: _cache[cacheKey]!.data, isLoading: false));
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)  && event.worldName == null) {
+      emit((state as RankingSuccess).copyWith(
+          rankingAchievement: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {
@@ -79,18 +80,21 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
           final res = await _getRankingAchievementUseCase.execute(params);
           if (res.code != 200) throw Exception('code 200 이 아닙니다.');
           _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess).copyWith(rankingAchievement: res.data, isLoading: false));
+          emit((state as RankingSuccess)
+              .copyWith(rankingAchievement: res.data, isLoading: false));
         },
         emit: emit,
       );
     }
   }
 
-  Future<void> getRankingGuild(GetRankingGuildEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingGuild(
+      GetRankingGuildEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingGuild';
 
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingGuild: _cache[cacheKey]!.data, isLoading: false));
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
+      emit((state as RankingSuccess)
+          .copyWith(rankingGuild: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {
@@ -112,11 +116,12 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingOverall(GetRankingOverallEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingOverall(
+      GetRankingOverallEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingOverall';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingOverall: _cache[cacheKey]!.data, isLoading: false));
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
+      emit((state as RankingSuccess)
+          .copyWith(rankingOverall: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {
@@ -139,11 +144,13 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingStudio(GetRankingStudioEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingStudio(
+      GetRankingStudioEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingStudio';
 
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingStudio: _cache[cacheKey]!.data, isLoading: false));
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
+      emit((state as RankingSuccess)
+          .copyWith(rankingStudio: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {
@@ -167,11 +174,13 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     }
   }
 
-  Future<void> getRankingTheSeed(GetRankingEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingTheSeed(
+      GetRankingEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingTheSeed';
 
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingTheSeed: _cache[cacheKey]!.data, isLoading: false));
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
+      emit((state as RankingSuccess)
+          .copyWith(rankingTheSeed: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {
@@ -185,18 +194,21 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
           final res = await _getRankingTheSeedUseCase.execute(params);
           if (res.code != 200) throw Exception('code 200 이 아닙니다.');
           _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess).copyWith(rankingTheSeed: res.data, isLoading: false));
+          emit((state as RankingSuccess)
+              .copyWith(rankingTheSeed: res.data, isLoading: false));
         },
         emit: emit,
       );
     }
   }
 
-  Future<void> getRankingUnion(GetRankingEvent event, Emitter<IRankingState> emit) async {
+  Future<void> getRankingUnion(
+      GetRankingEvent event, Emitter<IRankingState> emit) async {
     const cacheKey = 'getRankingUnion';
 
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as RankingSuccess).copyWith(rankingUnion: _cache[cacheKey]!.data, isLoading: false));
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
+      emit((state as RankingSuccess)
+          .copyWith(rankingUnion: _cache[cacheKey]!.data, isLoading: false));
     } else {
       await handleRequest(
         request: () async {
@@ -210,10 +222,64 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
           final res = await _getRankingUnionUseCase.execute(params);
           if (res.code != 200) throw Exception('code 200 이 아닙니다.');
           _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess).copyWith(rankingUnion: res.data,isLoading: false));
+          emit((state as RankingSuccess)
+              .copyWith(rankingUnion: res.data, isLoading: false));
         },
         emit: emit,
       );
+    }
+  }
+
+  void selectWorldFilter(
+      SelectWorldFilter event, Emitter<IRankingState> state) {
+    emit(RankingSuccess(
+        selectWorldName: event.selectWorldName, isLoading: true));
+    try {
+      switch (event.tabIndex) {
+        case 0:
+          add(GetRankingOverallEvent<RankingOverall>(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+            worldName: event.selectWorldName,
+          ));
+          break;
+        case 1:
+          add(GetRankingEvent<RankingUnion>(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+            worldName: event.selectWorldName,
+          ));
+          break;
+        case 2:
+          add(GetRankingGuildEvent<RankingGuild>(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+            worldName: event.selectWorldName, rankingType: 0, guildName: '', page: 0,
+          ));
+          break;
+        case 3:
+          add(GetRankingStudioEvent<RankingStudio>(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+            worldName: event.selectWorldName, difficulty: 0,
+          ));
+          break;
+        case 4:
+          add(GetRankingEvent<RankingTheSeed>(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+            worldName: event.selectWorldName,
+          ));
+          break;
+        case 5:
+          add(GetRankingEvent<RankingAchievement>(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+            worldName: event.selectWorldName,
+          ));
+          break;
+      }
+      emit(RankingSuccess(
+        selectWorldName: event.selectWorldName,
+        isLoading: false,
+        selectWorldIndex: event.selectWorldIndex,
+      ));
+    } catch (e) {
+      print(e);
     }
   }
 }

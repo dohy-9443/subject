@@ -28,6 +28,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
   final RankingTheSeed? rankingTheSeed;
   final RankingUnion? rankingUnion;
   final String selectWorldName;
+  final int selectWorldIndex;
 
   RankingSuccess({
     this.isLoading = false,
@@ -38,6 +39,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
     this.rankingTheSeed,
     this.rankingUnion,
     this.selectWorldName = '',
+    this.selectWorldIndex = 0,
   });
 
   RankingSuccess copyWith({
@@ -50,6 +52,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
     RankingTheSeed? rankingTheSeed,
     RankingUnion? rankingUnion,
     String? selectWorldName,
+    int? selectWorldIndex,
   }) {
     return RankingSuccess(
       isLoading: isLoading ?? this.isLoading,
@@ -60,6 +63,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
       rankingTheSeed: rankingTheSeed ?? this.rankingTheSeed,
       rankingUnion: rankingUnion ?? this.rankingUnion,
       selectWorldName: selectWorldName ?? this.selectWorldName,
+      selectWorldIndex: selectWorldIndex ?? this.selectWorldIndex,
     );
   }
 
@@ -72,6 +76,7 @@ final class RankingSuccess extends IRankingState with BaseSuccessState {
         rankingStudio,
         rankingTheSeed,
         rankingUnion,
+        selectWorldIndex,
       ];
 }
 

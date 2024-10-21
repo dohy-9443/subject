@@ -12,7 +12,6 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 TableRow buildTableRowItem<T>(T rank) {
-  print(rank);
   if (rank is RankingStudioElement) {
     return TableRow(
       children: [

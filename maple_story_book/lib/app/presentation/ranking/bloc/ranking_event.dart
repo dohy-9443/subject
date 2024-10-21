@@ -65,3 +65,14 @@ final class GetRankingStudioEvent<T> extends IRankingEvent<T> {
   List<Object?> get props =>
       [date, worldName, difficulty, availableValue, ocid, page];
 }
+
+final class SelectWorldFilter extends IRankingEvent {
+  final String selectWorldName;
+  final int tabIndex;
+  final int selectWorldIndex;
+
+  SelectWorldFilter({required this.selectWorldName, required this.tabIndex, required this.selectWorldIndex});
+
+  @override
+  List<Object?> get props => [selectWorldName, tabIndex, selectWorldIndex];
+}

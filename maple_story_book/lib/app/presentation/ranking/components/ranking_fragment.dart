@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
-import 'package:maple_story_book/app/presentation/all/components/all_list_item.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
@@ -31,7 +30,6 @@ class _RankingFragmentState extends State<RankingFragment>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late TabController _tabController;
   ScrollController scrollController = ScrollController();
-  int selectWorldIndex = 0;
 
   @override
   bool get wantKeepAlive => true;
@@ -48,12 +46,17 @@ class _RankingFragmentState extends State<RankingFragment>
     scrollController.dispose();
     super.dispose();
   }
-  void onTap(index) {
-    setState(() {
-      selectWorldIndex = index;
-      context.pop(context);
-    });
+
+  void onTap(int index, String selectWorldName) {
+    context.pop(context);
+
+    context.read<RankingBloc>().add(SelectWorldFilter(
+          selectWorldName: selectWorldName,
+          tabIndex: _tabController.index,
+          selectWorldIndex: index,
+        ));
   }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -64,7 +67,7 @@ class _RankingFragmentState extends State<RankingFragment>
           actions: [
             BlocBuilder<RankingBloc, IRankingState>(
                 builder: (BuildContext context, IRankingState state) {
-              if (state is RankingSuccess) {
+              if (state is RankingSuccess && _tabController.index != 5) {
                 return TextButton(
                   onPressed: () {
                     showModalBottomSheet(
@@ -77,84 +80,112 @@ class _RankingFragmentState extends State<RankingFragment>
                       isScrollControlled: true,
                       backgroundColor: Colors.grey.withOpacity(0.6),
                       builder: (BuildContext context) {
-                        return worldSelectBottomModalSheet(context, selectWorldIndex, onTap);
+                        return worldSelectBottomModalSheet(
+                            context, state.selectWorldIndex, onTap);
                       },
                     );
                   },
-                  child: MSText(state.selectWorldName == ''
-                      ? '전체월드'
-                      : state.selectWorldName),
+                  child: MSText(
+                    state.selectWorldName == ''
+                        ? '전체월드'
+                        : state.selectWorldName,
+                  ),
                 );
               } else {
                 return const SizedBox.shrink();
               }
             })
           ],
-          bottom: MSTabBar(
-            isScrollable: true,
-            scrollController: scrollController,
-            tabController: _tabController,
-            tabBarList: [
-              TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(
-                      GetRankingOverallEvent<RankingOverall>(
-                          date: DateTime.now()
-                              .subtract(const Duration(days: 3))));
-                },
-                text: '종합',
-              ),
-              TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(GetRankingEvent<RankingUnion>(
-                      date: DateTime.now().subtract(const Duration(days: 3))));
-                },
-                text: '유니온',
-              ),
-              TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(
-                        GetRankingGuildEvent<RankingGuild>(
-                          date:
-                              DateTime.now().subtract(const Duration(days: 3)),
-                          worldName: '',
-                          rankingType: 0,
-                          guildName: '',
-                          page: 1,
-                        ),
-                      );
-                },
-                text: '길드',
-              ),
-              TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(
-                      GetRankingStudioEvent<RankingStudio>(
-                          date:
-                              DateTime.now().subtract(const Duration(days: 3)),
-                          difficulty: 0));
-                },
-                text: '무릉동장',
-              ),
-              TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(
-                      GetRankingEvent<RankingTheSeed>(
-                          date: DateTime.now()
-                              .subtract(const Duration(days: 3))));
-                },
-                text: '더시드',
-              ),
-              TabBarType(
-                onTap: () {
-                  context.read<RankingBloc>().add(
-                      GetRankingEvent<RankingAchievement>(
-                          date: DateTime.now()
-                              .subtract(const Duration(days: 3))));
-                },
-                text: '업적',
-              ),
-            ],
+          bottom: BlocBuilder<RankingBloc, IRankingState>(
+            builder: (BuildContext context, IRankingState state) {
+              if (state is RankingSuccess) {
+                return MSTabBar(
+                  isScrollable: true,
+                  scrollController: scrollController,
+                  tabController: _tabController,
+                  tabBarList: [
+                    TabBarType(
+                      onTap: () {
+                        context.read<RankingBloc>().add(
+                              GetRankingOverallEvent<RankingOverall>(
+                                date: DateTime.now()
+                                    .subtract(const Duration(days: 3)),
+                                worldName: state.selectWorldName,
+                              ),
+                            );
+                      },
+                      text: '종합',
+                    ),
+                    TabBarType(
+                      onTap: () {
+                        context.read<RankingBloc>().add(
+                              GetRankingEvent<RankingUnion>(
+                                date: DateTime.now()
+                                    .subtract(const Duration(days: 3)),
+                                worldName: state.selectWorldName,
+                              ),
+                            );
+                      },
+                      text: '유니온',
+                    ),
+                    TabBarType(
+                      onTap: () {
+                        context.read<RankingBloc>().add(
+                              GetRankingGuildEvent<RankingGuild>(
+                                date: DateTime.now()
+                                    .subtract(const Duration(days: 3)),
+                                worldName: state.selectWorldName,
+                                rankingType: 0,
+                                guildName: '',
+                                page: 1,
+                              ),
+                            );
+                      },
+                      text: '길드',
+                    ),
+                    TabBarType(
+                      onTap: () {
+                        context.read<RankingBloc>().add(
+                              GetRankingStudioEvent<RankingStudio>(
+                                date: DateTime.now()
+                                    .subtract(const Duration(days: 3)),
+                                difficulty: 0,
+                                worldName: state.selectWorldName,
+                              ),
+                            );
+                      },
+                      text: '무릉동장',
+                    ),
+                    TabBarType(
+                      onTap: () {
+                        context.read<RankingBloc>().add(
+                              GetRankingEvent<RankingTheSeed>(
+                                date: DateTime.now()
+                                    .subtract(const Duration(days: 3)),
+                                worldName: state.selectWorldName,
+                              ),
+                            );
+                      },
+                      text: '더시드',
+                    ),
+                    TabBarType(
+                      onTap: () {
+                        context.read<RankingBloc>().add(
+                              GetRankingEvent<RankingAchievement>(
+                                date: DateTime.now()
+                                    .subtract(const Duration(days: 3)),
+                                worldName: state.selectWorldName,
+                              ),
+                            );
+                      },
+                      text: '업적',
+                    ),
+                  ],
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
         ),
         body: TabBarView(
@@ -172,4 +203,3 @@ class _RankingFragmentState extends State<RankingFragment>
     ]);
   }
 }
-
