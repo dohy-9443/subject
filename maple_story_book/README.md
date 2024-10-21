@@ -57,7 +57,7 @@
   - custom_radio_grouped_button: 2.2.1
 
 ## 폴더 구조
-- lib
+lib
   ┣ app
   ┃ ┣ data
   ┃ ┃ ┣ repository
@@ -129,37 +129,37 @@
 
 ## 현재 작업중인 화면 
 - logo icon
-  - ![logo_icon](https://github.com/user-attachments/assets/9ee60fff-08cd-4f6a-a9eb-60265a68a108)
+<img src="https://github.com/user-attachments/assets/9ee60fff-08cd-4f6a-a9eb-60265a68a108" width="150" height="150"/>
 
 - splash screen
-  - ![splash](https://github.com/user-attachments/assets/6a83188a-7f7e-40b7-b63b-db30e598bf57)
+<img src="https://github.com/user-attachments/assets/6a83188a-7f7e-40b7-b63b-db30e598bf57" width="200" height="400"/>
 
 - onboarding screen
-  - ![onboarding](https://github.com/user-attachments/assets/a6676cf0-051c-4897-8e7a-85c0e08f6043)
+<img src="https://github.com/user-attachments/assets/a6676cf0-051c-4897-8e7a-85c0e08f6043" width="200" height="400"/>
 
 - search screen
-  - ![search](https://github.com/user-attachments/assets/bf9fa279-0af2-4c4f-95ae-3dc3a0298187)
+<img src="https://github.com/user-attachments/assets/bf9fa279-0af2-4c4f-95ae-3dc3a0298187" width="200" height="400"/>
 
 - home screen
-  - ![home](https://github.com/user-attachments/assets/ee90cb3b-b200-4e2c-9701-d26936ebb8b2)
+<img src="https://github.com/user-attachments/assets/ee90cb3b-b200-4e2c-9701-d26936ebb8b2" width="200" height="400"/>
 
 - ranking screen
-  - ![ranking](https://github.com/user-attachments/assets/b75ef2b8-45e2-4507-94a4-0cd6a9d03900)
+<img src="https://github.com/user-attachments/assets/b75ef2b8-45e2-4507-94a4-0cd6a9d03900" width="200" height="400"/>
 
 - all screen
-  - ![all](https://github.com/user-attachments/assets/b00a136d-30f9-4464-bd9f-68997cd90433)
+<img src="https://github.com/user-attachments/assets/b00a136d-30f9-4464-bd9f-68997cd90433" width="200" height="400"/>
 
 - empty modal
-  - ![empty](https://github.com/user-attachments/assets/a663dd35-181a-440f-afaf-cbf7a63d7a0b)
+<img src="https://github.com/user-attachments/assets/a663dd35-181a-440f-afaf-cbf7a63d7a0b" width="200" height="400"/>
 
 - error full screen
-  - ![error](https://github.com/user-attachments/assets/6e86bd00-c907-4272-ad41-8e35c9bd4912)
+<img src="https://github.com/user-attachments/assets/6e86bd00-c907-4272-ad41-8e35c9bd4912" width="200" height="400"/>
 
 - alert 
-  - ![alert](https://github.com/user-attachments/assets/66e739e5-2130-40a7-9c87-8eb6927cd86c)
+<img src="https://github.com/user-attachments/assets/66e739e5-2130-40a7-9c87-8eb6927cd86c" width="200" height="400"/>
 
 - server error modal
-  - ![server](https://github.com/user-attachments/assets/58e0fb55-42f1-4a77-835b-203f4ea7e7ea)
+<img src="https://github.com/user-attachments/assets/58e0fb55-42f1-4a77-835b-203f4ea7e7ea" width="200" height="400"/>
 
 - world bottom sheet
-  - ![world](https://github.com/user-attachments/assets/3e998aad-8be1-4e9f-a182-4fff532e8299)
+<img src="https://github.com/user-attachments/assets/3e998aad-8be1-4e9f-a182-4fff532e8299" width="200" height="400"/>
