@@ -23,7 +23,6 @@ enum WorldImage {
   const WorldImage(this.name);
 
   static WorldImage getWorldImage(String name) {
-    print(name);
     switch (name) {
       case '스카니아':
         return WorldImage.skania;
