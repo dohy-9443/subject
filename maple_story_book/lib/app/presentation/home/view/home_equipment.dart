@@ -1,6 +1,8 @@
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
+import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -77,9 +80,32 @@ class _HomeEquipmentState extends State<HomeEquipment> {
           if (selectedTap == RadioTap.basic)
           RoundSquare(
             backgroundColor: Colors.transparent,
-            child: Wrap(
-              children: widget.itemEquipment.itemEquipment.map((el) => EquipmentBox(item: el)).toList(),
-            )
+            child: StaggeredGrid.count(
+              crossAxisCount: 5, // 가로 배열
+              mainAxisSpacing: 8, // 수평 틈새
+              crossAxisSpacing: 8, // 수직 틈새
+              children: [
+                Container(color: ColorName.legendaryColor, width: 50, height: 50, child: MSText(widget.itemEquipment.itemEquipment.length.toString()),),
+                ...widget.itemEquipment.itemEquipment.mapIndexed((index, item) {
+                  print('시작');
+                  if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26) {
+                    print('여기?');
+                    return StaggeredGridTile.count(
+                        crossAxisCellCount: 1,
+                        mainAxisCellCount: 1,
+                        child: EquipmentBox(item: item, empty: true,)
+                    );
+                  } else {
+                    print('여기!');
+                    return StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 1,
+                      child: EquipmentBox(item: item,)
+                    );
+                  }
+                }),
+              ],
+            ),
           ),
         ],
       ),

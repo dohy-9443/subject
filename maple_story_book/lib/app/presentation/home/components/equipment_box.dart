@@ -18,12 +18,16 @@ enum EquipmentOption{
 
 class EquipmentBox extends StatelessWidget {
   final ItemEquipmentElement item;
+  final bool empty;
 
-  const EquipmentBox({super.key, required this.item});
+  const EquipmentBox({super.key, required this.item, this.empty = false});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return empty ? Container(
+      width: 70, height: 70, color: Colors.transparent,
+    ) :
+    Container(
       width: 70,
       height: 70,
       decoration: BoxDecoration(
