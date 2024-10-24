@@ -4,7 +4,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
-import 'package:maple_story_book/app/presentation/home/components/components.dart';
+import 'package:maple_story_book/app/presentation/home/view/view.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/component/component.dart';
 

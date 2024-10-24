@@ -87,16 +87,13 @@ class _HomeEquipmentState extends State<HomeEquipment> {
               children: [
                 Container(color: ColorName.legendaryColor, width: 50, height: 50, child: MSText(widget.itemEquipment.itemEquipment.length.toString()),),
                 ...widget.itemEquipment.itemEquipment.mapIndexed((index, item) {
-                  print('시작');
                   if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26) {
-                    print('여기?');
                     return StaggeredGridTile.count(
                         crossAxisCellCount: 1,
                         mainAxisCellCount: 1,
                         child: EquipmentBox(item: item, empty: true,)
                     );
                   } else {
-                    print('여기!');
                     return StaggeredGridTile.count(
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,

@@ -159,20 +159,14 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
             child: HomeEquipment(itemEquipment: itemEquipment),
           ),
           // 세 번째 탭의 내용
-          SingleChildScrollView(
+          const SingleChildScrollView(
             padding: AppInset.all8,
-            child: Container(
-              color: Colors.orangeAccent,
-              height: 500, // 예시 높이
-            ),
+            child: HomeSkill(),
           ),
           // 네 번째 탭의 내용
-          SingleChildScrollView(
+          const SingleChildScrollView(
             padding: AppInset.all8,
-            child: Container(
-              color: Colors.yellowAccent,
-              height: 500, // 예시 높이
-            ),
+            child: HomePropensityAbility(),
           ),
         ],
       ),
