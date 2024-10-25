@@ -40,9 +40,9 @@ class _HomeEquipmentState extends State<HomeEquipment> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
-    context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "36c54981582f63ef732f51a1216299d2"));
-    context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
+    context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
   }
 
 
@@ -85,19 +85,22 @@ class _HomeEquipmentState extends State<HomeEquipment> {
               mainAxisSpacing: 8, // 수평 틈새
               crossAxisSpacing: 8, // 수직 틈새
               children: [
-                Container(color: ColorName.legendaryColor, width: 50, height: 50, child: MSText(widget.itemEquipment.itemEquipment.length.toString()),),
-                ...widget.itemEquipment.itemEquipment.mapIndexed((index, item) {
-                  if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26) {
+                // Container(color: ColorName.legendaryColor, width: 50, height: 50, child: MSText(widget.itemEquipment.itemEquipment.length.toString()),),
+                ...List.generate(30, (index) => null).mapIndexed((index, item) {
+                  if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26 || index == 28) {
                     return StaggeredGridTile.count(
-                        crossAxisCellCount: 1,
-                        mainAxisCellCount: 1,
-                        child: EquipmentBox(item: item, empty: true,)
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 1,
+                      child: Container(width: 70, height: 70, color: Colors.transparent,),
                     );
                   } else {
                     return StaggeredGridTile.count(
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,
-                      child: EquipmentBox(item: item,)
+                      child: EquipmentBox(
+                        items: widget.itemEquipment.itemEquipment,
+                        index: index,
+                      )
                     );
                   }
                 }),
@@ -115,18 +118,18 @@ class _HomeEquipmentState extends State<HomeEquipment> {
     switch (value) {
 
       case RadioTap.basic:
-        context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
-        context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "36c54981582f63ef732f51a1216299d2"));
-        context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
+        context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+        context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+        context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
       case RadioTap.cash:
-        context.read<HomeBloc>().add(GetHomeEvent<CashItemEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
+        context.read<HomeBloc>().add(GetHomeEvent<CashItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
       case RadioTap.skin:
-        context.read<HomeBloc>().add(GetHomeEvent<BeautyEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
+        context.read<HomeBloc>().add(GetHomeEvent<BeautyEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
       case RadioTap.and:
-        context.read<HomeBloc>().add(GetHomeEvent<AndroidEquipment>(ocid: "36c54981582f63ef732f51a1216299d2"));
+        context.read<HomeBloc>().add(GetHomeEvent<AndroidEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
     }
   }

@@ -31,7 +31,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/basic',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -41,7 +41,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/popularity',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -51,7 +51,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/stat',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -61,7 +61,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/hyper-stat',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -71,7 +71,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/propensity',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -80,7 +80,7 @@ class GetMapleStoryBookCharacterApi {
     return _client.get<dynamic>('$defaultCharacterPath/ability',
       queryParameters: {
         'ocid': ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -90,7 +90,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/item-equipment',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -100,7 +100,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/cashitem-equipment',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -110,7 +110,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/symbol-equipment',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -120,7 +120,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/set-effect',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -130,7 +130,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/beauty-equipment',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -140,7 +140,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/android-equipment',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -150,7 +150,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/pet-equipment',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -160,7 +160,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/skill',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date),
+        'date' : dateToString(date),
         'character_skill_grade' : characterSkillGrade,
       },
     ).then((value) => value.data);
@@ -171,7 +171,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/link-skill',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -181,7 +181,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/vmatrix',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -191,7 +191,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/hexamatrix',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -201,7 +201,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/hexamatrix-stat',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }
@@ -211,7 +211,7 @@ class GetMapleStoryBookCharacterApi {
       '$defaultCharacterPath/dojang',
       queryParameters: {
         'ocid' : ocid,
-        if (date != null) 'date' : dateToString(date)
+        'date' : dateToString(date)
       },
     ).then((value) => value.data);
   }

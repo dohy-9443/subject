@@ -17,30 +17,27 @@ enum EquipmentOption{
 }
 
 class EquipmentBox extends StatelessWidget {
-  final ItemEquipmentElement item;
-  final bool empty;
+  final List<ItemEquipmentElement> items;
+  final int index;
 
-  const EquipmentBox({super.key, required this.item, this.empty = false});
+  const EquipmentBox({super.key, required this.items, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    return empty ? Container(
-      width: 70, height: 70, color: Colors.transparent,
-    ) :
-    Container(
+    return Container(
       width: 70,
       height: 70,
       decoration: BoxDecoration(
-        color: ColorName.lightGray1,
-        borderRadius: item.potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
-        border: item.potentialOptionGrade != "" ? Border.all(
-          width: 1,
-          color: equipmentBorder(item.potentialOptionGrade),
-        ): null
+          color: ColorName.lightGray1,
+          borderRadius: items[1].potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
+          border: items[1].potentialOptionGrade != "" ? Border.all(
+            width: 3,
+            color: equipmentBorder(items[1].potentialOptionGrade),
+          ): null
       ),
       child: Stack(
         children: [
-          MSText.basic('RING'),
+          MSText.basic('RING, $index'),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,7 +46,7 @@ class EquipmentBox extends StatelessWidget {
                 width: 40,
                 height: 40,
                 child: CachedNetworkImage(
-                  imageUrl: item.itemIcon,
+                  imageUrl: items[1].itemIcon,
                   fit: BoxFit.contain,
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),

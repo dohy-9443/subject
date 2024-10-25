@@ -14,7 +14,7 @@ class GetAbilityUseCase
 
   @override
   Future<ResultRest<Ability>> execute([BaseParams? params]) {
-    final BaseParams input = params ?? BaseParams(date: DateTime.now());
+    final BaseParams input = params ?? BaseParams(date: DateTime.now().subtract(const Duration(days: 2)));
 
     return _characterRepository.getCharacterAbility(ocid: input.ocid, date:input.date);
 

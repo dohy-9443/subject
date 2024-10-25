@@ -30,8 +30,8 @@ class HomeScreen extends StatelessWidget {
   );
 
   initFunction(BuildContext context) {
-    context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>(ocid: "e0a4f439e53c369866b55297d2f5f4eb"));
-    context.read<HomeBloc>().add(GetHomeEvent<Stat>(ocid: "e0a4f439e53c369866b55297d2f5f4eb"));
+    context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    context.read<HomeBloc>().add(GetHomeEvent<Stat>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
   }
 }
 
