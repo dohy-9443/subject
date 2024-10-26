@@ -98,7 +98,8 @@ class _HomeEquipmentState extends State<HomeEquipment> {
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,
                       child: EquipmentBox(
-                        items: widget.itemEquipment.itemEquipment,
+                        // items: widget.itemEquipment.itemEquipment,
+                        items: [],
                         index: index,
                       )
                     );
