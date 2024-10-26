@@ -40,9 +40,9 @@ class _HomeEquipmentState extends State<HomeEquipment> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-    context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-    context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    // context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    // context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    // context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
   }
 
 
@@ -118,9 +118,9 @@ class _HomeEquipmentState extends State<HomeEquipment> {
     switch (value) {
 
       case RadioTap.basic:
-        context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-        context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-        context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+        // context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+        // context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+        // context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
       case RadioTap.cash:
         context.read<HomeBloc>().add(GetHomeEvent<CashItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
