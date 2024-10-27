@@ -1,18 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maple_story_book/app/di/di_setup.dart';
-import 'package:maple_story_book/app/presentation/all/all.dart';
-import 'package:maple_story_book/app/presentation/all/guild/bloc/guild_bloc.dart';
-import 'package:maple_story_book/app/presentation/all/notice/bloc/notice_bloc.dart';
-import 'package:maple_story_book/app/presentation/all/potential/bloc/potential_bloc.dart';
-import 'package:maple_story_book/app/presentation/all/star_force/bloc/star_force_bloc.dart';
-import 'package:maple_story_book/app/presentation/global/global_bloc.dart';
-import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
-import 'package:maple_story_book/app/presentation/presentation.dart';
-import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
 import 'package:maple_story_book/app/presentation/router/app_router.gr.dart';
-import 'package:maple_story_book/app/presentation/router/component/scaffold_nav_bar.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -27,24 +14,29 @@ class AppRouter extends RootStackRouter {
   @override
   // TODO: implement routes
   List<AutoRoute> get routes => [
-    AutoRoute(page: HomeRoute.page),
     AutoRoute(
-      path: '/ranking',
-      page: RankingRoute.page,
+      path: '/',
+      page: MainRoute.page,
       children: [
-        AutoRoute(path: 'detail', page: RankingDetailRoute.page),
+        AutoRoute(path: 'home', page: HomeRoute.page),
+        AutoRoute(
+          path: 'ranking',
+          page: RankingRoute.page,
+          children: [
+            AutoRoute(path: 'detail', page: RankingDetailRoute.page),
+          ],
+        ),
+        AutoRoute(
+          path: 'all',
+          page: AllRoute.page,
+          children: [
+            AutoRoute(path: 'guild', page: GuildRoute.page),
+            AutoRoute(path: 'notice', page: NoticeRoute.page),
+            AutoRoute(path: 'potential', page: PotentialRoute.page),
+            AutoRoute(path: 'starForce', page: StarForceRoute.page),
+          ],
+        ),
       ]
     ),
-    AutoRoute(
-      path: '/all',
-      page: AllRoute.page,
-      children: [
-        AutoRoute(path: 'guild', page: GuildRoute.page),
-        AutoRoute(path: 'notice', page: NoticeRoute.page),
-        AutoRoute(path: 'potential', page: PotentialRoute.page),
-        AutoRoute(path: 'starForce', page: StarForceRoute.page),
-      ]
-    )
   ];
-
 }
