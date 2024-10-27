@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
 ///
@@ -28,13 +27,13 @@ class _ScaffoldNavBarState extends State<ScaffoldNavBar> {
 
       switch (index) {
         case 0:
-          context.go('/');
+          // context.go('/');
           break;
         case 1:
-          context.go('/ranking');
+          // context.go('/ranking');
           break;
         case 2:
-          context.go('/all');
+          // context.go('/all');
           break;
       }
     });

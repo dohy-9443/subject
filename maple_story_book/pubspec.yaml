@@ -15,7 +15,6 @@ dependencies:
   dio: 5.7.0
 
   # router
-  go_router: 14.2.7
 
   # data
   json_annotation: 4.9.0

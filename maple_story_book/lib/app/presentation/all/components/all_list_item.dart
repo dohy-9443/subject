@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
@@ -52,7 +51,7 @@ class AllListItem extends StatelessWidget {
               return Column(
                 children: [
                   ListTile(
-                    onTap: () => context.go(subCategory[index].path),
+                    onTap: () {},
                     title: MSText.basic(
                       subCategory[index].title,
                       fontSize: 18,

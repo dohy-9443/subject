@@ -16,7 +16,7 @@ class MapleStoryBookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: AppRouter.router,
+      // routerConfig: AppRouter,
       title: '메이플 스토리 북',
       theme: ThemeData(fontFamily: FontFamily.taengGu),
     );
