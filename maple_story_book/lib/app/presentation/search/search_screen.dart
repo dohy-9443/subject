@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/presentation/search/components/components.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
@@ -11,6 +12,7 @@ import 'package:maple_story_book/tool/theme/theme.dart';
 /// Description      : 
 ///
 
+@RoutePage()
 class SearchScreen extends StatefulWidget {
 
   const SearchScreen({super.key});

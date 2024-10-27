@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:maple_story_book/core/util/insets.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
@@ -134,7 +133,7 @@ class MSAlert extends StatelessWidget {
 
               MSButton.gradient(
                 onPressed: () {
-                  context.pop();
+                  // context.pop();
                 },
                 width: 85,
                 height: 20,

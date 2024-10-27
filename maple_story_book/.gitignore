@@ -46,6 +46,7 @@ app.*.map.json
 *.env
 *.g.dart
 *.config.dart
+*.gr.dart
 pubspec.lock
 
 # FVM Version Cache

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/presentation/all/components/components.dart';
 import 'package:maple_story_book/tool/theme/colors.dart';
@@ -10,6 +11,7 @@ import 'package:maple_story_book/tool/theme/colors.dart';
 /// Description      :
 ///
 
+@RoutePage()
 class AllScreen extends StatelessWidget {
   const AllScreen({super.key});
 

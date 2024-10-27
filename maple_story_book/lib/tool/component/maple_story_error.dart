@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/maple_story_text.dart';
@@ -70,7 +69,7 @@ Future<void> mSErrorDialog(
                     ),
                     AppSize.height(30),
                     MSButton.basic(
-                      onPressed: onPressed ?? () => context.pop(),
+                      onPressed: onPressed ?? () {},
                       width: 100,
                       height: 30,
                       backgroundColor: const Color(0xFF7B5C47).withOpacity(0.2),

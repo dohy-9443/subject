@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
@@ -15,6 +16,7 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      : Refactor -> baekdonghyun.
 ///
 
+@RoutePage()
 class RankingScreen extends StatelessWidget {
   const RankingScreen({super.key});
 
