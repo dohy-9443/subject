@@ -26,8 +26,8 @@ enum RadioTap {
 }
 
 class HomeEquipment extends StatefulWidget {
-  final ItemEquipment itemEquipment;
-  const HomeEquipment({super.key, required this.itemEquipment});
+  final ItemEquipment? itemEquipment;
+  const HomeEquipment({super.key, this.itemEquipment});
 
   @override
   State<HomeEquipment> createState() => _HomeEquipmentState();
@@ -78,15 +78,40 @@ class _HomeEquipmentState extends State<HomeEquipment> {
           ),
           AppSize.height(8),
           if (selectedTap == RadioTap.basic)
-          RoundSquare(
-            backgroundColor: Colors.transparent,
-            child: StaggeredGrid.count(
-              crossAxisCount: 5, // 가로 배열
-              mainAxisSpacing: 8, // 수평 틈새
-              crossAxisSpacing: 8, // 수직 틈새
-              children: [
-                // Container(color: ColorName.legendaryColor, width: 50, height: 50, child: MSText(widget.itemEquipment.itemEquipment.length.toString()),),
-                ...List.generate(30, (index) => null).mapIndexed((index, item) {
+            if (widget.itemEquipment == null) RoundSquare(
+              backgroundColor: Colors.transparent,
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.images.yetti.path),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+            if (widget.itemEquipment!.itemEquipment.isEmpty) RoundSquare(
+              backgroundColor: Colors.transparent,
+              child: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(Assets.images.orange.path),
+                  fit: BoxFit.contain,
+                ),
+              ),
+                        ),
+            ),
+            if (widget.itemEquipment!.itemEquipment.isNotEmpty) RoundSquare(
+              backgroundColor: Colors.transparent,
+              child: StaggeredGrid.count(
+                crossAxisCount: 5, // 가로 배열
+                mainAxisSpacing: 8, // 수평 틈새
+                crossAxisSpacing: 8, // 수직 틈새
+                children: [
+                  ...List.generate(30, (index) => null).mapIndexed((index, item) {
                   if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26 || index == 28) {
                     return StaggeredGridTile.count(
                       crossAxisCellCount: 1,
@@ -98,16 +123,16 @@ class _HomeEquipmentState extends State<HomeEquipment> {
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,
                       child: EquipmentBox(
-                        // items: widget.itemEquipment.itemEquipment,
-                        items: [],
+                        items: widget.itemEquipment!.itemEquipment,
+                        // items: [],
                         index: index,
-                      )
+                      ),
                     );
                   }
-                }),
-              ],
+                })
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );

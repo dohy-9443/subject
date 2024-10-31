@@ -29,14 +29,14 @@ class EquipmentBox extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
           color: ColorName.lightGray1,
-          // borderRadius: items[1].potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
-          // border: items[1].potentialOptionGrade != "" ? Border.all(
-          //   width: 3,
-          //   color: equipmentBorder(items[1].potentialOptionGrade),
-          // ): null
-        border: Border.all(
-          width: 3, color: ColorName.legendaryColor,
-        )
+          borderRadius: items[1].potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
+          border: items[1].potentialOptionGrade != "" ? Border.all(
+            width: 3,
+            color: equipmentBorder(items[1].potentialOptionGrade),
+          ): null
+        // border: Border.all(
+        //   width: 3, color: ColorName.legendaryColor,
+        // )
       ),
       child: Stack(
         children: [
@@ -48,12 +48,12 @@ class EquipmentBox extends StatelessWidget {
               Container(
                 width: 40,
                 height: 40,
-                // child: CachedNetworkImage(
-                //   imageUrl: items[1].itemIcon,
-                //   fit: BoxFit.contain,
-                //   placeholder: (context, url) => CircularProgressIndicator(),
-                //   errorWidget: (context, url, error) => Icon(Icons.error),
-                // ),
+                child: CachedNetworkImage(
+                  imageUrl: items[1].itemIcon,
+                  fit: BoxFit.contain,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ],
           ),

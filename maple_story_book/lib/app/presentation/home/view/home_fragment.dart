@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
+import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/app/presentation/home/view/view.dart';
@@ -135,7 +138,11 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
                 tabController: _tabController,
                 tabBarList: [
                   TabBarType(onTap: () {}, text: '스텟'),
-                  TabBarType(onTap: () {}, text: '장비'),
+                  TabBarType(onTap: () {
+                    context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+                    context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+                    context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+                  }, text: '장비'),
                   TabBarType(onTap: () {}, text: '스킬'),
                   TabBarType(onTap: () {}, text: '성향 / 어빌리티'),
                 ],
