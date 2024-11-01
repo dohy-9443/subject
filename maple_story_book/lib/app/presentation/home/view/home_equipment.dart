@@ -10,7 +10,6 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
-import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -20,14 +19,16 @@ import 'package:maple_story_book/tool/widget/maple_story_text.dart';
 /// Description      : 
 ///
 
-
 enum RadioTap {
   basic, cash, skin, and;
 }
 
 class HomeEquipment extends StatefulWidget {
-  final ItemEquipment? itemEquipment;
-  const HomeEquipment({super.key, this.itemEquipment});
+  final ItemEquipment itemEquipment;
+  final CashItemEquipment cashItemEquipment;
+  final BeautyEquipment beautyEquipment;
+  final AndroidEquipment androidEquipment;
+  const HomeEquipment({super.key, required this.itemEquipment, required this.cashItemEquipment, required this.beautyEquipment, required this.androidEquipment});
 
   @override
   State<HomeEquipment> createState() => _HomeEquipmentState();
@@ -36,15 +37,9 @@ class HomeEquipment extends StatefulWidget {
 class _HomeEquipmentState extends State<HomeEquipment> {
 
   RadioTap selectedTap = RadioTap.basic;
-
-  @override
-  void initState() {
-    super.initState();
-    // context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-    // context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-    // context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-  }
-
+  CashItemEquipment cashItemEquipment = CashItemEquipment();
+  BeautyEquipment beautyEquipment = BeautyEquipment();
+  AndroidEquipment androidEquipment = AndroidEquipment();
 
   @override
   Widget build(BuildContext context) {
@@ -78,20 +73,7 @@ class _HomeEquipmentState extends State<HomeEquipment> {
           ),
           AppSize.height(8),
           if (selectedTap == RadioTap.basic)
-            if (widget.itemEquipment == null) RoundSquare(
-              backgroundColor: Colors.transparent,
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Assets.images.yetti.path),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-            if (widget.itemEquipment!.itemEquipment.isEmpty) RoundSquare(
+            if (widget.itemEquipment.itemEquipment.isEmpty) RoundSquare(
               backgroundColor: Colors.transparent,
               child: Container(
               width: 200,
@@ -104,7 +86,7 @@ class _HomeEquipmentState extends State<HomeEquipment> {
               ),
                         ),
             ),
-            if (widget.itemEquipment!.itemEquipment.isNotEmpty) RoundSquare(
+            if (widget.itemEquipment.itemEquipment.isNotEmpty) RoundSquare(
               backgroundColor: Colors.transparent,
               child: StaggeredGrid.count(
                 crossAxisCount: 5, // 가로 배열
@@ -123,7 +105,7 @@ class _HomeEquipmentState extends State<HomeEquipment> {
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,
                       child: EquipmentBox(
-                        items: widget.itemEquipment!.itemEquipment,
+                        items: widget.itemEquipment.itemEquipment,
                         // items: [],
                         index: index,
                       ),
@@ -133,6 +115,12 @@ class _HomeEquipmentState extends State<HomeEquipment> {
                 ],
               ),
             ),
+
+          // if (selectedTap == RadioTap.cash)
+          //
+          // if (selectedTap == RadioTap.skin)
+          //
+          // if (selectedTap == RadioTap.and)
         ],
       ),
     );
@@ -144,9 +132,6 @@ class _HomeEquipmentState extends State<HomeEquipment> {
     switch (value) {
 
       case RadioTap.basic:
-        // context.read<HomeBloc>().add(GetHomeEvent<ItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-        // context.read<HomeBloc>().add(GetHomeEvent<SetEffect>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
-        // context.read<HomeBloc>().add(GetHomeEvent<SymbolEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
       case RadioTap.cash:
         context.read<HomeBloc>().add(GetHomeEvent<CashItemEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
