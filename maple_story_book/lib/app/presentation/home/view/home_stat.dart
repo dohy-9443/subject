@@ -426,7 +426,7 @@ class _HomeStatState extends State<HomeStat> {
                 AppSize.height(4),
                 SpaceBetweenText(
                   title: '재사용 대기시간 감소',
-                  content: '${statValuePrint(name: '재사용 대기시간 감소 (초)')}초 / ${statValuePrint(name: '재사용 대기시간 감소 (%)')}%',
+                  content: '${statValuePrint(name: '재사용 대기시간 감소 (초)')} / ${statValuePrint(name: '재사용 대기시간 감소 (%)')}',
                   contentType: SizeType.basic,
                 ),
                 AppSize.height(4),
@@ -594,12 +594,6 @@ class _HomeStatState extends State<HomeStat> {
                   setState(() {
                     _isHyperStatSelected = !_isHyperStatSelected;
                   });
-                  // mSAlert(
-                  //   context,
-                  //   title: "test alert",
-                  //   content: '테스트 입니다.',
-                  //   // onPressed: () {},
-                  // );
                 }
               )
               // AppSize.width(8),

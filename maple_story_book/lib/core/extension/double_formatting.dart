@@ -11,16 +11,25 @@ extension DoubleFormatting on num {
     int intNum = this.toInt();
     double doubleNum = (this as double) - intNum;
 
-    int millions = intNum ~/ 10000;
+    int billions = intNum ~/ 100000000;
+    int millions = (intNum % 100000000) ~/ 10000;
     int remains = intNum % 10000;
 
-    String result = millions > 0 ? '$millions만 $remains' : '$remains';
+    String result = '';
+
+    if (billions > 0) {
+      result += '$billions억 ';
+    }
+    if (millions > 0 || billions > 0) {
+      result += '$millions만 ';
+    }
+    result += '$remains';
 
     if (doubleNum > 0) {
       result += doubleNum.toStringAsFixed(2).substring(1);
     }
 
-    return result;
+    return result.trim();
   }
 
   String toCommaString() {
