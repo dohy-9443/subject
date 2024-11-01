@@ -8,6 +8,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
+import 'package:maple_story_book/core/extension/build_context_extension.dart';
 import 'package:maple_story_book/core/util/util.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 
@@ -37,9 +38,6 @@ class HomeEquipment extends StatefulWidget {
 class _HomeEquipmentState extends State<HomeEquipment> {
 
   RadioTap selectedTap = RadioTap.basic;
-  CashItemEquipment cashItemEquipment = CashItemEquipment();
-  BeautyEquipment beautyEquipment = BeautyEquipment();
-  AndroidEquipment androidEquipment = AndroidEquipment();
 
   @override
   Widget build(BuildContext context) {
@@ -115,12 +113,51 @@ class _HomeEquipmentState extends State<HomeEquipment> {
                 ],
               ),
             ),
-
-          // if (selectedTap == RadioTap.cash)
-          //
-          // if (selectedTap == RadioTap.skin)
-          //
-          // if (selectedTap == RadioTap.and)
+          if (selectedTap == RadioTap.cash)
+            if (widget.cashItemEquipment.cashItemEquipmentBase.isEmpty) RoundSquare(
+              backgroundColor: Colors.transparent,
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.images.orange.path),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+            if (widget.cashItemEquipment.cashItemEquipmentBase.isNotEmpty) Container(width: context.screenWidth, height: 200, color: Colors.redAccent,),
+          if (selectedTap == RadioTap.skin)
+            if (widget.beautyEquipment.characterHair == null) RoundSquare(
+              backgroundColor: Colors.transparent,
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.images.orange.path),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+            if (widget.beautyEquipment.characterHair != null) Container(width: context.screenWidth, height: 200, color: Colors.orangeAccent,),
+          if (selectedTap == RadioTap.and)
+            if (widget.androidEquipment.androidHair == null) RoundSquare(
+              backgroundColor: Colors.transparent,
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.images.orange.path),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+            if (widget.androidEquipment.androidHair != null) Container(width: context.screenWidth, height: 200, color: Colors.yellowAccent,),
         ],
       ),
     );
