@@ -42,7 +42,7 @@ class _HomeEquipmentState extends State<HomeEquipment> {
   @override
   Widget build(BuildContext context) {
     final List<String> radioTexts = ['기본', '캐시', '스킨', '안드'];
-
+    print("selectedTap 이건데 : $selectedTap");
     return Container(
       padding: AppInset.all8,
       decoration: BoxDecoration(
@@ -70,101 +70,16 @@ class _HomeEquipmentState extends State<HomeEquipment> {
             ),
           ),
           AppSize.height(8),
-          if (selectedTap == RadioTap.basic)
-            if (widget.itemEquipment.itemEquipment.isEmpty) RoundSquare(
-              backgroundColor: Colors.transparent,
-              child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(Assets.images.orange.path),
-                  fit: BoxFit.contain,
-                ),
-              ),
-                        ),
-            ),
-            if (widget.itemEquipment.itemEquipment.isNotEmpty) RoundSquare(
-              backgroundColor: Colors.transparent,
-              child: StaggeredGrid.count(
-                crossAxisCount: 5, // 가로 배열
-                mainAxisSpacing: 8, // 수평 틈새
-                crossAxisSpacing: 8, // 수직 틈새
-                children: [
-                  ...List.generate(30, (index) => null).mapIndexed((index, item) {
-                  if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26 || index == 28) {
-                    return StaggeredGridTile.count(
-                      crossAxisCellCount: 1,
-                      mainAxisCellCount: 1,
-                      child: Container(width: 70, height: 70, color: Colors.transparent,),
-                    );
-                  } else {
-                    return StaggeredGridTile.count(
-                      crossAxisCellCount: 1,
-                      mainAxisCellCount: 1,
-                      child: EquipmentBox(
-                        items: widget.itemEquipment.itemEquipment,
-                        // items: [],
-                        index: index,
-                      ),
-                    );
-                  }
-                })
-                ],
-              ),
-            ),
-          if (selectedTap == RadioTap.cash)
-            if (widget.cashItemEquipment.cashItemEquipmentBase.isEmpty) RoundSquare(
-              backgroundColor: Colors.transparent,
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Assets.images.orange.path),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-            if (widget.cashItemEquipment.cashItemEquipmentBase.isNotEmpty) Container(width: context.screenWidth, height: 200, color: Colors.redAccent,),
-          if (selectedTap == RadioTap.skin)
-            if (widget.beautyEquipment.characterHair == null) RoundSquare(
-              backgroundColor: Colors.transparent,
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Assets.images.orange.path),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-            if (widget.beautyEquipment.characterHair != null) Container(width: context.screenWidth, height: 200, color: Colors.orangeAccent,),
-          if (selectedTap == RadioTap.and)
-            if (widget.androidEquipment.androidHair == null) RoundSquare(
-              backgroundColor: Colors.transparent,
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Assets.images.orange.path),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-            if (widget.androidEquipment.androidHair != null) Container(width: context.screenWidth, height: 200, color: Colors.yellowAccent,),
+          contents(),
         ],
       ),
     );
   }
 
   onEquipmentRadioSelected(RadioTap value) {
-    selectedTap = value;
+    setState(() {
+      selectedTap = value;
+    });
     print("selectedTap : $selectedTap");
     switch (value) {
 
@@ -179,6 +94,99 @@ class _HomeEquipmentState extends State<HomeEquipment> {
       case RadioTap.and:
         context.read<HomeBloc>().add(GetHomeEvent<AndroidEquipment>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
         break;
+    }
+  }
+
+  Widget contents() {
+    if (selectedTap == RadioTap.basic) {
+      if (widget.itemEquipment.itemEquipment.isEmpty) return RoundSquare(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.images.orange.path),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      );
+      else return RoundSquare(
+        backgroundColor: Colors.transparent,
+        child: StaggeredGrid.count(
+          crossAxisCount: 5, // 가로 배열
+          mainAxisSpacing: 8, // 수평 틈새
+          crossAxisSpacing: 8, // 수직 틈새
+          children: [
+            ...List.generate(30, (index) => null).mapIndexed((index, item) {
+              if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26 || index == 28) {
+                return StaggeredGridTile.count(
+                  crossAxisCellCount: 1,
+                  mainAxisCellCount: 1,
+                  child: Container(width: 70, height: 70, color: Colors.transparent,),
+                );
+              } else {
+                return StaggeredGridTile.count(
+                  crossAxisCellCount: 1,
+                  mainAxisCellCount: 1,
+                  child: EquipmentBox(
+                    items: widget.itemEquipment.itemEquipment,
+                    // items: [],
+                    index: index,
+                  ),
+                );
+              }
+            }
+            )
+          ],
+        ),
+      );
+    } else if (selectedTap == RadioTap.cash) {
+      if (widget.cashItemEquipment.cashItemEquipmentBase.isEmpty) return RoundSquare(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.images.orange.path),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      );
+      else return Container(width: context.screenWidth, height: 200, color: Colors.redAccent,);
+    } else if (selectedTap == RadioTap.skin) {
+      if (widget.beautyEquipment.characterHair == null) return RoundSquare(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.images.orange.path),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      );
+      else return Container(width: context.screenWidth, height: 200, color: Colors.orangeAccent,);
+    } else {
+      if (widget.androidEquipment.androidHair == null) return RoundSquare(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.images.orange.path),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      );
+      else return Container(width: context.screenWidth, height: 200, color: Colors.yellowAccent,);
     }
   }
 }
