@@ -12,6 +12,8 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 /// Description      : 
 ///
 
+
+
 enum EquipmentOption{
   normal, rare, epic, unique, legendary;
 }
@@ -28,19 +30,20 @@ class EquipmentBox extends StatelessWidget {
       width: 70,
       height: 70,
       decoration: BoxDecoration(
-          color: ColorName.lightGray1,
-          borderRadius: items[1].potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
-          border: items[1].potentialOptionGrade != "" ? Border.all(
-            width: 3,
-            color: equipmentBorder(items[1].potentialOptionGrade),
-          ): null
-        // border: Border.all(
-        //   width: 3, color: ColorName.legendaryColor,
-        // )
+        color: ColorName.lightGray1,
+        borderRadius: items[1].potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
+        border: items[1].potentialOptionGrade != "" ? Border.all(
+          width: 3,
+          color: _equipmentBorder(items[1].potentialOptionGrade),
+        ): null,
       ),
       child: Stack(
         children: [
-          MSText.basic('RING, $index'),
+          MSText.bold(
+            _equipmentInventoryName(index),
+            fontSize: 10,
+            color: ColorName.white,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,12 +51,13 @@ class EquipmentBox extends StatelessWidget {
               Container(
                 width: 40,
                 height: 40,
-                child: CachedNetworkImage(
-                  imageUrl: items[1].itemIcon,
-                  fit: BoxFit.contain,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                // child: CachedNetworkImage(
+                //   imageUrl: items[1].itemIcon,
+                //   fit: BoxFit.contain,
+                //   placeholder: (context, url) => CircularProgressIndicator(),
+                //   errorWidget: (context, url, error) => Icon(Icons.error),
+                // ),
+                // child: Text(index.toString()),
               ),
             ],
           ),
@@ -62,7 +66,7 @@ class EquipmentBox extends StatelessWidget {
     );
   }
 
-  Color equipmentBorder(String grade) {
+  Color _equipmentBorder(String grade) {
     switch (grade) {
       case '레어':
         return ColorName.rareColor;
@@ -75,5 +79,54 @@ class EquipmentBox extends StatelessWidget {
       default:
         return Colors.transparent;
     }
+  }
+
+  String _equipmentInventoryName(int index) {
+
+    switch (index) {
+      case 0:case 5:case 10:case 15:case 20:
+        return 'RING';
+      case 6:case 11:
+        return 'PENDANT';
+      case 16:
+        return 'WEAPON';
+      case 21:
+        return 'BELT';
+      case 2:
+        return 'CAP';
+      case 7:
+        return 'FORE\nHEAD';
+      case 12:
+        return 'EYE\nACC';
+      case 17:
+        return 'CLOTHES';
+      case 22:
+        return 'PANTS';
+      case 27:
+        return 'SHOES';
+      case 13:
+        return 'EAR\nACC';
+      case 18:
+        return 'SHOULDER';
+      case 23:
+        return 'GLOVES';
+      case 28:
+        return 'ANDROID';
+      case 4:
+        return 'EMBLEM';
+      case 9:
+        return 'BADGE';
+      case 14:
+        return 'MEDAL';
+      case 19:
+        return 'SUB\nWEAPON';
+      case 24:
+        return 'CAPE';
+      case 29:
+        return 'HEART';
+      default:
+        return '';
+    }
+
   }
 }
