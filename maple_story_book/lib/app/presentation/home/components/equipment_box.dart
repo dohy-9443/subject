@@ -36,10 +36,16 @@ class EquipmentBox extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         color: ColorName.lightGray1,
-        borderRadius: items[1].potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
-        border: items[1].potentialOptionGrade != "" ? Border.all(
+        borderRadius: items.firstWhere((e) {
+          return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
+        }).potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
+        border: items.firstWhere((e) {
+          return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
+        }).potentialOptionGrade != "" ? Border.all(
           width: 3,
-          color: _equipmentBorder(items[1].potentialOptionGrade),
+          color: _equipmentBorder(items.firstWhere((e) {
+            return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
+          }).potentialOptionGrade),
         ): null,
       ),
       child: Stack(
