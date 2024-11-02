@@ -91,7 +91,15 @@ class GetMapleStoryBookCharacterApi {
         'ocid' : ocid,
         'date' : dateToString(date)
       },
-    ).then((value) => value.data);
+    ).then((value) {
+      List test = value.data['item_equipment'];
+      for (int i = 0; i < test.length; i++) {
+        print("data : ${test[i]}");
+      }
+
+
+      return value.data;
+    });
   }
 
   Future<dynamic> getCharacterCashItemEquipment({required String ocid, DateTime? date}) {

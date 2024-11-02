@@ -121,7 +121,7 @@ class _HomeEquipmentState extends State<HomeEquipment> {
           crossAxisSpacing: 8, // 수직 틈새
           children: [
             ...List.generate(30, (index) => null).mapIndexed((index, item) {
-              if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26) {
+              if (index == 1 || index == 3 || index == 8 || index == 25 || index == 26 || index == 28) {
                 return StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 1,

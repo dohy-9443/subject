@@ -12,7 +12,12 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 /// Description      : 
 ///
 
+class EquipmentName {
+  final String en;
+  final String ko;
 
+  EquipmentName({required this.en, required this.ko});
+}
 
 enum EquipmentOption{
   normal, rare, epic, unique, legendary;
@@ -40,7 +45,7 @@ class EquipmentBox extends StatelessWidget {
       child: Stack(
         children: [
           MSText.bold(
-            _equipmentInventoryName(index),
+            _equipmentInventoryName(index).en,
             fontSize: 10,
             color: ColorName.white,
           ),
@@ -51,13 +56,14 @@ class EquipmentBox extends StatelessWidget {
               Container(
                 width: 40,
                 height: 40,
-                // child: CachedNetworkImage(
-                //   imageUrl: items[1].itemIcon,
-                //   fit: BoxFit.contain,
-                //   placeholder: (context, url) => CircularProgressIndicator(),
-                //   errorWidget: (context, url, error) => Icon(Icons.error),
-                // ),
-                // child: Text(index.toString()),
+                child: CachedNetworkImage(
+                  imageUrl: items.firstWhere((e) {
+                    return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
+                  }).itemIcon,
+                  fit: BoxFit.contain,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ],
           ),
@@ -81,51 +87,61 @@ class EquipmentBox extends StatelessWidget {
     }
   }
 
-  String _equipmentInventoryName(int index) {
+  EquipmentName _equipmentInventoryName(int index) {
 
     switch (index) {
-      case 0:case 5:case 10:case 15:case 20:
-        return 'RING';
-      case 6:case 11:
-        return 'PENDANT';
+      case 0:
+        return EquipmentName(en: 'RING', ko: '반지1');
+      case 5:
+        return EquipmentName(en: 'RING', ko: '반지2');
+      case 10:
+        return EquipmentName(en: 'RING', ko: '반지3');
+      case 15:
+        return EquipmentName(en: 'RING', ko: '반지4');
+      case 20:
+        return EquipmentName(en: 'POKET', ko: '포켓 아이템');
+      case 6:
+        return EquipmentName(en: 'PENDANT', ko: '펜던트');
+      case 11:
+        return EquipmentName(en: 'PENDANT', ko: '펜던트2');
       case 16:
-        return 'WEAPON';
+        return EquipmentName(en: 'WEAPON', ko: '무기');
       case 21:
-        return 'BELT';
+        return EquipmentName(en: 'BELT', ko: '벨트');
       case 2:
-        return 'CAP';
+        return EquipmentName(en: 'CAP', ko: '모자');
       case 7:
-        return 'FORE\nHEAD';
+        return EquipmentName(en: 'FORE\nHEAD', ko: '얼굴장식');
       case 12:
-        return 'EYE\nACC';
+        return EquipmentName(en: 'EYE\nACC', ko: '눈장식');
       case 17:
-        return 'CLOTHES';
+        return EquipmentName(en: 'CLOTHES', ko: '상의');
       case 22:
-        return 'PANTS';
+        return EquipmentName(en: 'PANTS', ko: '하의');
       case 27:
-        return 'SHOES';
+        return EquipmentName(en: 'SHOES', ko: '신발');
       case 13:
-        return 'EAR\nACC';
+        return EquipmentName(en: 'EAR\nACC', ko: '귀고리');
       case 18:
-        return 'SHOULDER';
+        return EquipmentName(en: 'SHOULDER', ko: '어깨장식');
       case 23:
-        return 'GLOVES';
+        return EquipmentName(en: 'GLOVES', ko: '장갑');
       case 28:
-        return 'ANDROID';
+        return EquipmentName(en: 'ANDROID', ko: '안드로이드');
       case 4:
-        return 'EMBLEM';
+        return EquipmentName(en: 'EMBLEM', ko: '엠블렘');
       case 9:
-        return 'BADGE';
+        return EquipmentName(en: 'BADGE', ko: '뱃지');
       case 14:
-        return 'MEDAL';
+        return EquipmentName(en: 'MEDAL', ko: '훈장');
       case 19:
-        return 'SUB\nWEAPON';
+        return EquipmentName(en: 'SUB\nWEAPON', ko: '보조무기');
       case 24:
-        return 'CAPE';
+        return EquipmentName(en: 'CAPE', ko: '망토');
       case 29:
-        return 'HEART';
+        return EquipmentName(en: 'HEART', ko: '기계 심장');
       default:
-        return '';
+        return EquipmentName(en: '', ko: '');
     }
 
   }

@@ -100,7 +100,7 @@ class ItemEquipmentElement with _$ItemEquipmentElement {
     @JsonKey(name: 'starforce_scroll_flag') @Default('') String starforceScrollFlag,
     @JsonKey(name: 'item_starforce_option') required ItemEtcOption itemStarforceOption,
     @JsonKey(name: 'special_ring_level') @Default(0) int specialRingLevel,
-    @JsonKey(name: 'date_expire') @Default('') String dateExpire,
+    @JsonKey(name: 'date_expire') String? dateExpire,
   }) = _ItemEquipmentElement;
 
   factory ItemEquipmentElement.fromJson(Map<String, dynamic> json) => _$ItemEquipmentElementFromJson(json);
