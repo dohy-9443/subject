@@ -68,5 +68,25 @@ class LoadSearchesEvent extends IGlobalEvent {
   @override
   // TODO: implement props
   List<Object?> get props => [];
+}
 
+
+class GetOcIdListEvent extends IGlobalEvent {
+  final List<String> characterNameList;
+
+  GetOcIdListEvent({required this.characterNameList});
+
+  @override
+  List<Object?> get props => [characterNameList];
+
+}
+
+final class GetGlobalEvent extends IGlobalEvent {
+  final String ocid;
+  final DateTime? date;
+
+  GetGlobalEvent({required this.ocid, this.date});
+
+  @override
+  List<Object?> get props => [ocid, date];
 }
