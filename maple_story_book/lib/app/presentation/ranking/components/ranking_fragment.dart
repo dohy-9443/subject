@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
@@ -47,8 +48,7 @@ class _RankingFragmentState extends State<RankingFragment>
   }
 
   void onTap(int index, String selectWorldName) {
-    // context.pop(context);
-
+    context.maybePop();
     context.read<RankingBloc>().add(SelectWorldFilter(
           selectWorldName: selectWorldName,
           tabIndex: _tabController.index,
