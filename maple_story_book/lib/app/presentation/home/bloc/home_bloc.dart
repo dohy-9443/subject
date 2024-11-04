@@ -59,7 +59,6 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     this._getStudioUseCase,
   ) : super(HomeInitial()) {
     on<GetHomeEvent<Ability>>(getAbility);
-    on<GetHomeEvent<BasicInfo>>(getCharacterBasic);
     on<GetHomeEvent<Propensity>>(getPropensity);
     on<GetHomeEvent<Popularity>>(getPopularity);
     on<GetHomeEvent<ItemEquipment>>(getItemEquipment);
@@ -127,30 +126,6 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
           print("누구인가?");
           _addToCache(cacheKey, res.data);
           emit((state as HomeSuccess).copyWith(ability: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
-  }
-
-  Future<void> getCharacterBasic(GetHomeEvent<BasicInfo> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getCharacterBasic';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      print("여기냐?");
-      emit((state as HomeSuccess).copyWith(basicInfo: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      print("여기냐??????");
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getCharacterBasicUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(basicInfo: res.data, isLoading: false));
         },
         emit: emit,
       );

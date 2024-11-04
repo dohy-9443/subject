@@ -81,11 +81,11 @@ class GetOcIdListEvent extends IGlobalEvent {
 
 }
 
-final class GetGlobalEvent extends IGlobalEvent {
+final class GetBasicInfoEvent extends IGlobalEvent {
   final String ocid;
   final DateTime? date;
 
-  GetGlobalEvent({required this.ocid, this.date});
+  GetBasicInfoEvent({required this.ocid, this.date});
 
   @override
   List<Object?> get props => [ocid, date];

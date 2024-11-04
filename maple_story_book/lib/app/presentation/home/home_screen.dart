@@ -2,6 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/app/presentation/global/global_bloc.dart';
+import 'package:maple_story_book/app/presentation/global/global_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
@@ -32,7 +34,7 @@ class HomeScreen extends StatelessWidget {
   );
 
   initFunction(BuildContext context) {
-    context.read<HomeBloc>().add(GetHomeEvent<BasicInfo>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
+    context.read<GlobalBloc>().add(GetBasicInfoEvent(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
     context.read<HomeBloc>().add(GetHomeEvent<Stat>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
   }
 }

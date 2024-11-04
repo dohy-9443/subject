@@ -40,11 +40,11 @@ class GlobalBloc extends Bloc<IGlobalEvent, IGlobalState> with GlobalMixin {
     on<RemoveFavoriteEvent>(removeFavorite);
     on<LoadFavoritesEvent>(loadFavorites);
     on<LoadSearchesEvent>(loadSearches);
-    on<GetGlobalEvent>(getCharacterBasic);
+    on<GetBasicInfoEvent>(getCharacterBasic);
   }
 
   Future<void> getCharacterBasic(
-      GetGlobalEvent event, Emitter<IGlobalState> emit) async {
+      GetBasicInfoEvent event, Emitter<IGlobalState> emit) async {
     await handleRequest(
       request: () async {
         final params = BaseParams(
