@@ -10,17 +10,7 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// Description      :
 ///
 
-sealed class IGlobalState extends Equatable {}
-
-final class GlobalInitial extends IGlobalState {
-  GlobalInitial();
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
-
-final class GlobalSuccess extends IGlobalState {
+sealed class IGlobalState extends Equatable {
   final bool isLoading;
   final Ocid? ocid;
   final List<LocalStorageModel>? searches;
@@ -42,7 +32,7 @@ final class GlobalSuccess extends IGlobalState {
   final bool? liberationQuestClearFlag;
   final BasicInfo basicInfo;
 
-  GlobalSuccess({
+  const IGlobalState({
     this.isLoading = false,
     this.ocid,
     this.searches,
@@ -63,6 +53,38 @@ final class GlobalSuccess extends IGlobalState {
     this.accessFlag = false,
     this.liberationQuestClearFlag = false,
     this.basicInfo = const BasicInfo(),
+  });
+}
+
+final class GlobalInitial extends IGlobalState {
+  GlobalInitial();
+
+  @override
+  List<Object?> get props => [];
+}
+
+final class GlobalSuccess extends IGlobalState {
+  GlobalSuccess({
+    super.isLoading,
+    super.ocid,
+    super.searches,
+    super.favorites,
+    super.rankerOcId,
+    super.date,
+    super.characterName,
+    super.worldName,
+    super.characterGender,
+    super.characterClass,
+    super.characterClassLevel,
+    super.characterLevel,
+    super.characterExp,
+    super.characterExpRate,
+    super.characterGuildName,
+    super.characterImage,
+    super.characterDateCreate,
+    super.accessFlag,
+    super.liberationQuestClearFlag,
+    super.basicInfo,
   });
 
   GlobalSuccess copyWith({
