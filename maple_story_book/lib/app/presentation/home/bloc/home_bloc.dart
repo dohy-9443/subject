@@ -16,9 +16,8 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 ///
 
 @singleton
-class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
+class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
   final GetAbilityUseCase _getAbilityUseCase;
-  final GetCharacterBasicUseCase _getCharacterBasicUseCase;
   final GetPropensityUseCase _getPropensityUseCase;
   final GetPopularityUseCase _getPopularityUseCase;
   final GetItemEquipmentUseCase _getItemEquipmentUseCase;
@@ -38,26 +37,25 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
   final GetStudioUseCase _getStudioUseCase;
 
   HomeBloc(
-    this._getAbilityUseCase,
-    this._getCharacterBasicUseCase,
-    this._getPropensityUseCase,
-    this._getPopularityUseCase,
-    this._getItemEquipmentUseCase,
-    this._getCashItemEquipmentUseCase,
-    this._getSetEffectUseCase,
-    this._getSymbolEquipmentUseCase,
-    this._getStatUseCase,
-    this._getHyperStatUseCase,
-    this._getPetEquipmentUseCase,
-    this._getBeautyEquipmentUseCase,
-    this._getAndroidEquipmentUseCase,
-    this._getSkillInfoUseCase,
-    this._getLinkSkillUseCase,
-    this._getVMatrixUseCase,
-    this._getHexaMatrixInfoUseCase,
-    this._getHexaMatrixStatUseCase,
-    this._getStudioUseCase,
-  ) : super(HomeInitial()) {
+      this._getAbilityUseCase,
+      this._getPropensityUseCase,
+      this._getPopularityUseCase,
+      this._getItemEquipmentUseCase,
+      this._getCashItemEquipmentUseCase,
+      this._getSetEffectUseCase,
+      this._getSymbolEquipmentUseCase,
+      this._getStatUseCase,
+      this._getHyperStatUseCase,
+      this._getPetEquipmentUseCase,
+      this._getBeautyEquipmentUseCase,
+      this._getAndroidEquipmentUseCase,
+      this._getSkillInfoUseCase,
+      this._getLinkSkillUseCase,
+      this._getVMatrixUseCase,
+      this._getHexaMatrixInfoUseCase,
+      this._getHexaMatrixStatUseCase,
+      this._getStudioUseCase,
+      ) : super(const HomeState.initial()) {
     on<GetHomeEvent<Ability>>(getAbility);
     on<GetHomeEvent<Propensity>>(getPropensity);
     on<GetHomeEvent<Popularity>>(getPopularity);
@@ -70,23 +68,12 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     on<GetHomeEvent<PetEquipment>>(getPetEquipment);
     on<GetHomeEvent<BeautyEquipment>>(getBeautyEquipment);
     on<GetHomeEvent<AndroidEquipment>>(getAndroidEquipment);
-    on<GetSkillEvent>(getSkillInfo);
+    on<GetSkillEvent<SkillInfo>>(getSkillInfo);
     on<GetHomeEvent<LinkSkill>>(getLinkSkill);
     on<GetHomeEvent<VMatrixInfo>>(getVMatrixInfo);
     on<GetHomeEvent<HexaMatrixInfo>>(getHexaMatrixInfo);
     on<GetHomeEvent<HexaMatrixStat>>(getHexaMatrixStat);
     on<GetHomeEvent<StudioTopRecordInfo>>(getStudioTopRecordInfo);
-
-    // add(GetHomeEvent<Ability>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<BasicInfo>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<Propensity>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<ItemEquipment>('bc9ba6b1f13451d74458a513aad3b494')); // 이거 에러남
-    // add(GetHomeEvent<CashItemEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<SetEffect>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<SymbolEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<Stat>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<HyperStat>('bc9ba6b1f13451d74458a513aad3b494'));
-    // add(GetHomeEvent<PetEquipment>('bc9ba6b1f13451d74458a513aad3b494'));
   }
 
   static const Duration cacheDuration = Duration(minutes: 10);
@@ -108,404 +95,295 @@ class HomeBloc extends Bloc<IHomeEvent, IHomeState> with HomeBlocMixin {
     return DateTime.now().difference(entry.cacheTime) > cacheDuration;
   }
 
-  Future<void> getAbility(GetHomeEvent<Ability> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getAbility';
-
+  Future<void> _fetchData<T>({
+    required String cacheKey,
+    required Future<T> Function() fetchFunction,
+    required Emitter<HomeState> emit,
+    required void Function(T) onSuccess,
+  }) async {
     if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      print("여긴가?");
-      emit((state as HomeSuccess).copyWith(ability: _cache[cacheKey]!.data, isLoading: false));
+      final cachedData = _cache[cacheKey]!.data as T;
+      onSuccess(cachedData);
     } else {
+      emit(const HomeState.loading());
       await handleRequest(
         request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getAbilityUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          print("누구인가?");
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(ability: res.data, isLoading: false));
+          final data = await fetchFunction();
+          _addToCache(cacheKey, data);
+          onSuccess(data);
         },
         emit: emit,
       );
     }
   }
 
-  Future<void> getPropensity(GetHomeEvent<Propensity> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getPropensity';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(propensity: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getPropensityUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(propensity: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getAbility(GetHomeEvent<Ability> event, Emitter<HomeState> emit) async {
+    await _fetchData<Ability>(
+      cacheKey: 'getAbility',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getAbilityUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(ability: data)),
+    );
   }
 
-  Future<void> getPopularity(GetHomeEvent<Popularity> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getPopularity';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(popularity: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getPopularityUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(popularity: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getPropensity(GetHomeEvent<Propensity> event, Emitter<HomeState> emit) async {
+    await _fetchData<Propensity>(
+      cacheKey: 'getPropensity',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getPropensityUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Propensity data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(propensity: data)),
+    );
   }
 
-  Future<void> getItemEquipment(GetHomeEvent<ItemEquipment> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getItemEquipment';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      print("여기냐?");
-      emit((state as HomeSuccess).copyWith(itemEquipment: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      print("여기냐??????");
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getItemEquipmentUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(itemEquipment: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getPopularity(GetHomeEvent<Popularity> event, Emitter<HomeState> emit) async {
+    await _fetchData<Popularity>(
+      cacheKey: 'getPopularity',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getPopularityUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Popularity data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(popularity: data)),
+    );
   }
 
-  Future<void> getCashItemEquipment(GetHomeEvent<CashItemEquipment> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getCashItemEquipment';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(cashItemEquipment: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getCashItemEquipmentUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(cashItemEquipment: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getItemEquipment(GetHomeEvent<ItemEquipment> event, Emitter<HomeState> emit) async {
+    await _fetchData<ItemEquipment>(
+      cacheKey: 'getItemEquipment',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getItemEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('ItemEquipment data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(itemEquipment: data)),
+    );
   }
 
-  Future<void> getSetEffect(GetHomeEvent<SetEffect> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getSetEffect';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(setEffect: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getSetEffectUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(setEffect: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getCashItemEquipment(GetHomeEvent<CashItemEquipment> event, Emitter<HomeState> emit) async {
+    await _fetchData<CashItemEquipment>(
+      cacheKey: 'getCashItemEquipment',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getCashItemEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('CashItemEquipment data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(cashItemEquipment: data)),
+    );
   }
 
-  Future<void> getSymbolEquipment(GetHomeEvent<SymbolEquipment> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getSymbolEquipment';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(symbolEquipment: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getSymbolEquipmentUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(symbolEquipment: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getSetEffect(GetHomeEvent<SetEffect> event, Emitter<HomeState> emit) async {
+    await _fetchData<SetEffect>(
+      cacheKey: 'getSetEffect',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getSetEffectUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('SetEffect data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(setEffect: data)),
+    );
   }
 
-  Future<void> getStat(GetHomeEvent<Stat> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getStat';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(stat: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getStatUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(stat: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getSymbolEquipment(GetHomeEvent<SymbolEquipment> event, Emitter<HomeState> emit) async {
+    await _fetchData<SymbolEquipment>(
+      cacheKey: 'getSymbolEquipment',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getSymbolEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('SymbolEquipment data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(symbolEquipment: data)),
+    );
   }
 
-  Future<void> getHyperStat(GetHomeEvent<HyperStat> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getHyperStat';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(hyperStat: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getHyperStatUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(hyperStat: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getStat(GetHomeEvent<Stat> event, Emitter<HomeState> emit) async {
+    await _fetchData<Stat>(
+      cacheKey: 'getStat',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getStatUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Stat data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(stat: data)),
+    );
   }
 
-  Future<void> getPetEquipment(GetHomeEvent<PetEquipment> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getPetEquipment';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(petEquipment: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getPetEquipmentUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(petEquipment: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getHyperStat(GetHomeEvent<HyperStat> event, Emitter<HomeState> emit) async {
+    await _fetchData<HyperStat>(
+      cacheKey: 'getHyperStat',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getHyperStatUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('HyperStat data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(hyperStat: data)),
+    );
   }
 
-  Future<void> getBeautyEquipment(GetHomeEvent<BeautyEquipment> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getBeautyEquipment';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(beautyEquipment: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getBeautyEquipmentUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(beautyEquipment: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getPetEquipment(GetHomeEvent<PetEquipment> event, Emitter<HomeState> emit) async {
+    await _fetchData<PetEquipment>(
+      cacheKey: 'getPetEquipment',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getPetEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('PetEquipment data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(petEquipment: data)),
+    );
   }
 
-  Future<void> getAndroidEquipment(GetHomeEvent<AndroidEquipment> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getAndroidEquipment';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(androidEquipment: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getAndroidEquipmentUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(androidEquipment: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getBeautyEquipment(GetHomeEvent<BeautyEquipment> event, Emitter<HomeState> emit) async {
+    await _fetchData<BeautyEquipment>(
+      cacheKey: 'getBeautyEquipment',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getBeautyEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('BeautyEquipment data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(beautyEquipment: data)),
+    );
   }
 
-  Future<void> getSkillInfo(GetSkillEvent event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getSkillInfo';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(skillInfo: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = SkillInfoParams(
-            ocid: event.ocid,
-            date: event.date,
-            characterSkillGrade: event.characterSkillGrade,
-          );
-          final res = await _getSkillInfoUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(skillInfo: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getAndroidEquipment(GetHomeEvent<AndroidEquipment> event, Emitter<HomeState> emit) async {
+    await _fetchData<AndroidEquipment>(
+      cacheKey: 'getAndroidEquipment',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getAndroidEquipmentUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('AndroidEquipment data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(androidEquipment: data)),
+    );
   }
 
-  Future<void> getLinkSkill(GetHomeEvent<LinkSkill> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getLinkSkill';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(linkSkill: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getLinkSkillUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(linkSkill: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getSkillInfo(GetSkillEvent<SkillInfo> event, Emitter<HomeState> emit) async {
+    await _fetchData<SkillInfo>(
+      cacheKey: 'getSkillInfo',
+      fetchFunction: () async {
+        final params = SkillInfoParams(ocid: event.ocid, date: event.date, characterSkillGrade: event.characterSkillGrade);
+        final res = await _getSkillInfoUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('SkillInfo data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(skillInfo: data)),
+    );
   }
 
-  Future<void> getVMatrixInfo(GetHomeEvent<VMatrixInfo> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getVMatrixInfo';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(vMatrixInfo: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getVMatrixUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(vMatrixInfo: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getLinkSkill(GetHomeEvent<LinkSkill> event, Emitter<HomeState> emit) async {
+    await _fetchData<LinkSkill>(
+      cacheKey: 'getLinkSkill',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getLinkSkillUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('LinkSkill data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(linkSkill: data)),
+    );
   }
 
-  Future<void> getHexaMatrixInfo(GetHomeEvent<HexaMatrixInfo> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getHexaMatrixInfo';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(hexaMatrixInfo: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getHexaMatrixInfoUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(hexaMatrixInfo: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getVMatrixInfo(GetHomeEvent<VMatrixInfo> event, Emitter<HomeState> emit) async {
+    await _fetchData<VMatrixInfo>(
+      cacheKey: 'getVMatrixInfo',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getVMatrixUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('VMatrixInfo data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(vMatrixInfo: data)),
+    );
   }
 
-  Future<void> getHexaMatrixStat(GetHomeEvent<HexaMatrixStat> event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getHexaMatrixStat';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(hexaMatrixStat: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getHexaMatrixStatUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(hexaMatrixStat: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getHexaMatrixInfo(GetHomeEvent<HexaMatrixInfo> event, Emitter<HomeState> emit) async {
+    await _fetchData<HexaMatrixInfo>(
+      cacheKey: 'getHexaMatrixInfo',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getHexaMatrixInfoUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('HexaMatrixInfo data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(hexaMatrixInfo: data)),
+    );
   }
 
-  Future<void> getStudioTopRecordInfo(GetHomeEvent event, Emitter<IHomeState> emit) async {
-    const cacheKey = 'getStudioTopRecordInfo';
+  Future<void> getHexaMatrixStat(GetHomeEvent<HexaMatrixStat> event, Emitter<HomeState> emit) async {
+    await _fetchData<HexaMatrixStat>(
+      cacheKey: 'getHexaMatrixStat',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getHexaMatrixStatUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('HexaMatrixStat data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(hexaMatrixStat: data)),
+    );
+  }
 
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      emit((state as HomeSuccess).copyWith(studioTopRecordInfo: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = BaseParams(
-            ocid: event.ocid,
-            date: event.date,
-          );
-          final res = await _getStudioUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as HomeSuccess).copyWith(studioTopRecordInfo: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getStudioTopRecordInfo(GetHomeEvent<StudioTopRecordInfo> event, Emitter<HomeState> emit) async {
+    await _fetchData<StudioTopRecordInfo>(
+      cacheKey: 'getStudioTopRecordInfo',
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getStudioUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('StudioTopRecordInfo data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(HomeState.success(studioTopRecordInfo: data)),
+    );
   }
 }
