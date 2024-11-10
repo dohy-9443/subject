@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/core/util/bloc/base_state.dart';
 import 'package:maple_story_book/core/util/util.dart';
+
+part 'home_state.freezed.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -137,4 +140,35 @@ class HomeError extends IHomeState with BaseErrorState {
 
   @override
   List<Object?> get props => [error, stackTrace];
+}
+
+
+/* 테스트 */
+
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState.initial() = Initial;
+  const factory HomeState.loading() = Loading;
+  const factory HomeState.success({
+    @Default(Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset())) Ability ability,
+    @Default(BasicInfo()) BasicInfo basicInfo,
+    @Default(Propensity()) Propensity propensity,
+    @Default(Popularity()) Popularity popularity,
+    @Default(ItemEquipment()) ItemEquipment itemEquipment,
+    @Default(CashItemEquipment()) CashItemEquipment cashItemEquipment,
+    @Default(SetEffect()) SetEffect setEffect,
+    @Default(SymbolEquipment()) SymbolEquipment symbolEquipment,
+    @Default(Stat()) Stat stat,
+    @Default(HyperStat()) HyperStat hyperStat,
+    @Default(PetEquipment()) PetEquipment petEquipment,
+    @Default(BeautyEquipment()) BeautyEquipment beautyEquipment,
+    @Default(AndroidEquipment()) AndroidEquipment androidEquipment,
+    @Default(SkillInfo()) SkillInfo skillInfo,
+    @Default(LinkSkill()) LinkSkill linkSkill,
+    @Default(VMatrixInfo()) VMatrixInfo vMatrixInfo,
+    @Default(HexaMatrixInfo()) HexaMatrixInfo hexaMatrixInfo,
+    @Default(HexaMatrixStat()) HexaMatrixStat hexaMatrixStat,
+    @Default(StudioTopRecordInfo()) StudioTopRecordInfo studioTopRecordInfo,
+  }) = Success;
+  const factory HomeState.error() = Error;
 }
