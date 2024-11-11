@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:maple_story_book/core/extension/null_check_extension.dart';
 import 'package:maple_story_book/core/util/util.dart';
+import 'package:maple_story_book/tool/component/maple_story_loading.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -14,10 +14,10 @@ typedef SuccessWidgetBuilder<TSuccess> = Widget Function(BuildContext context, T
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
 typedef LoadingWidgetBuilder = Widget Function();
 
-class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> extends StatelessWidget {
+class BlocHandler<T extends BaseState> extends StatelessWidget {
   final T state;
   final LoadingWidgetBuilder initial;
-  final SuccessWidgetBuilder<TSuccess> success;
+  final SuccessWidgetBuilder<T> success;
   final Widget successEmpty;
   final ErrorWidgetBuilder error;
 
@@ -34,17 +34,13 @@ class BlocHandler<T extends IBaseState, TSuccess extends BaseSuccessState> exten
   Widget build(BuildContext context) {
     if (state.isInitial) {
       return initial();
-    } else if (state.isError) {
-      final errorState = state as BaseErrorState;
-      return error(context, errorState.error);
+    } else if (state.isLoading) {
+      return const MSLoading();
     } else if (state.isSuccess) {
-      if(state.hasData) {
-        return success(context, state as TSuccess);
-      } else {
-        return successEmpty;
-      }
-    } else {
-      return const SizedBox();
+      return success(context, state);
+    } else if (state.isError) {
+      return error(context, state);
     }
+    return const SizedBox();
   }
 }
