@@ -92,8 +92,8 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    IGlobalState globalState = context.read<GlobalBloc>().state;
-    BasicInfo basicInfo = globalState.basicInfo;
+    final globalState = context.read<GlobalBloc>();
+    BasicInfo? basicInfo = globalState.cachedSuccessState?.basicInfo;
     Stat stat = widget.state.stat;
     HyperStat hyperStat = widget.state.hyperStat;
     Ability ability = widget.state.ability;
@@ -112,13 +112,13 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
             floating: true,
             backgroundColor: isTitleVisible && !isExpanded ? ColorName.mainAccent : ColorName.lightBg,
             title: isTitleVisible && !isExpanded
-                ? MSText.bold(basicInfo.characterName, color: ColorName.white, fontSize: 20)
+                ? MSText.bold(basicInfo == null ? '조회할 수 없습니다.' : basicInfo.characterName, color: ColorName.white, fontSize: 20)
                 : null,
             flexibleSpace: FlexibleSpaceBar(
               background: SafeArea(
                 child: Padding(
                   padding: AppInset.h8,
-                  child: HomeTop(basicInfo: basicInfo),
+                  child: basicInfo == null ? MSText.danger('조회할 수 없습니다.', fontSize: 20) : HomeTop(basicInfo: basicInfo),
                 ),
               ),
             ),

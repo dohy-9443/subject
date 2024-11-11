@@ -14,10 +14,10 @@ typedef SuccessWidgetBuilder<TSuccess> = Widget Function(BuildContext context, T
 typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
 typedef LoadingWidgetBuilder = Widget Function();
 
-class BlocHandler<T extends BaseState> extends StatelessWidget {
+class BlocHandler<T extends BaseState, TSuccess extends T> extends StatelessWidget {
   final T state;
   final LoadingWidgetBuilder initial;
-  final SuccessWidgetBuilder<T> success;
+  final SuccessWidgetBuilder<TSuccess> success;
   final Widget successEmpty;
   final ErrorWidgetBuilder error;
 
@@ -36,11 +36,13 @@ class BlocHandler<T extends BaseState> extends StatelessWidget {
       return initial();
     } else if (state.isLoading) {
       return const MSLoading();
-    } else if (state.isSuccess) {
-      return success(context, state);
+    } else if (state.isSuccess && state is TSuccess) {
+      return success(context, state as TSuccess);
     } else if (state.isError) {
       return error(context, state);
     }
     return const SizedBox();
   }
 }
+
+

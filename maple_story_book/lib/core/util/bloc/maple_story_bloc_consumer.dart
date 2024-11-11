@@ -13,7 +13,7 @@ import 'package:maple_story_book/tool/component/component.dart';
 /// Description      :
 ///
 
-class MSBlocConsumer<B extends BlocBase<S>, S extends BaseState> extends StatefulWidget {
+class MSBlocConsumer<B extends BlocBase<S>, S extends BaseState, SSuccess extends S> extends StatefulWidget {
   final Function(BuildContext context) initFunc;
 
   final B bloc;
@@ -21,7 +21,7 @@ class MSBlocConsumer<B extends BlocBase<S>, S extends BaseState> extends Statefu
   final BlocWidgetBuilder<S>? builder;
 
   final Widget Function()? initial;
-  final Widget Function(BuildContext context, S state) success;
+  final Widget Function(BuildContext context, SSuccess state) success;
   final Widget? successEmpty;
 
   final VoidCallback errorPressed;
@@ -41,10 +41,10 @@ class MSBlocConsumer<B extends BlocBase<S>, S extends BaseState> extends Statefu
   });
 
   @override
-  State<MSBlocConsumer<B, S>> createState() => _MSBlocConsumerState<B, S>();
+  State<MSBlocConsumer<B, S, SSuccess>> createState() => _MSBlocConsumerState<B, S, SSuccess>();
 }
 
-class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState> extends State<MSBlocConsumer<B, S>> {
+class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState, SSuccess extends S> extends State<MSBlocConsumer<B, S, SSuccess>> {
   @override
   void initState() {
     widget.initFunc(context);
@@ -59,7 +59,7 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState> extends S
         bloc: widget.bloc,
         listener: widget.listener ?? (context, state) {},
         builder: (context, state) {
-          return BlocHandler<S>(
+          return BlocHandler<S, SSuccess>(
             state: state,
             initial: widget.initial ?? () => const MSLoading(),
             success: widget.success,
@@ -71,6 +71,6 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState> extends S
           );
         },
       );
-    }
+    },
   );
 }

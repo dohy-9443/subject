@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/global/global_event.dart';
 import 'package:maple_story_book/app/presentation/global/global_state.dart';
 
@@ -21,5 +22,20 @@ mixin GlobalMixin on Bloc<GlobalEvent, GlobalState> {
     } catch (e, s) {
       emitError(e, s, emit);
     }
+  }
+
+  Future<void> fetchData<T>({
+    required Future<T> Function() fetchFunction,
+    required Emitter<GlobalState> emit,
+    required void Function(T) onSuccess,
+  }) async {
+    emit(const GlobalState.loading());
+    await handleRequest(
+      request: () async {
+        final data = await fetchFunction();
+        onSuccess(data);
+      },
+      emit: emit,
+    );
   }
 }

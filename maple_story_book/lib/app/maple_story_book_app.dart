@@ -6,6 +6,7 @@ import 'package:maple_story_book/app/presentation/all/notice/bloc/notice_bloc.da
 import 'package:maple_story_book/app/presentation/all/potential/bloc/potential_bloc.dart';
 import 'package:maple_story_book/app/presentation/all/star_force/bloc/star_force_bloc.dart';
 import 'package:maple_story_book/app/presentation/global/global_bloc.dart';
+import 'package:maple_story_book/app/presentation/global/global_state.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_bloc.dart';
 import 'package:maple_story_book/app/presentation/router/app_router.dart';

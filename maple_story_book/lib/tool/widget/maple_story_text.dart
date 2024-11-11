@@ -73,10 +73,12 @@ class MSText extends StatelessWidget {
     String text, {
       double fontSize = 16,
       TextAlign textAlign = TextAlign.left,
+      FontWeight fontWeight = FontWeight.bold,
       List<Shadow>? shadow,
   }) => MSText(
     text,
     color: ColorName.danger,
+    fontWeight: fontWeight,
     fontSize: fontSize,
     textAlign: textAlign,
     shadow: shadow,

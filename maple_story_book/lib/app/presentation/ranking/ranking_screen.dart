@@ -22,7 +22,7 @@ class RankingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      MSBlocConsumer<RankingBloc, IRankingState, RankingSuccess>(
+      MSBlocConsumer<RankingBloc, RankingState, RankingSuccess>(
           initFunc: initFunction,
           bloc: context.read<RankingBloc>(),
           success: (context, successState) => RankingFragment(successState),

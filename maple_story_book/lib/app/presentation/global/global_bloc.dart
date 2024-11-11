@@ -24,13 +24,15 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
   final SaveHistoryUseCase _saveHistoryUseCase;
   final GetCharacterBasicUseCase _getCharacterBasicUseCase;
 
+  GlobalSuccess? cachedSuccessState;
+
   GlobalBloc(
     this._getOcidUseCase,
     this._getHistoryUseCase,
     this._removeEntryUseCase,
     this._saveHistoryUseCase,
     this._getCharacterBasicUseCase,
-  ) : super(GlobalInitial()) {
+  ) : super(const GlobalState.initial()) {
     on<GetOcIdEvent>(getOcid);
     on<GetOcIdListEvent>(getOcIdList);
     on<AddFavoriteEvent>(addFavoriteEvent);
@@ -41,24 +43,8 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
     on<GetBasicInfoEvent>(getCharacterBasic);
   }
 
-
-  Future<void> _fetchData<T>({
-    required Future<T> Function() fetchFunction,
-    required Emitter<GlobalState> emit,
-    required void Function(T) onSuccess,
-  }) async {
-    emit(const GlobalState.loading());
-    await handleRequest(
-      request: () async {
-        final data = await fetchFunction();
-        onSuccess(data);
-      },
-      emit: emit,
-    );
-  }
-
   Future<void> getCharacterBasic(GetBasicInfoEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<BasicInfo>(
+    await fetchData<BasicInfo>(
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
         final res = await _getCharacterBasicUseCase.execute(params);
@@ -67,12 +53,16 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(basicInfo: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(basicInfo: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   Future<void> addFavoriteEvent(AddFavoriteEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<List<LocalStorageModel>>(
+    await fetchData<List<LocalStorageModel>>(
       fetchFunction: () async {
         final saveParams = SaveHistoryParams(
           category: 'favorite',
@@ -84,12 +74,16 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
         return res;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(favorites: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(favorites: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   Future<void> addSearch(AddSearchEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<List<LocalStorageModel>>(
+    await fetchData<List<LocalStorageModel>>(
       fetchFunction: () async {
         final saveParams = SaveHistoryParams(
           category: 'search',
@@ -101,12 +95,16 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
         return res;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(searches: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(searches: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   Future<void> removeFavorite(RemoveFavoriteEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<List<LocalStorageModel>>(
+    await fetchData<List<LocalStorageModel>>(
       fetchFunction: () async {
         final removeParams = RemoveEntryParams(
           category: 'favorite',
@@ -118,37 +116,49 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
         return res;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(favorites: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(favorites: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   Future<void> loadFavorites(LoadFavoritesEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<List<LocalStorageModel>>(
+    await fetchData<List<LocalStorageModel>>(
       fetchFunction: () async {
         final params = GetHistoryParams(category: 'favorite');
         final res = await _getHistoryUseCase.execute(params);
         return res;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(favorites: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(favorites: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   Future<void> loadSearches(LoadSearchesEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<List<LocalStorageModel>>(
+    await fetchData<List<LocalStorageModel>>(
       fetchFunction: () async {
         final params = GetHistoryParams(category: 'search');
         final res = await _getHistoryUseCase.execute(params);
         return res;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(searches: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(searches: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   // 단일 ocId 요청
   Future<void> getOcid(GetOcIdEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<Ocid>(
+    await fetchData<Ocid>(
       fetchFunction: () async {
 
         final params = GetOcidParams(characterName: event.characterName);
@@ -158,13 +168,17 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(ocid: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(ocid: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 
   // 다중 ocId 요청
   Future<void> getOcIdList(GetOcIdListEvent event, Emitter<GlobalState> emit) async {
-    await _fetchData<List<Ocid>>(
+    await fetchData<List<Ocid>>(
       fetchFunction: () async {
         final List<Ocid> ocIds = [];
 
@@ -179,7 +193,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
         return ocIds;
       },
       emit: emit,
-      onSuccess: (data) => emit(GlobalState.success(rankerOcId: data)),
+      onSuccess: (data) {
+        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(rankerOcId: data);
+        emit(state);
+        cachedSuccessState = state;
+      },
     );
   }
 }
