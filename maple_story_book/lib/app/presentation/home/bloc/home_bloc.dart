@@ -87,7 +87,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(ability: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(ability: data));
+        } else {
+          emit(HomeState.success(
+            ability: data,
+            propensity: (state is HomeSuccess) ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: (state is HomeSuccess) ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -102,7 +127,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(propensity: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(propensity: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: data,
+            popularity: (state is HomeSuccess) ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -117,7 +167,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(popularity: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(popularity: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: data,
+            itemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -132,7 +207,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(itemEquipment: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(itemEquipment: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: data,
+            cashItemEquipment: (state is HomeSuccess) ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -147,7 +247,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(cashItemEquipment: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(cashItemEquipment: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: data,
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -162,7 +287,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(setEffect: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(setEffect: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: data,
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -177,7 +327,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(symbolEquipment: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(symbolEquipment: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: data,
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -192,9 +367,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(stat: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(stat: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: data,
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
+
+  /// TODO : loading type 으로 변하면서 이슈발생 이전값을 유지하지못하고 초기화가됨
 
   Future<void> getHyperStat(GetHomeEvent<HyperStat> event, Emitter<HomeState> emit) async {
     await fetchData<HyperStat>(
@@ -207,7 +409,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(hyperStat: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+
+          emit((state as HomeSuccess).copyWith(hyperStat: data));
+        } else {
+
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: data,
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -222,7 +451,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(petEquipment: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(petEquipment: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: data,
+            beautyEquipment: state is HomeSuccess ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -237,7 +491,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(beautyEquipment: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(beautyEquipment: data));
+        } else {
+          emit(HomeState.success(beautyEquipment: data));
+        }
+      },
     );
   }
 
@@ -252,7 +512,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(androidEquipment: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(androidEquipment: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: data,
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -267,7 +552,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(skillInfo: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(skillInfo: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: data,
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -282,7 +592,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(linkSkill: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(linkSkill: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: data,
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -297,7 +632,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(vMatrixInfo: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(vMatrixInfo: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: data,
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -312,7 +672,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(hexaMatrixInfo: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(hexaMatrixInfo: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: data,
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -327,7 +712,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(hexaMatrixStat: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(hexaMatrixStat: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: data,
+            studioTopRecordInfo: (state is HomeSuccess) ? (state as HomeSuccess).studioTopRecordInfo : const StudioTopRecordInfo(),
+          ));
+        }
+      },
     );
   }
 
@@ -342,7 +752,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as HomeSuccess).copyWith(studioTopRecordInfo: data)),
+      onSuccess: (data) {
+        if (state is HomeSuccess) {
+          emit((state as HomeSuccess).copyWith(studioTopRecordInfo: data));
+        } else {
+          emit(HomeState.success(
+            ability: (state is HomeSuccess) ? (state as HomeSuccess).ability : const Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset()),
+            propensity: state is HomeSuccess ? (state as HomeSuccess).propensity : const Propensity(),
+            popularity: state is HomeSuccess ? (state as HomeSuccess).popularity : const Popularity(),
+            itemEquipment: state is HomeSuccess ? (state as HomeSuccess).itemEquipment : const ItemEquipment(),
+            cashItemEquipment: state is HomeSuccess ? (state as HomeSuccess).cashItemEquipment : const CashItemEquipment(),
+            setEffect: (state is HomeSuccess) ? (state as HomeSuccess).setEffect : const SetEffect(),
+            symbolEquipment: (state is HomeSuccess) ? (state as HomeSuccess).symbolEquipment : const SymbolEquipment(),
+            stat: (state is HomeSuccess) ? (state as HomeSuccess).stat : const Stat(),
+            hyperStat: (state is HomeSuccess) ? (state as HomeSuccess).hyperStat : const HyperStat(),
+            petEquipment: (state is HomeSuccess) ? (state as HomeSuccess).petEquipment : const PetEquipment(),
+            beautyEquipment: (state is HomeSuccess) ? (state as HomeSuccess).beautyEquipment : const BeautyEquipment(),
+            androidEquipment: (state is HomeSuccess) ? (state as HomeSuccess).androidEquipment : const AndroidEquipment(),
+            skillInfo: (state is HomeSuccess) ? (state as HomeSuccess).skillInfo : const SkillInfo(),
+            linkSkill: (state is HomeSuccess) ? (state as HomeSuccess).linkSkill : const LinkSkill(),
+            vMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).vMatrixInfo : const VMatrixInfo(),
+            hexaMatrixInfo: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixInfo : const HexaMatrixInfo(),
+            hexaMatrixStat: (state is HomeSuccess) ? (state as HomeSuccess).hexaMatrixStat : const HexaMatrixStat(),
+            studioTopRecordInfo: data,
+          ));
+        }
+      },
     );
   }
 }

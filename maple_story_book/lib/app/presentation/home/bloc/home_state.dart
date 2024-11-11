@@ -23,7 +23,6 @@ class HomeState with _$HomeState implements BaseState {
   const factory HomeState.loading() = HomeLoading;
   const factory HomeState.success({
     @Default(Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset())) Ability ability,
-    @Default(BasicInfo()) BasicInfo basicInfo,
     @Default(Propensity()) Propensity propensity,
     @Default(Popularity()) Popularity popularity,
     @Default(ItemEquipment()) ItemEquipment itemEquipment,

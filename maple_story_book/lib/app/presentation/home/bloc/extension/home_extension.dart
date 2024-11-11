@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/data/source/model/model.dart';
+import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 
@@ -67,10 +68,12 @@ mixin HomeBlocMixin on Bloc<HomeEvent, HomeState> {
         request: () async {
           final data = await fetchFunction();
           _addToCache(cacheKey, data);
+
           onSuccess(data);
         },
         emit: emit,
       );
     }
   }
+
 }
