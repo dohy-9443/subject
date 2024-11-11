@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/presentation/global/global_bloc.dart';
 import 'package:maple_story_book/app/presentation/global/global_state.dart';
-import 'package:maple_story_book/core/util/util.dart';
+import 'package:maple_story_book/core/util/bloc/base_state.dart';
 import 'package:maple_story_book/tool/component/component.dart';
 
 ///
@@ -13,15 +13,15 @@ import 'package:maple_story_book/tool/component/component.dart';
 /// Description      :
 ///
 
-class MSBlocConsumer<B extends BlocBase<S>, S extends IBaseState, SSuccess extends BaseSuccessState> extends StatefulWidget {
+class MSBlocConsumer<B extends BlocBase<S>, S extends BaseState> extends StatefulWidget {
   final Function(BuildContext context) initFunc;
 
   final B bloc;
-  final BlocWidgetListener<S>? listener;
+  final Function(BuildContext context, S state)? listener;
   final BlocWidgetBuilder<S>? builder;
 
   final Widget Function()? initial;
-  final Widget Function(BuildContext context, SSuccess state) success;
+  final Widget Function(BuildContext context, S state) success;
   final Widget? successEmpty;
 
   final VoidCallback errorPressed;
@@ -41,10 +41,10 @@ class MSBlocConsumer<B extends BlocBase<S>, S extends IBaseState, SSuccess exten
   });
 
   @override
-  State<MSBlocConsumer<B, S, SSuccess>> createState() => _MSBlocConsumerState<B, S, SSuccess>();
+  State<MSBlocConsumer<B, S>> createState() => _MSBlocConsumerState<B, S>();
 }
 
-class _MSBlocConsumerState<B extends BlocBase<S>, S extends IBaseState, SSuccess extends BaseSuccessState> extends State<MSBlocConsumer<B, S, SSuccess>> {
+class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState> extends State<MSBlocConsumer<B, S>> {
   @override
   void initState() {
     widget.initFunc(context);
@@ -52,30 +52,25 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends IBaseState, SSuccess
   }
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<GlobalBloc, IGlobalState>(
+  Widget build(BuildContext context) => BlocBuilder<GlobalBloc, GlobalState>(
     bloc: context.read<GlobalBloc>(),
     builder: (globalContext, globalState) {
       return BlocConsumer<B, S>(
-            bloc: widget.bloc,
-            listener: widget.listener ??
-                (context, state) {
-                  if (state is BaseErrorState) {
-                    mSErrorDialog(context, onPressed: widget.errorPressed, error: state.error);
-                  }
-                },
-            builder: (context, state) {
-              return BlocHandler<S, SSuccess>(
-                state: state,
-                initial: () => const MSLoading(),
-                success: widget.success,
-                successEmpty: widget.successEmpty ?? MSEmpty(),
-                error: (context, error) => MSErrorFullScreen(
-                  error: error,
-                  onPressed: widget.errorFullScreenPressed,
-                ),
-              );
-            },
+        bloc: widget.bloc,
+        listener: widget.listener ?? (context, state) {},
+        builder: (context, state) {
+          return BlocHandler<S>(
+            state: state,
+            initial: widget.initial ?? () => const MSLoading(),
+            success: widget.success,
+            successEmpty: widget.successEmpty ?? MSEmpty(),
+            error: (context, error) => MSErrorFullScreen(
+              error: error,
+              onPressed: widget.errorFullScreenPressed,
+            ),
           );
+        },
+      );
     }
   );
 }
