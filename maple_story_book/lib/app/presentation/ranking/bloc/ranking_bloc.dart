@@ -16,8 +16,7 @@ import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dar
 ///
 
 @lazySingleton
-class RankingBloc extends Bloc<IRankingEvent, IRankingState>
-    with RankingBlocMixin {
+class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin {
   final GetRankingAchievementUseCase _getRankingAchievementUseCase;
   final GetRankingGuildUseCase _getRankingGuildUseCase;
   final GetRankingOverallUseCase _getRankingOverallUseCase;
@@ -32,14 +31,14 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     this._getRankingStudioUseCase,
     this._getRankingTheSeedUseCase,
     this._getRankingUnionUseCase,
-  ) : super(RankingInitial()) {
+  ) : super(const RankingState.initial()) {
     on<GetRankingEvent<RankingAchievement>>(getRankingAchievement);
     on<GetRankingGuildEvent<RankingGuild>>(getRankingGuild);
     on<GetRankingOverallEvent<RankingOverall>>(getRankingOverall);
     on<GetRankingStudioEvent<RankingStudio>>(getRankingStudio);
     on<GetRankingEvent<RankingTheSeed>>(getRankingTheSeed);
     on<GetRankingEvent<RankingUnion>>(getRankingUnion);
-    on<SelectWorldFilter>(selectWorldFilter);
+    on<SelectWorldFilterEvent>(selectWorldFilter);
   }
 
   static const Duration cacheDuration = Duration(minutes: 10);
@@ -61,179 +60,155 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
     return DateTime.now().difference(entry.cacheTime) > cacheDuration;
   }
 
-  Future<void> getRankingAchievement(
-      GetRankingEvent event, Emitter<IRankingState> emit) async {
-    const cacheKey = 'getRankingAchievement';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)  && event.worldName == null) {
-      emit((state as RankingSuccess).copyWith(
-          rankingAchievement: _cache[cacheKey]!.data, isLoading: false));
+  Future<void> _fetchData<T>({
+    required String cacheKey,
+    required Future<T> Function() fetchFunction,
+    required Emitter<RankingState> emit,
+    required void Function(T) onSuccess,
+  }) async {
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
+      final cachedData = _cache[cacheKey]!.data as T;
+      onSuccess(cachedData);
     } else {
+      emit(const RankingState.loading());
       await handleRequest(
         request: () async {
-          final params = RankingParams(
-            date: event.date,
-            worldName: event.worldName,
-            ocid: event.ocid,
-            page: event.page,
-          );
-          final res = await _getRankingAchievementUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess)
-              .copyWith(rankingAchievement: res.data, isLoading: false));
+          final data = await fetchFunction();
+          _addToCache(cacheKey, data);
+          onSuccess(data);
         },
         emit: emit,
       );
     }
   }
 
-  Future<void> getRankingGuild(
-      GetRankingGuildEvent event, Emitter<IRankingState> emit) async {
-    const cacheKey = 'getRankingGuild';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
-      emit((state as RankingSuccess)
-          .copyWith(rankingGuild: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = RankingGuildParams(
-            date: event.date,
-            worldName: event.worldName,
-            rankingType: event.rankingType,
-            guildName: event.guildName,
-            page: event.page,
-          );
-          final res = await _getRankingGuildUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess)
-              .copyWith(rankingGuild: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getRankingAchievement(GetRankingEvent event, Emitter<RankingState> emit) async {
+    await _fetchData<RankingAchievement>(
+      cacheKey: 'getRankingAchievement',
+      fetchFunction: () async {
+        final params = RankingParams(
+          date: event.date,
+          worldName: event.worldName,
+          ocid: event.ocid,
+          page: event.page,
+        );
+        final res = await _getRankingAchievementUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(RankingState.success(rankingAchievement: data)),
+    );
   }
 
-  Future<void> getRankingOverall(
-      GetRankingOverallEvent event, Emitter<IRankingState> emit) async {
-    const cacheKey = 'getRankingOverall';
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
-      emit((state as RankingSuccess)
-          .copyWith(rankingOverall: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = RankingOverallParams(
-            date: event.date,
-            worldName: event.worldName,
-            worldType: event.worldType,
-            availableValue: event.availableValue,
-            ocid: event.ocid,
-            page: event.page,
-          );
-          final res = await _getRankingOverallUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess)
-              .copyWith(rankingOverall: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getRankingGuild(GetRankingGuildEvent event, Emitter<RankingState> emit) async {
+    await _fetchData<RankingGuild>(
+      cacheKey: 'getRankingGuild',
+      fetchFunction: () async {
+        final params = RankingGuildParams(
+          date: event.date,
+          worldName: event.worldName,
+          rankingType: event.rankingType,
+          guildName: event.guildName,
+          page: event.page,
+        );
+        final res = await _getRankingGuildUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(RankingState.success(rankingGuild: data)),
+    );
   }
 
-  Future<void> getRankingStudio(
-      GetRankingStudioEvent event, Emitter<IRankingState> emit) async {
-    const cacheKey = 'getRankingStudio';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
-      emit((state as RankingSuccess)
-          .copyWith(rankingStudio: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = RankingStudioParams(
-            date: event.date,
-            worldName: event.worldName,
-            difficulty: event.difficulty,
-            availableValue: event.availableValue,
-            ocid: event.ocid,
-            page: event.page,
-          );
-
-          final res = await _getRankingStudioUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess)
-              .copyWith(rankingStudio: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getRankingOverall(GetRankingOverallEvent event, Emitter<RankingState> emit) async {
+    await _fetchData<RankingOverall>(
+      cacheKey: 'getRankingOverall',
+      fetchFunction: () async {
+        final params = RankingOverallParams(
+          date: event.date,
+          worldName: event.worldName,
+          worldType: event.worldType,
+          availableValue: event.availableValue,
+          ocid: event.ocid,
+          page: event.page,
+        );
+        final res = await _getRankingOverallUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(RankingState.success(rankingOverall: data)),
+    );
   }
 
-  Future<void> getRankingTheSeed(
-      GetRankingEvent event, Emitter<IRankingState> emit) async {
-    const cacheKey = 'getRankingTheSeed';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
-      emit((state as RankingSuccess)
-          .copyWith(rankingTheSeed: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = RankingParams(
-            date: event.date,
-            worldName: event.worldName,
-            ocid: event.ocid,
-            page: event.page,
-          );
-
-          final res = await _getRankingTheSeedUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess)
-              .copyWith(rankingTheSeed: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getRankingStudio(GetRankingStudioEvent event, Emitter<RankingState> emit) async {
+    await _fetchData<RankingStudio>(
+      cacheKey: 'getRankingStudio',
+      fetchFunction: () async {
+        final params = RankingStudioParams(
+          date: event.date,
+          worldName: event.worldName,
+          difficulty: event.difficulty,
+          availableValue: event.availableValue,
+          ocid: event.ocid,
+          page: event.page,
+        );
+        final res = await _getRankingStudioUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(RankingState.success(rankingStudio: data)),
+    );
   }
 
-  Future<void> getRankingUnion(
-      GetRankingEvent event, Emitter<IRankingState> emit) async {
-    const cacheKey = 'getRankingUnion';
-
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && event.worldName == null) {
-      emit((state as RankingSuccess)
-          .copyWith(rankingUnion: _cache[cacheKey]!.data, isLoading: false));
-    } else {
-      await handleRequest(
-        request: () async {
-          final params = RankingParams(
-            date: event.date,
-            worldName: event.worldName,
-            ocid: event.ocid,
-            page: event.page,
-          );
-
-          final res = await _getRankingUnionUseCase.execute(params);
-          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-          _addToCache(cacheKey, res.data);
-          emit((state as RankingSuccess)
-              .copyWith(rankingUnion: res.data, isLoading: false));
-        },
-        emit: emit,
-      );
-    }
+  Future<void> getRankingTheSeed(GetRankingEvent event, Emitter<RankingState> emit) async {
+    await _fetchData<RankingTheSeed>(
+      cacheKey: 'getRankingTheSeed',
+      fetchFunction: () async {
+        final params = RankingParams(
+          date: event.date,
+          worldName: event.worldName,
+          ocid: event.ocid,
+          page: event.page,
+        );
+        final res = await _getRankingTheSeedUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(RankingState.success(rankingTheSeed: data)),
+    );
   }
 
-  void selectWorldFilter(
-      SelectWorldFilter event, Emitter<IRankingState> state) {
-    emit(RankingSuccess(
-        selectWorldName: event.selectWorldName, isLoading: true));
+  Future<void> getRankingUnion(GetRankingEvent event, Emitter<RankingState> emit) async {
+    await _fetchData<RankingUnion>(
+      cacheKey: 'getRankingUnion',
+      fetchFunction: () async {
+        final params = RankingParams(
+          date: event.date,
+          worldName: event.worldName,
+          ocid: event.ocid,
+          page: event.page,
+        );
+        final res = await _getRankingUnionUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(RankingState.success(rankingUnion: data)),
+    );
+  }
+
+  void selectWorldFilter(SelectWorldFilterEvent event, Emitter<RankingState> emit) {
+    emit(RankingState.success(selectWorldName: event.selectWorldName));
     try {
       switch (event.tabIndex) {
         case 0:
@@ -273,9 +248,8 @@ class RankingBloc extends Bloc<IRankingEvent, IRankingState>
           ));
           break;
       }
-      emit(RankingSuccess(
+      emit(RankingState.success(
         selectWorldName: event.selectWorldName,
-        isLoading: false,
         selectWorldIndex: event.selectWorldIndex,
       ));
     } catch (e) {

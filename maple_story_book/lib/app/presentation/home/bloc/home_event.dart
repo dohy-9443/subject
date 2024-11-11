@@ -1,5 +1,5 @@
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:maple_story_book/core/util/bloc/bloc.dart';
 
 part 'home_event.freezed.dart';
 
@@ -11,33 +11,9 @@ part 'home_event.freezed.dart';
 /// Description      : 
 ///
 
-// sealed class IHomeEvent<T> extends Equatable {}
-//
-// final class GetHomeEvent<T> extends IHomeEvent<T> {
-//   final String ocid;
-//   final DateTime? date;
-//
-//   GetHomeEvent({required this.ocid, this.date});
-//
-//   @override
-//   List<Object?> get props => [ocid, date];
-// }
-//
-// final class GetSkillEvent extends IHomeEvent {
-//   final String ocid;
-//   final DateTime? date;
-//   final String characterSkillGrade;
-//
-//   GetSkillEvent({required this.ocid, this.date, required this.characterSkillGrade});
-//
-//   @override
-//   List<Object?> get props => [ocid, date, characterSkillGrade];
-// }
-
-// 테스트
 
 @freezed
-class HomeEvent<T> with _$HomeEvent<T> {
+class HomeEvent<T> with _$HomeEvent<T> implements BaseEvent {
   const factory HomeEvent.getHome({
     required String ocid,
     DateTime? date,

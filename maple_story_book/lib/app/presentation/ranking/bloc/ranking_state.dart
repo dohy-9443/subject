@@ -1,6 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/core/util/util.dart';
+
+part 'ranking_state.freezed.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -10,82 +12,37 @@ import 'package:maple_story_book/core/util/util.dart';
 /// Description      :
 ///
 
-sealed class IRankingState extends Equatable with IBaseState {}
+@freezed
+class RankingState with _$RankingState implements BaseState {
+  const RankingState._();
 
-final class RankingInitial extends IRankingState with BaseInitialState {
-  RankingInitial();
-
-  @override
-  List<Object?> get props => [];
-}
-
-final class RankingSuccess extends IRankingState with BaseSuccessState {
-  final bool isLoading;
-  final RankingAchievement? rankingAchievement;
-  final RankingGuild? rankingGuild;
-  final RankingOverall? rankingOverall;
-  final RankingStudio? rankingStudio;
-  final RankingTheSeed? rankingTheSeed;
-  final RankingUnion? rankingUnion;
-  final String selectWorldName;
-  final int selectWorldIndex;
-
-  RankingSuccess({
-    this.isLoading = false,
-    this.rankingAchievement,
-    this.rankingGuild,
-    this.rankingOverall,
-    this.rankingStudio,
-    this.rankingTheSeed,
-    this.rankingUnion,
-    this.selectWorldName = '',
-    this.selectWorldIndex = 0,
-  });
-
-  RankingSuccess copyWith({
-    bool? isLoading,
-    Notice? notice,
-    RankingAchievement? rankingAchievement,
-    RankingGuild? rankingGuild,
-    RankingOverall? rankingOverall,
-    RankingStudio? rankingStudio,
-    RankingTheSeed? rankingTheSeed,
-    RankingUnion? rankingUnion,
-    String? selectWorldName,
-    int? selectWorldIndex,
-  }) {
-    return RankingSuccess(
-      isLoading: isLoading ?? this.isLoading,
-      rankingAchievement: rankingAchievement ?? this.rankingAchievement,
-      rankingGuild: rankingGuild ?? this.rankingGuild,
-      rankingOverall: rankingOverall ?? this.rankingOverall,
-      rankingStudio: rankingStudio ?? this.rankingStudio,
-      rankingTheSeed: rankingTheSeed ?? this.rankingTheSeed,
-      rankingUnion: rankingUnion ?? this.rankingUnion,
-      selectWorldName: selectWorldName ?? this.selectWorldName,
-      selectWorldIndex: selectWorldIndex ?? this.selectWorldIndex,
-    );
-  }
+  const factory RankingState.initial() = RankingInitial;
+  const factory RankingState.loading() = RankingLoading;
+  const factory RankingState.success({
+    @Default(RankingAchievement()) RankingAchievement rankingAchievement,
+    @Default(RankingGuild()) RankingGuild rankingGuild,
+    @Default(RankingOverall()) RankingOverall rankingOverall,
+    @Default(RankingStudio()) RankingStudio rankingStudio,
+    @Default(RankingTheSeed()) RankingTheSeed rankingTheSeed,
+    @Default(RankingUnion()) RankingUnion rankingUnion,
+    @Default('') String selectWorldName,
+    @Default(0) int selectWorldIndex,
+  }) = RankingSuccess;
+  const factory RankingState.error() = RankingError;
 
   @override
-  List<Object?> get props => [
-        isLoading,
-        rankingAchievement,
-        rankingGuild,
-        rankingOverall,
-        rankingStudio,
-        rankingTheSeed,
-        rankingUnion,
-        selectWorldIndex,
-      ];
-}
-
-final class RankingError extends IRankingState with BaseErrorState {
-  final dynamic error;
-  final StackTrace? stackTrace;
-
-  RankingError({required this.error, required this.stackTrace});
+  // TODO: implement isError
+  bool get isError => this is RankingError;
 
   @override
-  List<Object?> get props => [error, stackTrace];
+  // TODO: implement isInitial
+  bool get isInitial => this is RankingInitial;
+
+  @override
+  // TODO: implement isLoading
+  bool get isLoading => this is RankingError;
+
+  @override
+  // TODO: implement isSuccess
+  bool get isSuccess => this is RankingSuccess;
 }

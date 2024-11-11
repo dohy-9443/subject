@@ -7,44 +7,51 @@
 /// Description      : 
 ///
 
-mixin IBaseState {
+// mixin IBaseState {
+//   bool get isSuccess;
+//   bool get isError;
+//   bool get isInitial;
+// }
+//
+// mixin BaseSuccessState on IBaseState {
+//   @override
+//   bool get isSuccess => true;
+//
+//   @override
+//   bool get isError => false;
+//
+//   @override
+//   bool get isInitial => false;
+// }
+//
+// mixin BaseErrorState on IBaseState {
+//   @override
+//   bool get isSuccess => false;
+//
+//   @override
+//   bool get isError => true;
+//
+//   @override
+//   bool get isInitial => false;
+//
+//   dynamic get error;
+//   StackTrace? get stackTrace;
+// }
+//
+// mixin BaseInitialState on IBaseState {
+//   @override
+//   bool get isSuccess => false;
+//
+//   @override
+//   bool get isError => false;
+//
+//   @override
+//   bool get isInitial => true;
+// }
+
+abstract class BaseState {
+  bool get isInitial;
+  bool get isLoading;
   bool get isSuccess;
   bool get isError;
-  bool get isInitial;
-}
-
-mixin BaseSuccessState on IBaseState {
-  @override
-  bool get isSuccess => true;
-
-  @override
-  bool get isError => false;
-
-  @override
-  bool get isInitial => false;
-}
-
-mixin BaseErrorState on IBaseState {
-  @override
-  bool get isSuccess => false;
-
-  @override
-  bool get isError => true;
-
-  @override
-  bool get isInitial => false;
-
-  dynamic get error;
-  StackTrace? get stackTrace;
-}
-
-mixin BaseInitialState on IBaseState {
-  @override
-  bool get isSuccess => false;
-
-  @override
-  bool get isError => false;
-
-  @override
-  bool get isInitial => true;
 }

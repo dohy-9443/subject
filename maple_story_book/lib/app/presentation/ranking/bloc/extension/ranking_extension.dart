@@ -10,22 +10,18 @@ import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dar
 /// Description      :
 ///
 
-mixin RankingBlocMixin on Bloc<IRankingEvent, IRankingState> {
-  void emitLoading(Emitter<IRankingState> emit) {
-    if (state is RankingSuccess) {
-      emit((state as RankingSuccess).copyWith(isLoading: true));
-    } else {
-      emit(RankingSuccess(isLoading: true));
-    }
+mixin RankingBlocMixin on Bloc<RankingEvent, RankingState> {
+  void emitLoading(Emitter<RankingState> emit) {
+    emit(const RankingState.loading());
   }
 
-  void emitError(dynamic error, StackTrace? stackTrace, Emitter<IRankingState> emit) {
-    emit(RankingError(error: error, stackTrace: stackTrace));
+  void emitError(dynamic error, StackTrace? stackTrace, Emitter<RankingState> emit) {
+    emit(const RankingState.error());
   }
 
   Future<void> handleRequest({
     required Future<void> Function() request,
-    required Emitter<IRankingState> emit,
+    required Emitter<RankingState> emit,
   }) async {
     emitLoading(emit);
     try {

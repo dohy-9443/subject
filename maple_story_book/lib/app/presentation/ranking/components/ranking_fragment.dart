@@ -49,7 +49,7 @@ class _RankingFragmentState extends State<RankingFragment>
 
   void onTap(int index, String selectWorldName) {
     context.maybePop();
-    context.read<RankingBloc>().add(SelectWorldFilter(
+    context.read<RankingBloc>().add(SelectWorldFilterEvent(
           selectWorldName: selectWorldName,
           tabIndex: _tabController.index,
           selectWorldIndex: index,
@@ -64,8 +64,8 @@ class _RankingFragmentState extends State<RankingFragment>
         appBar: MSAppBar(
           title: '랭킹',
           actions: [
-            BlocBuilder<RankingBloc, IRankingState>(
-                builder: (BuildContext context, IRankingState state) {
+            BlocBuilder<RankingBloc, RankingState>(
+                builder: (BuildContext context, RankingState state) {
               if (state is RankingSuccess && _tabController.index != 5) {
                 return TextButton(
                   onPressed: () {
@@ -95,8 +95,8 @@ class _RankingFragmentState extends State<RankingFragment>
               }
             })
           ],
-          bottom: BlocBuilder<RankingBloc, IRankingState>(
-            builder: (BuildContext context, IRankingState state) {
+          bottom: BlocBuilder<RankingBloc, RankingState>(
+            builder: (BuildContext context, RankingState state) {
               if (state is RankingSuccess) {
                 return MSTabBar(
                   isScrollable: true,

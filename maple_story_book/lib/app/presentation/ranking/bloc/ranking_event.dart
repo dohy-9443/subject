@@ -1,4 +1,7 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:maple_story_book/core/util/bloc/bloc.dart';
+
+part 'ranking_event.freezed.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -8,71 +11,45 @@ import 'package:equatable/equatable.dart';
 /// Description      :
 ///
 
-sealed class IRankingEvent<T> extends Equatable {}
+@freezed
+class RankingEvent<T> with _$RankingEvent<T> implements BaseEvent {
+  const factory RankingEvent.GetRanking({
+    required DateTime date,
+    String? worldName,
+    String? ocid,
+    int? page,
+  }) = GetRankingEvent<T>;
 
-final class GetRankingEvent<T> extends IRankingEvent<T> {
-  final DateTime date;
-  final String? worldName;
-  final String? ocid;
-  final int? page;
+  const factory RankingEvent.GetRankingGuild({
+    required DateTime date,
+    required String worldName,
+    required int rankingType,
+    required String guildName,
+    required int page,
+  }) = GetRankingGuildEvent<T>;
 
-  GetRankingEvent({required this.date, this.worldName, this.ocid, this.page});
+  const factory RankingEvent.GetRankingOverall({
+    required DateTime date,
+    String? worldName,
+    String? worldType,
+    String? availableValue,
+    String? ocid,
+    int? page,
+  }) = GetRankingOverallEvent<T>;
 
-  @override
-  List<Object?> get props => [date, worldName, ocid, page];
-}
-
-final class GetRankingGuildEvent<T> extends IRankingEvent<T> {
-  final DateTime date;
-  final String worldName;
-  final int rankingType;
-  final String guildName;
-  final int page;
-
-  GetRankingGuildEvent({required this.date, required this.worldName, required this.rankingType, required this.guildName, required this.page});
+  const factory RankingEvent.GetRankingStudio({
+    required DateTime date,
+    String? worldName,
+    required int difficulty,
+    String? availableValue,
+    String? ocid,
+    int? page,
+  }) = GetRankingStudioEvent<T>;
 
 
-  @override
-  List<Object?> get props => [date, worldName, rankingType, guildName, page];
-}
-
-final class GetRankingOverallEvent<T> extends IRankingEvent<T> {
-  final DateTime date;
-  final String? worldName;
-  final String? worldType;
-  final String? availableValue;
-  final String? ocid;
-  final int? page;
-
-  GetRankingOverallEvent({required this.date, this.worldName, this.worldType, this.availableValue, this.ocid, this.page});
-
-  @override
-  List<Object?> get props =>
-      [date, worldName, worldType, availableValue, ocid, page];
-}
-
-final class GetRankingStudioEvent<T> extends IRankingEvent<T> {
-  final DateTime date;
-  final String? worldName;
-  final int difficulty;
-  final String? availableValue;
-  final String? ocid;
-  final int? page;
-
-  GetRankingStudioEvent({required this.date, this.worldName, required this.difficulty, this.availableValue, this.ocid, this.page});
-
-  @override
-  List<Object?> get props =>
-      [date, worldName, difficulty, availableValue, ocid, page];
-}
-
-final class SelectWorldFilter extends IRankingEvent {
-  final String selectWorldName;
-  final int tabIndex;
-  final int selectWorldIndex;
-
-  SelectWorldFilter({required this.selectWorldName, required this.tabIndex, required this.selectWorldIndex});
-
-  @override
-  List<Object?> get props => [selectWorldName, tabIndex, selectWorldIndex];
+  const factory RankingEvent.SelectWorldFilter({
+    required String selectWorldName,
+    required int tabIndex,
+    required int selectWorldIndex,
+  }) = SelectWorldFilterEvent;
 }

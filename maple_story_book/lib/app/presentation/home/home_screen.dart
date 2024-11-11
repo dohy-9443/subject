@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => MSBlocConsumer<HomeBloc, IHomeState, HomeSuccess>(
+  Widget build(BuildContext context) => MSBlocConsumer<HomeBloc, HomeState, Success>(
       initFunc: initFunction,
       bloc: context.read<HomeBloc>(),
       successEmpty: MSEmpty(description: "데이터가 없습니다.",),

@@ -7,4 +7,5 @@
 ///
 
 export 'base_state.dart';
+export 'base_event.dart';
 export 'maple_story_bloc_consumer.dart';

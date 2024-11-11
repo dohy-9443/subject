@@ -1,6 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/core/util/bloc/bloc.dart';
+
+part 'global_state.freezed.dart';
+
 
 ///
 /// @Project name    : maple_story_book
@@ -10,118 +15,50 @@ import 'package:maple_story_book/app/domain/entity/entity.dart';
 /// Description      :
 ///
 
-sealed class IGlobalState extends Equatable {
-  final bool isLoading;
-  final Ocid? ocid;
-  final List<LocalStorageModel>? searches;
-  final List<LocalStorageModel>? favorites;
-  final List<Ocid>? rankerOcId;
-  final DateTime? date;
-  final String? characterName;
-  final String? worldName;
-  final String? characterGender;
-  final String? characterClass;
-  final int? characterClassLevel;
-  final int? characterLevel;
-  final String? characterExp;
-  final String? characterExpRate;
-  final String? characterGuildName;
-  final String? characterImage;
-  final String? characterDateCreate;
-  final bool? accessFlag;
-  final bool? liberationQuestClearFlag;
-  final BasicInfo basicInfo;
+@freezed
+class GlobalState with _$GlobalState implements BaseState {
+  const GlobalState._();
 
-  const IGlobalState({
-    this.isLoading = false,
-    this.ocid,
-    this.searches,
-    this.favorites,
-    this.rankerOcId = const [],
-    this.date,
-    this.characterName = '',
-    this.worldName = '',
-    this.characterGender = '',
-    this.characterClass = '',
-    this.characterClassLevel = 0,
-    this.characterLevel = 0,
-    this.characterExp = '',
-    this.characterExpRate = '',
-    this.characterGuildName = '',
-    this.characterImage = '',
-    this.characterDateCreate = '',
-    this.accessFlag = false,
-    this.liberationQuestClearFlag = false,
-    this.basicInfo = const BasicInfo(),
-  });
-}
-
-final class GlobalInitial extends IGlobalState {
-  GlobalInitial();
+  const factory GlobalState.initial() = GlobalInitial;
+  const factory GlobalState.loading() = GlobalLoading;
+  const factory GlobalState.success({
+    @Default(Ocid()) Ocid ocid,
+    @Default([]) List<LocalStorageModel> searches,
+    @Default([]) List<LocalStorageModel> favorites,
+    @Default([]) List<Ocid> rankerOcId,
+    DateTime? date,
+    @Default('') String characterName,
+    @Default('') String worldName,
+    @Default('') String characterGender,
+    @Default('') String characterClass,
+    @Default(0) int characterClassLevel,
+    @Default(0) int characterLevel,
+    @Default('') String characterExp,
+    @Default('') String characterExpRate,
+    @Default('') String characterGuildName,
+    @Default('') String characterImage,
+    @Default('') String characterDateCreate,
+    @Default(false) bool accessFlag,
+    @Default(false) bool liberationQuestClearFlag,
+    @Default(BasicInfo()) BasicInfo basicInfo,
+  }) = GlobalSuccess;
+  const factory GlobalState.error() = GlobalError;
 
   @override
-  List<Object?> get props => [];
-}
-
-final class GlobalSuccess extends IGlobalState {
-  GlobalSuccess({
-    super.isLoading,
-    super.ocid,
-    super.searches,
-    super.favorites,
-    super.rankerOcId,
-    super.date,
-    super.characterName,
-    super.worldName,
-    super.characterGender,
-    super.characterClass,
-    super.characterClassLevel,
-    super.characterLevel,
-    super.characterExp,
-    super.characterExpRate,
-    super.characterGuildName,
-    super.characterImage,
-    super.characterDateCreate,
-    super.accessFlag,
-    super.liberationQuestClearFlag,
-    super.basicInfo,
-  });
-
-  GlobalSuccess copyWith({
-    bool? isLoading,
-    Ocid? ocid,
-    List<LocalStorageModel>? searches,
-    List<LocalStorageModel>? favorites,
-    List<Ocid>? rankerOcId,
-    BasicInfo? basicInfo,
-  }) {
-    return GlobalSuccess(
-      isLoading: isLoading ?? this.isLoading,
-      ocid: ocid ?? this.ocid,
-      searches: searches ?? this.searches,
-      favorites: favorites ?? this.favorites,
-      rankerOcId: rankerOcId ?? this.rankerOcId,
-      basicInfo: basicInfo ?? this.basicInfo,
-    );
-  }
+  // TODO: implement isError
+  bool get isError => this is GlobalError;
 
   @override
-  List<Object?> get props => [
-        isLoading,
-        ocid,
-        searches,
-        favorites,
-        rankerOcId,
-        basicInfo,
-      ];
-}
-
-final class GlobalError extends IGlobalState {
-  final dynamic error;
-  final StackTrace? stackTrace;
-
-  GlobalError({required this.error, required this.stackTrace});
+  // TODO: implement isInitial
+  bool get isInitial => this is GlobalInitial;
 
   @override
-  List<Object?> get props => [error, stackTrace];
+  // TODO: implement isLoading
+  bool get isLoading => this is GlobalLoading;
+
+  @override
+  // TODO: implement isSuccess
+  bool get isSuccess => this is GlobalSuccess;
+
+
 }

@@ -1,4 +1,7 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:maple_story_book/core/util/bloc/base_event.dart';
+
+part 'global_event.freezed.dart';
 
 ///
 /// @Project name    : maple_story_book
@@ -9,84 +12,36 @@ import 'package:equatable/equatable.dart';
 ///
 ///
 
-sealed class IGlobalEvent extends Equatable {}
+@freezed
+class GlobalEvent with _$GlobalEvent implements BaseEvent {
+  const factory GlobalEvent.GetOcId({
+    required String characterName
+  }) = GetOcIdEvent;
 
-class GetOcIdEvent extends IGlobalEvent {
-  final String _characterName;
+  const factory GlobalEvent.AddFavorite({
+    required String nickName,
+    required String ocid,
+  }) = AddFavoriteEvent;
 
-  GetOcIdEvent(this._characterName);
+  const factory GlobalEvent.AddSearch({
+    required String nickName,
+    required String ocid,
+  }) = AddSearchEvent;
 
-  String get characterName => _characterName;
+  const factory GlobalEvent.RemoveFavorite({
+    required String nickName,
+  }) = RemoveFavoriteEvent;
 
-  @override
-  List<Object?> get props => [characterName];
-}
+  const factory GlobalEvent.LoadFavorites() = LoadFavoritesEvent;
 
-class AddFavoriteEvent extends IGlobalEvent {
-  final String nickName;
-  final String ocid;
+  const factory GlobalEvent.LoadSearches() = LoadSearchesEvent;
 
-  AddFavoriteEvent(this.nickName, this.ocid);
+  const factory GlobalEvent.GetOcIdList({
+    required List<String> characterNameList,
+  }) = GetOcIdListEvent;
 
-  @override
-  // TODO: implement props
-  List<Object?> get props => [nickName, ocid];
-}
-
-class AddSearchEvent extends IGlobalEvent {
-  final String nickName;
-  final String ocid;
-
-  AddSearchEvent(this.nickName, this.ocid);
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [nickName, ocid];
-}
-
-class RemoveFavoriteEvent extends IGlobalEvent {
-  final String nickName;
-
-  RemoveFavoriteEvent(this.nickName);
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [nickName];
-}
-
-class LoadFavoritesEvent extends IGlobalEvent {
-  LoadFavoritesEvent();
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
-
-class LoadSearchesEvent extends IGlobalEvent {
-  LoadSearchesEvent();
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
-
-
-class GetOcIdListEvent extends IGlobalEvent {
-  final List<String> characterNameList;
-
-  GetOcIdListEvent({required this.characterNameList});
-
-  @override
-  List<Object?> get props => [characterNameList];
-
-}
-
-final class GetBasicInfoEvent extends IGlobalEvent {
-  final String ocid;
-  final DateTime? date;
-
-  GetBasicInfoEvent({required this.ocid, this.date});
-
-  @override
-  List<Object?> get props => [ocid, date];
+  const factory GlobalEvent.GetBasicInfo({
+    required String ocid,
+    DateTime? date,
+  }) = GetBasicInfoEvent;
 }

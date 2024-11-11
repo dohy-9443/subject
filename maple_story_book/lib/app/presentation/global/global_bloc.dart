@@ -17,9 +17,8 @@ import 'package:maple_story_book/app/presentation/global/global_state.dart';
 ///
 
 @singleton
-class GlobalBloc extends Bloc<IGlobalEvent, IGlobalState> with GlobalMixin {
+class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
   final GetOcidUseCase _getOcidUseCase;
-  final DeleteHistoryUseCase _deleteHistoryUseCase;
   final GetHistoryUseCase _getHistoryUseCase;
   final RemoveEntryUseCase _removeEntryUseCase;
   final SaveHistoryUseCase _saveHistoryUseCase;
@@ -27,7 +26,6 @@ class GlobalBloc extends Bloc<IGlobalEvent, IGlobalState> with GlobalMixin {
 
   GlobalBloc(
     this._getOcidUseCase,
-    this._deleteHistoryUseCase,
     this._getHistoryUseCase,
     this._removeEntryUseCase,
     this._saveHistoryUseCase,
@@ -43,191 +41,145 @@ class GlobalBloc extends Bloc<IGlobalEvent, IGlobalState> with GlobalMixin {
     on<GetBasicInfoEvent>(getCharacterBasic);
   }
 
-  Future<void> getCharacterBasic(
-      GetBasicInfoEvent event, Emitter<IGlobalState> emit) async {
+
+  Future<void> _fetchData<T>({
+    required Future<T> Function() fetchFunction,
+    required Emitter<GlobalState> emit,
+    required void Function(T) onSuccess,
+  }) async {
+    emit(const GlobalState.loading());
     await handleRequest(
       request: () async {
-        final params = BaseParams(
-          ocid: event.ocid,
-          date: event.date,
-        );
-
-        final res = await _getCharacterBasicUseCase.execute(params);
-        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
-        emit((state as GlobalSuccess).copyWith(
-          basicInfo: res.data,
-          isLoading: false,
-        ));
+        final data = await fetchFunction();
+        onSuccess(data);
       },
       emit: emit,
     );
-    //}
   }
 
-  Future<void> addFavoriteEvent(
-      AddFavoriteEvent event, Emitter<IGlobalState> emit) async {
-    if (state is GlobalSuccess) {
-      emit((state as GlobalSuccess).copyWith(isLoading: true));
-    } else {
-      emit(GlobalSuccess(isLoading: true));
-    }
-
-    try {
-      final saveParams = SaveHistoryParams(
-        category: 'favorite',
-        entry: LocalStorageModel(nickName: event.nickName, ocid: event.ocid),
-      );
-
-      final getParams = GetHistoryParams(category: 'favorite');
-
-      await _saveHistoryUseCase.execute(saveParams);
-
-      final updatedFavorites = await _getHistoryUseCase.execute(getParams);
-      emit((state as GlobalSuccess)
-          .copyWith(favorites: updatedFavorites, isLoading: false));
-    } catch (e, s) {
-      emit(GlobalError(error: e, stackTrace: s));
-    }
-  }
-
-  Future<void> addSearch(
-      AddSearchEvent event, Emitter<IGlobalState> emit) async {
-    if (state is GlobalSuccess) {
-      emit((state as GlobalSuccess).copyWith(isLoading: true));
-    } else {
-      emit(GlobalSuccess(isLoading: true));
-    }
-
-    try {
-      final saveParams = SaveHistoryParams(
-        category: 'search',
-        entry: LocalStorageModel(nickName: event.nickName, ocid: event.ocid),
-      );
-
-      final getParams = GetHistoryParams(category: 'search');
-
-      await _saveHistoryUseCase.execute(saveParams);
-      final updatedSearches = await _getHistoryUseCase.execute(getParams);
-      emit((state as GlobalSuccess)
-          .copyWith(searches: updatedSearches, isLoading: false));
-    } catch (e, s) {
-      emit(GlobalError(error: e, stackTrace: s));
-    }
-  }
-
-  Future<void> removeFavorite(
-      RemoveFavoriteEvent event, Emitter<IGlobalState> emit) async {
-    if (state is GlobalSuccess) {
-      emit((state as GlobalSuccess).copyWith(isLoading: true));
-    } else {
-      emit(GlobalSuccess(isLoading: true));
-    }
-
-    try {
-      final removeParams = RemoveEntryParams(
-        category: 'favorite',
-        nickname: event.nickName,
-      );
-
-      final getParams = GetHistoryParams(category: 'favorite');
-
-      await _removeEntryUseCase.execute(removeParams);
-      final updatedFavorites = await _getHistoryUseCase.execute(getParams);
-      emit((state as GlobalSuccess)
-          .copyWith(favorites: updatedFavorites, isLoading: false));
-    } catch (e, s) {
-      emit(GlobalError(error: e, stackTrace: s));
-    }
-  }
-
-  Future<void> loadFavorites(
-      LoadFavoritesEvent event, Emitter<IGlobalState> emit) async {
-    if (state is GlobalSuccess) {
-      emit((state as GlobalSuccess).copyWith(isLoading: true));
-    } else {
-      emit(GlobalSuccess(isLoading: true));
-    }
-
-    try {
-      final params = GetHistoryParams(category: 'favorite');
-
-      final favorites = await _getHistoryUseCase.execute(params);
-      emit((state as GlobalSuccess)
-          .copyWith(favorites: favorites, isLoading: false));
-    } catch (e, s) {
-      emit(GlobalError(error: e, stackTrace: s));
-    }
-  }
-
-  Future<void> loadSearches(
-      LoadSearchesEvent event, Emitter<IGlobalState> emit) async {
-    if (state is GlobalSuccess) {
-      emit((state as GlobalSuccess).copyWith(isLoading: true));
-    } else {
-      emit(GlobalSuccess(isLoading: true));
-    }
-
-    try {
-      final params = GetHistoryParams(category: 'search');
-
-      final searches = await _getHistoryUseCase.execute(params);
-      emit((state as GlobalSuccess)
-          .copyWith(searches: searches, isLoading: false));
-    } catch (e, s) {
-      emit(GlobalError(error: e, stackTrace: s));
-    }
-  }
-
-  Future<void> getOcIdsCommon({
-    required List<String> characterNames,
-    required Emitter<IGlobalState> emit,
-  }) async {
-    if (state is GlobalSuccess) {
-      emit((state as GlobalSuccess).copyWith(isLoading: true));
-    } else {
-      emit(GlobalSuccess(isLoading: true));
-    }
-
-    try {
-      final List<Ocid> ocIds = [];
-
-      for (var characterName in characterNames) {
-        final params = GetOcidParams(characterName: characterName);
-        final res = await _getOcidUseCase.execute(params);
-
+  Future<void> getCharacterBasic(GetBasicInfoEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<BasicInfo>(
+      fetchFunction: () async {
+        final params = BaseParams(ocid: event.ocid, date: event.date);
+        final res = await _getCharacterBasicUseCase.execute(params);
         if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ability data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(basicInfo: data)),
+    );
+  }
 
-        ocIds.add(res.data as Ocid);
-      }
-
-      if (characterNames.isNotEmpty && characterNames.length == 1) {
-        emit((state as GlobalSuccess)
-            .copyWith(ocid: ocIds[0], isLoading: false));
-      } else {
-        emit(
-          (state as GlobalSuccess).copyWith(isLoading: false),
+  Future<void> addFavoriteEvent(AddFavoriteEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<List<LocalStorageModel>>(
+      fetchFunction: () async {
+        final saveParams = SaveHistoryParams(
+          category: 'favorite',
+          entry: LocalStorageModel(nickName: event.nickName, ocid: event.ocid),
         );
-      }
-    } catch (e, s) {
-      emit(GlobalError(error: e, stackTrace: s));
-    }
-  }
-
-// 단일 ocId 요청
-  Future<void> getOcid(GetOcIdEvent event, Emitter<IGlobalState> emit) async {
-    await getOcIdsCommon(
-      characterNames: [event.characterName],
+        final getParams = GetHistoryParams(category: 'favorite');
+        await _saveHistoryUseCase.execute(saveParams);
+        final res = await _getHistoryUseCase.execute(getParams);
+        return res;
+      },
       emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(favorites: data)),
     );
   }
 
-// 다중 ocId 요청
-  Future<void> getOcIdList(
-      GetOcIdListEvent event, Emitter<IGlobalState> emit) async {
-    await getOcIdsCommon(
-      characterNames: event.characterNameList,
+  Future<void> addSearch(AddSearchEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<List<LocalStorageModel>>(
+      fetchFunction: () async {
+        final saveParams = SaveHistoryParams(
+          category: 'search',
+          entry: LocalStorageModel(nickName: event.nickName, ocid: event.ocid),
+        );
+        final getParams = GetHistoryParams(category: 'search');
+        await _saveHistoryUseCase.execute(saveParams);
+        final res = await _getHistoryUseCase.execute(getParams);
+        return res;
+      },
       emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(searches: data)),
     );
-    // emit((state as GlobalSuccess).copyWith(rankerOcId: []));
+  }
+
+  Future<void> removeFavorite(RemoveFavoriteEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<List<LocalStorageModel>>(
+      fetchFunction: () async {
+        final removeParams = RemoveEntryParams(
+          category: 'favorite',
+          nickname: event.nickName,
+        );
+        final getParams = GetHistoryParams(category: 'favorite');
+        await _removeEntryUseCase.execute(removeParams);
+        final res = await _getHistoryUseCase.execute(getParams);
+        return res;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(favorites: data)),
+    );
+  }
+
+  Future<void> loadFavorites(LoadFavoritesEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<List<LocalStorageModel>>(
+      fetchFunction: () async {
+        final params = GetHistoryParams(category: 'favorite');
+        final res = await _getHistoryUseCase.execute(params);
+        return res;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(favorites: data)),
+    );
+  }
+
+  Future<void> loadSearches(LoadSearchesEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<List<LocalStorageModel>>(
+      fetchFunction: () async {
+        final params = GetHistoryParams(category: 'search');
+        final res = await _getHistoryUseCase.execute(params);
+        return res;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(searches: data)),
+    );
+  }
+
+  // 단일 ocId 요청
+  Future<void> getOcid(GetOcIdEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<Ocid>(
+      fetchFunction: () async {
+
+        final params = GetOcidParams(characterName: event.characterName);
+        final res = await _getOcidUseCase.execute(params);
+        if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+        if (res.data == null) throw Exception('Ocid data is null');
+        return res.data!;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(ocid: data)),
+    );
+  }
+
+  // 다중 ocId 요청
+  Future<void> getOcIdList(GetOcIdListEvent event, Emitter<GlobalState> emit) async {
+    await _fetchData<List<Ocid>>(
+      fetchFunction: () async {
+        final List<Ocid> ocIds = [];
+
+        for (var characterName in event.characterNameList) {
+          final params = GetOcidParams(characterName: characterName);
+          final res = await _getOcidUseCase.execute(params);
+
+          if (res.code != 200) throw Exception('code 200 이 아닙니다.');
+          if (res.data == null) throw Exception('Ocid data is null');
+          ocIds.add(res.data as Ocid);
+        }
+        return ocIds;
+      },
+      emit: emit,
+      onSuccess: (data) => emit(GlobalState.success(rankerOcId: data)),
+    );
   }
 }
