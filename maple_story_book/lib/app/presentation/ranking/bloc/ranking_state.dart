@@ -28,7 +28,7 @@ class RankingState with _$RankingState implements BaseState {
     @Default('') String selectWorldName,
     @Default(0) int selectWorldIndex,
   }) = RankingSuccess;
-  const factory RankingState.error() = RankingError;
+  const factory RankingState.error({required String errorMessage}) = RankingError;
 
   @override
   // TODO: implement isError
@@ -45,4 +45,8 @@ class RankingState with _$RankingState implements BaseState {
   @override
   // TODO: implement isSuccess
   bool get isSuccess => this is RankingSuccess;
+
+  @override
+  // TODO: implement error
+  get error => this is RankingError ? (this as RankingError).errorMessage : null;
 }

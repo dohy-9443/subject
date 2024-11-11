@@ -12,7 +12,7 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 class MSErrorFullScreen extends StatelessWidget {
-  final Exception? error;
+  final String? error;
   final VoidCallback onPressed;
 
   const MSErrorFullScreen({super.key, this.error, required this.onPressed,});
@@ -35,7 +35,7 @@ class MSErrorFullScreen extends StatelessWidget {
                 ),
               ),
             ),
-            MSText.danger(error == null ?'에러가 발생했습니다.' : error.toString()),
+            MSText.danger(error == null ? '에러가 발생했습니다.' : error!),
             AppSize.height(20),
             MSButton.gradient(
               onPressed: onPressed,

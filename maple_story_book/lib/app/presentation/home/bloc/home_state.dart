@@ -43,7 +43,7 @@ class HomeState with _$HomeState implements BaseState {
     @Default(StudioTopRecordInfo()) StudioTopRecordInfo studioTopRecordInfo,
   }) = HomeSuccess;
 
-  const factory HomeState.error() = HomeError;
+  const factory HomeState.error({required String errorMessage}) = HomeError;
 
   @override
   // TODO: implement isError
@@ -60,4 +60,8 @@ class HomeState with _$HomeState implements BaseState {
   @override
   // TODO: implement isSuccess
   bool get isSuccess => this is HomeSuccess;
+
+  @override
+  // TODO: implement error
+  get error => this is HomeError ? (this as HomeError).errorMessage : null;
 }

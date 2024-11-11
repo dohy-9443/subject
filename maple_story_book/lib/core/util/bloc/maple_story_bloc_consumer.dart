@@ -65,7 +65,7 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState, SSuccess 
             success: widget.success,
             successEmpty: widget.successEmpty ?? MSEmpty(),
             error: (context, error) => MSErrorFullScreen(
-              error: error,
+              error: error.toString(),
               onPressed: widget.errorFullScreenPressed,
             ),
           );

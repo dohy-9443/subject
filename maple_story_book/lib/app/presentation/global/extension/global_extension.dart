@@ -9,7 +9,8 @@ mixin GlobalMixin on Bloc<GlobalEvent, GlobalState> {
   }
 
   void emitError(dynamic error, StackTrace? stackTrace, Emitter<GlobalState> emit) {
-    emit(const GlobalState.error());
+    print("ERROR : $error");
+    emit(const GlobalState.error(errorMessage: ''));
   }
 
   Future<void> handleRequest({

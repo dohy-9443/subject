@@ -42,7 +42,7 @@ class GlobalState with _$GlobalState implements BaseState {
     @Default(false) bool liberationQuestClearFlag,
     @Default(BasicInfo()) BasicInfo basicInfo,
   }) = GlobalSuccess;
-  const factory GlobalState.error() = GlobalError;
+  const factory GlobalState.error({required String errorMessage}) = GlobalError;
 
   @override
   // TODO: implement isError
@@ -60,5 +60,7 @@ class GlobalState with _$GlobalState implements BaseState {
   // TODO: implement isSuccess
   bool get isSuccess => this is GlobalSuccess;
 
-
+  @override
+  // TODO: implement error
+  get error => this is GlobalError ? (this as GlobalError).errorMessage : null;
 }

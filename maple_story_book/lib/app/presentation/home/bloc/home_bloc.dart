@@ -76,49 +76,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
     on<GetHomeEvent<StudioTopRecordInfo>>(getStudioTopRecordInfo);
   }
 
-  static const Duration cacheDuration = Duration(minutes: 10);
-  static const int maxCacheSize = 20;
-
-  final Map<String, CacheEntry> _cache = {};
-  final List<String> _cacheKeys = [];
-
-  void _addToCache(String key, dynamic data) {
-    if (_cacheKeys.length >= maxCacheSize) {
-      final oldestKey = _cacheKeys.removeAt(0);
-      _cache.remove(oldestKey);
-    }
-    _cache[key] = CacheEntry(data, DateTime.now());
-    _cacheKeys.add(key);
-  }
-
-  bool _isCacheExpired(CacheEntry entry) {
-    return DateTime.now().difference(entry.cacheTime) > cacheDuration;
-  }
-
-  Future<void> _fetchData<T>({
-    required String cacheKey,
-    required Future<T> Function() fetchFunction,
-    required Emitter<HomeState> emit,
-    required void Function(T) onSuccess,
-  }) async {
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      final cachedData = _cache[cacheKey]!.data as T;
-      onSuccess(cachedData);
-    } else {
-      emit(const HomeState.loading());
-      await handleRequest(
-        request: () async {
-          final data = await fetchFunction();
-          _addToCache(cacheKey, data);
-          onSuccess(data);
-        },
-        emit: emit,
-      );
-    }
-  }
-
   Future<void> getAbility(GetHomeEvent<Ability> event, Emitter<HomeState> emit) async {
-    await _fetchData<Ability>(
+    await fetchData<Ability>(
       cacheKey: 'getAbility',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -128,12 +87,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(ability: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(ability: data)),
     );
   }
 
   Future<void> getPropensity(GetHomeEvent<Propensity> event, Emitter<HomeState> emit) async {
-    await _fetchData<Propensity>(
+    await fetchData<Propensity>(
       cacheKey: 'getPropensity',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -143,12 +102,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(propensity: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(propensity: data)),
     );
   }
 
   Future<void> getPopularity(GetHomeEvent<Popularity> event, Emitter<HomeState> emit) async {
-    await _fetchData<Popularity>(
+    await fetchData<Popularity>(
       cacheKey: 'getPopularity',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -158,12 +117,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(popularity: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(popularity: data)),
     );
   }
 
   Future<void> getItemEquipment(GetHomeEvent<ItemEquipment> event, Emitter<HomeState> emit) async {
-    await _fetchData<ItemEquipment>(
+    await fetchData<ItemEquipment>(
       cacheKey: 'getItemEquipment',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -173,12 +132,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(itemEquipment: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(itemEquipment: data)),
     );
   }
 
   Future<void> getCashItemEquipment(GetHomeEvent<CashItemEquipment> event, Emitter<HomeState> emit) async {
-    await _fetchData<CashItemEquipment>(
+    await fetchData<CashItemEquipment>(
       cacheKey: 'getCashItemEquipment',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -188,12 +147,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(cashItemEquipment: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(cashItemEquipment: data)),
     );
   }
 
   Future<void> getSetEffect(GetHomeEvent<SetEffect> event, Emitter<HomeState> emit) async {
-    await _fetchData<SetEffect>(
+    await fetchData<SetEffect>(
       cacheKey: 'getSetEffect',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -203,12 +162,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(setEffect: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(setEffect: data)),
     );
   }
 
   Future<void> getSymbolEquipment(GetHomeEvent<SymbolEquipment> event, Emitter<HomeState> emit) async {
-    await _fetchData<SymbolEquipment>(
+    await fetchData<SymbolEquipment>(
       cacheKey: 'getSymbolEquipment',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -218,12 +177,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(symbolEquipment: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(symbolEquipment: data)),
     );
   }
 
   Future<void> getStat(GetHomeEvent<Stat> event, Emitter<HomeState> emit) async {
-    await _fetchData<Stat>(
+    await fetchData<Stat>(
       cacheKey: 'getStat',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -233,12 +192,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(stat: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(stat: data)),
     );
   }
 
   Future<void> getHyperStat(GetHomeEvent<HyperStat> event, Emitter<HomeState> emit) async {
-    await _fetchData<HyperStat>(
+    await fetchData<HyperStat>(
       cacheKey: 'getHyperStat',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -248,12 +207,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(hyperStat: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(hyperStat: data)),
     );
   }
 
   Future<void> getPetEquipment(GetHomeEvent<PetEquipment> event, Emitter<HomeState> emit) async {
-    await _fetchData<PetEquipment>(
+    await fetchData<PetEquipment>(
       cacheKey: 'getPetEquipment',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -263,12 +222,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(petEquipment: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(petEquipment: data)),
     );
   }
 
   Future<void> getBeautyEquipment(GetHomeEvent<BeautyEquipment> event, Emitter<HomeState> emit) async {
-    await _fetchData<BeautyEquipment>(
+    await fetchData<BeautyEquipment>(
       cacheKey: 'getBeautyEquipment',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -278,12 +237,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(beautyEquipment: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(beautyEquipment: data)),
     );
   }
 
   Future<void> getAndroidEquipment(GetHomeEvent<AndroidEquipment> event, Emitter<HomeState> emit) async {
-    await _fetchData<AndroidEquipment>(
+    await fetchData<AndroidEquipment>(
       cacheKey: 'getAndroidEquipment',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -293,12 +252,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(androidEquipment: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(androidEquipment: data)),
     );
   }
 
   Future<void> getSkillInfo(GetSkillEvent<SkillInfo> event, Emitter<HomeState> emit) async {
-    await _fetchData<SkillInfo>(
+    await fetchData<SkillInfo>(
       cacheKey: 'getSkillInfo',
       fetchFunction: () async {
         final params = SkillInfoParams(ocid: event.ocid, date: event.date, characterSkillGrade: event.characterSkillGrade);
@@ -308,12 +267,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(skillInfo: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(skillInfo: data)),
     );
   }
 
   Future<void> getLinkSkill(GetHomeEvent<LinkSkill> event, Emitter<HomeState> emit) async {
-    await _fetchData<LinkSkill>(
+    await fetchData<LinkSkill>(
       cacheKey: 'getLinkSkill',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -323,12 +282,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(linkSkill: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(linkSkill: data)),
     );
   }
 
   Future<void> getVMatrixInfo(GetHomeEvent<VMatrixInfo> event, Emitter<HomeState> emit) async {
-    await _fetchData<VMatrixInfo>(
+    await fetchData<VMatrixInfo>(
       cacheKey: 'getVMatrixInfo',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -338,12 +297,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(vMatrixInfo: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(vMatrixInfo: data)),
     );
   }
 
   Future<void> getHexaMatrixInfo(GetHomeEvent<HexaMatrixInfo> event, Emitter<HomeState> emit) async {
-    await _fetchData<HexaMatrixInfo>(
+    await fetchData<HexaMatrixInfo>(
       cacheKey: 'getHexaMatrixInfo',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -353,12 +312,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(hexaMatrixInfo: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(hexaMatrixInfo: data)),
     );
   }
 
   Future<void> getHexaMatrixStat(GetHomeEvent<HexaMatrixStat> event, Emitter<HomeState> emit) async {
-    await _fetchData<HexaMatrixStat>(
+    await fetchData<HexaMatrixStat>(
       cacheKey: 'getHexaMatrixStat',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -368,12 +327,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(hexaMatrixStat: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(hexaMatrixStat: data)),
     );
   }
 
   Future<void> getStudioTopRecordInfo(GetHomeEvent<StudioTopRecordInfo> event, Emitter<HomeState> emit) async {
-    await _fetchData<StudioTopRecordInfo>(
+    await fetchData<StudioTopRecordInfo>(
       cacheKey: 'getStudioTopRecordInfo',
       fetchFunction: () async {
         final params = BaseParams(ocid: event.ocid, date: event.date);
@@ -383,7 +342,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(HomeState.success(studioTopRecordInfo: data)),
+      onSuccess: (data) => emit((state as HomeSuccess).copyWith(studioTopRecordInfo: data)),
     );
   }
 }

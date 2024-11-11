@@ -41,49 +41,8 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
     on<SelectWorldFilterEvent>(selectWorldFilter);
   }
 
-  static const Duration cacheDuration = Duration(minutes: 10);
-  static const int maxCacheSize = 10;
-
-  final Map<String, CacheEntry> _cache = {};
-  final List<String> _cacheKeys = [];
-
-  void _addToCache(String key, dynamic data) {
-    if (_cacheKeys.length >= maxCacheSize) {
-      final oldestKey = _cacheKeys.removeAt(0);
-      _cache.remove(oldestKey);
-    }
-    _cache[key] = CacheEntry(data, DateTime.now());
-    _cacheKeys.add(key);
-  }
-
-  bool _isCacheExpired(CacheEntry entry) {
-    return DateTime.now().difference(entry.cacheTime) > cacheDuration;
-  }
-
-  Future<void> _fetchData<T>({
-    required String cacheKey,
-    required Future<T> Function() fetchFunction,
-    required Emitter<RankingState> emit,
-    required void Function(T) onSuccess,
-  }) async {
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
-      final cachedData = _cache[cacheKey]!.data as T;
-      onSuccess(cachedData);
-    } else {
-      emit(const RankingState.loading());
-      await handleRequest(
-        request: () async {
-          final data = await fetchFunction();
-          _addToCache(cacheKey, data);
-          onSuccess(data);
-        },
-        emit: emit,
-      );
-    }
-  }
-
   Future<void> getRankingAchievement(GetRankingEvent event, Emitter<RankingState> emit) async {
-    await _fetchData<RankingAchievement>(
+    await fetchData<RankingAchievement>(
       cacheKey: 'getRankingAchievement',
       fetchFunction: () async {
         final params = RankingParams(
@@ -98,12 +57,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(RankingState.success(rankingAchievement: data)),
+      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingAchievement: data)),
     );
   }
 
   Future<void> getRankingGuild(GetRankingGuildEvent event, Emitter<RankingState> emit) async {
-    await _fetchData<RankingGuild>(
+    await fetchData<RankingGuild>(
       cacheKey: 'getRankingGuild',
       fetchFunction: () async {
         final params = RankingGuildParams(
@@ -119,12 +78,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(RankingState.success(rankingGuild: data)),
+      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingGuild: data)),
     );
   }
 
   Future<void> getRankingOverall(GetRankingOverallEvent event, Emitter<RankingState> emit) async {
-    await _fetchData<RankingOverall>(
+    await fetchData<RankingOverall>(
       cacheKey: 'getRankingOverall',
       fetchFunction: () async {
         final params = RankingOverallParams(
@@ -141,12 +100,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(RankingState.success(rankingOverall: data)),
+      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingOverall: data)),
     );
   }
 
   Future<void> getRankingStudio(GetRankingStudioEvent event, Emitter<RankingState> emit) async {
-    await _fetchData<RankingStudio>(
+    await fetchData<RankingStudio>(
       cacheKey: 'getRankingStudio',
       fetchFunction: () async {
         final params = RankingStudioParams(
@@ -163,12 +122,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(RankingState.success(rankingStudio: data)),
+      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingStudio: data)),
     );
   }
 
   Future<void> getRankingTheSeed(GetRankingEvent event, Emitter<RankingState> emit) async {
-    await _fetchData<RankingTheSeed>(
+    await fetchData<RankingTheSeed>(
       cacheKey: 'getRankingTheSeed',
       fetchFunction: () async {
         final params = RankingParams(
@@ -183,12 +142,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(RankingState.success(rankingTheSeed: data)),
+      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingTheSeed: data)),
     );
   }
 
   Future<void> getRankingUnion(GetRankingEvent event, Emitter<RankingState> emit) async {
-    await _fetchData<RankingUnion>(
+    await fetchData<RankingUnion>(
       cacheKey: 'getRankingUnion',
       fetchFunction: () async {
         final params = RankingParams(
@@ -203,12 +162,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit(RankingState.success(rankingUnion: data)),
+      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingUnion: data)),
     );
   }
 
   void selectWorldFilter(SelectWorldFilterEvent event, Emitter<RankingState> emit) {
-    emit(RankingState.success(selectWorldName: event.selectWorldName));
+    emit((state as RankingSuccess).copyWith(selectWorldName: event.selectWorldName));
     try {
       switch (event.tabIndex) {
         case 0:
@@ -248,7 +207,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
           ));
           break;
       }
-      emit(RankingState.success(
+      emit((state as RankingSuccess).copyWith(
         selectWorldName: event.selectWorldName,
         selectWorldIndex: event.selectWorldIndex,
       ));

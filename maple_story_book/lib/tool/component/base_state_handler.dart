@@ -11,7 +11,7 @@ import 'package:maple_story_book/tool/component/maple_story_loading.dart';
 ///
 
 typedef SuccessWidgetBuilder<TSuccess> = Widget Function(BuildContext context, TSuccess state);
-typedef ErrorWidgetBuilder = Widget Function(BuildContext context, dynamic error);
+typedef ErrorWidgetBuilder = Widget Function(BuildContext context, String? error);
 typedef LoadingWidgetBuilder = Widget Function();
 
 class BlocHandler<T extends BaseState, TSuccess extends T> extends StatelessWidget {
@@ -32,6 +32,8 @@ class BlocHandler<T extends BaseState, TSuccess extends T> extends StatelessWidg
 
   @override
   Widget build(BuildContext context) {
+    print("Current state type: ${state.runtimeType}");
+
     if (state.isInitial) {
       return initial();
     } else if (state.isLoading) {
@@ -39,10 +41,14 @@ class BlocHandler<T extends BaseState, TSuccess extends T> extends StatelessWidg
     } else if (state.isSuccess && state is TSuccess) {
       return success(context, state as TSuccess);
     } else if (state.isError) {
-      return error(context, state);
+      return error(context, state.error);
+    } else {
+      return const SizedBox();
     }
-    return const SizedBox();
   }
 }
+
+
+
 
 
