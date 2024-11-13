@@ -54,9 +54,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(basicInfo: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          basicInfo: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -75,9 +77,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(favorites: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          favorites: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -96,9 +100,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(searches: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          searches: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -117,9 +123,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(favorites: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          favorites: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -133,9 +141,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(favorites: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          favorites: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -149,9 +159,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(searches: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          searches: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -169,9 +181,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(ocid: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          ocid: data,
+          isLoading: false,
+        );
       },
     );
   }
@@ -194,9 +208,11 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       },
       emit: emit,
       onSuccess: (data) {
-        final state = (cachedSuccessState ?? const GlobalSuccess()).copyWith(rankerOcId: data);
-        emit(state);
-        cachedSuccessState = state;
+        state.emitSuccess(
+          emit,
+          rankerOcId: data,
+          isLoading: false,
+        );
       },
     );
   }

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:maple_story_book/app/data/source/source.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
@@ -20,7 +19,6 @@ class GlobalState with _$GlobalState implements BaseState {
   const GlobalState._();
 
   const factory GlobalState.initial() = GlobalInitial;
-  const factory GlobalState.loading() = GlobalLoading;
   const factory GlobalState.success({
     @Default(Ocid()) Ocid ocid,
     @Default([]) List<LocalStorageModel> searches,
@@ -41,6 +39,7 @@ class GlobalState with _$GlobalState implements BaseState {
     @Default(false) bool accessFlag,
     @Default(false) bool liberationQuestClearFlag,
     @Default(BasicInfo()) BasicInfo basicInfo,
+    @Default(false) bool isLoading,
   }) = GlobalSuccess;
   const factory GlobalState.error({required String errorMessage}) = GlobalError;
 
@@ -51,10 +50,6 @@ class GlobalState with _$GlobalState implements BaseState {
   @override
   // TODO: implement isInitial
   bool get isInitial => this is GlobalInitial;
-
-  @override
-  // TODO: implement isLoading
-  bool get isLoading => this is GlobalLoading;
 
   @override
   // TODO: implement isSuccess
