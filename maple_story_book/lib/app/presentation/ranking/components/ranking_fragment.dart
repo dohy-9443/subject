@@ -190,12 +190,12 @@ class _RankingFragmentState extends State<RankingFragment>
         body: TabBarView(
           controller: _tabController,
           children: [
-            OverallTabView(widget.state.rankingOverall?.ranking),
-            unionTabView(widget.state.rankingUnion?.ranking),
-            guildTabView(widget.state.rankingGuild?.ranking),
-            studioTabView(widget.state.rankingStudio?.ranking),
-            theSeedTabView(widget.state.rankingTheSeed?.ranking),
-            achievementTabView(widget.state.rankingAchievement?.ranking),
+            OverallTabView(widget.state.rankingOverall.ranking),
+            unionTabView(widget.state.rankingUnion.ranking),
+            guildTabView(widget.state.rankingGuild.ranking),
+            studioTabView(widget.state.rankingStudio.ranking),
+            theSeedTabView(widget.state.rankingTheSeed.ranking),
+            achievementTabView(widget.state.rankingAchievement.ranking),
           ],
         ),
       ),
