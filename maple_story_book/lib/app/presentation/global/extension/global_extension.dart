@@ -68,7 +68,8 @@ mixin GlobalMixin on Bloc<GlobalEvent, GlobalState> {
 
 extension HomeBlocExtension on GlobalState {
   void emitSuccess(
-      Emitter<GlobalState> emit, {
+      Emitter<GlobalState> emit,
+      GlobalSuccess? globalSuccess, {
         Ocid? ocid,
         List<LocalStorageModel>? searches,
         List<LocalStorageModel>? favorites,
@@ -89,55 +90,35 @@ extension HomeBlocExtension on GlobalState {
         bool? liberationQuestClearFlag,
         BasicInfo? basicInfo,
         bool isLoading = false,
-      }) {
-    if (this is GlobalSuccess) {
-      emit(
-        (this as GlobalSuccess).copyWith(
-          ocid: ocid ?? (this as GlobalSuccess).ocid,
-          searches: searches ?? (this as GlobalSuccess).searches,
-          favorites: favorites ?? (this as GlobalSuccess).favorites,
-          rankerOcId: rankerOcId ?? (this as GlobalSuccess).rankerOcId,
-          date: date ?? (this as GlobalSuccess).date,
-          characterName: characterName ?? (this as GlobalSuccess).characterName,
-          worldName: worldName ?? (this as GlobalSuccess).worldName,
-          characterGender: characterGender ?? (this as GlobalSuccess).characterGender,
-          characterClass: characterClass ?? (this as GlobalSuccess).characterClass,
-          characterClassLevel: characterClassLevel ?? (this as GlobalSuccess).characterClassLevel,
-          characterLevel: characterLevel ?? (this as GlobalSuccess).characterLevel,
-          characterExp: characterExp ?? (this as GlobalSuccess).characterExp,
-          characterExpRate: characterExpRate ?? (this as GlobalSuccess).characterExpRate,
-          characterGuildName: characterGuildName ?? (this as GlobalSuccess).characterGuildName,
-          characterImage: characterImage ?? (this as GlobalSuccess).characterImage,
-          characterDateCreate: characterDateCreate ?? (this as GlobalSuccess).characterDateCreate,
-          accessFlag: accessFlag ?? (this as GlobalSuccess).accessFlag,
-          liberationQuestClearFlag: liberationQuestClearFlag ?? (this as GlobalSuccess).liberationQuestClearFlag,
-          basicInfo: basicInfo ?? (this as GlobalSuccess).basicInfo,
-          isLoading: isLoading,
-        ),
-      );
-    } else {
-      emit(GlobalState.success(
-        ocid: ocid ?? const Ocid(),
-        searches: searches ?? [],
-        favorites: favorites ?? [],
-        rankerOcId: rankerOcId ?? [],
-        date: date,
-        characterName: '',
-        worldName: worldName ?? '',
-        characterGender: characterGender ?? '',
-        characterClass: characterClass ?? '',
-        characterClassLevel: characterClassLevel ?? 0,
-        characterLevel: characterLevel ?? 0,
-        characterExp: characterExp ?? '',
-        characterExpRate: characterExpRate ?? '',
-        characterGuildName: characterGuildName ?? '',
-        characterImage: characterImage ?? '',
-        characterDateCreate: characterDateCreate ?? '',
-        accessFlag: accessFlag ?? false,
-        liberationQuestClearFlag: liberationQuestClearFlag ?? false,
-        basicInfo: basicInfo ?? const BasicInfo(),
+      }) async {
+    try {
+      globalSuccess = globalSuccess ?? const GlobalSuccess();
+
+      globalSuccess = globalSuccess.copyWith(
+        ocid: ocid ?? globalSuccess.ocid,
+        searches: searches ?? globalSuccess.searches,
+        favorites: favorites ?? globalSuccess.favorites,
+        rankerOcId: rankerOcId ?? globalSuccess.rankerOcId,
+        date: date ?? globalSuccess.date,
+        characterName: characterName ?? globalSuccess.characterName,
+        worldName: worldName ?? globalSuccess.worldName,
+        characterGender: characterGender ?? globalSuccess.characterGender,
+        characterClass: characterClass ?? globalSuccess.characterClass,
+        characterClassLevel: characterClassLevel ?? globalSuccess.characterClassLevel,
+        characterLevel: characterLevel ?? globalSuccess.characterLevel,
+        characterExp: characterExp ?? globalSuccess.characterExp,
+        characterExpRate: characterExpRate ?? globalSuccess.characterExpRate,
+        characterGuildName: characterGuildName ?? globalSuccess.characterGuildName,
+        characterImage: characterImage ?? globalSuccess.characterImage,
+        characterDateCreate: characterDateCreate ?? globalSuccess.characterDateCreate,
+        accessFlag: accessFlag ?? globalSuccess.accessFlag,
+        liberationQuestClearFlag: liberationQuestClearFlag ?? globalSuccess.liberationQuestClearFlag,
+        basicInfo: basicInfo ?? globalSuccess.basicInfo,
         isLoading: isLoading,
-      ));
+      );
+      emit(globalSuccess);
+    } catch (e) {
+      print("Error in emitSuccess: $e");
     }
   }
 }

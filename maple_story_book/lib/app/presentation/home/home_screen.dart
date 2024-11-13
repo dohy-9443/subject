@@ -37,5 +37,7 @@ class HomeScreen extends StatelessWidget {
     context.read<GlobalBloc>().add(GetBasicInfoEvent(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
     context.read<HomeBloc>().add(GetHomeEvent<Stat>(ocid: "3a7535b853b41574db55d045a91d56a6efe8d04e6d233bd35cf2fabdeb93fb0d"));
   }
+
+
 }
 

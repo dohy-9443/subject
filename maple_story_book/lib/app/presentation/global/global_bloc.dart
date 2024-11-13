@@ -24,7 +24,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
   final SaveHistoryUseCase _saveHistoryUseCase;
   final GetCharacterBasicUseCase _getCharacterBasicUseCase;
 
-  GlobalSuccess? cachedSuccessState;
+  GlobalSuccess? globalSuccess;
 
   GlobalBloc(
     this._getOcidUseCase,
@@ -56,6 +56,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           basicInfo: data,
           isLoading: false,
         );
@@ -79,6 +80,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           favorites: data,
           isLoading: false,
         );
@@ -102,6 +104,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           searches: data,
           isLoading: false,
         );
@@ -125,6 +128,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           favorites: data,
           isLoading: false,
         );
@@ -143,6 +147,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           favorites: data,
           isLoading: false,
         );
@@ -161,6 +166,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           searches: data,
           isLoading: false,
         );
@@ -183,6 +189,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           ocid: data,
           isLoading: false,
         );
@@ -210,6 +217,7 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> with GlobalMixin {
       onSuccess: (data) {
         state.emitSuccess(
           emit,
+          globalSuccess,
           rankerOcId: data,
           isLoading: false,
         );

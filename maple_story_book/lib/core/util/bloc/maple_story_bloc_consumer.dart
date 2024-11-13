@@ -52,25 +52,28 @@ class _MSBlocConsumerState<B extends BlocBase<S>, S extends BaseState, SSuccess 
   }
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<GlobalBloc, GlobalState>(
+  Widget build(BuildContext context) => BlocListener<GlobalBloc, GlobalState>(
     bloc: context.read<GlobalBloc>(),
-    builder: (globalContext, globalState) {
-      return BlocConsumer<B, S>(
-        bloc: widget.bloc,
-        listener: widget.listener ?? (context, state) {},
-        builder: (context, state) {
-          return BlocHandler<S, SSuccess>(
-            state: state,
-            initial: widget.initial ?? () => const MSLoading(),
-            success: widget.success,
-            successEmpty: widget.successEmpty ?? MSEmpty(),
-            error: (context, error) => MSErrorFullScreen(
-              error: error.toString(),
-              onPressed: widget.errorFullScreenPressed,
-            ),
-          );
-        },
-      );
+    listener: (globalContext, globalState) {
+      if (globalState is GlobalSuccess) {
+        context.read<GlobalBloc>().globalSuccess = globalState;
+      }
     },
+    child: BlocConsumer<B, S>(
+      bloc: widget.bloc,
+      listener: widget.listener ?? (context, state) {},
+      builder: (context, state) {
+        return BlocHandler<S, SSuccess>(
+          state: state,
+          initial: widget.initial ?? () => const MSLoading(),
+          success: widget.success,
+          successEmpty: widget.successEmpty ?? MSEmpty(),
+          error: (context, error) => MSErrorFullScreen(
+            error: error.toString(),
+            onPressed: widget.errorFullScreenPressed,
+          ),
+        );
+      },
+    ),
   );
 }

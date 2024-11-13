@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/global/global_bloc.dart';
+import 'package:maple_story_book/app/presentation/global/global_event.dart';
 import 'package:maple_story_book/app/presentation/global/global_state.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_bloc.dart';
 import 'package:maple_story_book/app/presentation/home/bloc/home_event.dart';
@@ -93,8 +94,8 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final globalState = context.read<GlobalBloc>();
-    BasicInfo? basicInfo = globalState.cachedSuccessState?.basicInfo;
+    GlobalBloc globalBloc = context.watch<GlobalBloc>();
+    BasicInfo? basicInfo = globalBloc.globalSuccess?.basicInfo;
     Stat stat = widget.state.stat;
     HyperStat hyperStat = widget.state.hyperStat;
     Ability ability = widget.state.ability;
