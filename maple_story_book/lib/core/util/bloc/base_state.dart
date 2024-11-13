@@ -51,7 +51,6 @@
 
 abstract class BaseState {
   bool get isInitial;
-  bool get isLoading;
   bool get isSuccess;
   bool get isError;
 

@@ -9,6 +9,7 @@ import 'package:maple_story_book/app/presentation/home/bloc/home_state.dart';
 import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/app/presentation/home/view/view.dart';
 import 'package:maple_story_book/core/util/util.dart';
+import 'package:maple_story_book/tool/component/component.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
@@ -118,7 +119,7 @@ class _HomeFragmentState extends State<HomeFragment> with SingleTickerProviderSt
               background: SafeArea(
                 child: Padding(
                   padding: AppInset.h8,
-                  child: basicInfo == null ? MSText.danger('조회할 수 없습니다.', fontSize: 20) : HomeTop(basicInfo: basicInfo),
+                  child: basicInfo == null ? const MSLoading(width: 100, height: 100,) : HomeTop(basicInfo: basicInfo),
                 ),
               ),
             ),

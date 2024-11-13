@@ -20,7 +20,6 @@ class HomeState with _$HomeState implements BaseState {
   const HomeState._();
 
   const factory HomeState.initial() = HomeInitial;
-  const factory HomeState.loading() = HomeLoading;
   const factory HomeState.success({
     @Default(Ability(abilityPreset1: AbilityPreset(), abilityPreset2: AbilityPreset(), abilityPreset3: AbilityPreset())) Ability ability,
     @Default(Propensity()) Propensity propensity,
@@ -40,6 +39,7 @@ class HomeState with _$HomeState implements BaseState {
     @Default(HexaMatrixInfo()) HexaMatrixInfo hexaMatrixInfo,
     @Default(HexaMatrixStat()) HexaMatrixStat hexaMatrixStat,
     @Default(StudioTopRecordInfo()) StudioTopRecordInfo studioTopRecordInfo,
+    @Default(false) bool isLoading,
   }) = HomeSuccess;
 
   const factory HomeState.error({required String errorMessage}) = HomeError;
@@ -51,10 +51,6 @@ class HomeState with _$HomeState implements BaseState {
   @override
   // TODO: implement isInitial
   bool get isInitial => this is HomeInitial;
-
-  @override
-  // TODO: implement isLoading
-  bool get isLoading => this is HomeLoading;
 
   @override
   // TODO: implement isSuccess

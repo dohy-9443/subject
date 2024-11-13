@@ -36,8 +36,6 @@ class BlocHandler<T extends BaseState, TSuccess extends T> extends StatelessWidg
 
     if (state.isInitial) {
       return initial();
-    } else if (state.isLoading) {
-      return const MSLoading();
     } else if (state.isSuccess && state is TSuccess) {
       return success(context, state as TSuccess);
     } else if (state.isError) {

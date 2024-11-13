@@ -11,7 +11,10 @@ import 'package:maple_story_book/tool/widget/widget.dart';
 ///
 
 class MSLoading extends StatelessWidget {
-  const MSLoading({super.key});
+  final double width;
+  final double height;
+
+  const MSLoading({super.key, this.width = 300, this.height = 300});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +25,8 @@ class MSLoading extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 300,
-              height: 300,
+              width: width,
+              height: height,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(Assets.images.orange.path),
