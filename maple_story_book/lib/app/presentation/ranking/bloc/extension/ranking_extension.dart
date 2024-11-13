@@ -71,8 +71,9 @@ mixin RankingBlocMixin on Bloc<RankingEvent, RankingState> {
     required Future<T> Function() fetchFunction,
     required Emitter<RankingState> emit,
     required void Function(T) onSuccess,
+    required String? selectWorldName,
   }) async {
-    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!)) {
+    if (_cache.containsKey(cacheKey) && !_isCacheExpired(_cache[cacheKey]!) && selectWorldName == null) {
       final cachedData = _cache[cacheKey]!.data as T;
       onSuccess(cachedData);
     } else {

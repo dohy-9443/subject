@@ -24,6 +24,8 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
   final GetRankingTheSeedUseCase _getRankingTheSeedUseCase;
   final GetRankingUnionUseCase _getRankingUnionUseCase;
 
+  String? selectWorldName;
+
   RankingBloc(
     this._getRankingAchievementUseCase,
     this._getRankingGuildUseCase,
@@ -43,6 +45,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
 
   Future<void> getRankingAchievement(GetRankingEvent event, Emitter<RankingState> emit) async {
     await fetchData<RankingAchievement>(
+      selectWorldName: selectWorldName,
       cacheKey: 'getRankingAchievement',
       fetchFunction: () async {
         final params = RankingParams(
@@ -63,6 +66,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
 
   Future<void> getRankingGuild(GetRankingGuildEvent event, Emitter<RankingState> emit) async {
     await fetchData<RankingGuild>(
+      selectWorldName: selectWorldName,
       cacheKey: 'getRankingGuild',
       fetchFunction: () async {
         final params = RankingGuildParams(
@@ -84,6 +88,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
 
   Future<void> getRankingOverall(GetRankingOverallEvent event, Emitter<RankingState> emit) async {
     await fetchData<RankingOverall>(
+      selectWorldName: selectWorldName,
       cacheKey: 'getRankingOverall',
       fetchFunction: () async {
         final params = RankingOverallParams(
@@ -107,6 +112,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
 
   Future<void> getRankingStudio(GetRankingStudioEvent event, Emitter<RankingState> emit) async {
     await fetchData<RankingStudio>(
+      selectWorldName: selectWorldName,
       cacheKey: 'getRankingStudio',
       fetchFunction: () async {
         final params = RankingStudioParams(
@@ -130,6 +136,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
 
   Future<void> getRankingTheSeed(GetRankingEvent event, Emitter<RankingState> emit) async {
     await fetchData<RankingTheSeed>(
+      selectWorldName: selectWorldName,
       cacheKey: 'getRankingTheSeed',
       fetchFunction: () async {
         final params = RankingParams(
@@ -150,6 +157,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
 
   Future<void> getRankingUnion(GetRankingEvent event, Emitter<RankingState> emit) async {
     await fetchData<RankingUnion>(
+      selectWorldName: selectWorldName,
       cacheKey: 'getRankingUnion',
       fetchFunction: () async {
         final params = RankingParams(
@@ -171,6 +179,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
   void selectWorldFilter(SelectWorldFilterEvent event, Emitter<RankingState> emit) {
     state.emitSuccess(emit, selectWorldName: event.selectWorldName, isLoading: false);
     try {
+      selectWorldName = event.selectWorldName;
       switch (event.tabIndex) {
         case 0:
           add(GetRankingOverallEvent<RankingOverall>(
@@ -216,7 +225,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         isLoading: false,
       );
     } catch (e) {
-      print(e);
+      print('selectWorldFilter Error: e');
     }
   }
 }
