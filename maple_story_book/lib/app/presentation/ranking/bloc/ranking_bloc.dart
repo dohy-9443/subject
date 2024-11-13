@@ -57,7 +57,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingAchievement: data)),
+      onSuccess: (data) => state.emitSuccess(emit, rankingAchievement: data, isLoading: false),
     );
   }
 
@@ -78,7 +78,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingGuild: data)),
+      onSuccess: (data) => state.emitSuccess(emit, rankingGuild: data, isLoading: false),
     );
   }
 
@@ -100,7 +100,8 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingOverall: data)),
+
+      onSuccess: (data) => state.emitSuccess(emit, rankingOverall: data, isLoading: false),
     );
   }
 
@@ -122,7 +123,8 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingStudio: data)),
+
+      onSuccess: (data) => state.emitSuccess(emit, rankingStudio: data, isLoading: false),
     );
   }
 
@@ -142,7 +144,7 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingTheSeed: data)),
+      onSuccess: (data) => state.emitSuccess(emit, rankingTheSeed: data, isLoading: false),
     );
   }
 
@@ -162,12 +164,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
         return res.data!;
       },
       emit: emit,
-      onSuccess: (data) => emit((state as RankingSuccess).copyWith(rankingUnion: data)),
+      onSuccess: (data) => state.emitSuccess(emit, rankingUnion: data, isLoading: false),
     );
   }
 
   void selectWorldFilter(SelectWorldFilterEvent event, Emitter<RankingState> emit) {
-    emit((state as RankingSuccess).copyWith(selectWorldName: event.selectWorldName));
+    state.emitSuccess(emit, selectWorldName: event.selectWorldName, isLoading: false);
     try {
       switch (event.tabIndex) {
         case 0:
@@ -207,10 +209,12 @@ class RankingBloc extends Bloc<RankingEvent, RankingState> with RankingBlocMixin
           ));
           break;
       }
-      emit((state as RankingSuccess).copyWith(
+      state.emitSuccess(
+        emit,
         selectWorldName: event.selectWorldName,
         selectWorldIndex: event.selectWorldIndex,
-      ));
+        isLoading: false,
+      );
     } catch (e) {
       print(e);
     }

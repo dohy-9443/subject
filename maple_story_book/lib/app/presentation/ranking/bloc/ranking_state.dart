@@ -17,7 +17,6 @@ class RankingState with _$RankingState implements BaseState {
   const RankingState._();
 
   const factory RankingState.initial() = RankingInitial;
-  const factory RankingState.loading() = RankingLoading;
   const factory RankingState.success({
     @Default(RankingAchievement()) RankingAchievement rankingAchievement,
     @Default(RankingGuild()) RankingGuild rankingGuild,
@@ -27,6 +26,7 @@ class RankingState with _$RankingState implements BaseState {
     @Default(RankingUnion()) RankingUnion rankingUnion,
     @Default('') String selectWorldName,
     @Default(0) int selectWorldIndex,
+    @Default(false) bool isLoading,
   }) = RankingSuccess;
   const factory RankingState.error({required String errorMessage}) = RankingError;
 
@@ -37,10 +37,6 @@ class RankingState with _$RankingState implements BaseState {
   @override
   // TODO: implement isInitial
   bool get isInitial => this is RankingInitial;
-
-  @override
-  // TODO: implement isLoading
-  bool get isLoading => this is RankingError;
 
   @override
   // TODO: implement isSuccess

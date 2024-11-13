@@ -244,8 +244,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> with HomeBlocMixin {
     );
   }
 
-  /// TODO : loading type 으로 변하면서 이슈발생 이전값을 유지하지못하고 초기화가됨
-
   Future<void> getHyperStat(GetHomeEvent<HyperStat> event, Emitter<HomeState> emit) async {
     await fetchData<HyperStat>(
       cacheKey: 'getHyperStat',

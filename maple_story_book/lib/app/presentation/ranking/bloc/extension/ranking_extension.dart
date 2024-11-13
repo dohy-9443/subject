@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maple_story_book/app/data/source/model/model.dart';
+import 'package:maple_story_book/app/domain/entity/entity.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_event.dart';
 import 'package:maple_story_book/app/presentation/ranking/bloc/ranking_state.dart';
 
@@ -32,7 +33,21 @@ mixin RankingBlocMixin on Bloc<RankingEvent, RankingState> {
   }
 
   void emitLoading(Emitter<RankingState> emit) {
-    emit(const RankingState.loading());
+    if (state is RankingSuccess) {
+      emit((state as RankingSuccess).copyWith(isLoading: true));
+    } else {
+      emit(const RankingState.success(
+        rankingAchievement: RankingAchievement(),
+        rankingGuild: RankingGuild(),
+        rankingOverall: RankingOverall(),
+        rankingStudio: RankingStudio(),
+        rankingTheSeed: RankingTheSeed(),
+        rankingUnion: RankingUnion(),
+        selectWorldName: '',
+        selectWorldIndex: 0,
+        isLoading: true,
+      ));
+    }
   }
 
   void emitError(dynamic error, StackTrace? stackTrace, Emitter<RankingState> emit) {
@@ -61,7 +76,6 @@ mixin RankingBlocMixin on Bloc<RankingEvent, RankingState> {
       final cachedData = _cache[cacheKey]!.data as T;
       onSuccess(cachedData);
     } else {
-      emit(const RankingState.loading());
       await handleRequest(
         request: () async {
           final data = await fetchFunction();
@@ -74,3 +88,45 @@ mixin RankingBlocMixin on Bloc<RankingEvent, RankingState> {
   }
 }
 
+extension RankingBlocExtension on RankingState {
+  void emitSuccess(
+      Emitter<RankingState> emit, {
+        RankingAchievement? rankingAchievement,
+        RankingGuild? rankingGuild,
+        RankingOverall? rankingOverall,
+        RankingStudio? rankingStudio,
+        RankingTheSeed? rankingTheSeed,
+        RankingUnion? rankingUnion,
+        String? selectWorldName,
+        int? selectWorldIndex,
+        bool isLoading = false,
+      }) {
+    if (this is RankingSuccess) {
+      emit(
+        (this as RankingSuccess).copyWith(
+          rankingAchievement: rankingAchievement ?? (this as RankingSuccess).rankingAchievement,
+          rankingGuild: rankingGuild ?? (this as RankingSuccess).rankingGuild,
+          rankingOverall: rankingOverall ?? (this as RankingSuccess).rankingOverall,
+          rankingStudio: rankingStudio ?? (this as RankingSuccess).rankingStudio,
+          rankingTheSeed: rankingTheSeed ?? (this as RankingSuccess).rankingTheSeed,
+          rankingUnion: rankingUnion ?? (this as RankingSuccess).rankingUnion,
+          selectWorldName: selectWorldName ?? (this as RankingSuccess).selectWorldName,
+          selectWorldIndex: selectWorldIndex ?? (this as RankingSuccess).selectWorldIndex,
+          isLoading: isLoading,
+        ),
+      );
+    } else {
+      emit(RankingState.success(
+        rankingAchievement: rankingAchievement ?? const RankingAchievement(),
+        rankingGuild: rankingGuild ?? const RankingGuild(),
+        rankingOverall: rankingOverall ?? const RankingOverall(),
+        rankingStudio: rankingStudio ?? const RankingStudio(),
+        rankingTheSeed: rankingTheSeed ?? const RankingTheSeed(),
+        rankingUnion: rankingUnion ?? const RankingUnion(),
+        selectWorldName: selectWorldName ?? '',
+        selectWorldIndex: selectWorldIndex ?? 0,
+        isLoading: isLoading,
+      ));
+    }
+  }
+}
