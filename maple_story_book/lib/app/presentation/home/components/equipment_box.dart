@@ -31,29 +31,30 @@ class EquipmentBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var item = items.firstWhere((e) => (e.itemEquipmentSlot == _equipmentInventoryName(index).ko));
+
     return Container(
       width: 70,
       height: 70,
       decoration: BoxDecoration(
         color: ColorName.lightGray1,
-        borderRadius: items.firstWhere((e) {
-          return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
-        }).potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
-        border: items.firstWhere((e) {
-          return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
-        }).potentialOptionGrade != "" ? Border.all(
+        borderRadius: item.potentialOptionGrade == "" && item.itemIcon == "" ? BorderRadius.circular(10) : null,
+        border: item.potentialOptionGrade != "" ? Border.all(
           width: 3,
-          color: _equipmentBorder(items.firstWhere((e) {
-            return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
-          }).potentialOptionGrade),
+          color: _equipmentBorder(item.potentialOptionGrade),
         ): null,
       ),
       child: Stack(
         children: [
-          MSText.bold(
-            _equipmentInventoryName(index).en,
-            fontSize: 10,
-            color: ColorName.white,
+          Positioned(
+            top: 2,
+            left: 2,
+            child: MSText.bold(
+              _equipmentInventoryName(index).en,
+              fontSize: 10,
+              color: ColorName.white,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -63,9 +64,7 @@ class EquipmentBox extends StatelessWidget {
                 width: 40,
                 height: 40,
                 child: CachedNetworkImage(
-                  imageUrl: items.firstWhere((e) {
-                    return (e.itemEquipmentSlot == _equipmentInventoryName(index).ko);
-                  }).itemIcon,
+                  imageUrl: item.itemIcon,
                   fit: BoxFit.contain,
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
