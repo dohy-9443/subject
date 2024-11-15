@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maple_story_book/app/domain/entity/entity.dart';
+import 'package:maple_story_book/app/presentation/home/components/components.dart';
 import 'package:maple_story_book/tool/theme/theme.dart';
 import 'package:maple_story_book/tool/widget/widget.dart';
 
@@ -32,47 +33,57 @@ class EquipmentBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var item = items.firstWhere((e) => (e.itemEquipmentSlot == _equipmentInventoryName(index).ko));
+    final ItemEquipmentElement item = items.firstWhere((e) => (e.itemEquipmentSlot == _equipmentInventoryName(index).ko));
 
-    return Container(
-      width: 70,
-      height: 70,
-      decoration: BoxDecoration(
-        color: ColorName.lightGray1,
-        borderRadius: item.potentialOptionGrade == "" && item.itemIcon == "" ? BorderRadius.circular(10) : null,
-        border: item.potentialOptionGrade != "" ? Border.all(
-          width: 3,
-          color: _equipmentBorder(item.potentialOptionGrade),
-        ): null,
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 2,
-            left: 2,
-            child: MSText.bold(
-              _equipmentInventoryName(index).en,
-              fontSize: 10,
-              color: ColorName.white,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                child: CachedNetworkImage(
-                  imageUrl: item.itemIcon,
-                  fit: BoxFit.contain,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+    return GestureDetector(
+      onTap: () {
+        showDialog<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return Dialog(child: EquipmentModal(item: item));
+          }
+        );
+      },
+      child: Container(
+        width: 70,
+        height: 70,
+        decoration: BoxDecoration(
+          color: ColorName.lightGray1,
+          borderRadius: item.potentialOptionGrade == "" ? BorderRadius.circular(10) : null,
+          border: item.potentialOptionGrade != "" ? Border.all(
+            width: 3,
+            color: _equipmentBorder(item.potentialOptionGrade),
+          ): null,
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              top: 2,
+              left: 3,
+              child: MSText.bold(
+                _equipmentInventoryName(index).en,
+                fontSize: 12,
+                color: ColorName.white,
               ),
-            ],
-          ),
-        ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: CachedNetworkImage(
+                    imageUrl: item.itemIcon,
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
