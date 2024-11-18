@@ -40,7 +40,10 @@ class EquipmentBox extends StatelessWidget {
         showDialog<void>(
           context: context,
           builder: (BuildContext context) {
-            return Dialog(child: EquipmentModal(item: item));
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              child: EquipmentModal(item: item),
+            );
           }
         );
       },
