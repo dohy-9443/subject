@@ -6,6 +6,7 @@
 /// Description      : 
 ///
 
+export 'maple_story_app_avoid_duplicate_touch.dart';
 export 'maple_story_app_bar.dart';
 export 'maple_story_base_build_widget.dart';
 export 'maple_story_round_button.dart';
